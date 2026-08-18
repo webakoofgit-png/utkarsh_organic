@@ -103,10 +103,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       addToCart: (slug, weight, qty = 1) =>
         setState((s) => {
           const i = s.cart.findIndex((l) => l.slug === slug && l.weight === weight);
-          const cart = [...s.cart];
-          if (i >= 0) cart[i] = { ...cart[i], qty: cart[i].qty + qty };
-          else cart.push({ slug, weight, qty });
-          return { ...s, cart };
+          if (i >= 0) {
+            const cart = s.cart.map((l, idx) => (idx === i ? { ...l, qty: l.qty + qty } : l));
+            return { ...s, cart };
+          }
+          return { ...s, cart: [...s.cart, { slug, weight, qty }] };
         }),
       setQty: (slug, weight, qty) =>
         setState((s) => ({
