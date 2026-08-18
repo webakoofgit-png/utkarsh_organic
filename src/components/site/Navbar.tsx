@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { Heart, Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -21,7 +21,9 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const { cartCount, wishlist, setCartOpen, user } = useStore();
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const location = useLocation();
+  const navigate = useNavigate();
+  const pathname = location.pathname;
   const overHero = pathname === "/";
 
   useEffect(() => {
@@ -57,19 +59,24 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-1 xl:flex">
-          {NAV.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              className={`relative rounded-full px-3 py-2 text-sm font-medium transition-colors ${
-                solid ? "text-foreground/80 hover:text-accent" : "text-primary-foreground/90 hover:text-primary-foreground"
-              }`}
-              activeProps={{ className: "text-accent" }}
-              activeOptions={{ exact: item.to === "/" }}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {NAV.map((item) => {
+            const isActive = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
+            return (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={`relative rounded-full px-3 py-2 text-sm font-medium transition-colors ${
+                  isActive
+                    ? "text-accent font-bold"
+                    : solid
+                      ? "text-foreground/80 hover:text-accent"
+                      : "text-primary-foreground/90 hover:text-primary-foreground"
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-1">
@@ -88,8 +95,7 @@ export function Navbar() {
             <User className="h-[18px] w-[18px]" />
           </Link>
           <Link
-            to="/account"
-            search={{ tab: "wishlist" }}
+            to="/account?tab=wishlist"
             aria-label="Wishlist"
             className={`relative hidden rounded-full p-2.5 transition-colors hover:bg-secondary sm:block ${solid ? "text-foreground" : "text-primary-foreground"}`}
           >
@@ -146,7 +152,7 @@ export function Navbar() {
                 e.preventDefault();
                 const q = new FormData(e.currentTarget).get("q") as string;
                 setSearchOpen(false);
-                window.location.href = `/shop?q=${encodeURIComponent(q ?? "")}`;
+                navigate(`/shop?q=${encodeURIComponent(q ?? "")}`);
               }}
             >
               <Search className="h-4 w-4 text-muted-foreground" />
@@ -183,8 +189,6 @@ export function Navbar() {
                   <Link
                     to={item.to}
                     className="block rounded-xl px-3 py-3 text-base font-medium text-foreground hover:bg-secondary"
-                    activeProps={{ className: "text-accent" }}
-                    activeOptions={{ exact: item.to === "/" }}
                   >
                     {item.label}
                   </Link>

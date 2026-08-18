@@ -1,0 +1,72 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "sonner";
+import { StoreProvider } from "@/lib/store";
+import { Navbar } from "@/components/site/Navbar";
+import { Footer } from "@/components/site/Footer";
+import { CartDrawer } from "@/components/site/CartDrawer";
+import { FloatingActions } from "@/components/site/FloatingActions";
+
+import HomePage from "@/routes/index";
+import ShopPage from "@/routes/shop";
+import ProductsPage from "@/routes/products";
+import ProductDetailPage from "@/routes/product.$slug";
+import CartPage from "@/routes/cart";
+import CheckoutPage from "@/routes/checkout";
+import LoginPage from "@/routes/login";
+import RegisterPage from "@/routes/register";
+import AccountPage from "@/routes/account";
+import TrackOrderPage from "@/routes/track-order";
+import AboutPage from "@/routes/about";
+import WhyOrganicPage from "@/routes/why-organic";
+import BulkOrdersPage from "@/routes/bulk-orders";
+import RecipesPage from "@/routes/recipes";
+import BlogPage from "@/routes/blog";
+import BlogPostPage from "@/routes/blog.$slug";
+import ContactPage from "@/routes/contact";
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <StoreProvider>
+        <div className="relative flex min-h-screen flex-col">
+          <Navbar />
+          <CartDrawer />
+          <div className="flex-1">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/shop" element={<ShopPage />} />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/product/:slug" element={<ProductDetailPage />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/account" element={<AccountPage />} />
+              <Route path="/track-order" element={<TrackOrderPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/why-organic" element={<WhyOrganicPage />} />
+              <Route path="/bulk-orders" element={<BulkOrdersPage />} />
+              <Route path="/recipes" element={<RecipesPage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/blog/:slug" element={<BlogPostPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route
+                path="*"
+                element={
+                  <div className="flex min-h-[60vh] flex-col items-center justify-center text-center px-4">
+                    <h1 className="font-display text-6xl font-extrabold text-primary">404</h1>
+                    <h2 className="mt-2 text-xl font-bold font-display">Page Not Found</h2>
+                    <p className="mt-2 text-sm text-muted-foreground">The page you are looking for does not exist.</p>
+                  </div>
+                }
+              />
+            </Routes>
+          </div>
+          <Footer />
+          <FloatingActions />
+          <Toaster position="top-right" richColors />
+        </div>
+      </StoreProvider>
+    </BrowserRouter>
+  );
+}

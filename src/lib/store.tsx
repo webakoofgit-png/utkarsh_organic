@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 import { PRODUCTS, priceFor, type Weight } from "@/lib/products";
 
 export type CartLine = { slug: string; weight: Weight; qty: number };
+export type OrderItem = { name: string; weight: string; qty: number; price: number };
 export type Address = {
   name: string;
   phone: string;
@@ -13,12 +14,13 @@ export type Address = {
 export type Order = {
   id: string;
   date: string;
-  lines: CartLine[];
+  items: OrderItem[];
   total: number;
-  status: number; // index into ORDER_STAGES
-  payment: string;
+  status: string;
+  address?: string;
+  payment?: string;
 };
-export type User = { name: string; email: string; mobile: string };
+export type User = { name: string; email: string; mobile?: string };
 
 export const ORDER_STAGES = [
   "Order Placed",
@@ -29,7 +31,7 @@ export const ORDER_STAGES = [
   "Delivered",
 ];
 
-const KEY = "utkarsh-organic-state-v1";
+const KEY = "utkarsh-organic-state-v2";
 
 type State = {
   cart: CartLine[];
@@ -39,7 +41,25 @@ type State = {
   addresses: Address[];
 };
 
-const initial: State = { cart: [], wishlist: [], user: null, orders: [], addresses: [] };
+const initial: State = {
+  cart: [],
+  wishlist: ["organic-onion-powder"],
+  user: null,
+  orders: [
+    {
+      id: "UO-842910",
+      date: "14 Aug 2026",
+      items: [
+        { name: "Organic Onion Powder", weight: "250g", qty: 2, price: 415 },
+        { name: "Organic Turmeric Powder", weight: "100g", qty: 1, price: 179 },
+      ],
+      total: 594,
+      status: "Delivered",
+      address: "Flat 4B, Sunflower Apartments, MG Road, Nashik, Maharashtra 422003",
+    },
+  ],
+  addresses: [],
+};
 
 type Ctx = State & {
   ready: boolean;
@@ -50,10 +70,10 @@ type Ctx = State & {
   removeLine: (slug: string, weight: Weight) => void;
   clearCart: () => void;
   toggleWishlist: (slug: string) => void;
-  login: (user: User) => void;
+  login: (nameOrUser: string | User, email?: string) => void;
   logout: () => void;
+  addOrder: (order: Order) => void;
   placeOrder: (total: number, payment: string) => Order;
-  advanceOrder: (id: string) => void;
   addAddress: (a: Address) => void;
   cartCount: number;
   subtotal: number;
@@ -124,27 +144,38 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           ...s,
           wishlist: s.wishlist.includes(slug) ? s.wishlist.filter((x) => x !== slug) : [...s.wishlist, slug],
         })),
-      login: (user) => setState((s) => ({ ...s, user })),
+      login: (nameOrUser, email = "") =>
+        setState((s) => {
+          const userObj = typeof nameOrUser === "string" ? { name: nameOrUser, email } : nameOrUser;
+          return { ...s, user: userObj };
+        }),
       logout: () => setState((s) => ({ ...s, user: null })),
+      addOrder: (order: Order) =>
+        setState((s) => ({
+          ...s,
+          orders: [order, ...s.orders],
+        })),
       placeOrder: (total, payment) => {
+        const items: OrderItem[] = state.cart.map((l) => {
+          const p = PRODUCTS.find((x) => x.slug === l.slug);
+          return {
+            name: p ? p.name : l.slug,
+            weight: l.weight,
+            qty: l.qty,
+            price: p ? priceFor(p, l.weight).price * l.qty : 0,
+          };
+        });
         const order: Order = {
-          id: "UO" + Math.floor(100000 + Math.random() * 900000),
+          id: "UO-" + Math.floor(100000 + Math.random() * 900000),
           date: new Date().toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" }),
-          lines: state.cart,
+          items,
           total,
-          status: 0,
+          status: "Processing",
           payment,
         };
         setState((s) => ({ ...s, orders: [order, ...s.orders], cart: [] }));
         return order;
       },
-      advanceOrder: (id) =>
-        setState((s) => ({
-          ...s,
-          orders: s.orders.map((o) =>
-            o.id === id ? { ...o, status: Math.min(o.status + 1, ORDER_STAGES.length - 1) } : o,
-          ),
-        })),
       addAddress: (a) => setState((s) => ({ ...s, addresses: [...s.addresses, a] })),
     };
   }, [state, ready, cartOpen]);

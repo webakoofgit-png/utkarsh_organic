@@ -45,6 +45,7 @@
   --color-forest-foreground: var(--forest-foreground);
   --color-leaf: var(--leaf);
   --color-saffron: var(--saffron);
+  --color-whatsapp: var(--whatsapp);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -100,6 +101,7 @@
   --forest-foreground: oklch(0.97 0.015 95);
   --leaf: oklch(0.66 0.15 145);
   --saffron: oklch(0.78 0.15 75);
+  --whatsapp: oklch(0.74 0.18 150);
 
   --chart-1: oklch(0.66 0.15 145);
   --chart-2: oklch(0.78 0.15 75);
