@@ -7,6 +7,7 @@ import {
   Check,
   ChefHat,
   ChevronRight,
+  Coffee,
   Factory,
   FlaskConical,
   HeartHandshake,
@@ -24,6 +25,7 @@ import {
   Truck,
   Users,
   Utensils,
+  UtensilsCrossed,
 } from "lucide-react";
 import farm from "@/assets/farm.jpg";
 import flatlay from "@/assets/flatlay.jpg";
@@ -36,11 +38,47 @@ import { ProductCard } from "@/components/site/ProductCard";
 import { Counter, Reveal, SectionHeading } from "@/components/site/motion-primitives";
 import { BLOG_POSTS, CATEGORIES, PRODUCTS, RECIPES, COMPANY_INFO } from "@/lib/products";
 
-const categories = [
-  { ...CATEGORIES[0], image: carrot },
-  { ...CATEGORIES[1], image: turmeric },
-  { ...CATEGORIES[2], image: spinach },
-  { ...CATEGORIES[3], image: onion },
+const customCategories = [
+  {
+    id: "vegetable",
+    name: "Vegetable & Fruit Powders",
+    items: "Onion, Tomato, Beetroot, Spinach, Carrot, Moringa, Amla, Mango, Banana",
+    image: spinach,
+    badgeBg: "bg-[#7ca938]",
+    cardBg: "bg-[#f0f7ef] border-[#d6ebd3]",
+    btnBg: "bg-[#7ca938] hover:bg-[#69922c]",
+    icon: Leaf,
+  },
+  {
+    id: "spice",
+    name: "Spice Powders & Dry Spices",
+    items: "Turmeric, Chilli, Coriander, Garlic, Ginger",
+    image: turmeric,
+    badgeBg: "bg-[#e6a119]",
+    cardBg: "bg-[#fdf7e7] border-[#f5e4b8]",
+    btnBg: "bg-[#e6a119] hover:bg-[#cc8e12]",
+    icon: UtensilsCrossed,
+  },
+  {
+    id: "wellness",
+    name: "Wellness & Herbal Teas",
+    items: "Moringa Lemon Tea, Moringa Leaf Powder, Immunity Powders",
+    image: onion,
+    badgeBg: "bg-[#1b5e2b]",
+    cardBg: "bg-[#edf6ef] border-[#ceebd4]",
+    btnBg: "bg-[#1b5e2b] hover:bg-[#134720]",
+    icon: Coffee,
+  },
+  {
+    id: "ready-to-cook",
+    name: "Ready to Cook & Functional Foods",
+    items: "Moringa Soup, Moringa Noodles, Dehydrated Mixed Veggies",
+    image: carrot,
+    badgeBg: "bg-[#c24e27]",
+    cardBg: "bg-[#fdf2ec] border-[#f7d6c4]",
+    btnBg: "bg-[#c24e27] hover:bg-[#a53f1d]",
+    icon: Soup,
+  },
 ];
 
 export default function HomePage() {
@@ -63,27 +101,24 @@ export default function HomePage() {
 
       {/* Custom Hero Section matching design image */}
       <section className="relative bg-gradient-to-b from-[#051f12] via-[#04170d] to-[#020e07] text-white pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden">
-        {/* Subtle Ambient Background Leaf Glow */}
+        {/* Ambient Background Leaf Glow */}
         <div className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
         <div className="absolute top-1/3 right-1/4 h-96 w-96 rounded-full bg-emerald-400/10 blur-3xl pointer-events-none" />
 
         <div className="container-x grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] relative z-10">
           {/* Left Hero Content */}
           <Reveal y={24} className="max-w-2xl">
-            {/* Top Pill Eyebrow */}
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-950/70 px-4 py-2 text-xs font-bold text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
               <Leaf className="h-3.5 w-3.5 text-emerald-400" />
               <span>{COMPANY_INFO.marathiHeader}</span>
             </div>
 
-            {/* Main Headline */}
             <h1 className="mt-6 font-serif text-5xl font-black leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl text-white">
               Real Ingredients. <br />
               <span className="text-emerald-400">Real Taste.</span> <br />
               Real You.
             </h1>
 
-            {/* Leaf Divider + Marathi Sub-text */}
             <div className="mt-6 flex items-center gap-3">
               <div className="h-[2px] w-12 bg-emerald-400" />
               <Leaf className="h-4 w-4 text-emerald-400 shrink-0" />
@@ -93,7 +128,6 @@ export default function HomePage() {
               {COMPANY_INFO.marathiDescription}
             </p>
 
-            {/* Action Buttons */}
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
                 to="/shop"
@@ -116,10 +150,8 @@ export default function HomePage() {
           {/* Right Product Showcase & Orbiting Nodes */}
           <Reveal delay={0.15} className="relative flex justify-center items-center">
             <div className="relative w-full max-w-lg">
-              {/* Outer Orbit Arc Circle */}
               <div className="absolute inset-0 m-auto h-[340px] w-[340px] rounded-full border border-emerald-400/30 shadow-[0_0_30px_rgba(16,185,129,0.15)] pointer-events-none sm:h-[400px] sm:w-[400px]" />
 
-              {/* Central Kraft Pouch Display Box */}
               <div className="relative z-10 mx-auto w-72 sm:w-80 rounded-3xl border border-emerald-500/30 bg-emerald-950/40 p-6 backdrop-blur-md shadow-2xl text-center">
                 <img
                   src={onion}
@@ -137,8 +169,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Orbiting Nodes (6 Circular Badge Nodes) */}
-              {/* Node 1: No Preservatives (Top Left) */}
+              {/* Orbiting Badge Nodes */}
               <div className="absolute top-2 left-2 z-20 flex items-center gap-2 rounded-2xl border border-emerald-500/30 bg-emerald-950/80 px-3 py-2 text-[11px] font-bold text-white shadow-lg backdrop-blur-md">
                 <div className="grid h-7 w-7 place-items-center rounded-xl bg-emerald-900/60 text-emerald-400">
                   <FlaskConical className="h-3.5 w-3.5" />
@@ -146,7 +177,6 @@ export default function HomePage() {
                 <span>No Preservatives</span>
               </div>
 
-              {/* Node 2: Farm to Home (Mid Left) */}
               <div className="absolute top-1/2 -left-4 z-20 -translate-y-1/2 flex items-center gap-2 rounded-2xl border border-emerald-500/30 bg-emerald-950/80 px-3 py-2 text-[11px] font-bold text-white shadow-lg backdrop-blur-md">
                 <div className="grid h-7 w-7 place-items-center rounded-xl bg-emerald-900/60 text-emerald-400">
                   <Home className="h-3.5 w-3.5" />
@@ -154,7 +184,6 @@ export default function HomePage() {
                 <span>Farm to Home</span>
               </div>
 
-              {/* Node 3: Rich in Nutrients (Bottom Left) */}
               <div className="absolute bottom-2 left-4 z-20 flex items-center gap-2 rounded-2xl border border-emerald-500/30 bg-emerald-950/80 px-3 py-2 text-[11px] font-bold text-white shadow-lg backdrop-blur-md">
                 <div className="grid h-7 w-7 place-items-center rounded-xl bg-emerald-900/60 text-emerald-400">
                   <Sparkles className="h-3.5 w-3.5" />
@@ -162,14 +191,12 @@ export default function HomePage() {
                 <span>Rich in Nutrients</span>
               </div>
 
-              {/* Node 4: 100% Natural Stamp (Top Right) */}
               <div className="absolute top-0 right-2 z-20 grid h-14 w-14 place-items-center rounded-full border border-emerald-400/50 bg-emerald-950/90 text-center shadow-lg backdrop-blur-md">
                 <div className="text-[9px] font-extrabold leading-tight text-emerald-400">
                   100%<br />NATURAL
                 </div>
               </div>
 
-              {/* Node 5: Ready to Cook (Mid Right) */}
               <div className="absolute top-1/3 -right-4 z-20 flex items-center gap-2 rounded-2xl border border-emerald-500/30 bg-emerald-950/80 px-3 py-2 text-[11px] font-bold text-white shadow-lg backdrop-blur-md">
                 <div className="grid h-7 w-7 place-items-center rounded-xl bg-emerald-900/60 text-emerald-400">
                   <Utensils className="h-3.5 w-3.5" />
@@ -177,7 +204,6 @@ export default function HomePage() {
                 <span>Ready to Cook</span>
               </div>
 
-              {/* Node 6: Ready to Use (Bottom Right) */}
               <div className="absolute bottom-6 right-0 z-20 flex items-center gap-2 rounded-2xl border border-emerald-500/30 bg-emerald-950/80 px-3 py-2 text-[11px] font-bold text-white shadow-lg backdrop-blur-md">
                 <div className="grid h-7 w-7 place-items-center rounded-xl bg-emerald-900/60 text-emerald-400">
                   <Soup className="h-3.5 w-3.5" />
@@ -188,7 +214,7 @@ export default function HomePage() {
           </Reveal>
         </div>
 
-        {/* Bottom Organic Wave Transition */}
+        {/* Wave Divider */}
         <div className="w-full overflow-hidden leading-none mt-14">
           <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-10 text-white fill-current">
             <path d="M0,0 C150,90 350,-40 500,60 C650,140 900,10 1200,40 L1200,120 L0,120 Z"></path>
@@ -196,63 +222,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Feature Highlights Bar (5 Columns) */}
-      <section className="bg-white py-8 border-b border-border">
-        <div className="container-x grid grid-cols-2 md:grid-cols-5 gap-6 divide-y md:divide-y-0 md:divide-x divide-border">
-          <div className="flex items-center gap-3">
-            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-emerald-50 text-emerald-600">
-              <Leaf className="h-6 w-6" />
-            </div>
-            <div>
-              <p className="text-xs font-bold text-foreground">100% Natural</p>
-              <p className="text-[11px] text-muted-foreground">No Chemicals</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 pt-4 md:pt-0 md:pl-6">
-            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-emerald-50 text-emerald-600">
-              <Award className="h-6 w-6" />
-            </div>
-            <div>
-              <p className="text-xs font-bold text-foreground">Premium Quality</p>
-              <p className="text-[11px] text-muted-foreground">Carefully Selected</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 pt-4 md:pt-0 md:pl-6">
-            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-emerald-50 text-emerald-600">
-              <ShieldCheck className="h-6 w-6" />
-            </div>
-            <div>
-              <p className="text-xs font-bold text-foreground">Hygienically Processed</p>
-              <p className="text-[11px] text-muted-foreground">Modern Technology</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 pt-4 md:pt-0 md:pl-6">
-            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-emerald-50 text-emerald-600">
-              <Tractor className="h-6 w-6" />
-            </div>
-            <div>
-              <p className="text-xs font-bold text-foreground">Farm Fresh</p>
-              <p className="text-[11px] text-muted-foreground">Directly from Farm</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 pt-4 md:pt-0 md:pl-6">
-            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-emerald-50 text-emerald-600">
-              <Users className="h-6 w-6" />
-            </div>
-            <div>
-              <p className="text-xs font-bold text-foreground">Trusted by Thousands</p>
-              <p className="text-[11px] text-muted-foreground">Happy Customers</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Floating Counter Card */}
-      <section className="container-x py-10">
+      {/* Counter Cards */}
+      <section className="container-x py-8">
         <div className="rounded-3xl border border-emerald-500/20 bg-gradient-to-r from-[#051f12] to-[#03130a] p-6 shadow-xl text-white">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-emerald-500/20">
             <div>
@@ -287,36 +258,141 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Categories Grid */}
+      {/* Redesigned Category Section (Matching Uploaded Design Image) */}
       <section className="container-x py-16 lg:py-24">
-        <SectionHeading
-          eyebrow="Find your flavour"
-          title="Naturally good, in every category"
-          sub="Every pack starts with carefully sourced produce from our Wai (Satara) farms, then takes the shortest, cleanest path to your pantry."
-        />
-        <div className="mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {categories.map((category, index) => (
-            <Reveal key={category.id} delay={index * 0.06}>
-              <Link
-                to={`/shop?category=${category.id}`}
-                className="group relative block h-72 overflow-hidden rounded-3xl bg-forest"
-              >
-                <img
-                  src={category.image}
-                  alt=""
-                  className="h-full w-full object-cover opacity-75 transition duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/20 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6 text-forest-foreground">
-                  <p className="font-display text-xl font-bold">{category.name}</p>
-                  <p className="mt-2 text-sm text-forest-foreground/75">{category.blurb}</p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent">
-                    Explore <ArrowRight className="h-3.5 w-3.5" />
-                  </span>
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto">
+          <p className="text-xs font-extrabold tracking-[0.25em] text-[#6b9d28] uppercase flex items-center justify-center gap-2">
+            <span>➔</span> FIND YOUR FLAVOUR <span>➔</span>
+          </p>
+          <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+            Naturally good, in{" "}
+            <span className="relative inline-block text-[#1b5e2b]">
+              every category
+              <svg className="absolute -bottom-2 left-0 w-full h-3 text-[#7ca938]" viewBox="0 0 100 20" preserveAspectRatio="none">
+                <path d="M0,10 Q50,20 100,5" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" />
+              </svg>
+            </span>
+          </h2>
+          <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xl mx-auto">
+            Every pack starts with carefully sourced produce from our Wai (Satara) farms, then takes the shortest, cleanest path to your pantry.
+          </p>
+        </div>
+
+        {/* 4 Cards Grid */}
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {customCategories.map((cat, index) => {
+            const Icon = cat.icon;
+            return (
+              <Reveal key={cat.id} delay={index * 0.08}>
+                <div
+                  className={`relative flex flex-col justify-between rounded-[2rem] border ${cat.cardBg} p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 h-full text-center`}
+                >
+                  {/* Top Badge Icon */}
+                  <div
+                    className={`absolute -top-5 left-6 grid h-11 w-11 place-items-center rounded-full ${cat.badgeBg} text-white shadow-md`}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </div>
+
+                  {/* Product Illustration */}
+                  <div className="mt-4 relative h-48 w-full overflow-hidden rounded-2xl bg-white/60 p-3 shadow-inner flex items-center justify-center">
+                    <img
+                      src={cat.image}
+                      alt={cat.name}
+                      className="h-40 w-full object-cover rounded-xl transition duration-500 hover:scale-105"
+                    />
+                  </div>
+
+                  {/* Content */}
+                  <div className="mt-6 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h3 className="font-display text-lg font-black text-foreground">
+                        {cat.name}
+                      </h3>
+                      <p className="mt-2 text-xs leading-relaxed text-muted-foreground/90">
+                        {cat.items}
+                      </p>
+                    </div>
+
+                    <div className="mt-6">
+                      <Link
+                        to={`/shop?category=${cat.id}`}
+                        className={`inline-flex items-center gap-1.5 rounded-full ${cat.btnBg} px-6 py-2.5 text-xs font-extrabold text-white shadow-sm transition hover:scale-105`}
+                      >
+                        <span>Explore</span>
+                        <span>➔</span>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </Link>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
+        </div>
+
+        {/* Bottom Feature Ribbon (5 Trust Points) */}
+        <div className="mt-14 rounded-full border border-[#d6ebd3] bg-[#f0f7ef] p-4 sm:p-5 shadow-sm">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-5 md:divide-x divide-[#d6ebd3]">
+            <div className="flex items-center gap-3 justify-center">
+              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#7ca938]/20 text-[#7ca938]">
+                <Leaf className="h-5 w-5" />
+              </div>
+              <div className="text-left leading-tight">
+                <p className="text-xs font-bold text-foreground">100% Natural</p>
+                <p className="text-[11px] text-muted-foreground">No Chemicals</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 justify-center md:pl-4">
+              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#7ca938]/20 text-[#7ca938]">
+                <Tractor className="h-5 w-5" />
+              </div>
+              <div className="text-left leading-tight">
+                <p className="text-xs font-bold text-foreground">Farm Fresh</p>
+                <p className="text-[11px] text-muted-foreground">Directly from Farms</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 justify-center md:pl-4">
+              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#7ca938]/20 text-[#7ca938]">
+                <ShieldCheck className="h-5 w-5" />
+              </div>
+              <div className="text-left leading-tight">
+                <p className="text-xs font-bold text-foreground">Premium Quality</p>
+                <p className="text-[11px] text-muted-foreground">Carefully Selected</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 justify-center md:pl-4">
+              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#7ca938]/20 text-[#7ca938]">
+                <FlaskConical className="h-5 w-5" />
+              </div>
+              <div className="text-left leading-tight">
+                <p className="text-xs font-bold text-foreground">No Preservatives</p>
+                <p className="text-[11px] text-muted-foreground">Pure &amp; Safe</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 justify-center md:pl-4">
+              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#7ca938]/20 text-[#7ca938]">
+                <Users className="h-5 w-5" />
+              </div>
+              <div className="text-left leading-tight">
+                <p className="text-xs font-bold text-foreground">Trusted by Thousands</p>
+                <p className="text-[11px] text-muted-foreground">Happy Customers</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Slogan Pill */}
+        <div className="mt-8 text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-gradient-to-r from-[#051f12] via-[#04170d] to-[#020e07] px-6 py-2.5 text-xs font-extrabold text-white shadow-md">
+            <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
+            <span>Pure by <strong className="text-emerald-400">Nature.</strong> ✦ Trusted by <strong className="text-emerald-400">You.</strong></span>
+            <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
+          </div>
         </div>
       </section>
 
@@ -423,7 +499,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Community Words & Recipes */}
+      {/* Community Words */}
       <section className="container-x py-20 lg:py-28">
         <SectionHeading eyebrow="From our community" title="Kind words from well-fed kitchens" />
         <div className="mt-11 grid gap-5 lg:grid-cols-3">
