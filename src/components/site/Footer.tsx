@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import {
-  ArrowUp,
   Award,
   CheckCircle2,
   ChevronRight,
@@ -47,10 +46,6 @@ export function Footer() {
     setSubscribed(true);
     toast.success("Thank you for subscribing to Utkarsh Organic Farm updates!");
     setEmailInput("");
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -293,7 +288,7 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar (Copyright, FSSAI, Back to Top) */}
+      {/* Bottom Bar (Copyright & FSSAI) */}
       <div className="border-t border-emerald-500/20 bg-black/40 py-5">
         <div className="container-x flex flex-col items-center justify-between gap-4 text-xs text-emerald-300/70 md:flex-row">
           <div className="flex items-center gap-2">
@@ -308,14 +303,6 @@ export function Footer() {
             <span className="text-emerald-500/40">|</span>
             <span>Udyam UDYAM-MH-30-0197446</span>
           </div>
-
-          <button
-            onClick={scrollToTop}
-            className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-4 py-2 text-xs font-bold text-emerald-400 hover:bg-emerald-500 hover:text-black transition duration-200"
-          >
-            <span>Back to Top</span>
-            <ArrowUp className="h-3.5 w-3.5" />
-          </button>
         </div>
       </div>
     </footer>
