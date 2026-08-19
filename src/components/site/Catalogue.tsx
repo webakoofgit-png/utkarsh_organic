@@ -126,6 +126,32 @@ export function CataloguePage() {
 
   return (
     <main className="pt-16 lg:pt-20 bg-background">
+      {/* Top Full Viewport Width Dark Green Breadcrumb Bar */}
+      <div className="w-full bg-[#041a0e] border-b border-emerald-500/20 py-3">
+        <div className="container-x flex items-center justify-between text-xs sm:text-sm text-emerald-100 font-medium">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Link
+              to="/"
+              className="grid h-7 w-7 place-items-center rounded-full bg-emerald-950/90 border border-emerald-400/40 text-emerald-400 hover:bg-emerald-500 hover:text-black transition"
+            >
+              <Home className="h-3.5 w-3.5" />
+            </Link>
+            <ChevronRight className="h-4 w-4 text-emerald-500/60" />
+            <Link to="/" className="text-emerald-100 hover:text-emerald-400 transition font-medium">
+              Home
+            </Link>
+            <ChevronRight className="h-4 w-4 text-emerald-500/60" />
+            <span className="font-bold text-emerald-400">Products</span>
+            <ChevronRight className="h-4 w-4 text-emerald-500/60" />
+            <span className="text-emerald-200/90 font-medium">The Whole Collection</span>
+          </div>
+
+          <div className="flex items-center gap-1.5 text-emerald-400">
+            <Leaf className="h-4.5 w-4.5 fill-emerald-400/30 text-emerald-400" />
+          </div>
+        </div>
+      </div>
+
       {/* 100% Full Viewport Width Hero Banner (Edge-to-Edge matching /bulk-orders) */}
       {/* Desktop (1920): 180-220px | Laptop (1440): 160-190px | Tablet (768): 130-160px | Mobile (390): 100-130px */}
       <section

@@ -26,27 +26,27 @@ export default function AboutPage() {
   return (
     <main className="pt-16 lg:pt-20 bg-background">
       {/* Top Full Viewport Width Dark Green Breadcrumb Bar */}
-      <div className="w-full bg-[#03140a] border-b border-emerald-500/20 py-2.5">
-        <div className="container-x flex items-center justify-between text-xs text-emerald-200/90">
+      <div className="w-full bg-[#041a0e] border-b border-emerald-500/20 py-3">
+        <div className="container-x flex items-center justify-between text-xs sm:text-sm text-emerald-100 font-medium">
           <div className="flex items-center gap-2 sm:gap-3">
             <Link
               to="/"
-              className="grid h-6 w-6 place-items-center rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500 hover:text-black transition"
+              className="grid h-7 w-7 place-items-center rounded-full bg-emerald-950/90 border border-emerald-400/40 text-emerald-400 hover:bg-emerald-500 hover:text-black transition"
             >
-              <Home className="h-3 w-3" />
+              <Home className="h-3.5 w-3.5" />
             </Link>
-            <ChevronRight className="h-3.5 w-3.5 text-emerald-500/50" />
-            <Link to="/" className="hover:text-emerald-400 transition">
+            <ChevronRight className="h-4 w-4 text-emerald-500/60" />
+            <Link to="/" className="text-emerald-100 hover:text-emerald-400 transition font-medium">
               Home
             </Link>
-            <ChevronRight className="h-3.5 w-3.5 text-emerald-500/50" />
+            <ChevronRight className="h-4 w-4 text-emerald-500/60" />
             <span className="font-bold text-emerald-400">About Us</span>
-            <ChevronRight className="h-3.5 w-3.5 text-emerald-500/50" />
-            <span className="text-emerald-200/70">About Utkarsh Organic Farm</span>
+            <ChevronRight className="h-4 w-4 text-emerald-500/60" />
+            <span className="text-emerald-200/90 font-medium">About Utkarsh Organic Farm</span>
           </div>
 
-          <div className="hidden sm:flex items-center gap-1.5 text-emerald-400">
-            <Leaf className="h-4 w-4 fill-emerald-400/20 text-emerald-400" />
+          <div className="flex items-center gap-1.5 text-emerald-400">
+            <Leaf className="h-4.5 w-4.5 fill-emerald-400/30 text-emerald-400" />
           </div>
         </div>
       </div>
