@@ -17,6 +17,7 @@ import {
 import { useState } from "react";
 import { toast } from "sonner";
 import farm from "@/assets/farm.jpg";
+import heroBulkOrders from "@/assets/hero-bulk-orders.jpg";
 import flatlay from "@/assets/flatlay.jpg";
 import { Reveal, SectionHeading } from "@/components/site/motion-primitives";
 
@@ -148,7 +149,7 @@ export default function BulkOrdersPage() {
           <div className="relative shrink-0 flex items-center justify-end">
             <div className="relative overflow-hidden rounded-xl border border-emerald-500/30 bg-emerald-950/40 p-1.5 backdrop-blur-md shadow-xl">
               <img
-                src={flatlay}
+                src={heroBulkOrders}
                 alt="Bulk Organic Powders"
                 className="h-20 sm:h-28 md:h-32 lg:h-36 xl:h-40 w-32 sm:w-44 md:w-52 lg:w-60 xl:w-64 object-cover rounded-lg"
               />

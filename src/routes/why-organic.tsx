@@ -16,6 +16,7 @@ import {
   X,
 } from "lucide-react";
 import { useState } from "react";
+import heroWhyOrganic from "@/assets/hero-why-organic.jpg";
 import flatlay from "@/assets/flatlay.jpg";
 import hero from "@/assets/hero-onion.jpg";
 import { Reveal, SectionHeading } from "@/components/site/motion-primitives";
@@ -157,7 +158,7 @@ export default function WhyOrganicPage() {
           <div className="relative shrink-0 flex items-center justify-end">
             <div className="relative overflow-hidden rounded-xl border border-emerald-500/30 bg-emerald-950/40 p-1.5 backdrop-blur-md shadow-xl">
               <img
-                src={flatlay}
+                src={heroWhyOrganic}
                 alt="Utkarsh Organic Farm Powders"
                 className="h-20 sm:h-28 md:h-32 lg:h-36 xl:h-40 w-32 sm:w-44 md:w-52 lg:w-60 xl:w-64 object-cover rounded-lg"
               />
