@@ -26,7 +26,7 @@ import { COMPANY_INFO } from "@/lib/products";
 
 export function Footer() {
   return (
-    <footer className="relative bg-gradient-to-b from-[#051f12] via-[#04170d] to-[#020e07] text-emerald-100 font-sans border-t border-emerald-500/20">
+    <footer className="relative bg-gradient-to-b from-[#051f12] via-[#04170d] to-[#020e07] text-white font-sans border-t border-emerald-500/20">
       {/* Top Decorative Organic Wave Glow */}
       <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent" />
 
@@ -53,7 +53,7 @@ export function Footer() {
               🌱 शेतापासून थेट तुमच्या स्वयंपाकघरापर्यंत! 🌱
             </p>
 
-            <p className="text-xs leading-relaxed text-emerald-200/80 max-w-xs">
+            <p className="text-xs leading-relaxed text-white max-w-xs">
               ताजा, सकस, नैसर्गिक – विषमुक्त आणि आरोग्याची Dehydrated Vegetables &amp; Powders आता उपलब्ध. १००% नैसर्गिक, कोणतीही प्रिझर्व्हेटिव्ह्ज नसलेली शुद्ध उत्पादने!
             </p>
 
@@ -84,7 +84,7 @@ export function Footer() {
             <h3 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-emerald-400 pb-2 border-b border-emerald-500/20">
               <Leaf className="h-4 w-4 text-emerald-400" /> QUICK LINKS
             </h3>
-            <ul className="mt-5 space-y-3 text-xs text-emerald-200/90">
+            <ul className="mt-5 space-y-3 text-xs text-white font-medium">
               {[
                 { icon: Home, label: "Home", to: "/" },
                 { icon: Users, label: "About Us", to: "/about" },
@@ -98,7 +98,7 @@ export function Footer() {
                     to={to}
                     className="flex items-center gap-2.5 transition-colors hover:text-emerald-400 hover:translate-x-1 duration-200"
                   >
-                    <Icon className="h-4 w-4 text-emerald-400/70" />
+                    <Icon className="h-4 w-4 text-emerald-400" />
                     <span>{label}</span>
                   </Link>
                 </li>
@@ -111,7 +111,7 @@ export function Footer() {
             <h3 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-emerald-400 pb-2 border-b border-emerald-500/20">
               <Leaf className="h-4 w-4 text-emerald-400" /> CUSTOMER SUPPORT
             </h3>
-            <ul className="mt-5 space-y-3 text-xs text-emerald-200/90">
+            <ul className="mt-5 space-y-3 text-xs text-white font-medium">
               {[
                 { icon: User, label: "My Account", to: "/account" },
                 { icon: Package, label: "Track Order", to: "/track-order" },
@@ -125,7 +125,7 @@ export function Footer() {
                     to={to}
                     className="flex items-center gap-2.5 transition-colors hover:text-emerald-400 hover:translate-x-1 duration-200"
                   >
-                    <Icon className="h-4 w-4 text-emerald-400/70" />
+                    <Icon className="h-4 w-4 text-emerald-400" />
                     <span>{label}</span>
                   </Link>
                 </li>
@@ -138,35 +138,35 @@ export function Footer() {
             <h3 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-emerald-400 pb-2 border-b border-emerald-500/20">
               <Leaf className="h-4 w-4 text-emerald-400" /> CONTACT &amp; FARM UNIT
             </h3>
-            <div className="mt-5 space-y-3 text-xs text-emerald-200/90">
-              <div className="leading-snug">
-                <p className="font-semibold text-emerald-300">Prafulla Pradeep Chorge (Agri Expert)</p>
-                <p className="font-bold text-emerald-400 mt-0.5">Dr. Padmashree P. Chorge (Nutritionist)</p>
+            <div className="mt-5 space-y-3.5 text-xs text-white font-medium">
+              <div className="leading-snug space-y-0.5">
+                <p className="font-semibold text-white">Prafulla Pradeep Chorge (Agri Expert)</p>
+                <p className="font-semibold text-white">Dr. Padmashree P. Chorge (Nutritionist)</p>
               </div>
 
-              <div className="flex items-center gap-2.5 pt-1 text-emerald-200">
+              <div className="flex items-center gap-2.5 text-white">
                 <Phone className="h-4 w-4 text-emerald-400 shrink-0" />
                 <span>+91 7507379018 / +91 8830150923</span>
               </div>
 
-              <div className="flex items-center gap-2.5 text-emerald-200">
+              <div className="flex items-center gap-2.5 text-white">
                 <Mail className="h-4 w-4 text-emerald-400 shrink-0" />
                 <span>hello@utkarshorganic.com</span>
               </div>
 
-              <div className="flex items-start gap-2.5 text-emerald-200">
+              <div className="flex items-start gap-2.5 text-white">
                 <MapPin className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
                 <span className="leading-relaxed">
                   House No. 262, Lohare, Menwali Road, Gangapuri, Wai, District Satara, Maharashtra 412803
                 </span>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-1">
                 <a
                   href={`https://wa.me/917507379018`}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 text-xs font-extrabold text-emerald-400 hover:text-emerald-300 transition"
+                  className="inline-flex items-center gap-2 text-xs font-extrabold text-emerald-400 hover:text-white transition"
                 >
                   <MessageCircle className="h-4 w-4 text-emerald-400 fill-emerald-400/20" />
                   <span>WhatsApp: +91 7507379018</span>
@@ -178,11 +178,11 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar (Copyright, Webakoof Credit, FSSAI) */}
-      <div className="border-t border-emerald-500/20 bg-black/40 py-5">
-        <div className="container-x flex flex-col items-center justify-between gap-4 text-xs text-emerald-300/70 md:flex-row">
+      <div className="border-t border-emerald-500/20 bg-black/50 py-5">
+        <div className="container-x flex flex-col items-center justify-between gap-4 text-xs text-white font-medium md:flex-row">
           <div className="flex items-center gap-2">
             <Leaf className="h-4 w-4 text-emerald-400 shrink-0" />
-            <p>
+            <p className="text-white">
               © 2026 UTKARSH ORGANIC FARM. All Rights Reserved. | Developed by{" "}
               <a
                 href="https://webakoof.com"
@@ -195,11 +195,11 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 text-[11px] text-emerald-300/90 font-medium">
+          <div className="flex flex-wrap items-center justify-center gap-3 text-[11px] text-white font-semibold">
             <span>FSSAI License # 21526039003217</span>
-            <span className="text-emerald-500/40">|</span>
+            <span className="text-emerald-500/60">|</span>
             <span>GSTIN 27CKXPB5409F1ZZ</span>
-            <span className="text-emerald-500/40">|</span>
+            <span className="text-emerald-500/60">|</span>
             <span>Udyam UDYAM-MH-30-0197446</span>
           </div>
         </div>
