@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
 import {
-  ArrowLeft,
   ArrowRight,
   Award,
   BadgeCheck,
   Building2,
   Check,
   ChefHat,
-  ChevronLeft,
   ChevronRight,
   Coffee,
   Factory,
@@ -39,8 +37,6 @@ import turmeric from "@/assets/p-turmeric.jpg";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Counter, Reveal, SectionHeading } from "@/components/site/motion-primitives";
 import { BLOG_POSTS, CATEGORIES, PRODUCTS, RECIPES, COMPANY_INFO } from "@/lib/products";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
 
 const customCategories = [
   {
@@ -120,23 +116,6 @@ const testimonials = [
 
 export default function HomePage() {
   const bestSellers = PRODUCTS.filter((product) => product.bestSeller).slice(0, 4);
-
-  // Testimonial Carousel State
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [paused, setPaused] = useState(false);
-
-  const totalPages = Math.ceil(testimonials.length / 3);
-
-  useEffect(() => {
-    if (paused) return;
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % totalPages);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [paused, totalPages]);
-
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % totalPages);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + totalPages) % totalPages);
 
   return (
     <main className="pt-16 lg:pt-20">
@@ -546,81 +525,38 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Community Words - Interactive Auto-Rotating Testimonials Carousel */}
-      <section
-        className="container-x py-20 lg:py-28"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+      {/* Community Words - Continuous Infinite Moving Marquee Ticker */}
+      <section className="py-20 lg:py-28 overflow-hidden bg-gradient-to-b from-transparent via-emerald-50/20 to-transparent">
+        <div className="container-x text-center mb-12">
           <SectionHeading eyebrow="From our community" title="Kind words from well-fed kitchens" />
+        </div>
 
-          {/* Carousel Arrows */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={prevSlide}
-              aria-label="Previous testimonials"
-              className="grid h-11 w-11 place-items-center rounded-full border border-border bg-background text-foreground shadow-sm transition hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <button
-              onClick={nextSlide}
-              aria-label="Next testimonials"
-              className="grid h-11 w-11 place-items-center rounded-full border border-border bg-background text-foreground shadow-sm transition hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
+        {/* Marquee Track Container with Fade Edge Overlays */}
+        <div className="relative w-full overflow-hidden group">
+          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-background to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-background to-transparent" />
+
+          {/* Infinite Moving Marquee Track */}
+          <div className="flex w-max gap-6 animate-marquee group-hover:[animation-play-state:paused]">
+            {[...testimonials, ...testimonials, ...testimonials].map(({ quote, name, place }, idx) => (
+              <div
+                key={idx}
+                className="surface-card flex h-full w-[360px] shrink-0 flex-col justify-between p-8 shadow-lift border border-border/80 rounded-3xl bg-background transition hover:border-emerald-400 hover:shadow-xl"
+              >
+                <div>
+                  <Quote className="h-8 w-8 text-emerald-500 fill-emerald-500/10" />
+                  <blockquote className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                    “{quote}”
+                  </blockquote>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-border/50">
+                  <p className="font-display font-bold text-foreground">{name}</p>
+                  <p className="text-xs text-emerald-600 font-semibold">{place}</p>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-
-        {/* Carousel Slide Track */}
-        <div className="mt-11 overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentSlide}
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -40 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-            >
-              {testimonials
-                .slice(currentSlide * 3, currentSlide * 3 + 3)
-                .map(({ quote, name, place }, idx) => (
-                  <div
-                    key={name + idx}
-                    className="surface-card flex h-full flex-col justify-between p-8 shadow-lift border border-border/80 rounded-3xl bg-background transition hover:-translate-y-1"
-                  >
-                    <div>
-                      <Quote className="h-8 w-8 text-emerald-500 fill-emerald-500/10" />
-                      <blockquote className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                        “{quote}”
-                      </blockquote>
-                    </div>
-
-                    <div className="mt-6 pt-4 border-t border-border/50">
-                      <p className="font-display font-bold text-foreground">{name}</p>
-                      <p className="text-xs text-emerald-600 font-semibold">{place}</p>
-                    </div>
-                  </div>
-                ))}
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* Carousel Pagination Dots */}
-        <div className="mt-8 flex justify-center gap-2">
-          {Array.from({ length: totalPages }).map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentSlide(idx)}
-              aria-label={`Go to slide ${idx + 1}`}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
-                currentSlide === idx ? "w-8 bg-emerald-600" : "w-2.5 bg-emerald-200 hover:bg-emerald-400"
-              }`}
-            />
-          ))}
         </div>
       </section>
 
