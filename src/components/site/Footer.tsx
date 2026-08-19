@@ -177,12 +177,22 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar (Copyright & FSSAI) */}
+      {/* Bottom Bar (Copyright, Webakoof Credit, FSSAI) */}
       <div className="border-t border-emerald-500/20 bg-black/40 py-5">
         <div className="container-x flex flex-col items-center justify-between gap-4 text-xs text-emerald-300/70 md:flex-row">
           <div className="flex items-center gap-2">
             <Leaf className="h-4 w-4 text-emerald-400 shrink-0" />
-            <p>© 2026 UTKARSH ORGANIC FARM. All Rights Reserved.</p>
+            <p>
+              © 2026 UTKARSH ORGANIC FARM. All Rights Reserved. | Developed by{" "}
+              <a
+                href="https://webakoof.com"
+                target="_blank"
+                rel="noreferrer"
+                className="font-extrabold text-emerald-400 hover:underline hover:text-emerald-300 transition"
+              >
+                webakoof.com
+              </a>
+            </p>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-3 text-[11px] text-emerald-300/90 font-medium">
