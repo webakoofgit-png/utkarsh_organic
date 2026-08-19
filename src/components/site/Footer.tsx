@@ -37,8 +37,8 @@ export function Footer() {
           {/* Column 1: Brand & Overview */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <div className="grid h-12 w-12 place-items-center rounded-full bg-emerald-950/80 border border-emerald-500/40 p-2 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-                <img src={logo} alt="Utkarsh Organic logo" className="h-8 w-8 object-contain" />
+              <div className="grid h-12 w-12 place-items-center rounded-xl bg-white border border-emerald-500/40 p-1 shadow-[0_0_15px_rgba(16,185,129,0.2)] overflow-hidden shrink-0">
+                <img src={logo} alt="Utkarsh Organic logo" className="h-full w-full object-contain" />
               </div>
               <div>
                 <h2 className="font-display text-2xl font-black tracking-tight text-white uppercase leading-none">

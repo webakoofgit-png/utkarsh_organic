@@ -41,13 +41,15 @@ export function Navbar() {
     >
       <div className="container-x flex h-16 items-center justify-between gap-4 lg:h-20">
         {/* Brand Logo & Name */}
-        <Link to="/" className="flex shrink-0 items-center gap-2.5">
-          <img src={logo} alt="Utkarsh Organic leaf logo" width={40} height={40} className="h-9 w-9 object-contain" />
+        <Link to="/" className="flex shrink-0 items-center gap-3">
+          <div className="grid h-11 w-11 place-items-center rounded-xl bg-white border border-emerald-500/30 p-1 shadow-sm overflow-hidden shrink-0">
+            <img src={logo} alt="Utkarsh Organic logo" className="h-full w-full object-contain" />
+          </div>
           <span className="flex flex-col leading-none">
-            <span className="font-display text-lg font-black tracking-tight text-foreground">
+            <span className="font-display text-lg sm:text-xl font-black tracking-tight text-foreground">
               Utkarsh
             </span>
-            <span className="text-[0.62rem] font-bold tracking-[0.3em] text-primary">
+            <span className="text-[0.65rem] font-bold tracking-[0.3em] text-primary">
               ORGANIC
             </span>
           </span>
