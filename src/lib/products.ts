@@ -9,6 +9,32 @@ import turmeric from "@/assets/p-turmeric.jpg";
 import chilli from "@/assets/p-chilli.jpg";
 import coriander from "@/assets/p-coriander.jpg";
 
+export const COMPANY_INFO = {
+  name: "UTKARSH ORGANIC FARM",
+  tradeName: "Utkarsh Organic Farm",
+  legalName: "Utkash Food Farm",
+  contactPerson: "Praful Chorge (प्रफुल्ल चोरगे)",
+  gstin: "27CKXPB5409F1ZZ",
+  fssaiRegNo: "21526039003217",
+  udyamRegNo: "UDYAM-MH-30-0197446",
+  address: {
+    doorNo: "262",
+    locality: "Lohare, Menwali Road, Gangapuri",
+    taluka: "Taluka Wai",
+    city: "Wai",
+    district: "Satara",
+    state: "Maharashtra",
+    pincode: "412803",
+    full: "House No. 262, Lohare, Menwali Road, Gangapuri, Wai, District Satara, Maharashtra 412803",
+  },
+  phonePrimary: "+91 7507379018",
+  phoneSecondary: "+91 8830150923",
+  email: "hello@utkarshorganic.com",
+  officialEmail: "dr.padmashreebhosale@gmail.com",
+  marathiHeader: "🌱 उत्कर्ष फार्म – शेतापासून थेट तुमच्या स्वयंपाकघरापर्यंत! 🌱",
+  marathiDescription: "आधुनिक काळाची नवी गरज – उत्कर्ष फार्म उत्पादने! 🥕✨ भाज्यांची चव आणि पोषणमूल्ये टिकवून ठेवणारी आमची विशेष Dehydrated Vegetables & Powders आता उपलब्ध. १००% नॅचरल, कोणतीही प्रिझर्व्हेटिव्ह्ज नसलेली शुद्ध उत्पादने!",
+};
+
 export type Weight = "100g" | "250g" | "500g" | "1kg";
 
 export const WEIGHTS: Weight[] = ["100g", "250g", "500g", "1kg"];
@@ -23,15 +49,16 @@ export const WEIGHT_MULTIPLIER: Record<Weight, number> = {
 export type Category = "vegetable" | "spice" | "wellness" | "bulk";
 
 export const CATEGORIES: { id: Category; name: string; blurb: string }[] = [
-  { id: "vegetable", name: "Vegetable Powders", blurb: "Onion, Tomato, Beetroot, Spinach, Carrot" },
-  { id: "spice", name: "Spice Powders", blurb: "Turmeric, Chilli, Coriander" },
-  { id: "wellness", name: "Wellness Powders", blurb: "Ginger and selected natural products" },
-  { id: "bulk", name: "Bulk / Commercial Packs", blurb: "Hotels, manufacturers and exporters" },
+  { id: "vegetable", name: "Vegetable Powders", blurb: "Onion, Tomato, Beetroot, Spinach, Carrot, Moringa" },
+  { id: "spice", name: "Spice Powders", blurb: "Turmeric, Chilli, Coriander, Garlic" },
+  { id: "wellness", name: "Wellness Powders", blurb: "Ginger, Moringa / Shevga Leaf Powder" },
+  { id: "bulk", name: "Bulk / Commercial Packs", blurb: "Hotels, cloud kitchens and food processors" },
 ];
 
 export type Product = {
   slug: string;
   name: string;
+  marathiName?: string;
   short: string;
   image: string;
   category: Category;
@@ -66,6 +93,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "organic-onion-powder",
     name: "Organic Onion Powder",
+    marathiName: "कांदा पावडर (Kanda Powder)",
     short: "100% dehydrated onion with a fine texture and strong natural aroma.",
     image: onion,
     category: "vegetable",
@@ -85,7 +113,7 @@ export const PRODUCTS: Product[] = [
       "Easy to Use",
     ],
     description:
-      "Made from carefully selected onions, gently dehydrated to preserve their authentic flavour, aroma and natural goodness. Ground to a fine, free-flowing texture that blends instantly into gravies, marinades, dry rubs and batters.",
+      "Made from carefully selected onions grown at our Wai (Satara) farms, gently dehydrated to preserve their authentic flavour, aroma and natural goodness. Ground to a fine, free-flowing texture that blends instantly into gravies, marinades, dry rubs and batters.",
     benefits: [
       "Saves peeling, chopping and prep time in busy kitchens",
       "Consistent flavour in every batch you cook",
@@ -104,6 +132,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "organic-garlic-powder",
     name: "Organic Garlic Powder",
+    marathiName: "लसूण पावडर (Lassun Powder)",
     short: "Premium dehydrated garlic with a rich aroma, ideal for seasoning.",
     image: garlic,
     category: "spice",
@@ -116,7 +145,7 @@ export const PRODUCTS: Product[] = [
     sku: "UO-GRP-100",
     highlights: ["Premium dehydrated garlic", "Rich aroma", "Seasoning and food processing", "No additives"],
     description:
-      "Sorted, cleaned and gently dehydrated garlic, milled into a fine powder that carries the full pungency of fresh cloves. A workhorse seasoning for kitchens and food processing lines alike.",
+      "Sorted, cleaned and gently dehydrated garlic cloves, milled into a fine powder that carries the full pungency of fresh garlic. A workhorse seasoning for kitchens and food processing lines alike.",
     benefits: [
       "Instant garlic flavour without peeling",
       "Ideal for dry rubs, breads and sauces",
@@ -131,6 +160,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "organic-ginger-powder",
     name: "Organic Ginger Powder",
+    marathiName: "आले पावडर (Aale Powder)",
     short: "Naturally processed ginger with strong flavour for beverages and cooking.",
     image: ginger,
     category: "wellness",
@@ -155,8 +185,44 @@ export const PRODUCTS: Product[] = [
     storage: "Airtight container, away from heat and sunlight.",
   },
   {
+    slug: "organic-moringa-leaf-powder",
+    name: "Organic Moringa / Shevga Leaf Powder",
+    marathiName: "शेवगा पाला पावडर (Shevga Pala Powder)",
+    short: "Nutrient-dense drumstick leaf powder for immunity, smoothies & daily meals.",
+    image: spinach,
+    category: "wellness",
+    basePrice: 269,
+    baseMrp: 349,
+    rating: 4.9,
+    reviews: 94,
+    newArrival: true,
+    bestSeller: true,
+    inStock: true,
+    sku: "UO-MGP-100",
+    highlights: ["100% Pure Shevga / Drumstick Leaves", "Rich in Iron & Calcium", "Superfood Herbal Supplement", "Zero Additives"],
+    description:
+      "Handpicked organic Moringa (Shevga) leaves harvested from our Satara farms, shadow-dried at low temperatures to lock in chlorophyll, antioxidants, and essential vitamins. A powerful daily green supplement for rotis, dal, teas, and smoothies.",
+    benefits: [
+      "Natural immunity booster packed with Vitamin C, Iron & Calcium",
+      "Easily mixes into roti dough, soup, or morning warm water",
+      "100% pure shade-dried leaf powder with vibrant green tone",
+      "Zero preservatives or artificial fillers",
+    ],
+    ingredients: "100% organic dehydrated Moringa (Shevga) leaves.",
+    usage: ["Add 1 tsp to wheat flour for nutritious green rotis.", "Stir into warm water or buttermilk.", "Whisk into dals and curries."],
+    nutrition: [
+      { label: "Energy", value: "320 kcal / 100g" },
+      { label: "Protein", value: "27 g" },
+      { label: "Iron", value: "28 mg" },
+      { label: "Calcium", value: "2000 mg" },
+      { label: "Vitamin C", value: "17.3 mg" },
+    ],
+    storage: "Store in a dark, dry container to protect vitamins.",
+  },
+  {
     slug: "organic-tomato-powder",
     name: "Organic Tomato Powder",
+    marathiName: "टोमॅटो पावडर (Tomato Powder)",
     short: "Natural tomato concentrate with rich colour and taste.",
     image: tomato,
     category: "vegetable",
@@ -183,6 +249,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "organic-beetroot-powder",
     name: "Organic Beetroot Powder",
+    marathiName: "बीट पावडर (Beet Powder)",
     short: "Naturally vibrant colour, nutrient-rich, ideal for smoothies.",
     image: beetroot,
     category: "vegetable",
@@ -210,6 +277,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "organic-spinach-powder",
     name: "Organic Spinach Powder",
+    marathiName: "पालक पावडर (Palak Powder)",
     short: "Dehydrated spinach with natural green colour for health foods.",
     image: spinach,
     category: "vegetable",
@@ -236,6 +304,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "organic-carrot-powder",
     name: "Organic Carrot Powder",
+    marathiName: "गाजर पावडर (Gajar Powder)",
     short: "Naturally sweet with rich colour, for bakery, soups and beverages.",
     image: carrot,
     category: "vegetable",
@@ -262,6 +331,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "organic-turmeric-powder",
     name: "Organic Turmeric Powder",
+    marathiName: "हळद पावडर (Halad Powder)",
     short: "Premium-quality turmeric with natural golden colour and strong aroma.",
     image: turmeric,
     category: "spice",
@@ -289,6 +359,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "organic-chilli-powder",
     name: "Organic Chilli Powder",
+    marathiName: "लाल मिरची पावडर (Chilli Powder)",
     short: "Natural dried red chilli with authentic flavour and spice-level options.",
     image: chilli,
     category: "spice",
@@ -315,6 +386,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "organic-coriander-powder",
     name: "Organic Coriander Powder",
+    marathiName: "धना पावडर (Dhana Powder)",
     short: "Fresh natural aroma, finely ground, for household and commercial use.",
     image: coriander,
     category: "spice",
@@ -361,8 +433,8 @@ export const RECIPES = [
   { slug: "garlic-herb-pasta", title: "Garlic Herb Pasta", time: "25 min", level: "Easy", uses: ["Garlic Powder"] },
   { slug: "classic-tomato-soup", title: "Tomato Soup", time: "30 min", level: "Easy", uses: ["Tomato Powder", "Garlic Powder"] },
   { slug: "beetroot-smoothie", title: "Beetroot Smoothie", time: "10 min", level: "Easy", uses: ["Beetroot Powder"] },
+  { slug: "moringa-green-roti", title: "Shevga Leaf Health Roti", time: "15 min", level: "Easy", uses: ["Shevga / Moringa Powder"] },
   { slug: "turmeric-milk", title: "Turmeric Milk", time: "10 min", level: "Easy", uses: ["Turmeric Powder", "Ginger Powder"] },
-  { slug: "ginger-tea", title: "Ginger Tea", time: "8 min", level: "Easy", uses: ["Ginger Powder"] },
 ];
 
 export const BLOG_POSTS = [
@@ -397,7 +469,7 @@ export const BLOG_POSTS = [
     date: "24 Jul 2026",
     read: "7 min read",
     body: [
-      "It begins at the farm. Produce is harvested at maturity, then sorted by hand so only sound, undamaged pieces move forward.",
+      "It begins at our Wai (Satara) farms. Produce is harvested at maturity, then sorted by hand so only sound, undamaged pieces move forward.",
       "Washing removes field soil. Slicing follows, because uniform thickness is what makes drying even. The dryers run at controlled temperatures so colour and aroma survive the process instead of being cooked away.",
       "Dried flakes are milled to the requested mesh, checked for moisture and packed in a controlled area. Each batch is sampled before it leaves.",
     ],
@@ -412,30 +484,6 @@ export const BLOG_POSTS = [
       "A shelf of powders takes up less space than a crate of vegetables and does not spoil in a week.",
       "For home cooks, that means fewer wasted vegetables. For commercial kitchens, it means the dish tastes the same on a Tuesday afternoon as it does on a Saturday night.",
       "Powders also make portioning simple, which is where most food cost control actually happens.",
-    ],
-  },
-  {
-    slug: "restaurant-uses-of-dehydrated-ingredients",
-    title: "Restaurant Uses of Dehydrated Ingredients",
-    excerpt: "Where professional kitchens get the most value from powdered ingredients.",
-    date: "03 Jul 2026",
-    read: "6 min read",
-    body: [
-      "Prep time is the biggest line item a kitchen can control. Dehydrated ingredients remove entire prep stations from the workflow.",
-      "Base gravies, marinades, dry rubs and seasoning shakers are the four highest-return uses. Each one relies on even flavour distribution, which powders do better than fresh.",
-      "Storage is the second win: stable stock that does not need cold-chain space during peak season.",
-    ],
-  },
-  {
-    slug: "how-to-store-organic-powder-products",
-    title: "How to Store Organic Powder Products Correctly",
-    excerpt: "Moisture, light and heat are the three things to keep away.",
-    date: "21 Jun 2026",
-    read: "4 min read",
-    body: [
-      "Powders are hygroscopic; they pull moisture from the air. That is what causes clumping and loss of aroma.",
-      "Keep packs sealed, use a dry spoon every time, and never hold a pack over a steaming pot. Store away from the stove and out of direct sunlight.",
-      "Once opened, transfer to an airtight jar if the pack will be used slowly. Colour-heavy powders like beetroot and turmeric last longest in opaque containers.",
     ],
   },
 ];

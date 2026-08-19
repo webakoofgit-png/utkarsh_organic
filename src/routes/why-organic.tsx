@@ -1,32 +1,33 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, ChevronDown, Leaf, ShieldAlert, Sparkles, Sprout, X } from "lucide-react";
+import { ArrowRight, Check, ChevronDown, Leaf, ShieldAlert, Sparkles, Sprout, X, ShieldCheck, Award } from "lucide-react";
 import { useState } from "react";
 import flatlay from "@/assets/flatlay.jpg";
 import { Reveal, SectionHeading } from "@/components/site/motion-primitives";
+import { COMPANY_INFO } from "@/lib/products";
 
 export default function WhyOrganicPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const faqs = [
     {
-      q: "Does dehydration lose the nutritional value of onions or vegetables?",
+      q: "Does dehydration lose the nutritional value of onions, spinach or drumstick (shevga)?",
       a: "No! Our gentle low-temperature drying process removes water content while conserving up to 95% of essential vitamins, minerals, dietary fiber, and natural aromatic oils.",
     },
     {
       q: "Are there any anti-caking agents or chemical preservatives added?",
-      a: "Zero. Utkarsh Organic powders contain 100% single-ingredient dehydrated vegetables or spices. We rely on airtight foil packaging and moisture-controlled facilities to keep them free-flowing.",
+      a: "Zero. Utkarsh Organic Farm powders contain 100% single-ingredient dehydrated vegetables or spices. We rely on moisture-controlled facilities and sealed packaging to keep them free-flowing.",
+    },
+    {
+      q: "What certifications does Utkarsh Organic Farm hold?",
+      a: `We are FSSAI Registered (${COMPANY_INFO.fssaiRegNo}), MSME Udyam Certified (${COMPANY_INFO.udyamRegNo}), and GSTIN Registered (${COMPANY_INFO.gstin}).`,
     },
     {
       q: "How long is the shelf life of these powders?",
       a: "When stored in an airtight jar in a cool, dry pantry away from steam, our powders maintain prime freshness for 12 to 18 months without refrigeration.",
     },
     {
-      q: "How does 1 tsp of onion powder compare to a fresh onion?",
+      q: "How does 1 tsp of onion or garlic powder compare to fresh produce?",
       a: "Approximately 1 teaspoon (approx 5g) of Utkarsh Organic Onion Powder replaces one medium fresh onion (~80g fresh) in terms of flavor and aroma.",
-    },
-    {
-      q: "Are your products certified organic?",
-      a: "Yes, our partner farms and processing facilities follow strict organic standards with complete batch test reports available upon request.",
     },
   ];
 
@@ -34,14 +35,41 @@ export default function WhyOrganicPage() {
     <main className="pt-24 pb-20 lg:pt-28">
       <div className="container-x">
         <div className="text-center max-w-3xl mx-auto">
-          <p className="eyebrow">The Pure Choice</p>
+          <p className="eyebrow">{COMPANY_INFO.marathiHeader}</p>
           <h1 className="mt-3 font-display text-4xl font-extrabold sm:text-5xl lg:text-6xl">
-            Why Switch to Dehydrated Organic Powders?
+            Why Switch to Utkarsh Organic Powders?
           </h1>
           <p className="mt-4 text-muted-foreground text-base sm:text-lg leading-relaxed">
-            Eliminate food waste, cut prep work in half, and nourish your family with 100% natural, chemical-free food powders.
+            Eliminate food waste, cut prep work in half, and nourish your family with 100% natural, chemical-free dehydrated vegetable &amp; herbal powders.
           </p>
         </div>
+
+        {/* Certifications Banner */}
+        <section className="mt-12 rounded-3xl border border-border bg-cream p-6 shadow-soft">
+          <div className="grid gap-6 sm:grid-cols-3 text-center sm:text-left">
+            <div className="flex items-center gap-3 justify-center sm:justify-start">
+              <ShieldCheck className="h-8 w-8 text-accent shrink-0" />
+              <div>
+                <p className="text-xs font-bold uppercase text-muted-foreground">FSSAI Certified</p>
+                <p className="font-display font-bold text-sm text-foreground">Reg. {COMPANY_INFO.fssaiRegNo}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 justify-center sm:justify-start border-y sm:border-y-0 sm:border-x border-border/60 py-3 sm:py-0 sm:px-6">
+              <Award className="h-8 w-8 text-accent shrink-0" />
+              <div>
+                <p className="text-xs font-bold uppercase text-muted-foreground">GSTIN Registered</p>
+                <p className="font-display font-bold text-sm text-foreground">{COMPANY_INFO.gstin}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 justify-center sm:justify-start">
+              <Award className="h-8 w-8 text-accent shrink-0" />
+              <div>
+                <p className="text-xs font-bold uppercase text-muted-foreground">MSME Udyam Reg.</p>
+                <p className="font-display font-bold text-sm text-foreground">{COMPANY_INFO.udyamRegNo}</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Comparison Table */}
         <section className="mt-16">
@@ -83,9 +111,9 @@ export default function WhyOrganicPage() {
         <section className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { title: "No Tears, No Prep", desc: "No more weeping while chopping onions. Get real onion aroma in seconds." },
-            { title: "100% Pure Ingredients", desc: "Just single-origin organic vegetables dried and stone ground cleanly." },
+            { title: "100% Pure Ingredients", desc: "Just single-origin Satara vegetables dried and finely ground cleanly." },
             { title: "Saves Kitchen Budget", desc: "Zero spoilage loss. Pay only for edible concentrate, not water weight." },
-            { title: "Vibrant Natural Tone", desc: "Retains deep natural colours of beetroots, carrots, and turmeric naturally." },
+            { title: "Vibrant Natural Tone", desc: "Retains deep natural colours of beetroots, carrots, moringa, and turmeric naturally." },
           ].map(({ title, desc }, i) => (
             <Reveal key={title} delay={i * 0.06}>
               <div className="rounded-3xl border border-border bg-cream p-7 h-full">
