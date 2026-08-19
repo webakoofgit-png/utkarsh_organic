@@ -125,19 +125,19 @@ export function CataloguePage() {
   const slide = (bannerSlides[activeSlide % bannerSlides.length] || bannerSlides[0])!;
 
   return (
-    <main className="pt-20 lg:pt-24 bg-background">
-      {/* Hero Banner Box with Exact Responsive Dimensions */}
+    <main className="pt-16 lg:pt-20 bg-background">
+      {/* 100% Full Viewport Width Hero Banner (Edge-to-Edge matching /bulk-orders) */}
       {/* Desktop (1920): 180-220px | Laptop (1440): 160-190px | Tablet (768): 130-160px | Mobile (390): 100-130px */}
-      <section className="container-x pb-6">
-        <div
-          className="relative overflow-hidden min-h-[110px] h-[115px] sm:h-[140px] md:h-[150px] lg:h-[180px] xl:h-[200px] flex items-center justify-between rounded-[1.5rem] md:rounded-[2rem] lg:rounded-[2.5rem] bg-gradient-to-r from-[#051f12] via-[#04170d] to-[#020e07] text-white px-5 sm:px-8 md:px-10 lg:px-14 shadow-2xl"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
-          {/* Subtle Ambient Leaf Glow */}
-          <div className="absolute top-0 right-1/3 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+      <section
+        className="relative w-full overflow-hidden min-h-[110px] h-[115px] sm:h-[140px] md:h-[150px] lg:h-[180px] xl:h-[200px] flex items-center bg-gradient-to-r from-[#051f12] via-[#04170d] to-[#020e07] text-white border-b border-emerald-500/20 shadow-md"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        {/* Subtle Ambient Leaf Glow */}
+        <div className="absolute top-0 right-1/3 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
 
-          {/* Animate Slide Content */}
+        {/* Content Centered inside container-x */}
+        <div className="container-x w-full relative z-10 flex items-center justify-between">
           <AnimatePresence mode="wait">
             <motion.div
               key={slide.id}
@@ -145,7 +145,7 @@ export function CataloguePage() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.35, ease: "easeInOut" }}
-              className="flex w-full items-center justify-between gap-4 relative z-10"
+              className="flex w-full items-center justify-between gap-4"
             >
               {/* Left Content */}
               <div className="max-w-2xl py-2">
@@ -182,7 +182,7 @@ export function CataloguePage() {
                   {slide.subtitle}
                 </p>
 
-                {/* 3 Feature Items Ribbon (Visible on Tablet/Desktop) */}
+                {/* 3 Feature Items Ribbon */}
                 <div className="mt-2.5 hidden md:flex items-center gap-5 border-t border-emerald-500/20 pt-2">
                   {slide.features.map(({ icon: Icon, title, sub }) => (
                     <div key={title} className="flex items-center gap-2">
@@ -213,20 +213,22 @@ export function CataloguePage() {
               </div>
             </motion.div>
           </AnimatePresence>
+        </div>
 
-          {/* Bottom Curved Wave Graphic */}
-          <div className="w-full overflow-hidden leading-none absolute bottom-0 inset-x-0 z-10 pointer-events-none">
-            <svg
-              viewBox="0 0 1200 40"
-              preserveAspectRatio="none"
-              className="relative block w-full h-4 text-[#0a3520] fill-current opacity-80"
-            >
-              <path d="M0,0 C300,30 600,-10 1200,20 L1200,40 L0,40 Z"></path>
-            </svg>
-          </div>
+        {/* Bottom Curved Wave Graphic */}
+        <div className="w-full overflow-hidden leading-none absolute bottom-0 inset-x-0 z-10 pointer-events-none">
+          <svg
+            viewBox="0 0 1200 40"
+            preserveAspectRatio="none"
+            className="relative block w-full h-4 text-[#0a3520] fill-current opacity-80"
+          >
+            <path d="M0,0 C300,30 600,-10 1200,20 L1200,40 L0,40 Z"></path>
+          </svg>
+        </div>
 
-          {/* Slide Navigation Controls */}
-          <div className="absolute bottom-2.5 right-4 z-20 flex items-center gap-2">
+        {/* Slide Navigation Controls */}
+        <div className="container-x absolute bottom-2.5 inset-x-0 z-20 flex justify-end">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => setActiveSlide((prev) => (prev - 1 + bannerSlides.length) % bannerSlides.length)}
               aria-label="Previous slide"
@@ -235,7 +237,6 @@ export function CataloguePage() {
               <ChevronLeft className="h-3.5 w-3.5" />
             </button>
 
-            {/* Indicator Dots */}
             <div className="flex gap-1">
               {bannerSlides.map((_, idx) => (
                 <button
