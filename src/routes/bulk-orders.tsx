@@ -68,36 +68,36 @@ export default function BulkOrdersPage() {
       </div>
 
       {/* 100% Full Viewport Width Hero Banner Section (Matching Uploaded Design Image media_1787121104332.png) */}
-      {/* Desktop (1920): 200px | Laptop (1440): 180px | Tablet (768): 150px | Mobile (390): 115-140px */}
-      <section className="relative w-full overflow-hidden min-h-[110px] h-[115px] sm:h-[140px] md:h-[150px] lg:h-[180px] xl:h-[200px] flex items-center bg-gradient-to-r from-[#051f12] via-[#04170d] to-[#020e07] text-white border-b border-emerald-500/20 shadow-md">
+      {/* Desktop (1920): 300px | Laptop (1440): 250px | Tablet (768): 210px | Mobile (390): 160px */}
+      <section className="relative w-full overflow-hidden min-h-[140px] h-[160px] sm:h-[180px] md:h-[210px] lg:h-[250px] xl:h-[300px] flex items-center bg-gradient-to-r from-[#051f12] via-[#04170d] to-[#020e07] text-white border-b border-emerald-500/20 shadow-md">
         {/* Ambient Leaf Glow */}
-        <div className="absolute top-0 right-1/3 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-1/3 h-80 w-80 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
 
         {/* Content Centered inside container-x */}
-        <div className="container-x w-full relative z-10 flex items-center justify-between gap-4">
+        <div className="container-x w-full relative z-10 flex items-center justify-between gap-6">
           {/* Left Content */}
           <div className="max-w-2xl py-2">
             {/* Top Eyebrow Pill */}
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-950/80 px-3 py-0.5 text-[9px] sm:text-[10px] font-extrabold text-emerald-300 tracking-wider">
-              <Building2 className="h-3 w-3 text-emerald-400" />
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-emerald-300 tracking-wider">
+              <Building2 className="h-3.5 w-3.5 text-emerald-400" />
               <span>B2B &amp; COMMERCIAL SUPPLY</span>
-              <Sparkles className="h-2.5 w-2.5 text-emerald-400" />
+              <Sparkles className="h-3 w-3 text-emerald-400" />
             </div>
 
             {/* Headline */}
-            <h1 className="mt-1 font-serif text-sm sm:text-lg md:text-2xl lg:text-3xl font-black leading-tight tracking-tight text-white">
+            <h1 className="mt-2 font-serif text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black leading-tight tracking-tight text-white">
               Reliable{" "}
               <span className="relative inline-block text-emerald-400">
                 Bulk Dehydrated
                 <svg
-                  className="absolute -bottom-1 left-0 w-full h-2 text-emerald-400"
+                  className="absolute -bottom-1 left-0 w-full h-2.5 text-emerald-400"
                   viewBox="0 0 100 20"
                   preserveAspectRatio="none"
                 >
                   <path
                     d="M0,10 Q50,20 100,5"
                     stroke="currentColor"
-                    strokeWidth="3"
+                    strokeWidth="3.5"
                     fill="none"
                     strokeLinecap="round"
                   />
@@ -107,39 +107,39 @@ export default function BulkOrdersPage() {
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-1 text-[10px] sm:text-xs leading-snug text-emerald-100/85 line-clamp-1 sm:line-clamp-2 max-w-lg hidden sm:block">
+            <p className="mt-2 text-xs sm:text-sm md:text-base leading-relaxed text-emerald-100/90 max-w-xl hidden sm:block">
               From 5kg catering buckets to multi-ton export shipments. Custom mesh sizes, moisture specs, and contract farming agreements.
             </p>
 
             {/* 3 Mini Feature Badges Ribbon */}
-            <div className="mt-2.5 hidden md:flex items-center gap-5 border-t border-emerald-500/20 pt-2">
-              <div className="flex items-center gap-2">
-                <div className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
-                  <Building2 className="h-3.5 w-3.5" />
+            <div className="mt-3.5 hidden md:flex items-center gap-6 border-t border-emerald-500/20 pt-3">
+              <div className="flex items-center gap-2.5">
+                <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
+                  <Building2 className="h-4 w-4" />
                 </div>
                 <div className="leading-tight">
-                  <p className="text-[10px] font-bold text-white">HoReCa &amp; Kitchens</p>
-                  <p className="text-[9px] text-emerald-300/80">Catering Buckets</p>
+                  <p className="text-xs font-bold text-white">HoReCa &amp; Kitchens</p>
+                  <p className="text-[10px] text-emerald-300/80">Catering Buckets</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
-                <div className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
-                  <Factory className="h-3.5 w-3.5" />
+              <div className="flex items-center gap-2.5">
+                <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
+                  <Factory className="h-4 w-4" />
                 </div>
                 <div className="leading-tight">
-                  <p className="text-[10px] font-bold text-white">Food Manufacturers</p>
-                  <p className="text-[9px] text-emerald-300/80">Industrial Mesh Specs</p>
+                  <p className="text-xs font-bold text-white">Food Manufacturers</p>
+                  <p className="text-[10px] text-emerald-300/80">Industrial Mesh Specs</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
-                <div className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
-                  <Globe className="h-3.5 w-3.5" />
+              <div className="flex items-center gap-2.5">
+                <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
+                  <Globe className="h-4 w-4" />
                 </div>
                 <div className="leading-tight">
-                  <p className="text-[10px] font-bold text-white">Exporters &amp; Wholesalers</p>
-                  <p className="text-[9px] text-emerald-300/80">FSSAI &amp; Export Ready</p>
+                  <p className="text-xs font-bold text-white">Exporters &amp; Wholesalers</p>
+                  <p className="text-[10px] text-emerald-300/80">FSSAI &amp; Export Ready</p>
                 </div>
               </div>
             </div>
@@ -147,13 +147,13 @@ export default function BulkOrdersPage() {
 
           {/* Right Visual Image */}
           <div className="relative shrink-0 flex items-center justify-end">
-            <div className="relative overflow-hidden rounded-xl border border-emerald-500/30 bg-emerald-950/40 p-1.5 backdrop-blur-md shadow-xl">
+            <div className="relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-emerald-950/40 p-2 backdrop-blur-md shadow-2xl">
               <img
                 src={heroBulkOrders}
                 alt="Bulk Organic Powders"
-                className="h-20 sm:h-28 md:h-32 lg:h-36 xl:h-40 w-32 sm:w-44 md:w-52 lg:w-60 xl:w-64 object-cover rounded-lg"
+                className="h-28 sm:h-36 md:h-44 lg:h-52 xl:h-60 w-40 sm:w-56 md:w-64 lg:w-80 xl:w-96 object-cover rounded-xl"
               />
-              <div className="absolute bottom-2 right-2 rounded-lg border border-emerald-400/40 bg-emerald-950/90 px-2 py-0.5 text-[9px] font-bold text-emerald-300 shadow-md backdrop-blur-md hidden sm:block">
+              <div className="absolute bottom-3 right-3 rounded-xl border border-emerald-400/40 bg-emerald-950/90 px-3 py-1 text-xs font-bold text-emerald-300 shadow-lg backdrop-blur-md hidden sm:block">
                 📦 Bulk 5kg - 500kg+
               </div>
             </div>
