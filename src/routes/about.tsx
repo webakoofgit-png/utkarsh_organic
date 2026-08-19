@@ -25,37 +25,63 @@ import { COMPANY_INFO } from "@/lib/products";
 export default function AboutPage() {
   return (
     <main className="pt-16 lg:pt-20 bg-background">
-      {/* 100% Full Viewport Width Hero Banner Section (Edge-to-Edge matching /bulk-orders) */}
-      <section className="relative w-full overflow-hidden bg-gradient-to-r from-[#072415] via-[#041a0e] to-[#021008] text-white py-12 md:py-16 border-b border-emerald-500/20 shadow-md">
-        {/* Ambient Leaf Glow */}
-        <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+      {/* Top Full Viewport Width Dark Green Breadcrumb Bar */}
+      <div className="w-full bg-[#03140a] border-b border-emerald-500/20 py-2.5">
+        <div className="container-x flex items-center justify-between text-xs text-emerald-200/90">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Link
+              to="/"
+              className="grid h-6 w-6 place-items-center rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500 hover:text-black transition"
+            >
+              <Home className="h-3 w-3" />
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5 text-emerald-500/50" />
+            <Link to="/" className="hover:text-emerald-400 transition">
+              Home
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5 text-emerald-500/50" />
+            <span className="font-bold text-emerald-400">About Us</span>
+            <ChevronRight className="h-3.5 w-3.5 text-emerald-500/50" />
+            <span className="text-emerald-200/70">About Utkarsh Organic Farm</span>
+          </div>
 
-        <div className="container-x relative z-10 grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="hidden sm:flex items-center gap-1.5 text-emerald-400">
+            <Leaf className="h-4 w-4 fill-emerald-400/20 text-emerald-400" />
+          </div>
+        </div>
+      </div>
+
+      {/* 100% Full Viewport Width Hero Banner Section (Matching Uploaded Design Image media_1787120746684.png) */}
+      {/* Desktop (1920): 200px | Laptop (1440): 180px | Tablet (768): 150px | Mobile (390): 115-140px */}
+      <section className="relative w-full overflow-hidden min-h-[110px] h-[115px] sm:h-[140px] md:h-[150px] lg:h-[180px] xl:h-[200px] flex items-center bg-gradient-to-r from-[#051f12] via-[#04170d] to-[#020e07] text-white border-b border-emerald-500/20 shadow-md">
+        {/* Ambient Leaf Glow */}
+        <div className="absolute top-0 right-1/3 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+
+        {/* Content Centered inside container-x */}
+        <div className="container-x w-full relative z-10 flex items-center justify-between gap-4">
           {/* Left Content */}
-          <Reveal>
+          <div className="max-w-2xl py-2">
             {/* Top Eyebrow Pill */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-950/70 px-4 py-1.5 text-xs font-bold text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-              <Leaf className="h-3.5 w-3.5 text-emerald-400" />
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-950/80 px-3 py-0.5 text-[9px] sm:text-[10px] font-extrabold text-emerald-300 tracking-wider">
+              <Leaf className="h-3 w-3 text-emerald-400" />
               <span>ABOUT US</span>
-              <Sparkles className="h-3 w-3 text-emerald-400" />
+              <Sparkles className="h-2.5 w-2.5 text-emerald-400" />
             </div>
 
             {/* Headline */}
-            <h1 className="mt-6 font-serif text-4xl font-black leading-tight sm:text-5xl lg:text-6xl text-white">
-              Bringing real, <br />
-              uncompromised <br />
-              farm goodness to <br />
+            <h1 className="mt-1 font-serif text-sm sm:text-lg md:text-2xl lg:text-3xl font-black leading-tight tracking-tight text-white">
+              Rooted in nature.{" "}
               <span className="relative inline-block text-emerald-400">
-                modern kitchens.
+                Driven by purpose.
                 <svg
-                  className="absolute -bottom-2 left-0 w-full h-3 text-emerald-400"
+                  className="absolute -bottom-1 left-0 w-full h-2 text-emerald-400"
                   viewBox="0 0 100 20"
                   preserveAspectRatio="none"
                 >
                   <path
                     d="M0,10 Q50,20 100,5"
                     stroke="currentColor"
-                    strokeWidth="4"
+                    strokeWidth="3"
                     fill="none"
                     strokeLinecap="round"
                   />
@@ -63,68 +89,79 @@ export default function AboutPage() {
               </span>
             </h1>
 
-            {/* Subtext */}
-            <p className="mt-6 max-w-xl text-sm leading-relaxed text-emerald-100/85 sm:text-base">
-              Founded at Wai (Satara, Maharashtra), Utkarsh Organic Farm brings 100% natural, hygienic dehydrated vegetables, fruit powders &amp; ready-to-cook functional foods from soil to spoon.
+            {/* Subtitle */}
+            <p className="mt-1 text-[10px] sm:text-xs leading-snug text-emerald-100/85 line-clamp-1 sm:line-clamp-2 max-w-lg hidden sm:block">
+              Utkarsh Organic Farm was founded in Wai (Satara, Maharashtra) with a simple belief — that real food comes from real farms. We're here to make natural, clean, and honest ingredients accessible to every kitchen.
             </p>
 
-            {/* 4 Feature Items */}
-            <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-emerald-500/20 pt-6">
-              <div className="flex items-center gap-3">
-                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400 shadow-md">
-                  <Leaf className="h-5 w-5" />
+            {/* 4 Feature Items Ribbon */}
+            <div className="mt-2.5 hidden md:flex items-center gap-5 border-t border-emerald-500/20 pt-2">
+              <div className="flex items-center gap-2">
+                <div className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
+                  <Leaf className="h-3.5 w-3.5" />
                 </div>
-                <div>
-                  <p className="text-xs font-bold text-white">100% Natural</p>
-                  <p className="text-[11px] text-emerald-300/80">No Chemicals</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400 shadow-md">
-                  <ShieldCheck className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-white">Pure &amp; Safe</p>
-                  <p className="text-[11px] text-emerald-300/80">No Preservatives</p>
+                <div className="leading-tight">
+                  <p className="text-[10px] font-bold text-white">Farm to You</p>
+                  <p className="text-[9px] text-emerald-300/80">Direct from own farms</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400 shadow-md">
-                  <Sprout className="h-5 w-5" />
+              <div className="flex items-center gap-2">
+                <div className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
+                  <ShieldCheck className="h-3.5 w-3.5" />
                 </div>
-                <div>
-                  <p className="text-xs font-bold text-white">Farm to You</p>
-                  <p className="text-[11px] text-emerald-300/80">Direct from Farms</p>
+                <div className="leading-tight">
+                  <p className="text-[10px] font-bold text-white">Pure &amp; Safe</p>
+                  <p className="text-[9px] text-emerald-300/80">No preservatives</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400 shadow-md">
-                  <Users className="h-5 w-5" />
+              <div className="flex items-center gap-2">
+                <div className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
+                  <Sprout className="h-3.5 w-3.5" />
                 </div>
-                <div>
-                  <p className="text-xs font-bold text-white">Trusted by Many</p>
-                  <p className="text-[11px] text-emerald-300/80">Happy Customers</p>
+                <div className="leading-tight">
+                  <p className="text-[10px] font-bold text-white">Sustainable</p>
+                  <p className="text-[9px] text-emerald-300/80">Good for nature</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
+                  <Users className="h-3.5 w-3.5" />
+                </div>
+                <div className="leading-tight">
+                  <p className="text-[10px] font-bold text-white">Trusted by Many</p>
+                  <p className="text-[9px] text-emerald-300/80">Loved by thousands</p>
                 </div>
               </div>
             </div>
-          </Reveal>
+          </div>
 
           {/* Right Visual Image */}
-          <Reveal delay={0.15} className="relative flex justify-center items-center">
-            <div className="relative w-full max-w-md overflow-hidden rounded-3xl border border-emerald-500/30 bg-emerald-950/40 p-3 backdrop-blur-md shadow-2xl">
+          <div className="relative shrink-0 flex items-center justify-end">
+            <div className="relative overflow-hidden rounded-xl border border-emerald-500/30 bg-emerald-950/40 p-1.5 backdrop-blur-md shadow-xl">
               <img
                 src={hero}
-                alt="Utkarsh Organic Farm ingredients"
-                className="h-80 w-full rounded-2xl object-cover shadow-lg"
+                alt="Utkarsh Organic Farm"
+                className="h-20 sm:h-28 md:h-32 lg:h-36 xl:h-40 w-32 sm:w-44 md:w-52 lg:w-60 xl:w-64 object-cover rounded-lg"
               />
-              <div className="absolute bottom-6 right-6 rounded-2xl border border-emerald-400/40 bg-emerald-950/90 px-4 py-2 text-xs font-bold text-emerald-300 shadow-xl backdrop-blur-md">
-                🌱 Direct from Wai, Satara
+              <div className="absolute bottom-2 right-2 rounded-lg border border-emerald-400/40 bg-emerald-950/90 px-2 py-0.5 text-[9px] font-bold text-emerald-300 shadow-md backdrop-blur-md hidden sm:block">
+                🌱 Wai (Satara) Farm
               </div>
             </div>
-          </Reveal>
+          </div>
+        </div>
+
+        {/* Bottom Curved Wave Graphic */}
+        <div className="w-full overflow-hidden leading-none absolute bottom-0 inset-x-0 z-10 pointer-events-none">
+          <svg
+            viewBox="0 0 1200 40"
+            preserveAspectRatio="none"
+            className="relative block w-full h-4 text-[#0a3520] fill-current opacity-80"
+          >
+            <path d="M0,0 C300,30 600,-10 1200,20 L1200,40 L0,40 Z"></path>
+          </svg>
         </div>
       </section>
 
