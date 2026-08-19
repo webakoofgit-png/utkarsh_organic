@@ -126,49 +126,50 @@ export function CataloguePage() {
 
   return (
     <main className="pt-20 lg:pt-24 bg-background">
-      {/* Hero Banner Carousel Box */}
+      {/* Hero Banner Box with Exact Responsive Dimensions */}
+      {/* Desktop (1920): 180-220px | Laptop (1440): 160-190px | Tablet (768): 130-160px | Mobile (390): 100-130px */}
       <section className="container-x pb-6">
         <div
-          className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-r from-[#072415] via-[#041a0e] to-[#021008] text-white shadow-2xl"
+          className="relative overflow-hidden min-h-[110px] h-[115px] sm:h-[140px] md:h-[150px] lg:h-[180px] xl:h-[200px] flex items-center justify-between rounded-[1.5rem] md:rounded-[2rem] lg:rounded-[2.5rem] bg-gradient-to-r from-[#051f12] via-[#04170d] to-[#020e07] text-white px-5 sm:px-8 md:px-10 lg:px-14 shadow-2xl"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
           {/* Subtle Ambient Leaf Glow */}
-          <div className="absolute top-0 right-1/3 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-1/3 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
 
           {/* Animate Slide Content */}
           <AnimatePresence mode="wait">
             <motion.div
               key={slide.id}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="grid items-center gap-8 p-8 md:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:p-16 relative z-10"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              className="flex w-full items-center justify-between gap-4 relative z-10"
             >
               {/* Left Content */}
-              <div>
+              <div className="max-w-2xl py-2">
                 {/* Eyebrow Pill */}
-                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-950/70 px-4 py-1.5 text-xs font-bold text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-                  <Leaf className="h-3.5 w-3.5 text-emerald-400" />
+                <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-950/80 px-3 py-0.5 text-[9px] sm:text-[10px] font-extrabold text-emerald-300 tracking-wider">
+                  <Leaf className="h-3 w-3 text-emerald-400" />
                   <span>{slide.eyebrow}</span>
-                  <Sparkles className="h-3 w-3 text-emerald-400" />
+                  <Sparkles className="h-2.5 w-2.5 text-emerald-400" />
                 </div>
 
                 {/* Headline */}
-                <h1 className="mt-6 font-serif text-4xl font-black leading-tight sm:text-5xl lg:text-6xl text-white">
-                  {slide.titleLine1} <br />
+                <h1 className="mt-1 font-serif text-sm sm:text-lg md:text-2xl lg:text-3xl font-black leading-tight tracking-tight text-white">
+                  {slide.titleLine1}{" "}
                   <span className="relative inline-block text-emerald-400">
                     {slide.titleLine2}
                     <svg
-                      className="absolute -bottom-2 left-0 w-full h-3 text-emerald-400"
+                      className="absolute -bottom-1 left-0 w-full h-2 text-emerald-400"
                       viewBox="0 0 100 20"
                       preserveAspectRatio="none"
                     >
                       <path
                         d="M0,10 Q50,20 100,5"
                         stroke="currentColor"
-                        strokeWidth="4"
+                        strokeWidth="3"
                         fill="none"
                         strokeLinecap="round"
                       />
@@ -177,20 +178,20 @@ export function CataloguePage() {
                 </h1>
 
                 {/* Subtitle */}
-                <p className="mt-6 max-w-xl text-sm leading-relaxed text-emerald-100/85 sm:text-base">
+                <p className="mt-1 text-[10px] sm:text-xs leading-snug text-emerald-100/85 line-clamp-1 sm:line-clamp-2 max-w-lg hidden sm:block">
                   {slide.subtitle}
                 </p>
 
-                {/* 3 Feature Items Ribbon */}
-                <div className="mt-10 grid grid-cols-3 gap-4 border-t border-emerald-500/20 pt-6">
-                  {slide.features.map(({ icon: Icon, title, sub }, idx) => (
-                    <div key={title} className="flex items-center gap-3">
-                      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400 shadow-md">
-                        <Icon className="h-5 w-5" />
+                {/* 3 Feature Items Ribbon (Visible on Tablet/Desktop) */}
+                <div className="mt-2.5 hidden md:flex items-center gap-5 border-t border-emerald-500/20 pt-2">
+                  {slide.features.map(({ icon: Icon, title, sub }) => (
+                    <div key={title} className="flex items-center gap-2">
+                      <div className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
+                        <Icon className="h-3.5 w-3.5" />
                       </div>
-                      <div>
-                        <p className="text-xs font-bold text-white">{title}</p>
-                        <p className="text-[11px] text-emerald-300/80">{sub}</p>
+                      <div className="leading-tight">
+                        <p className="text-[10px] font-bold text-white">{title}</p>
+                        <p className="text-[9px] text-emerald-300/80">{sub}</p>
                       </div>
                     </div>
                   ))}
@@ -198,15 +199,15 @@ export function CataloguePage() {
               </div>
 
               {/* Right Visual Image */}
-              <div className="relative flex justify-center items-center">
-                <div className="relative w-full max-w-md overflow-hidden rounded-3xl border border-emerald-500/30 bg-emerald-950/40 p-3 backdrop-blur-md shadow-2xl">
+              <div className="relative shrink-0 flex items-center justify-end">
+                <div className="relative overflow-hidden rounded-xl border border-emerald-500/30 bg-emerald-950/40 p-1.5 backdrop-blur-md shadow-xl">
                   <img
                     src={slide.image}
                     alt={slide.eyebrow}
-                    className="h-72 w-full rounded-2xl object-cover shadow-lg"
+                    className="h-20 sm:h-28 md:h-32 lg:h-36 xl:h-40 w-32 sm:w-44 md:w-52 lg:w-60 xl:w-64 object-cover rounded-lg"
                   />
-                  <div className="absolute bottom-6 right-6 rounded-2xl border border-emerald-400/40 bg-emerald-950/90 px-4 py-2 text-xs font-bold text-emerald-300 shadow-xl backdrop-blur-md">
-                    🌱 100% Pure &amp; Organic
+                  <div className="absolute bottom-2 right-2 rounded-lg border border-emerald-400/40 bg-emerald-950/90 px-2 py-0.5 text-[9px] font-bold text-emerald-300 shadow-md backdrop-blur-md hidden sm:block">
+                    🌱 100% Pure
                   </div>
                 </div>
               </div>
@@ -214,34 +215,34 @@ export function CataloguePage() {
           </AnimatePresence>
 
           {/* Bottom Curved Wave Graphic */}
-          <div className="w-full overflow-hidden leading-none relative z-10 -mt-4">
+          <div className="w-full overflow-hidden leading-none absolute bottom-0 inset-x-0 z-10 pointer-events-none">
             <svg
-              viewBox="0 0 1200 60"
+              viewBox="0 0 1200 40"
               preserveAspectRatio="none"
-              className="relative block w-full h-8 text-[#0a3520] fill-current"
+              className="relative block w-full h-4 text-[#0a3520] fill-current opacity-80"
             >
-              <path d="M0,0 C300,50 600,-20 1200,30 L1200,60 L0,60 Z"></path>
+              <path d="M0,0 C300,30 600,-10 1200,20 L1200,40 L0,40 Z"></path>
             </svg>
           </div>
 
           {/* Slide Navigation Controls */}
-          <div className="absolute bottom-6 right-8 z-20 flex items-center gap-3">
+          <div className="absolute bottom-2.5 right-4 z-20 flex items-center gap-2">
             <button
               onClick={() => setActiveSlide((prev) => (prev - 1 + bannerSlides.length) % bannerSlides.length)}
               aria-label="Previous slide"
-              className="grid h-9 w-9 place-items-center rounded-full border border-emerald-400/30 bg-emerald-950/80 text-emerald-300 transition hover:bg-emerald-500 hover:text-black"
+              className="grid h-7 w-7 place-items-center rounded-full border border-emerald-400/30 bg-emerald-950/90 text-emerald-300 transition hover:bg-emerald-500 hover:text-black"
             >
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft className="h-3.5 w-3.5" />
             </button>
 
             {/* Indicator Dots */}
-            <div className="flex gap-1.5">
+            <div className="flex gap-1">
               {bannerSlides.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveSlide(idx)}
-                  className={`h-2 rounded-full transition-all ${
-                    activeSlide === idx ? "w-6 bg-emerald-400" : "w-2 bg-emerald-800"
+                  className={`h-1.5 rounded-full transition-all ${
+                    activeSlide === idx ? "w-4 bg-emerald-400" : "w-1.5 bg-emerald-800"
                   }`}
                 />
               ))}
@@ -250,16 +251,16 @@ export function CataloguePage() {
             <button
               onClick={() => setActiveSlide((prev) => (prev + 1) % bannerSlides.length)}
               aria-label="Next slide"
-              className="grid h-9 w-9 place-items-center rounded-full border border-emerald-400/30 bg-emerald-950/80 text-emerald-300 transition hover:bg-emerald-500 hover:text-black"
+              className="grid h-7 w-7 place-items-center rounded-full border border-emerald-400/30 bg-emerald-950/90 text-emerald-300 transition hover:bg-emerald-500 hover:text-black"
             >
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-3.5 w-3.5" />
             </button>
           </div>
         </div>
       </section>
 
       {/* Catalogue Filters & Grid */}
-      <section className="container-x py-8 lg:py-12">
+      <section className="container-x py-6 lg:py-10">
         {/* Search & Categories Bar */}
         <div className="flex flex-col gap-4 rounded-3xl border border-border bg-cream p-4 lg:flex-row lg:items-center lg:p-5">
           <label className="flex flex-1 items-center gap-3 rounded-2xl bg-background px-4 py-3">
