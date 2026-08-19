@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import logo from "@/assets/logo-mark.png";
 import { COMPANY_INFO } from "@/lib/products";
+import { WhatsAppIcon } from "./FloatingActions";
 
 export function Footer() {
   return (
@@ -166,9 +167,9 @@ export function Footer() {
                   href={`https://wa.me/917507379018`}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 text-xs font-extrabold text-emerald-400 hover:text-white transition"
+                  className="inline-flex items-center gap-2 text-xs font-extrabold text-[#25D366] hover:text-white transition"
                 >
-                  <MessageCircle className="h-4 w-4 text-emerald-400 fill-emerald-400/20" />
+                  <WhatsAppIcon className="h-4 w-4 fill-current text-[#25D366]" />
                   <span>WhatsApp: +91 7507379018</span>
                 </a>
               </div>
