@@ -107,42 +107,9 @@ export default function BulkOrdersPage() {
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-2 text-xs sm:text-sm md:text-base leading-relaxed text-emerald-100/90 max-w-xl hidden sm:block">
+            <p className="mt-3 text-xs sm:text-sm md:text-base leading-relaxed text-emerald-100/90 max-w-xl hidden sm:block">
               From 5kg catering buckets to multi-ton export shipments. Custom mesh sizes, moisture specs, and contract farming agreements.
             </p>
-
-            {/* 3 Mini Feature Badges Ribbon */}
-            <div className="mt-3.5 hidden md:flex items-center gap-6 border-t border-emerald-500/20 pt-3">
-              <div className="flex items-center gap-2.5">
-                <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
-                  <Building2 className="h-4 w-4" />
-                </div>
-                <div className="leading-tight">
-                  <p className="text-xs font-bold text-white">HoReCa &amp; Kitchens</p>
-                  <p className="text-[10px] text-emerald-300/80">Catering Buckets</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
-                  <Factory className="h-4 w-4" />
-                </div>
-                <div className="leading-tight">
-                  <p className="text-xs font-bold text-white">Food Manufacturers</p>
-                  <p className="text-[10px] text-emerald-300/80">Industrial Mesh Specs</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
-                  <Globe className="h-4 w-4" />
-                </div>
-                <div className="leading-tight">
-                  <p className="text-xs font-bold text-white">Exporters &amp; Wholesalers</p>
-                  <p className="text-[10px] text-emerald-300/80">FSSAI &amp; Export Ready</p>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Right Visual Image */}
