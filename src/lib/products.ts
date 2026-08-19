@@ -33,6 +33,7 @@ export const COMPANY_INFO = {
   },
   phonePrimary: "+91 7507379018",
   phoneSecondary: "+91 8830150923",
+  whatsappNumber: "917507379018",
   email: "hello@utkarshorganic.com",
   officialEmail: "dr.padmashreebhosale@gmail.com",
   marathiHeader: "🌱 उत्कर्ष फार्म – शेतापासून थेट तुमच्या स्वयंपाकघरापर्यंत! 🌱",
