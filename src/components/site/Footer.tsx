@@ -88,7 +88,7 @@ export function Footer() {
               {[
                 { icon: Home, label: "Home", to: "/" },
                 { icon: Users, label: "About Us", to: "/about" },
-                { icon: ShoppingCart, label: "Shop Catalogue", to: "/shop" },
+                { icon: ShoppingCart, label: "Shop Catalogue", to: "/products" },
                 { icon: ShoppingBag, label: "Bulk / Commercial Packs", to: "/bulk-orders" },
                 { icon: FileText, label: "Field Notes & Blog", to: "/blog" },
                 { icon: Phone, label: "Contact Us", to: "/contact" },

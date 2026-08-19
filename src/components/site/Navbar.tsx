@@ -7,7 +7,6 @@ import logo from "@/assets/logo-mark.png";
 
 const NAV = [
   { label: "Home", to: "/" },
-  { label: "Shop", to: "/shop" },
   { label: "Products", to: "/products" },
   { label: "About Us", to: "/about" },
   { label: "Why Organic", to: "/why-organic" },

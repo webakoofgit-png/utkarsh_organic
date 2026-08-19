@@ -8,7 +8,6 @@ import { CartDrawer } from "@/components/site/CartDrawer";
 import { FloatingActions } from "@/components/site/FloatingActions";
 
 import HomePage from "@/routes/index";
-import ShopPage from "@/routes/shop";
 import ProductsPage from "@/routes/products";
 import ProductDetailPage from "@/routes/product.$slug";
 import CartPage from "@/routes/cart";
@@ -46,7 +45,7 @@ export default function App() {
           <div className="flex-1">
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/shop" element={<ShopPage />} />
+              <Route path="/shop" element={<ProductsPage />} />
               <Route path="/products" element={<ProductsPage />} />
               <Route path="/product/:slug" element={<ProductDetailPage />} />
               <Route path="/cart" element={<CartPage />} />

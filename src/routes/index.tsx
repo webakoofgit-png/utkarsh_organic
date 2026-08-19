@@ -163,7 +163,7 @@ export default function HomePage() {
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
-                to="/shop"
+                to="/products"
                 className="inline-flex items-center gap-2.5 rounded-full bg-emerald-500 px-7 py-3.5 text-sm font-extrabold text-black shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:scale-105 hover:bg-emerald-400 transition duration-200"
               >
                 <ShoppingBag className="h-4 w-4" />
@@ -345,7 +345,7 @@ export default function HomePage() {
 
                     <div className="mt-6">
                       <Link
-                        to={`/shop?category=${cat.id}`}
+                        to={`/products?category=${cat.id}`}
                         className={`inline-flex items-center gap-1.5 rounded-full ${cat.btnBg} px-6 py-2.5 text-xs font-extrabold text-white shadow-sm transition hover:scale-105`}
                       >
                         <span>Explore</span>
@@ -433,7 +433,7 @@ export default function HomePage() {
               sub="The pantry staples cooks keep coming back for."
             />
             <Link
-              to="/shop"
+              to="/products"
               className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-primary hover:text-accent"
             >
               Shop all products <ArrowRight className="h-4 w-4" />
