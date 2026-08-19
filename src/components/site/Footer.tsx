@@ -31,6 +31,7 @@ export function Footer() {
             <span className="font-display text-xl font-extrabold">{COMPANY_INFO.name}</span>
           </div>
           <p className="mt-4 text-xs font-semibold text-accent">{COMPANY_INFO.marathiHeader}</p>
+          <p className="mt-2 text-xs text-forest-foreground/80 font-bold">{COMPANY_INFO.marathiSlogan}</p>
           <p className="mt-3 max-w-xs text-xs leading-relaxed text-forest-foreground/75">
             {COMPANY_INFO.marathiDescription}
           </p>
@@ -90,10 +91,11 @@ export function Footer() {
             Contact &amp; Farm Unit
           </h3>
           <ul className="mt-5 space-y-3 text-xs text-forest-foreground/70">
-            <li className="font-bold text-accent text-sm">
-              Prop: {COMPANY_INFO.contactPerson}
+            <li className="font-bold text-accent text-xs leading-snug">
+              Prafulla Pradeep Chorge (Agri Expert)<br />
+              Dr. Padmashree P. Chorge (Nutritionist)
             </li>
-            <li className="flex gap-2.5">
+            <li className="flex gap-2.5 pt-1">
               <Phone className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
               <span>{COMPANY_INFO.phonePrimary} / {COMPANY_INFO.phoneSecondary}</span>
             </li>
