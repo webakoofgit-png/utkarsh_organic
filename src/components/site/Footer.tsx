@@ -190,7 +190,7 @@ export function Footer() {
                 rel="noreferrer"
                 className="font-extrabold text-emerald-400 hover:underline hover:text-emerald-300 transition"
               >
-                webakoof.com
+                Webakoof
               </a>
             </p>
           </div>
