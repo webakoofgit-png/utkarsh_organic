@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import {
+  ArrowLeft,
   ArrowRight,
   Award,
   BadgeCheck,
   Building2,
   Check,
   ChefHat,
+  ChevronLeft,
   ChevronRight,
   Coffee,
   Factory,
@@ -37,6 +39,8 @@ import turmeric from "@/assets/p-turmeric.jpg";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Counter, Reveal, SectionHeading } from "@/components/site/motion-primitives";
 import { BLOG_POSTS, CATEGORIES, PRODUCTS, RECIPES, COMPANY_INFO } from "@/lib/products";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
 
 const customCategories = [
   {
@@ -81,8 +85,58 @@ const customCategories = [
   },
 ];
 
+const testimonials = [
+  {
+    quote: "I make gravies for 120 guests at a time. The onion powder is consistently fragrant, which makes a real difference to my prep.",
+    name: "Chef Rohan Mehta",
+    place: "Nashik",
+  },
+  {
+    quote: "The beetroot and spinach powders have become the easiest way to add colour to our weekend breakfast experiments.",
+    name: "Ayesha Kulkarni",
+    place: "Pune",
+  },
+  {
+    quote: "I appreciate being able to read exactly what is in every pack. The garlic powder is a permanent pantry item now.",
+    name: "Nisha Shah",
+    place: "Mumbai",
+  },
+  {
+    quote: "Moringa Lemon Tea has replaced my morning coffee! Pure, refreshing, and clean energy without any stomach acidity.",
+    name: "Dr. Vikram Joshi",
+    place: "Kolhapur",
+  },
+  {
+    quote: "As a mother of two picky eaters, mixing Shevga Leaf and Carrot powder into roti dough is my secret nutrition hack.",
+    name: "Sunita Deshmukh",
+    place: "Satara",
+  },
+  {
+    quote: "The dehydrated mixed vegetables rehydrate in 5 minutes! Essential for our resort kitchen's high-volume daily service.",
+    name: "Chef Sameer Patil",
+    place: "Goa",
+  },
+];
+
 export default function HomePage() {
   const bestSellers = PRODUCTS.filter((product) => product.bestSeller).slice(0, 4);
+
+  // Testimonial Carousel State
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const totalPages = Math.ceil(testimonials.length / 3);
+
+  useEffect(() => {
+    if (paused) return;
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % totalPages);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [paused, totalPages]);
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % totalPages);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + totalPages) % totalPages);
 
   return (
     <main className="pt-16 lg:pt-20">
@@ -99,7 +153,7 @@ export default function HomePage() {
         }}
       />
 
-      {/* Custom Hero Section matching design image */}
+      {/* Custom Hero Section */}
       <section className="relative bg-gradient-to-b from-[#051f12] via-[#04170d] to-[#020e07] text-white pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden">
         {/* Ambient Background Leaf Glow */}
         <div className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
@@ -258,9 +312,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Redesigned Category Section (Matching Uploaded Design Image) */}
+      {/* Category Section */}
       <section className="container-x py-16 lg:py-24">
-        {/* Header */}
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-xs font-extrabold tracking-[0.25em] text-[#6b9d28] uppercase flex items-center justify-center gap-2">
             <span>➔</span> FIND YOUR FLAVOUR <span>➔</span>
@@ -279,7 +332,6 @@ export default function HomePage() {
           </p>
         </div>
 
-        {/* 4 Cards Grid */}
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {customCategories.map((cat, index) => {
             const Icon = cat.icon;
@@ -288,14 +340,12 @@ export default function HomePage() {
                 <div
                   className={`relative flex flex-col justify-between rounded-[2rem] border ${cat.cardBg} p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 h-full text-center`}
                 >
-                  {/* Top Badge Icon */}
                   <div
                     className={`absolute -top-5 left-6 grid h-11 w-11 place-items-center rounded-full ${cat.badgeBg} text-white shadow-md`}
                   >
                     <Icon className="h-5 w-5" />
                   </div>
 
-                  {/* Product Illustration */}
                   <div className="mt-4 relative h-48 w-full overflow-hidden rounded-2xl bg-white/60 p-3 shadow-inner flex items-center justify-center">
                     <img
                       src={cat.image}
@@ -304,7 +354,6 @@ export default function HomePage() {
                     />
                   </div>
 
-                  {/* Content */}
                   <div className="mt-6 flex-1 flex flex-col justify-between">
                     <div>
                       <h3 className="font-display text-lg font-black text-foreground">
@@ -331,7 +380,6 @@ export default function HomePage() {
           })}
         </div>
 
-        {/* Bottom Feature Ribbon (5 Trust Points) */}
         <div className="mt-14 rounded-full border border-[#d6ebd3] bg-[#f0f7ef] p-4 sm:p-5 shadow-sm">
           <div className="grid grid-cols-2 gap-4 md:grid-cols-5 md:divide-x divide-[#d6ebd3]">
             <div className="flex items-center gap-3 justify-center">
@@ -386,7 +434,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Bottom Slogan Pill */}
         <div className="mt-8 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-gradient-to-r from-[#051f12] via-[#04170d] to-[#020e07] px-6 py-2.5 text-xs font-extrabold text-white shadow-md">
             <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
@@ -499,39 +546,80 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Community Words */}
-      <section className="container-x py-20 lg:py-28">
-        <SectionHeading eyebrow="From our community" title="Kind words from well-fed kitchens" />
-        <div className="mt-11 grid gap-5 lg:grid-cols-3">
-          {[
-            [
-              "I make gravies for 120 guests at a time. The onion powder is consistently fragrant, which makes a real difference to my prep.",
-              "Chef Rohan Mehta",
-              "Nashik",
-            ],
-            [
-              "The beetroot and spinach powders have become the easiest way to add colour to our weekend breakfast experiments.",
-              "Ayesha Kulkarni",
-              "Pune",
-            ],
-            [
-              "I appreciate being able to read exactly what is in every pack. The garlic powder is a permanent pantry item now.",
-              "Nisha Shah",
-              "Mumbai",
-            ],
-          ].map(([quote, name, place], index) => (
-            <Reveal key={name} delay={index * 0.08}>
-              <figure className="surface-card h-full p-7">
-                <Quote className="h-7 w-7 text-accent" />
-                <blockquote className="mt-5 text-sm leading-relaxed text-muted-foreground">
-                  “{quote}”
-                </blockquote>
-                <figcaption className="mt-6">
-                  <p className="font-display font-bold">{name}</p>
-                  <p className="text-xs text-muted-foreground">{place}</p>
-                </figcaption>
-              </figure>
-            </Reveal>
+      {/* Community Words - Interactive Auto-Rotating Testimonials Carousel */}
+      <section
+        className="container-x py-20 lg:py-28"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+          <SectionHeading eyebrow="From our community" title="Kind words from well-fed kitchens" />
+
+          {/* Carousel Arrows */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={prevSlide}
+              aria-label="Previous testimonials"
+              className="grid h-11 w-11 place-items-center rounded-full border border-border bg-background text-foreground shadow-sm transition hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              onClick={nextSlide}
+              aria-label="Next testimonials"
+              className="grid h-11 w-11 place-items-center rounded-full border border-border bg-background text-foreground shadow-sm transition hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Carousel Slide Track */}
+        <div className="mt-11 overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -40 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              {testimonials
+                .slice(currentSlide * 3, currentSlide * 3 + 3)
+                .map(({ quote, name, place }, idx) => (
+                  <div
+                    key={name + idx}
+                    className="surface-card flex h-full flex-col justify-between p-8 shadow-lift border border-border/80 rounded-3xl bg-background transition hover:-translate-y-1"
+                  >
+                    <div>
+                      <Quote className="h-8 w-8 text-emerald-500 fill-emerald-500/10" />
+                      <blockquote className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                        “{quote}”
+                      </blockquote>
+                    </div>
+
+                    <div className="mt-6 pt-4 border-t border-border/50">
+                      <p className="font-display font-bold text-foreground">{name}</p>
+                      <p className="text-xs text-emerald-600 font-semibold">{place}</p>
+                    </div>
+                  </div>
+                ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Carousel Pagination Dots */}
+        <div className="mt-8 flex justify-center gap-2">
+          {Array.from({ length: totalPages }).map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              aria-label={`Go to slide ${idx + 1}`}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                currentSlide === idx ? "w-8 bg-emerald-600" : "w-2.5 bg-emerald-200 hover:bg-emerald-400"
+              }`}
+            />
           ))}
         </div>
       </section>
