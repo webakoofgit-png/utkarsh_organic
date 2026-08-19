@@ -274,31 +274,49 @@ export function CataloguePage() {
       {/* Catalogue Filters & Grid */}
       <section className="container-x py-6 lg:py-10">
         {/* Search & Categories Bar */}
-        <div className="flex flex-col gap-4 rounded-3xl border border-border bg-cream p-4 lg:flex-row lg:items-center lg:p-5">
-          <label className="flex flex-1 items-center gap-3 rounded-2xl bg-background px-4 py-3">
-            <Search className="h-4 w-4 text-muted-foreground" />
-            <input
-              value={q}
-              onChange={(event) => {
-                setQ(event.target.value);
-                updateSearch(event.target.value, category);
-              }}
-              placeholder="Search ingredients..."
-              className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
-            />
-          </label>
-          <div className="flex flex-wrap gap-2">
-            {[{ id: "all" as const, name: "All products" }, ...CATEGORIES].map((item) => (
+        <div className="flex flex-col gap-4 rounded-3xl border border-emerald-900/10 bg-[#faf8f5] p-4 lg:flex-row lg:items-center lg:justify-between lg:p-5 shadow-sm">
+          {/* Search Input Container */}
+          <div className="relative flex-1 min-w-[260px] lg:max-w-md">
+            <div className="relative flex items-center w-full rounded-full border border-emerald-900/15 bg-white px-4 py-3 shadow-inner focus-within:border-emerald-600 focus-within:ring-2 focus-within:ring-emerald-600/20 transition-all">
+              <Search className="h-4.5 w-4.5 shrink-0 text-emerald-800/70" />
+              <input
+                type="text"
+                value={q}
+                onChange={(event) => {
+                  setQ(event.target.value);
+                  updateSearch(event.target.value, category);
+                }}
+                placeholder="Search organic powders & spices..."
+                className="w-full bg-transparent pl-3 pr-7 text-sm font-medium text-foreground outline-none placeholder:text-muted-foreground/70"
+              />
+              {q && (
+                <button
+                  onClick={() => {
+                    setQ("");
+                    updateSearch("", category);
+                  }}
+                  className="absolute right-3.5 grid h-5 w-5 place-items-center rounded-full bg-emerald-100 text-emerald-800 hover:bg-emerald-200 transition text-xs font-bold"
+                  aria-label="Clear search"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Category Filter Badges */}
+          <div className="flex flex-wrap items-center gap-2">
+            {[{ id: "all" as const, name: "All Products" }, ...CATEGORIES].map((item) => (
               <button
                 key={item.id}
                 onClick={() => {
                   setCategory(item.id);
                   updateSearch(q, item.id);
                 }}
-                className={`rounded-full px-4 py-2.5 text-xs font-bold transition ${
+                className={`rounded-full px-4 py-2.5 text-xs font-bold transition-all shadow-sm ${
                   category === item.id
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-background text-foreground hover:bg-secondary"
+                    ? "bg-primary text-primary-foreground shadow-md scale-105"
+                    : "bg-white border border-emerald-900/10 text-foreground/80 hover:bg-emerald-50 hover:text-emerald-900"
                 }`}
               >
                 {item.name}
