@@ -24,29 +24,7 @@ import { COMPANY_INFO } from "@/lib/products";
 
 export default function AboutPage() {
   return (
-    <main className="pt-16 lg:pt-20 bg-background">
-      {/* Top Full Width Breadcrumb Bar */}
-      <div className="container-x pt-6 pb-4">
-        <div className="flex w-full items-center justify-between rounded-full border border-emerald-900/10 bg-emerald-50/70 px-5 sm:px-6 py-2.5 text-xs font-semibold text-foreground/80 shadow-sm backdrop-blur-md">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <Link
-              to="/"
-              className="grid h-7 w-7 place-items-center rounded-full bg-white text-emerald-800 shadow-sm hover:bg-emerald-100 transition"
-            >
-              <Home className="h-3.5 w-3.5" />
-            </Link>
-            <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/60" />
-            <span className="font-bold text-emerald-700">About Us</span>
-            <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/60" />
-            <span className="text-muted-foreground">Our Story &amp; Leadership</span>
-          </div>
-
-          <div className="flex items-center gap-1 text-emerald-700">
-            <Leaf className="h-4 w-4 fill-emerald-600/30 text-emerald-600" />
-          </div>
-        </div>
-      </div>
-
+    <main className="pt-20 lg:pt-24 bg-background">
       {/* Hero Banner Section (Matching Uploaded Design Image media_1787120055818.png) */}
       <section className="container-x pb-8">
         <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-r from-[#072415] via-[#041a0e] to-[#021008] text-white p-8 md:p-12 lg:p-16 shadow-2xl">
