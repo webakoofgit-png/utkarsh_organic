@@ -90,52 +90,9 @@ export default function AboutPage() {
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-2 text-xs sm:text-sm md:text-base leading-relaxed text-emerald-100/90 max-w-xl hidden sm:block">
+            <p className="mt-3 text-xs sm:text-sm md:text-base leading-relaxed text-emerald-100/90 max-w-xl hidden sm:block">
               Utkarsh Organic Farm was founded in Wai (Satara, Maharashtra) with a simple belief — that real food comes from real farms. We're here to make natural, clean, and honest ingredients accessible to every kitchen.
             </p>
-
-            {/* 4 Feature Items Ribbon */}
-            <div className="mt-3.5 hidden md:flex items-center gap-6 border-t border-emerald-500/20 pt-3">
-              <div className="flex items-center gap-2.5">
-                <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
-                  <Leaf className="h-4 w-4" />
-                </div>
-                <div className="leading-tight">
-                  <p className="text-xs font-bold text-white">Farm to You</p>
-                  <p className="text-[10px] text-emerald-300/80">Direct from own farms</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
-                  <ShieldCheck className="h-4 w-4" />
-                </div>
-                <div className="leading-tight">
-                  <p className="text-xs font-bold text-white">Pure &amp; Safe</p>
-                  <p className="text-[10px] text-emerald-300/80">No preservatives</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
-                  <Sprout className="h-4 w-4" />
-                </div>
-                <div className="leading-tight">
-                  <p className="text-xs font-bold text-white">Sustainable</p>
-                  <p className="text-[10px] text-emerald-300/80">Good for nature</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
-                  <Users className="h-4 w-4" />
-                </div>
-                <div className="leading-tight">
-                  <p className="text-xs font-bold text-white">Trusted by Many</p>
-                  <p className="text-[10px] text-emerald-300/80">Loved by thousands</p>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Right Visual Image */}

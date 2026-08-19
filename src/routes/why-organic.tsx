@@ -116,42 +116,9 @@ export default function WhyOrganicPage() {
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-2 text-xs sm:text-sm md:text-base leading-relaxed text-emerald-100/90 max-w-xl hidden sm:block">
+            <p className="mt-3 text-xs sm:text-sm md:text-base leading-relaxed text-emerald-100/90 max-w-xl hidden sm:block">
               Eliminate food waste, cut prep work in half, and nourish your family with 100% natural, chemical-free dehydrated vegetable &amp; herbal powders.
             </p>
-
-            {/* 3 Mini Feature Badges Ribbon */}
-            <div className="mt-3.5 hidden md:flex items-center gap-6 border-t border-emerald-500/20 pt-3">
-              <div className="flex items-center gap-2.5">
-                <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
-                  <Leaf className="h-4 w-4" />
-                </div>
-                <div className="leading-tight">
-                  <p className="text-xs font-bold text-white">100% Natural</p>
-                  <p className="text-[10px] text-emerald-300/80">No Chemicals</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
-                  <FlaskConical className="h-4 w-4" />
-                </div>
-                <div className="leading-tight">
-                  <p className="text-xs font-bold text-white">Zero Preservatives</p>
-                  <p className="text-[10px] text-emerald-300/80">Pure &amp; Safe</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
-                  <Tractor className="h-4 w-4" />
-                </div>
-                <div className="leading-tight">
-                  <p className="text-xs font-bold text-white">Zero Food Waste</p>
-                  <p className="text-[10px] text-emerald-300/80">Instant Kitchen Prep</p>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Right Visual Image */}
