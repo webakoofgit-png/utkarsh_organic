@@ -24,10 +24,9 @@ export function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const pathname = location.pathname;
-  const overHero = pathname === "/";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 10);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -35,29 +34,27 @@ export function Navbar() {
 
   useEffect(() => setOpen(false), [pathname]);
 
-  const solid = scrolled || !overHero || open;
-
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        solid ? "border-b border-border bg-background/90 backdrop-blur-xl" : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 bg-white border-b border-border transition-shadow duration-300 ${
+        scrolled ? "shadow-md" : "shadow-sm"
       }`}
     >
       <div className="container-x flex h-16 items-center justify-between gap-4 lg:h-20">
-        <Link to="/" className="flex shrink-0 items-center gap-2">
-          <img src={logo} alt="Utkarsh Organic leaf logo" width={40} height={40} className="h-9 w-9" />
+        {/* Brand Logo & Name */}
+        <Link to="/" className="flex shrink-0 items-center gap-2.5">
+          <img src={logo} alt="Utkarsh Organic leaf logo" width={40} height={40} className="h-9 w-9 object-contain" />
           <span className="flex flex-col leading-none">
-            <span
-              className={`font-display text-lg font-extrabold tracking-tight ${solid ? "text-foreground" : "text-primary-foreground"}`}
-            >
+            <span className="font-display text-lg font-black tracking-tight text-foreground">
               Utkarsh
             </span>
-            <span className={`text-[0.62rem] font-semibold tracking-[0.3em] ${solid ? "text-accent" : "text-primary-foreground/80"}`}>
+            <span className="text-[0.62rem] font-bold tracking-[0.3em] text-primary">
               ORGANIC
             </span>
           </span>
         </Link>
 
+        {/* Navigation Links (Desktop) */}
         <nav className="hidden items-center gap-1 xl:flex">
           {NAV.map((item) => {
             const isActive = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
@@ -65,12 +62,10 @@ export function Navbar() {
               <Link
                 key={item.to}
                 to={item.to}
-                className={`relative rounded-full px-3 py-2 text-sm font-medium transition-colors ${
+                className={`relative rounded-full px-3.5 py-2 text-sm font-semibold transition-colors ${
                   isActive
-                    ? "text-accent font-bold"
-                    : solid
-                      ? "text-foreground/80 hover:text-accent"
-                      : "text-primary-foreground/90 hover:text-primary-foreground"
+                    ? "text-primary font-bold bg-primary/10"
+                    : "text-foreground/80 hover:text-primary hover:bg-secondary/60"
                 }`}
               >
                 {item.label}
@@ -79,27 +74,28 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="flex items-center gap-1">
+        {/* Right Icon Actions */}
+        <div className="flex items-center gap-1.5">
           <button
             aria-label="Search products"
             onClick={() => setSearchOpen((v) => !v)}
-            className={`rounded-full p-2.5 transition-colors hover:bg-secondary ${solid ? "text-foreground" : "text-primary-foreground"}`}
+            className="rounded-full p-2.5 text-foreground transition-colors hover:bg-secondary"
           >
-            <Search className="h-[18px] w-[18px]" />
+            <Search className="h-[19px] w-[19px]" />
           </button>
           <Link
             to={user ? "/account" : "/login"}
             aria-label="Account"
-            className={`hidden rounded-full p-2.5 transition-colors hover:bg-secondary sm:block ${solid ? "text-foreground" : "text-primary-foreground"}`}
+            className="hidden rounded-full p-2.5 text-foreground transition-colors hover:bg-secondary sm:block"
           >
-            <User className="h-[18px] w-[18px]" />
+            <User className="h-[19px] w-[19px]" />
           </Link>
           <Link
             to="/account?tab=wishlist"
             aria-label="Wishlist"
-            className={`relative hidden rounded-full p-2.5 transition-colors hover:bg-secondary sm:block ${solid ? "text-foreground" : "text-primary-foreground"}`}
+            className="relative hidden rounded-full p-2.5 text-foreground transition-colors hover:bg-secondary sm:block"
           >
-            <Heart className="h-[18px] w-[18px]" />
+            <Heart className="h-[19px] w-[19px]" />
             {wishlist.length > 0 && (
               <span className="absolute right-0 top-0 grid h-4 min-w-4 place-items-center rounded-full bg-accent px-1 text-[10px] font-bold text-accent-foreground">
                 {wishlist.length}
@@ -109,9 +105,9 @@ export function Navbar() {
           <button
             aria-label="Open cart"
             onClick={() => setCartOpen(true)}
-            className={`relative rounded-full p-2.5 transition-colors hover:bg-secondary ${solid ? "text-foreground" : "text-primary-foreground"}`}
+            className="relative rounded-full p-2.5 text-foreground transition-colors hover:bg-secondary"
           >
-            <ShoppingBag className="h-[18px] w-[18px]" />
+            <ShoppingBag className="h-[19px] w-[19px]" />
             <AnimatePresence>
               {cartCount > 0 && (
                 <motion.span
@@ -129,7 +125,7 @@ export function Navbar() {
           <button
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
-            className={`rounded-full p-2.5 xl:hidden ${solid ? "text-foreground" : "text-primary-foreground"}`}
+            className="rounded-full p-2.5 text-foreground xl:hidden"
           >
             <motion.span animate={{ rotate: open ? 90 : 0 }} className="block">
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -138,13 +134,14 @@ export function Navbar() {
         </div>
       </div>
 
+      {/* Expandable Search Input */}
       <AnimatePresence>
         {searchOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden border-t border-border bg-background"
+            className="overflow-hidden border-t border-border bg-white"
           >
             <form
               className="container-x flex items-center gap-3 py-4"
@@ -159,10 +156,10 @@ export function Navbar() {
               <input
                 name="q"
                 autoFocus
-                placeholder="Search onion powder, turmeric, bulk packs…"
-                className="w-full bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground"
+                placeholder="Search onion powder, turmeric, moringa tea, bulk packs…"
+                className="w-full bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground text-foreground"
               />
-              <button className="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground">
+              <button className="rounded-full bg-primary px-5 py-2 text-xs font-bold text-primary-foreground hover:bg-forest">
                 Search
               </button>
             </form>
@@ -170,13 +167,14 @@ export function Navbar() {
         )}
       </AnimatePresence>
 
+      {/* Mobile Drawer Navigation */}
       <AnimatePresence>
         {open && (
           <motion.nav
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="border-t border-border bg-background xl:hidden"
+            className="border-t border-border bg-white xl:hidden shadow-lg"
           >
             <ul className="container-x grid gap-1 py-4">
               {NAV.map((item, i) => (
@@ -188,7 +186,7 @@ export function Navbar() {
                 >
                   <Link
                     to={item.to}
-                    className="block rounded-xl px-3 py-3 text-base font-medium text-foreground hover:bg-secondary"
+                    className="block rounded-xl px-4 py-3 text-base font-semibold text-foreground hover:bg-secondary hover:text-primary"
                   >
                     {item.label}
                   </Link>
