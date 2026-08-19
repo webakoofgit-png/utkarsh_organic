@@ -1,5 +1,21 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Award, CheckCircle2, Factory, Heart, Leaf, Shield, Sprout, Users, UserCheck, Stethoscope, Wheat } from "lucide-react";
+import {
+  ArrowRight,
+  Award,
+  CheckCircle2,
+  ChevronRight,
+  Factory,
+  Heart,
+  Home,
+  Leaf,
+  Shield,
+  ShieldCheck,
+  Sparkles,
+  Sprout,
+  Stethoscope,
+  Users,
+  Wheat,
+} from "lucide-react";
 import farm from "@/assets/farm.jpg";
 import flatlay from "@/assets/flatlay.jpg";
 import hero from "@/assets/hero-onion.jpg";
@@ -8,23 +24,131 @@ import { COMPANY_INFO } from "@/lib/products";
 
 export default function AboutPage() {
   return (
-    <main className="pt-16 lg:pt-20">
-      {/* Hero section */}
-      <section className="relative isolate min-h-[480px] overflow-hidden bg-forest pt-16 text-forest-foreground lg:pt-24">
-        <img src={hero} alt="Dehydrated organic onions farm" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-35" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-forest via-forest/80 to-transparent" />
-        <div className="container-x py-16 lg:py-24 max-w-4xl text-center">
-          <Reveal>
-            <p className="inline-flex items-center gap-2 rounded-full border border-forest-foreground/25 bg-forest-foreground/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em]">
-              <Leaf className="h-3.5 w-3.5 text-accent" /> {COMPANY_INFO.marathiHeader}
-            </p>
-            <h1 className="mt-6 font-display text-4xl font-extrabold sm:text-5xl lg:text-6xl">
-              Bringing real, uncompromised farm goodness to modern kitchens.
-            </h1>
-            <p className="mt-6 text-lg text-forest-foreground/80 leading-relaxed max-w-2xl mx-auto">
-              Founded at Wai (Satara, Maharashtra), Utkarsh Organic Farm brings 100% natural, hygienic dehydrated vegetables, fruit powders &amp; ready-to-cook functional foods from soil to spoon.
-            </p>
-          </Reveal>
+    <main className="pt-16 lg:pt-20 bg-background">
+      {/* Top Full Width Breadcrumb Bar */}
+      <div className="container-x pt-6 pb-4">
+        <div className="flex w-full items-center justify-between rounded-full border border-emerald-900/10 bg-emerald-50/70 px-5 sm:px-6 py-2.5 text-xs font-semibold text-foreground/80 shadow-sm backdrop-blur-md">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Link
+              to="/"
+              className="grid h-7 w-7 place-items-center rounded-full bg-white text-emerald-800 shadow-sm hover:bg-emerald-100 transition"
+            >
+              <Home className="h-3.5 w-3.5" />
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/60" />
+            <span className="font-bold text-emerald-700">About Us</span>
+            <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/60" />
+            <span className="text-muted-foreground">Our Story &amp; Leadership</span>
+          </div>
+
+          <div className="flex items-center gap-1 text-emerald-700">
+            <Leaf className="h-4 w-4 fill-emerald-600/30 text-emerald-600" />
+          </div>
+        </div>
+      </div>
+
+      {/* Hero Banner Section (Matching Uploaded Design Image media_1787120055818.png) */}
+      <section className="container-x pb-8">
+        <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-r from-[#072415] via-[#041a0e] to-[#021008] text-white p-8 md:p-12 lg:p-16 shadow-2xl">
+          {/* Ambient Leaf Glow */}
+          <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+
+          <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr] relative z-10">
+            {/* Left Content */}
+            <Reveal>
+              {/* Top Eyebrow Pill */}
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-950/70 px-4 py-1.5 text-xs font-bold text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                <Leaf className="h-3.5 w-3.5 text-emerald-400" />
+                <span>ABOUT US</span>
+                <Sparkles className="h-3 w-3 text-emerald-400" />
+              </div>
+
+              {/* Headline */}
+              <h1 className="mt-6 font-serif text-4xl font-black leading-tight sm:text-5xl lg:text-6xl text-white">
+                Bringing real, <br />
+                uncompromised <br />
+                farm goodness to <br />
+                <span className="relative inline-block text-emerald-400">
+                  modern kitchens.
+                  <svg
+                    className="absolute -bottom-2 left-0 w-full h-3 text-emerald-400"
+                    viewBox="0 0 100 20"
+                    preserveAspectRatio="none"
+                  >
+                    <path
+                      d="M0,10 Q50,20 100,5"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                      fill="none"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </span>
+              </h1>
+
+              {/* Subtext */}
+              <p className="mt-6 max-w-xl text-sm leading-relaxed text-emerald-100/85 sm:text-base">
+                Founded at Wai (Satara, Maharashtra), Utkarsh Organic Farm brings 100% natural, hygienic dehydrated vegetables, fruit powders &amp; ready-to-cook functional foods from soil to spoon.
+              </p>
+
+              {/* 4 Feature Items */}
+              <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-emerald-500/20 pt-6">
+                <div className="flex items-center gap-3">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400 shadow-md">
+                    <Leaf className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-white">100% Natural</p>
+                    <p className="text-[11px] text-emerald-300/80">No Chemicals</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400 shadow-md">
+                    <ShieldCheck className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-white">Pure &amp; Safe</p>
+                    <p className="text-[11px] text-emerald-300/80">No Preservatives</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400 shadow-md">
+                    <Sprout className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-white">Farm to You</p>
+                    <p className="text-[11px] text-emerald-300/80">Direct from Farms</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400 shadow-md">
+                    <Users className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-white">Trusted by Many</p>
+                    <p className="text-[11px] text-emerald-300/80">Happy Customers</p>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Right Visual Image */}
+            <Reveal delay={0.15} className="relative flex justify-center items-center">
+              <div className="relative w-full max-w-md overflow-hidden rounded-3xl border border-emerald-500/30 bg-emerald-950/40 p-3 backdrop-blur-md shadow-2xl">
+                <img
+                  src={hero}
+                  alt="Utkarsh Organic Farm ingredients"
+                  className="h-80 w-full rounded-2xl object-cover shadow-lg"
+                />
+                <div className="absolute bottom-6 right-6 rounded-2xl border border-emerald-400/40 bg-emerald-950/90 px-4 py-2 text-xs font-bold text-emerald-300 shadow-xl backdrop-blur-md">
+                  🌱 Direct from Wai, Satara
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -103,70 +227,43 @@ export default function AboutPage() {
               ))}
             </div>
           </Reveal>
-
-          <Reveal delay={0.15}>
-            <div className="relative">
-              <img src={farm} alt="Our farm partnerships in Wai Satara" className="rounded-3xl shadow-lift h-[460px] w-full object-cover" />
-              <div className="absolute -bottom-6 -left-6 rounded-2xl bg-cream border border-border p-6 max-w-xs shadow-lift hidden sm:block">
-                <p className="font-display text-2xl font-extrabold text-primary">Wai, Satara</p>
-                <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mt-1">ताजा, सकस, नैसर्गिक</p>
-              </div>
-            </div>
+          <Reveal delay={0.12}>
+            <img
+              src={farm}
+              alt="Utkarsh Organic Farm in Wai Satara"
+              className="h-[420px] w-full rounded-3xl object-cover shadow-lift"
+            />
           </Reveal>
         </div>
       </section>
 
-      {/* Core Values */}
-      <section className="bg-cream py-20 lg:py-28">
-        <div className="container-x">
-          <SectionHeading eyebrow="What guides us" title="Pillars of Utkarsh Organic Farm" />
+      {/* Enterprise Registration Info */}
+      <section className="container-x py-20 lg:py-24">
+        <SectionHeading
+          eyebrow="Certified & Registered"
+          title="Enterprise Registration & Licensing"
+        />
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                icon: Sprout,
-                title: "Naturally Cultivated",
-                desc: "Pesticide-free vegetables harvested fresh at Lohare / Gangapuri farms in Wai, Satara district.",
-              },
-              {
-                icon: Factory,
-                title: "Hygienic Dehydration",
-                desc: "Low-temperature processing preserves 95%+ of natural nutrients, taste, and vibrant natural colours.",
-              },
-              {
-                icon: Shield,
-                title: "Certified & Lab Tested",
-                desc: `Compliant with FSSAI (Reg. ${COMPANY_INFO.fssaiRegNo}) and Udyam standards with zero chemical additives.`,
-              },
-            ].map(({ icon: Icon, title, desc }, index) => (
-              <Reveal key={title} delay={index * 0.08}>
-                <div className="surface-card p-8 h-full">
-                  <div className="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-accent">
-                    <Icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="mt-6 font-display text-xl font-bold">{title}</h3>
-                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{desc}</p>
-                </div>
-              </Reveal>
-            ))}
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="rounded-3xl border border-border bg-background p-6 shadow-soft text-center">
+            <Award className="mx-auto h-8 w-8 text-accent" />
+            <h4 className="mt-3 font-display text-lg font-bold">FSSAI License</h4>
+            <p className="mt-1 text-xs font-extrabold text-primary">{COMPANY_INFO.fssaiRegNo}</p>
+            <p className="mt-2 text-xs text-muted-foreground">Certified for food safety &amp; hygienic handling.</p>
           </div>
-        </div>
-      </section>
 
-      {/* Call to action */}
-      <section className="container-x py-20 lg:py-24 text-center">
-        <div className="rounded-[2.5rem] bg-forest p-10 lg:p-16 text-forest-foreground">
-          <h2 className="font-display text-3xl font-extrabold sm:text-4xl">Taste the difference in your kitchen.</h2>
-          <p className="mt-4 text-forest-foreground/80 max-w-xl mx-auto text-sm sm:text-base">
-            Join thousands of satisfied home cooks, cloud kitchens, and health-conscious families who rely on Utkarsh Organic Farm daily.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4 justify-center">
-            <Link to="/shop" className="rounded-full bg-accent px-8 py-4 text-sm font-bold text-accent-foreground transition hover:scale-105">
-              Explore Our Powders
-            </Link>
-            <Link to="/contact" className="rounded-full border border-forest-foreground/30 px-8 py-4 text-sm font-bold transition hover:bg-forest-foreground/10">
-              Get in Touch ({COMPANY_INFO.phonePrimary})
-            </Link>
+          <div className="rounded-3xl border border-border bg-background p-6 shadow-soft text-center">
+            <Shield className="mx-auto h-8 w-8 text-accent" />
+            <h4 className="mt-3 font-display text-lg font-bold">GSTIN Registration</h4>
+            <p className="mt-1 text-xs font-extrabold text-primary">{COMPANY_INFO.gstin}</p>
+            <p className="mt-2 text-xs text-muted-foreground">Issued by Govt of Maharashtra on 14/07/2026.</p>
+          </div>
+
+          <div className="rounded-3xl border border-border bg-background p-6 shadow-soft text-center">
+            <Factory className="mx-auto h-8 w-8 text-accent" />
+            <h4 className="mt-3 font-display text-lg font-bold">MSME Udyam Reg</h4>
+            <p className="mt-1 text-xs font-extrabold text-primary">{COMPANY_INFO.udyamRegNo}</p>
+            <p className="mt-2 text-xs text-muted-foreground">Registered agri-processing farm enterprise.</p>
           </div>
         </div>
       </section>
