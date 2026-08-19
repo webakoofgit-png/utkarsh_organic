@@ -1,7 +1,23 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, ChevronDown, Leaf, ShieldAlert, Sparkles, Sprout, X, ShieldCheck, Award } from "lucide-react";
+import {
+  ArrowRight,
+  Award,
+  Check,
+  ChevronDown,
+  ChevronRight,
+  FlaskConical,
+  Home,
+  Leaf,
+  ShieldAlert,
+  ShieldCheck,
+  Sparkles,
+  Sprout,
+  Tractor,
+  X,
+} from "lucide-react";
 import { useState } from "react";
 import flatlay from "@/assets/flatlay.jpg";
+import hero from "@/assets/hero-onion.jpg";
 import { Reveal, SectionHeading } from "@/components/site/motion-primitives";
 import { COMPANY_INFO } from "@/lib/products";
 
@@ -32,20 +48,141 @@ export default function WhyOrganicPage() {
   ];
 
   return (
-    <main className="pt-24 pb-20 lg:pt-28">
-      <div className="container-x">
-        <div className="text-center max-w-3xl mx-auto">
-          <p className="eyebrow">{COMPANY_INFO.marathiHeader}</p>
-          <h1 className="mt-3 font-display text-4xl font-extrabold sm:text-5xl lg:text-6xl">
-            Why Switch to Utkarsh Organic Powders?
-          </h1>
-          <p className="mt-4 text-muted-foreground text-base sm:text-lg leading-relaxed">
-            Eliminate food waste, cut prep work in half, and nourish your family with 100% natural, chemical-free dehydrated vegetable &amp; herbal powders.
-          </p>
+    <main className="pt-16 lg:pt-20 bg-background">
+      {/* Top Full Viewport Width Dark Green Breadcrumb Bar */}
+      <div className="w-full bg-[#041a0e] border-b border-emerald-500/20 py-3">
+        <div className="container-x flex items-center justify-between text-xs sm:text-sm text-emerald-100 font-medium">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Link
+              to="/"
+              className="grid h-7 w-7 place-items-center rounded-full bg-emerald-950/90 border border-emerald-400/40 text-emerald-400 hover:bg-emerald-500 hover:text-black transition"
+            >
+              <Home className="h-3.5 w-3.5" />
+            </Link>
+            <ChevronRight className="h-4 w-4 text-emerald-500/60" />
+            <Link to="/" className="text-emerald-100 hover:text-emerald-400 transition font-medium">
+              Home
+            </Link>
+            <ChevronRight className="h-4 w-4 text-emerald-500/60" />
+            <span className="font-bold text-emerald-400">Why Organic</span>
+            <ChevronRight className="h-4 w-4 text-emerald-500/60" />
+            <span className="text-emerald-200/90 font-medium">Why Switch to Utkarsh Organic Powders?</span>
+          </div>
+
+          <div className="flex items-center gap-1.5 text-emerald-400">
+            <Leaf className="h-4.5 w-4.5 fill-emerald-400/30 text-emerald-400" />
+          </div>
+        </div>
+      </div>
+
+      {/* 100% Full Viewport Width Hero Banner Section (Matching Uploaded Design Image media_1787120970631.png) */}
+      {/* Desktop (1920): 200px | Laptop (1440): 180px | Tablet (768): 150px | Mobile (390): 115-140px */}
+      <section className="relative w-full overflow-hidden min-h-[110px] h-[115px] sm:h-[140px] md:h-[150px] lg:h-[180px] xl:h-[200px] flex items-center bg-gradient-to-r from-[#051f12] via-[#04170d] to-[#020e07] text-white border-b border-emerald-500/20 shadow-md">
+        {/* Ambient Leaf Glow */}
+        <div className="absolute top-0 right-1/3 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+
+        {/* Content Centered inside container-x */}
+        <div className="container-x w-full relative z-10 flex items-center justify-between gap-4">
+          {/* Left Content */}
+          <div className="max-w-2xl py-2">
+            {/* Top Eyebrow Marathi Banner */}
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-950/80 px-3 py-0.5 text-[9px] sm:text-[10px] font-extrabold text-emerald-300 tracking-wider">
+              <Sprout className="h-3 w-3 text-emerald-400" />
+              <span>{COMPANY_INFO.marathiHeader}</span>
+              <Sprout className="h-3 w-3 text-emerald-400" />
+            </div>
+
+            {/* Headline */}
+            <h1 className="mt-1 font-serif text-sm sm:text-lg md:text-2xl lg:text-3xl font-black leading-tight tracking-tight text-white">
+              Why Switch to{" "}
+              <span className="relative inline-block text-emerald-400">
+                Utkarsh Organic
+                <svg
+                  className="absolute -bottom-1 left-0 w-full h-2 text-emerald-400"
+                  viewBox="0 0 100 20"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M0,10 Q50,20 100,5"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    fill="none"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>{" "}
+              Powders?
+            </h1>
+
+            {/* Subtitle */}
+            <p className="mt-1 text-[10px] sm:text-xs leading-snug text-emerald-100/85 line-clamp-1 sm:line-clamp-2 max-w-lg hidden sm:block">
+              Eliminate food waste, cut prep work in half, and nourish your family with 100% natural, chemical-free dehydrated vegetable &amp; herbal powders.
+            </p>
+
+            {/* 3 Mini Feature Badges Ribbon */}
+            <div className="mt-2.5 hidden md:flex items-center gap-5 border-t border-emerald-500/20 pt-2">
+              <div className="flex items-center gap-2">
+                <div className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
+                  <Leaf className="h-3.5 w-3.5" />
+                </div>
+                <div className="leading-tight">
+                  <p className="text-[10px] font-bold text-white">100% Natural</p>
+                  <p className="text-[9px] text-emerald-300/80">No Chemicals</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
+                  <FlaskConical className="h-3.5 w-3.5" />
+                </div>
+                <div className="leading-tight">
+                  <p className="text-[10px] font-bold text-white">Zero Preservatives</p>
+                  <p className="text-[9px] text-emerald-300/80">Pure &amp; Safe</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/80 text-emerald-400">
+                  <Tractor className="h-3.5 w-3.5" />
+                </div>
+                <div className="leading-tight">
+                  <p className="text-[10px] font-bold text-white">Zero Food Waste</p>
+                  <p className="text-[9px] text-emerald-300/80">Instant Kitchen Prep</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Visual Image */}
+          <div className="relative shrink-0 flex items-center justify-end">
+            <div className="relative overflow-hidden rounded-xl border border-emerald-500/30 bg-emerald-950/40 p-1.5 backdrop-blur-md shadow-xl">
+              <img
+                src={flatlay}
+                alt="Utkarsh Organic Farm Powders"
+                className="h-20 sm:h-28 md:h-32 lg:h-36 xl:h-40 w-32 sm:w-44 md:w-52 lg:w-60 xl:w-64 object-cover rounded-lg"
+              />
+              <div className="absolute bottom-2 right-2 rounded-lg border border-emerald-400/40 bg-emerald-950/90 px-2 py-0.5 text-[9px] font-bold text-emerald-300 shadow-md backdrop-blur-md hidden sm:block">
+                🌱 100% Organic
+              </div>
+            </div>
+          </div>
         </div>
 
+        {/* Bottom Curved Wave Graphic */}
+        <div className="w-full overflow-hidden leading-none absolute bottom-0 inset-x-0 z-10 pointer-events-none">
+          <svg
+            viewBox="0 0 1200 40"
+            preserveAspectRatio="none"
+            className="relative block w-full h-4 text-[#0a3520] fill-current opacity-80"
+          >
+            <path d="M0,0 C300,30 600,-10 1200,20 L1200,40 L0,40 Z"></path>
+          </svg>
+        </div>
+      </section>
+
+      <div className="container-x py-12 lg:py-16">
         {/* Certifications Banner */}
-        <section className="mt-12 rounded-3xl border border-border bg-cream p-6 shadow-soft">
+        <section className="rounded-3xl border border-border bg-cream p-6 shadow-soft">
           <div className="grid gap-6 sm:grid-cols-3 text-center sm:text-left">
             <div className="flex items-center gap-3 justify-center sm:justify-start">
               <ShieldCheck className="h-8 w-8 text-accent shrink-0" />
@@ -107,60 +244,67 @@ export default function WhyOrganicPage() {
           </div>
         </section>
 
-        {/* Highlight Grid */}
-        <section className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            { title: "No Tears, No Prep", desc: "No more weeping while chopping onions. Get real onion aroma in seconds." },
-            { title: "100% Pure Ingredients", desc: "Just single-origin Satara vegetables dried and finely ground cleanly." },
-            { title: "Saves Kitchen Budget", desc: "Zero spoilage loss. Pay only for edible concentrate, not water weight." },
-            { title: "Vibrant Natural Tone", desc: "Retains deep natural colours of beetroots, carrots, moringa, and turmeric naturally." },
-          ].map(({ title, desc }, i) => (
-            <Reveal key={title} delay={i * 0.06}>
-              <div className="rounded-3xl border border-border bg-cream p-7 h-full">
-                <Sparkles className="h-6 w-6 text-accent" />
-                <h3 className="mt-4 font-display text-lg font-bold">{title}</h3>
-                <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{desc}</p>
+        {/* Value Pillars */}
+        <section className="mt-20">
+          <SectionHeading eyebrow="Core Value Pillars" title="Built for modern everyday cooking" />
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                title: "100% Pure Produce",
+                desc: "No maltodextrin, no starch, no artificial colors or added salt.",
+              },
+              {
+                title: "Gentle Drying Tech",
+                desc: "Dehydrated at controlled temperatures preserving 95% vital nutrients.",
+              },
+              {
+                title: "Wai (Satara) Sourced",
+                desc: "Grown in rich Western Ghats soil known for high essential oil content.",
+              },
+              {
+                title: "Zero Kitchen Prep",
+                desc: "No tearing eyes while chopping onions or sticky garlic fingers.",
+              },
+            ].map(({ title, desc }) => (
+              <div key={title} className="rounded-3xl border border-border bg-cream p-6 shadow-soft">
+                <Leaf className="h-6 w-6 text-accent" />
+                <h3 className="mt-4 font-display font-bold text-lg">{title}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{desc}</p>
               </div>
-            </Reveal>
-          ))}
-        </section>
-
-        {/* FAQ Accordion */}
-        <section className="mt-24 max-w-3xl mx-auto">
-          <SectionHeading eyebrow="Got Questions?" title="Frequently Asked Questions" />
-
-          <div className="mt-10 space-y-4">
-            {faqs.map((faq, index) => {
-              const isOpen = openFaq === index;
-              return (
-                <div key={index} className="rounded-2xl border border-border bg-background overflow-hidden transition">
-                  <button
-                    onClick={() => setOpenFaq(isOpen ? null : index)}
-                    className="w-full flex items-center justify-between p-6 text-left font-display text-base font-bold text-foreground hover:text-accent"
-                  >
-                    <span>{faq.q}</span>
-                    <ChevronDown className={`h-5 w-5 shrink-0 transition-transform ${isOpen ? "rotate-180 text-accent" : "text-muted-foreground"}`} />
-                  </button>
-                  {isOpen && (
-                    <div className="px-6 pb-6 text-sm text-muted-foreground leading-relaxed border-t border-border/50 pt-4">
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+            ))}
           </div>
         </section>
 
-        {/* Bottom CTA */}
-        <div className="mt-20 text-center">
-          <Link
-            to="/shop"
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 text-sm font-bold text-primary-foreground hover:bg-forest transition"
-          >
-            Try Our Organic Powders Today <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
+        {/* FAQ Accordion */}
+        <section className="mt-20">
+          <SectionHeading eyebrow="Got Questions?" title="Frequently Asked Questions" />
+
+          <div className="mt-10 max-w-3xl mx-auto space-y-4">
+            {faqs.map((faq, idx) => (
+              <div
+                key={idx}
+                className="rounded-2xl border border-border bg-background overflow-hidden shadow-soft transition"
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                  className="w-full flex items-center justify-between p-5 text-left font-display font-bold text-base text-foreground hover:text-accent transition"
+                >
+                  <span>{faq.q}</span>
+                  <ChevronDown
+                    className={`h-5 w-5 text-accent transition-transform duration-300 ${
+                      openFaq === idx ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                {openFaq === idx && (
+                  <div className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground border-t border-border/50 pt-3">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );
