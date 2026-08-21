@@ -1,3 +1,5 @@
+import redOnionPowderFullBowl from "@/assets/product-red-onion-powder-full-bowl.png";
+
 export const COMPANY_INFO = {
   name: "UTKARSH ORGANIC FARM",
   tradeName: "Utkarsh Organic Farm",
@@ -123,8 +125,7 @@ const IMAGES = {
     "https://2.wlimg.com/product_images/bc-full/2026/7/5707612/dehydrated-carrot-flakes-8765379-pv1.jpeg",
   whiteOnionPowder:
     "https://2.wlimg.com/product_images/bc-full/2026/7/5707612/dehydrated-white-onion-powder-8765263-pv1.jpeg",
-  redOnionPowder:
-    "https://2.wlimg.com/product_images/bc-full/2026/7/5707612/dehydrated-red-onion-powder-8765273-pv1.jpeg",
+  redOnionPowder: redOnionPowderFullBowl,
   spinachPowder:
     "https://2.wlimg.com/product_images/bc-500/2026/7/5707612/dehydrated-spinach-powder-8765373-pv1.jpeg",
   carrotPowder:
