@@ -168,7 +168,7 @@ export default function HomePage() {
         <div className="container-x relative z-10">
           {/* Left Hero Content */}
           <Reveal y={24} className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-950/70 px-4 py-2 text-xs font-bold text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+            <div className="inline-flex animate-gentle-float items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-950/70 px-4 py-2 text-xs font-bold text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
               <Leaf className="h-3.5 w-3.5 text-emerald-400" />
               <span>{COMPANY_INFO.marathiHeader}</span>
             </div>
@@ -180,7 +180,7 @@ export default function HomePage() {
             </h1>
 
             <div className="mt-6 flex items-center gap-3">
-              <div className="h-[2px] w-12 bg-emerald-400" />
+              <div className="h-[2px] w-12 animate-draw-line bg-emerald-400" />
               <Leaf className="h-4 w-4 text-emerald-400 shrink-0" />
             </div>
 
@@ -191,15 +191,16 @@ export default function HomePage() {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
                 to="/products"
-                className="inline-flex items-center gap-2.5 rounded-full bg-emerald-500 px-7 py-3.5 text-sm font-extrabold text-black shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:scale-105 hover:bg-emerald-400 transition duration-200"
+                className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-emerald-500 px-7 py-3.5 text-sm font-extrabold text-black shadow-[0_0_20px_rgba(16,185,129,0.4)] transition duration-200 hover:-translate-y-0.5 hover:scale-105 hover:bg-emerald-400"
               >
-                <ShoppingBag className="h-4 w-4" />
-                <span>Shop Now</span>
-                <ChevronRight className="h-4 w-4" />
+                <span className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-white/35 opacity-0 group-hover:animate-shine-sweep group-hover:opacity-100" />
+                <ShoppingBag className="relative z-10 h-4 w-4" />
+                <span className="relative z-10">Shop Now</span>
+                <ChevronRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/why-organic"
-                className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-950/40 px-7 py-3.5 text-sm font-bold text-white hover:bg-emerald-500/20 transition duration-200"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-950/40 px-7 py-3.5 text-sm font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-emerald-500/20"
               >
                 <span>Explore More</span>
                 <Play className="h-3.5 w-3.5 fill-current text-emerald-400" />
@@ -279,10 +280,10 @@ export default function HomePage() {
             return (
               <Reveal key={cat.id} delay={index * 0.08}>
                 <div
-                  className={`relative flex flex-col justify-between rounded-[2rem] border ${cat.cardBg} p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 h-full text-center`}
+                  className={`group/card relative flex h-full flex-col justify-between rounded-[2rem] border ${cat.cardBg} p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}
                 >
                   <div
-                    className={`absolute -top-5 left-6 grid h-11 w-11 place-items-center rounded-full ${cat.badgeBg} text-white shadow-md`}
+                    className={`absolute -top-5 left-6 grid h-11 w-11 place-items-center rounded-full ${cat.badgeBg} text-white shadow-md transition-transform duration-300 group-hover/card:-translate-y-1 group-hover/card:rotate-3 group-hover/card:scale-110`}
                   >
                     <Icon className="h-5 w-5" />
                   </div>
@@ -291,7 +292,7 @@ export default function HomePage() {
                     <img
                       src={cat.image}
                       alt={cat.name}
-                      className="max-h-full max-w-full rounded-xl object-contain transition duration-500 hover:scale-[1.02]"
+                      className="max-h-full max-w-full rounded-xl object-contain transition duration-500 group-hover/card:-translate-y-1"
                     />
                   </div>
 
@@ -308,7 +309,7 @@ export default function HomePage() {
                     <div className="mt-6">
                       <Link
                         to={`/products?category=${cat.id}`}
-                        className={`inline-flex items-center gap-1.5 rounded-full ${cat.btnBg} px-6 py-2.5 text-xs font-extrabold text-white shadow-sm transition hover:scale-105`}
+                        className={`inline-flex items-center gap-1.5 rounded-full ${cat.btnBg} px-6 py-2.5 text-xs font-extrabold text-white shadow-sm transition hover:-translate-y-0.5 hover:scale-105`}
                       >
                         <span>Explore</span>
                         <span>➔</span>

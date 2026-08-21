@@ -233,6 +233,47 @@
   animation: float-slow 7s ease-in-out infinite;
 }
 
+@keyframes gentle-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@utility animate-gentle-float {
+  animation: gentle-float 4.5s ease-in-out infinite;
+}
+
+@keyframes shine-sweep {
+  from {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  to {
+    transform: translateX(220%) skewX(-18deg);
+  }
+}
+
+@utility animate-shine-sweep {
+  animation: shine-sweep 2.8s ease-in-out infinite;
+}
+
+@keyframes draw-line {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@utility animate-draw-line {
+  animation: draw-line 0.9s 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: left center;
+}
+
 @keyframes marquee-x {
   from {
     transform: translateX(0);
@@ -244,4 +285,15 @@
 
 @utility animate-marquee {
   animation: marquee-x 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
 }

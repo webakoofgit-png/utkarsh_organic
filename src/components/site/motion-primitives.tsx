@@ -1,4 +1,4 @@
-import { motion, useInView, useMotionValue, useSpring } from "motion/react";
+import { motion, useInView, useMotionValue, useReducedMotion, useSpring } from "motion/react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 export function Reveal({
@@ -12,11 +12,13 @@ export function Reveal({
   y?: number;
   className?: string;
 }) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y }}
+      whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
     >

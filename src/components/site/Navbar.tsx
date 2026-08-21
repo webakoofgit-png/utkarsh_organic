@@ -41,7 +41,7 @@ export function Navbar() {
     >
       <div className="container-x flex h-16 items-center justify-between gap-4 lg:h-20">
         {/* Brand Logo & Name */}
-        <Link to="/" className="flex shrink-0 items-center gap-3">
+        <Link to="/" className="flex shrink-0 items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5">
           <div className="grid h-11 w-11 place-items-center rounded-xl bg-white border border-emerald-500/30 p-1 shadow-sm overflow-hidden shrink-0">
             <img src={logo} alt="Utkarsh Organic logo" className="h-full w-full object-contain" />
           </div>
@@ -63,13 +63,20 @@ export function Navbar() {
               <Link
                 key={item.to}
                 to={item.to}
-                className={`relative rounded-full px-3.5 py-2 text-sm font-semibold transition-colors ${
+                className={`relative overflow-hidden rounded-full px-3.5 py-2 text-sm font-semibold transition-colors ${
                   isActive
-                    ? "text-primary font-bold bg-primary/10"
+                    ? "text-primary font-bold"
                     : "text-foreground/80 hover:text-primary hover:bg-secondary/60"
                 }`}
               >
-                {item.label}
+                {isActive ? (
+                  <motion.span
+                    layoutId="active-nav-pill"
+                    className="absolute inset-0 rounded-full bg-primary/10"
+                    transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                  />
+                ) : null}
+                <span className="relative z-10">{item.label}</span>
               </Link>
             );
           })}
@@ -80,21 +87,21 @@ export function Navbar() {
           <button
             aria-label="Search products"
             onClick={() => setSearchOpen((v) => !v)}
-            className="rounded-full p-2.5 text-foreground transition-colors hover:bg-secondary"
+            className="rounded-full p-2.5 text-foreground transition-all hover:-translate-y-0.5 hover:bg-secondary"
           >
             <Search className="h-[19px] w-[19px]" />
           </button>
           <Link
             to={user ? "/account" : "/login"}
             aria-label="Account"
-            className="hidden rounded-full p-2.5 text-foreground transition-colors hover:bg-secondary sm:block"
+            className="hidden rounded-full p-2.5 text-foreground transition-all hover:-translate-y-0.5 hover:bg-secondary sm:block"
           >
             <User className="h-[19px] w-[19px]" />
           </Link>
           <Link
             to="/account?tab=wishlist"
             aria-label="Wishlist"
-            className="relative hidden rounded-full p-2.5 text-foreground transition-colors hover:bg-secondary sm:block"
+            className="relative hidden rounded-full p-2.5 text-foreground transition-all hover:-translate-y-0.5 hover:bg-secondary sm:block"
           >
             <Heart className="h-[19px] w-[19px]" />
             {wishlist.length > 0 && (
@@ -106,7 +113,7 @@ export function Navbar() {
           <button
             aria-label="Open cart"
             onClick={() => setCartOpen(true)}
-            className="relative rounded-full p-2.5 text-foreground transition-colors hover:bg-secondary"
+            className="relative rounded-full p-2.5 text-foreground transition-all hover:-translate-y-0.5 hover:bg-secondary"
           >
             <ShoppingBag className="h-[19px] w-[19px]" />
             <AnimatePresence>
@@ -126,7 +133,7 @@ export function Navbar() {
           <button
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
-            className="rounded-full p-2.5 text-foreground xl:hidden"
+            className="rounded-full p-2.5 text-foreground transition-colors hover:bg-secondary xl:hidden"
           >
             <motion.span animate={{ rotate: open ? 90 : 0 }} className="block">
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
