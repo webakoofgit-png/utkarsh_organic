@@ -43,17 +43,17 @@ type State = {
 
 const initial: State = {
   cart: [],
-  wishlist: ["organic-onion-powder"],
+  wishlist: ["dehydrated-white-onion-powder"],
   user: null,
   orders: [
     {
       id: "UO-842910",
       date: "14 Aug 2026",
       items: [
-        { name: "Organic Onion Powder", weight: "250g", qty: 2, price: 415 },
-        { name: "Organic Turmeric Powder", weight: "100g", qty: 1, price: 179 },
+        { name: "Dehydrated White Onion Powder", weight: "25kg", qty: 2, price: 14750 },
+        { name: "Turmeric Powder", weight: "5kg", qty: 1, price: 6105 },
       ],
-      total: 594,
+      total: 20855,
       status: "Delivered",
       address: "Flat 4B, Sunflower Apartments, MG Road, Nashik, Maharashtra 422003",
     },

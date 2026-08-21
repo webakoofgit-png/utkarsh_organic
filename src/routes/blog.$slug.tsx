@@ -1,13 +1,50 @@
 import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { ArrowLeft, Calendar, Clock, Share2 } from "lucide-react";
 import { toast } from "sonner";
-import farm from "@/assets/farm.jpg";
 import flatlay from "@/assets/flatlay.jpg";
+import { storeApi } from "@/lib/api";
+import { normalizeBlog, type BlogPost } from "@/lib/blogs";
 import { BLOG_POSTS } from "@/lib/products";
 
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
-  const post = BLOG_POSTS.find((p) => p.slug === slug);
+  const [posts, setPosts] = useState<BlogPost[]>(BLOG_POSTS);
+  const [post, setPost] = useState<BlogPost | undefined>(() => BLOG_POSTS.find((p) => p.slug === slug));
+
+  useEffect(() => {
+    let active = true;
+    const fallback = BLOG_POSTS.find((p) => p.slug === slug);
+
+    setPosts(BLOG_POSTS);
+    setPost(fallback);
+
+    if (!slug) {
+      return () => {
+        active = false;
+      };
+    }
+
+    Promise.all([storeApi.blog(slug), storeApi.blogs()])
+      .then(([detailResponse, listResponse]) => {
+        if (!active) return;
+
+        const nextPosts: BlogPost[] = Array.isArray(listResponse.data) ? listResponse.data.map(normalizeBlog) : [];
+        if (nextPosts.length) setPosts(nextPosts);
+
+        const nextPost = detailResponse.data ? normalizeBlog(detailResponse.data) : nextPosts.find((item) => item.slug === slug);
+        setPost(nextPost || fallback);
+      })
+      .catch(() => {
+        if (!active) return;
+        setPosts(BLOG_POSTS);
+        setPost(fallback);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [slug]);
 
   if (!post) {
     return (
@@ -21,7 +58,7 @@ export default function BlogPostPage() {
     );
   }
 
-  const related = BLOG_POSTS.filter((p) => p.slug !== post.slug).slice(0, 2);
+  const related = posts.filter((p) => p.slug !== post.slug).slice(0, 2);
 
   const handleShare = () => {
     if (navigator.clipboard) {
@@ -92,11 +129,11 @@ export default function BlogPostPage() {
         <div className="mt-12 rounded-3xl bg-cream border border-border p-8 text-center sm:text-left sm:flex sm:items-center sm:justify-between gap-6">
           <div>
             <span className="text-xs font-bold uppercase tracking-widest text-accent">Pantry Shortcut</span>
-            <h3 className="mt-1 font-display text-xl font-bold">Try Organic Onion Powder</h3>
-            <p className="mt-1 text-xs text-muted-foreground">100% dehydrated onion. No additives or crying while peeling.</p>
+            <h3 className="mt-1 font-display text-xl font-bold">Try Dehydrated White Onion Powder</h3>
+            <p className="mt-1 text-xs text-muted-foreground">Fine mesh onion powder for gravies, seasoning blends and food processing.</p>
           </div>
           <Link
-            to="/product/organic-onion-powder"
+            to="/product/dehydrated-white-onion-powder"
             className="mt-4 sm:mt-0 inline-flex shrink-0 items-center justify-center rounded-full bg-primary px-6 py-3 text-xs font-bold text-primary-foreground hover:bg-forest"
           >
             Shop Now

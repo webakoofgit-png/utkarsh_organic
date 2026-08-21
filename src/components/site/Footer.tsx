@@ -50,12 +50,20 @@ export function Footer() {
               </div>
             </div>
 
-            <p className="text-xs font-bold text-emerald-400 flex items-center gap-1.5 leading-snug">
+            <p className="hidden">
               🌱 शेतापासून थेट तुमच्या स्वयंपाकघरापर्यंत! 🌱
             </p>
 
-            <p className="text-xs leading-relaxed text-white max-w-xs">
+            <p className="hidden">
               ताजा, सकस, नैसर्गिक – विषमुक्त आणि आरोग्याची Dehydrated Vegetables &amp; Powders आता उपलब्ध. १००% नैसर्गिक, कोणतीही प्रिझर्व्हेटिव्ह्ज नसलेली शुद्ध उत्पादने!
+            </p>
+
+            <p className="text-xs font-bold text-emerald-400 flex items-center gap-1.5 leading-snug">
+              {COMPANY_INFO.marathiHeader}
+            </p>
+
+            <p className="text-xs leading-relaxed text-white max-w-xs">
+              {COMPANY_INFO.marathiDescription}
             </p>
 
             {/* Social Follow Icons */}
@@ -141,36 +149,36 @@ export function Footer() {
             </h3>
             <div className="mt-5 space-y-3.5 text-xs text-white font-medium">
               <div className="leading-snug space-y-0.5">
-                <p className="font-semibold text-white">Prafulla Pradeep Chorge (Agri Expert)</p>
-                <p className="font-semibold text-white">Dr. Padmashree P. Chorge (Nutritionist)</p>
+                <p className="font-semibold text-white">{COMPANY_INFO.contactPerson}</p>
+                <p className="font-semibold text-white">{COMPANY_INFO.natureOfBusiness} &middot; Est. {COMPANY_INFO.yearEstablished}</p>
               </div>
 
               <div className="flex items-center gap-2.5 text-white">
                 <Phone className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span>+91 7507379018 / +91 8830150923</span>
+                <span>{COMPANY_INFO.phoneSecondary ? `${COMPANY_INFO.phonePrimary} / ${COMPANY_INFO.phoneSecondary}` : COMPANY_INFO.phonePrimary}</span>
               </div>
 
               <div className="flex items-center gap-2.5 text-white">
                 <Mail className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span>hello@utkarshorganic.com</span>
+                <span>{COMPANY_INFO.email}</span>
               </div>
 
               <div className="flex items-start gap-2.5 text-white">
                 <MapPin className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
                 <span className="leading-relaxed">
-                  House No. 262, Lohare, Menwali Road, Gangapuri, Wai, District Satara, Maharashtra 412803
+                  {COMPANY_INFO.address.full}
                 </span>
               </div>
 
               <div className="pt-1">
                 <a
-                  href={`https://wa.me/917507379018`}
+                  href={`https://wa.me/${COMPANY_INFO.whatsappNumber}`}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 text-xs font-extrabold text-[#25D366] hover:text-white transition"
                 >
                   <WhatsAppIcon className="h-4 w-4 fill-current text-[#25D366]" />
-                  <span>WhatsApp: +91 7507379018</span>
+                  <span>WhatsApp: {COMPANY_INFO.phonePrimary}</span>
                 </a>
               </div>
             </div>

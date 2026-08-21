@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
 import { Heart, ShoppingBag, Star } from "lucide-react";
 import { toast } from "sonner";
-import { inr, priceFor, type Product } from "@/lib/products";
+import { type Product } from "@/lib/products";
+import { useCatalog } from "@/lib/catalog";
 import { useStore } from "@/lib/store";
 
 export function ProductCard({ product, compact = false }: { product: Product; compact?: boolean }) {
   const { addToCart, toggleWishlist, wishlist } = useStore();
-  const prices = priceFor(product, "100g");
+  const { categoryLabel } = useCatalog();
   const saved = wishlist.includes(product.slug);
 
   const add = () => {
-    addToCart(product.slug, "100g");
+    addToCart(product.slug, "1kg");
     toast.success(`${product.name} added to cart`);
   };
 
@@ -38,15 +39,15 @@ export function ProductCard({ product, compact = false }: { product: Product; co
         </button>
       </div>
       <div className="flex flex-1 flex-col p-4 sm:p-5">
-        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-accent">{product.category} powder</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-accent">{categoryLabel(product.category)}</p>
         <Link to={`/product/${product.slug}`} className="mt-2 font-display text-base font-bold leading-snug text-foreground hover:text-accent sm:text-lg">
           {product.name}
         </Link>
         {!compact ? <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">{product.short}</p> : null}
         <div className="mt-auto flex items-end justify-between gap-3 pt-4">
           <div>
-            <p className="font-display text-lg font-extrabold text-foreground">{inr(prices.price)}</p>
-            <p className="text-xs text-muted-foreground"><span className="line-through">{inr(prices.mrp)}</span> &middot; 100g</p>
+            <p className="font-display text-base font-extrabold text-foreground sm:text-lg">{product.priceLabel}</p>
+            <p className="text-xs text-muted-foreground">MOQ {product.moq}</p>
           </div>
           <div className="text-right">
             <p className="flex items-center justify-end gap-1 text-xs font-semibold text-foreground"><Star className="h-3.5 w-3.5 fill-saffron text-saffron" /> {product.rating}</p>

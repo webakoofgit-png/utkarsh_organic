@@ -36,13 +36,16 @@ import spinach from "@/assets/p-spinach.jpg";
 import turmeric from "@/assets/p-turmeric.jpg";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Counter, Reveal, SectionHeading } from "@/components/site/motion-primitives";
-import { BLOG_POSTS, CATEGORIES, PRODUCTS, RECIPES, COMPANY_INFO } from "@/lib/products";
+import { BLOG_POSTS, RECIPES, COMPANY_INFO } from "@/lib/products";
+import { useCatalog } from "@/lib/catalog";
+import heroVideo from "../../IMAGE_TO_VIDEO_PROMPT_Use_both.mp4";
+import everydayHeroVideo from "../../Prompt__Use_the_uploaded_image.mp4";
 
 const customCategories = [
   {
-    id: "vegetable",
-    name: "Vegetable & Fruit Powders",
-    items: "Onion, Tomato, Beetroot, Spinach, Carrot, Moringa, Amla, Mango, Banana",
+    id: "dehydrated-flakes",
+    name: "Dehydrated Vegetables & Flakes",
+    items: "Okra, onion, garlic, carrot, spinach, cluster beans, lemon and moringa sticks",
     image: spinach,
     badgeBg: "bg-[#7ca938]",
     cardBg: "bg-[#f0f7ef] border-[#d6ebd3]",
@@ -50,19 +53,9 @@ const customCategories = [
     icon: Leaf,
   },
   {
-    id: "spice",
-    name: "Spice Powders & Dry Spices",
-    items: "Turmeric, Chilli, Coriander, Garlic, Ginger",
-    image: turmeric,
-    badgeBg: "bg-[#e6a119]",
-    cardBg: "bg-[#fdf7e7] border-[#f5e4b8]",
-    btnBg: "bg-[#e6a119] hover:bg-[#cc8e12]",
-    icon: UtensilsCrossed,
-  },
-  {
-    id: "wellness",
-    name: "Wellness & Herbal Teas",
-    items: "Moringa Lemon Tea, Moringa Leaf Powder, Immunity Powders",
+    id: "dehydrated-powders",
+    name: "Dehydrated Vegetable Powders",
+    items: "White onion, red onion, spinach, carrot and curry leaf powders",
     image: onion,
     badgeBg: "bg-[#1b5e2b]",
     cardBg: "bg-[#edf6ef] border-[#ceebd4]",
@@ -70,13 +63,33 @@ const customCategories = [
     icon: Coffee,
   },
   {
-    id: "ready-to-cook",
-    name: "Ready to Cook & Functional Foods",
-    items: "Moringa Soup, Moringa Noodles, Dehydrated Mixed Veggies",
+    id: "organic-powders",
+    name: "Organic & Ayurvedic Powders",
+    items: "Amla, beetroot, garlic, ginger and moringa leaf powder",
     image: carrot,
     badgeBg: "bg-[#c24e27]",
     cardBg: "bg-[#fdf2ec] border-[#f7d6c4]",
     btnBg: "bg-[#c24e27] hover:bg-[#a53f1d]",
+    icon: Soup,
+  },
+  {
+    id: "spices",
+    name: "Spice Powders",
+    items: "Turmeric powder and coriander powder",
+    image: turmeric,
+    badgeBg: "bg-[#e6a119]",
+    cardBg: "bg-[#fdf7e7] border-[#f5e4b8]",
+    btnBg: "bg-[#e6a119] hover:bg-[#cc8e12]",
+    icon: UtensilsCrossed,
+  },
+  {
+    id: "dried-specialty",
+    name: "Dried Specialty Ingredients",
+    items: "Dried tomato flakes and dried sweet corn",
+    image: flatlay,
+    badgeBg: "bg-[#7c5a28]",
+    cardBg: "bg-[#f8f1e7] border-[#ecdcc5]",
+    btnBg: "bg-[#7c5a28] hover:bg-[#65491f]",
     icon: Soup,
   },
 ];
@@ -98,12 +111,12 @@ const testimonials = [
     place: "Mumbai",
   },
   {
-    quote: "Moringa Lemon Tea has replaced my morning coffee! Pure, refreshing, and clean energy without any stomach acidity.",
+    quote: "The moringa leaf powder and dried vegetable formats make it easy to plan production without depending on fresh stock every day.",
     name: "Dr. Vikram Joshi",
     place: "Kolhapur",
   },
   {
-    quote: "As a mother of two picky eaters, mixing Shevga Leaf and Carrot powder into roti dough is my secret nutrition hack.",
+    quote: "The carrot and spinach powder formats are useful wherever color, consistency and shelf stability matter.",
     name: "Sunita Deshmukh",
     place: "Satara",
   },
@@ -115,7 +128,8 @@ const testimonials = [
 ];
 
 export default function HomePage() {
-  const bestSellers = PRODUCTS.filter((product) => product.bestSeller).slice(0, 4);
+  const { products } = useCatalog();
+  const bestSellers = products.filter((product) => product.bestSeller).slice(0, 4);
 
   return (
     <main className="pt-16 lg:pt-20">
@@ -134,13 +148,26 @@ export default function HomePage() {
 
       {/* Custom Hero Section */}
       <section className="relative bg-gradient-to-b from-[#051f12] via-[#04170d] to-[#020e07] text-white pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden">
+        <video
+          className="absolute inset-0 h-full w-full object-cover opacity-100"
+          src={heroVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#020e07]/72 via-[#04170d]/42 to-[#051f12]/18" />
+        <div className="absolute inset-0 bg-black/8" />
+
         {/* Ambient Background Leaf Glow */}
         <div className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
         <div className="absolute top-1/3 right-1/4 h-96 w-96 rounded-full bg-emerald-400/10 blur-3xl pointer-events-none" />
 
-        <div className="container-x grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] relative z-10">
+        <div className="container-x relative z-10">
           {/* Left Hero Content */}
-          <Reveal y={24} className="max-w-2xl">
+          <Reveal y={24} className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-950/70 px-4 py-2 text-xs font-bold text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
               <Leaf className="h-3.5 w-3.5 text-emerald-400" />
               <span>{COMPANY_INFO.marathiHeader}</span>
@@ -180,90 +207,24 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          {/* Right Product Showcase & Orbiting Nodes */}
-          <Reveal delay={0.15} className="relative flex justify-center items-center">
-            <div className="relative w-full max-w-lg">
-              <div className="absolute inset-0 m-auto h-[340px] w-[340px] rounded-full border border-emerald-400/30 shadow-[0_0_30px_rgba(16,185,129,0.15)] pointer-events-none sm:h-[400px] sm:w-[400px]" />
-
-              <div className="relative z-10 mx-auto w-72 sm:w-80 rounded-3xl border border-emerald-500/30 bg-emerald-950/40 p-6 backdrop-blur-md shadow-2xl text-center">
-                <img
-                  src={onion}
-                  alt="Utkarsh Organic Farm Onion Powder Pouch"
-                  className="mx-auto h-64 w-full rounded-2xl object-cover shadow-lg"
-                />
-                <div className="mt-4 text-center">
-                  <span className="text-[10px] font-extrabold tracking-widest text-emerald-400 uppercase">
-                    100% PURE &amp; NATURAL
-                  </span>
-                  <h3 className="font-display text-lg font-bold text-white mt-0.5">
-                    UTKARSH ORGANIC ONION POWDER
-                  </h3>
-                  <p className="text-xs text-emerald-200/80 mt-1">Direct from Satara Farm</p>
-                </div>
-              </div>
-
-              {/* Orbiting Badge Nodes */}
-              <div className="absolute top-2 left-2 z-20 flex items-center gap-2 rounded-2xl border border-emerald-500/30 bg-emerald-950/80 px-3 py-2 text-[11px] font-bold text-white shadow-lg backdrop-blur-md">
-                <div className="grid h-7 w-7 place-items-center rounded-xl bg-emerald-900/60 text-emerald-400">
-                  <FlaskConical className="h-3.5 w-3.5" />
-                </div>
-                <span>No Preservatives</span>
-              </div>
-
-              <div className="absolute top-1/2 -left-4 z-20 -translate-y-1/2 flex items-center gap-2 rounded-2xl border border-emerald-500/30 bg-emerald-950/80 px-3 py-2 text-[11px] font-bold text-white shadow-lg backdrop-blur-md">
-                <div className="grid h-7 w-7 place-items-center rounded-xl bg-emerald-900/60 text-emerald-400">
-                  <Home className="h-3.5 w-3.5" />
-                </div>
-                <span>Farm to Home</span>
-              </div>
-
-              <div className="absolute bottom-2 left-4 z-20 flex items-center gap-2 rounded-2xl border border-emerald-500/30 bg-emerald-950/80 px-3 py-2 text-[11px] font-bold text-white shadow-lg backdrop-blur-md">
-                <div className="grid h-7 w-7 place-items-center rounded-xl bg-emerald-900/60 text-emerald-400">
-                  <Sparkles className="h-3.5 w-3.5" />
-                </div>
-                <span>Rich in Nutrients</span>
-              </div>
-
-              <div className="absolute top-0 right-2 z-20 grid h-14 w-14 place-items-center rounded-full border border-emerald-400/50 bg-emerald-950/90 text-center shadow-lg backdrop-blur-md">
-                <div className="text-[9px] font-extrabold leading-tight text-emerald-400">
-                  100%<br />NATURAL
-                </div>
-              </div>
-
-              <div className="absolute top-1/3 -right-4 z-20 flex items-center gap-2 rounded-2xl border border-emerald-500/30 bg-emerald-950/80 px-3 py-2 text-[11px] font-bold text-white shadow-lg backdrop-blur-md">
-                <div className="grid h-7 w-7 place-items-center rounded-xl bg-emerald-900/60 text-emerald-400">
-                  <Utensils className="h-3.5 w-3.5" />
-                </div>
-                <span>Ready to Cook</span>
-              </div>
-
-              <div className="absolute bottom-6 right-0 z-20 flex items-center gap-2 rounded-2xl border border-emerald-500/30 bg-emerald-950/80 px-3 py-2 text-[11px] font-bold text-white shadow-lg backdrop-blur-md">
-                <div className="grid h-7 w-7 place-items-center rounded-xl bg-emerald-900/60 text-emerald-400">
-                  <Soup className="h-3.5 w-3.5" />
-                </div>
-                <span>Ready to Use</span>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-
-        {/* Wave Divider */}
-        <div className="w-full overflow-hidden leading-none mt-14">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-10 text-white fill-current">
-            <path d="M0,0 C150,90 350,-40 500,60 C650,140 900,10 1200,40 L1200,120 L0,120 Z"></path>
-          </svg>
         </div>
       </section>
 
       {/* Counter Cards */}
-      <section className="container-x py-8">
+      <section className="relative bg-background pb-8">
+        <div className="w-full overflow-hidden leading-none">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block h-10 w-full fill-background">
+            <path d="M0,0 C150,90 350,-40 500,60 C650,140 900,10 1200,40 L1200,120 L0,120 Z" />
+          </svg>
+        </div>
+        <div className="container-x pt-4">
         <div className="rounded-3xl border border-emerald-500/20 bg-gradient-to-r from-[#051f12] to-[#03130a] p-6 shadow-xl text-white">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-emerald-500/20">
             <div>
               <p className="font-serif text-3xl font-extrabold text-emerald-400">
-                <Counter to={50} suffix="+" />
+                <Counter to={23} suffix="+" />
               </p>
-              <p className="mt-1 text-xs font-semibold text-emerald-200">Products</p>
+              <p className="mt-1 text-xs font-semibold text-emerald-200">Official Products</p>
             </div>
 
             <div>
@@ -289,6 +250,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* Category Section */}
@@ -307,11 +269,11 @@ export default function HomePage() {
             </span>
           </h2>
           <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xl mx-auto">
-            Every pack starts with carefully sourced produce from our Wai (Satara) farms, then takes the shortest, cleanest path to your pantry.
+            Every listing now follows the official Utkarsh Organic Farm catalog from Satara, with per-kg quotes, MOQ and product specifications.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {customCategories.map((cat, index) => {
             const Icon = cat.icon;
             return (
@@ -458,14 +420,14 @@ export default function HomePage() {
               One spoonful. <br />A world of flavour.
             </h2>
             <p className="mt-5 max-w-lg leading-relaxed text-forest-foreground/75">
-              Our signature Organic Onion Powder brings deep, savoury flavour to gravies, marinades, snacks and more—without the peeling or the prep.
+              Dehydrated White Onion Powder is the official spotlight product for gravies, marinades, seasoning blends and food processing.
             </p>
             <ul className="mt-7 grid gap-3 sm:grid-cols-2">
               {[
-                "100% dehydrated onion",
-                "No preservatives",
-                "Fine, free-flowing texture",
-                "Made for daily cooking",
+                "Fine mesh powder",
+                "White to off-white color",
+                "Fresh sharp onion aroma",
+                "MOQ 100 Kilogram",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-2 text-sm font-semibold">
                   <Check className="h-4 w-4 text-accent" /> {item}
@@ -473,17 +435,22 @@ export default function HomePage() {
               ))}
             </ul>
             <Link
-              to="/product/organic-onion-powder"
+              to="/product/dehydrated-white-onion-powder"
               className="mt-9 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-bold text-accent-foreground"
             >
-              Meet our onion powder <ArrowRight className="h-4 w-4" />
+              View white onion powder <ArrowRight className="h-4 w-4" />
             </Link>
           </Reveal>
           <Reveal delay={0.12}>
-            <img
-              src={flatlay}
-              alt="Organic vegetable powder ingredients flat lay"
+            <video
               className="h-[400px] w-full rounded-3xl object-cover"
+              src={everydayHeroVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label="Organic vegetable powder ingredients video"
             />
           </Reveal>
         </div>
@@ -498,7 +465,7 @@ export default function HomePage() {
               {
                 icon: Sprout,
                 title: "Thoughtfully sourced",
-                text: "We begin with produce grown with care at Lohare / Gangapuri farms in Wai, Satara.",
+                text: "We present official product data from Utkarsh Organic Farm, Satara, Maharashtra.",
               },
               {
                 icon: Factory,

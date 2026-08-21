@@ -3,6 +3,7 @@ import { CheckCircle2, Clock, PackageCheck, Search, Truck, MapPin } from "lucide
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { useStore } from "@/lib/store";
+import { storeApi } from "@/lib/api";
 
 export default function TrackOrderPage() {
   const [searchParams] = useSearchParams();
@@ -10,6 +11,7 @@ export default function TrackOrderPage() {
   const orderIdParam = searchParams.get("orderId") || "";
 
   const [inputOrderId, setInputOrderId] = useState(orderIdParam);
+  const [contact, setContact] = useState("");
   const [activeOrder, setActiveOrder] = useState<any>(
     orders.find((o) => o.id === orderIdParam) || (orders.length > 0 ? orders[0] : null)
   );
@@ -22,8 +24,38 @@ export default function TrackOrderPage() {
     }
   }, [orderIdParam, orders]);
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!inputOrderId.trim()) {
+      toast.error("Enter your order ID.");
+      return;
+    }
+    if (contact.trim()) {
+      try {
+        const response = await storeApi.trackOrder({ orderNumber: inputOrderId.trim().toUpperCase(), contact: contact.trim() });
+        const order = response.data;
+        setActiveOrder({
+          id: order.orderNumber,
+          date: order.createdAt,
+          status: order.orderStatus,
+          total: order.grandTotal,
+          address: `${order.shippingAddress?.city || ""}, ${order.shippingAddress?.state || ""}`,
+          items: (order.items || []).map((item: any) => ({
+            name: item.productName,
+            weight: item.variantName || item.sku,
+            qty: item.quantity,
+            price: item.total,
+          })),
+          history: order.history || [],
+          shipments: order.shipments || [],
+        });
+        toast.success(`Found order #${order.orderNumber}`);
+        return;
+      } catch (error: any) {
+        toast.error(error.message || "Tracking details not found.");
+      }
+    }
+
     const found = orders.find((o) => o.id.toLowerCase() === inputOrderId.trim().toLowerCase());
     if (found) {
       setActiveOrder(found);
@@ -33,21 +65,25 @@ export default function TrackOrderPage() {
         id: inputOrderId.toUpperCase(),
         date: "Today",
         status: "In Transit",
-        total: 448,
-        items: [{ name: "Organic Onion Powder", weight: "250g", qty: 2, price: 448 }],
+        total: 14750,
+        items: [{ name: "Dehydrated White Onion Powder", weight: "25kg", qty: 2, price: 14750 }],
         address: "Nashik, Maharashtra",
       });
       toast.info(`Displaying tracking details for order #${inputOrderId.toUpperCase()}`);
     }
   };
 
-  const steps = [
+  const defaultSteps = [
     { title: "Order Placed", date: "18 Aug, 10:30 AM", done: true, icon: CheckCircle2 },
     { title: "Quality Check & Packed", date: "18 Aug, 02:15 PM", done: true, icon: PackageCheck },
     { title: "Handed to Courier", date: "18 Aug, 05:40 PM", done: true, icon: Truck },
     { title: "Out for Delivery", date: "Estimated 19 Aug", done: false, icon: Clock },
     { title: "Delivered", date: "Estimated 19 Aug", done: false, icon: MapPin },
   ];
+
+  const steps = activeOrder?.history?.length
+    ? activeOrder.history.map((item: any) => ({ title: item.status, date: item.changedAt || item.createdAt, done: true, icon: CheckCircle2 }))
+    : defaultSteps;
 
   return (
     <main className="pt-24 pb-20 lg:pt-28">
@@ -58,7 +94,7 @@ export default function TrackOrderPage() {
           <p className="mt-3 text-muted-foreground">Enter your Order ID or phone number to see live status updates</p>
         </div>
 
-        <form onSubmit={handleSearch} className="mt-8 flex gap-3 max-w-md mx-auto">
+        <form onSubmit={handleSearch} className="mt-8 grid gap-3 max-w-2xl mx-auto sm:grid-cols-[1fr_1fr_auto]">
           <div className="flex-1 flex items-center rounded-full border border-border bg-background px-4 py-3 shadow-soft focus-within:border-accent">
             <Search className="h-4 w-4 text-muted-foreground mr-2" />
             <input
@@ -66,6 +102,15 @@ export default function TrackOrderPage() {
               placeholder="e.g. UO-982145"
               value={inputOrderId}
               onChange={(e) => setInputOrderId(e.target.value)}
+              className="w-full bg-transparent text-sm outline-none"
+            />
+          </div>
+          <div className="flex-1 flex items-center rounded-full border border-border bg-background px-4 py-3 shadow-soft focus-within:border-accent">
+            <input
+              type="text"
+              placeholder="Mobile or email"
+              value={contact}
+              onChange={(e) => setContact(e.target.value)}
               className="w-full bg-transparent text-sm outline-none"
             />
           </div>
@@ -91,7 +136,7 @@ export default function TrackOrderPage() {
 
             {/* Stepper Timeline */}
             <div className="mt-10 space-y-8 relative before:absolute before:left-5 before:top-3 before:bottom-3 before:w-0.5 before:bg-border">
-              {steps.map((step) => {
+              {steps.map((step: any) => {
                 const Icon = step.icon;
                 return (
                   <div key={step.title} className="relative flex items-start gap-6 pl-2">
@@ -106,7 +151,7 @@ export default function TrackOrderPage() {
                       <h4 className={`font-display text-base font-bold ${step.done ? "text-foreground" : "text-muted-foreground"}`}>
                         {step.title}
                       </h4>
-                      <p className="text-xs text-muted-foreground mt-0.5">{step.date}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{String(step.date).includes("T") ? new Date(step.date).toLocaleString("en-IN") : step.date}</p>
                     </div>
                   </div>
                 );

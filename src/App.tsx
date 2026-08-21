@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Toaster } from "sonner";
+import { ProductCatalogProvider } from "@/lib/catalog";
 import { StoreProvider } from "@/lib/store";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
@@ -38,46 +39,48 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <StoreProvider>
-        <div className="relative flex min-h-screen flex-col">
-          <Navbar />
-          <CartDrawer />
-          <div className="flex-1">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/shop" element={<ProductsPage />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route path="/product/:slug" element={<ProductDetailPage />} />
-              <Route path="/cart" element={<CartPage />} />
-              <Route path="/checkout" element={<CheckoutPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/account" element={<AccountPage />} />
-              <Route path="/track-order" element={<TrackOrderPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/why-organic" element={<WhyOrganicPage />} />
-              <Route path="/bulk-orders" element={<BulkOrdersPage />} />
-              <Route path="/recipes" element={<RecipesPage />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/blog/:slug" element={<BlogPostPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route
-                path="*"
-                element={
-                  <div className="flex min-h-[60vh] flex-col items-center justify-center text-center px-4">
-                    <h1 className="font-display text-6xl font-extrabold text-primary">404</h1>
-                    <h2 className="mt-2 text-xl font-bold font-display">Page Not Found</h2>
-                    <p className="mt-2 text-sm text-muted-foreground">The page you are looking for does not exist.</p>
-                  </div>
-                }
-              />
-            </Routes>
+      <ProductCatalogProvider>
+        <StoreProvider>
+          <div className="relative flex min-h-screen flex-col">
+            <Navbar />
+            <CartDrawer />
+            <div className="flex-1">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/shop" element={<ProductsPage />} />
+                <Route path="/products" element={<ProductsPage />} />
+                <Route path="/product/:slug" element={<ProductDetailPage />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/account" element={<AccountPage />} />
+                <Route path="/track-order" element={<TrackOrderPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/why-organic" element={<WhyOrganicPage />} />
+                <Route path="/bulk-orders" element={<BulkOrdersPage />} />
+                <Route path="/recipes" element={<RecipesPage />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:slug" element={<BlogPostPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route
+                  path="*"
+                  element={
+                    <div className="flex min-h-[60vh] flex-col items-center justify-center text-center px-4">
+                      <h1 className="font-display text-6xl font-extrabold text-primary">404</h1>
+                      <h2 className="mt-2 text-xl font-bold font-display">Page Not Found</h2>
+                      <p className="mt-2 text-sm text-muted-foreground">The page you are looking for does not exist.</p>
+                    </div>
+                  }
+                />
+              </Routes>
+            </div>
+            <Footer />
+            <FloatingActions />
+            <Toaster position="top-right" richColors />
           </div>
-          <Footer />
-          <FloatingActions />
-          <Toaster position="top-right" richColors />
-        </div>
-      </StoreProvider>
+        </StoreProvider>
+      </ProductCatalogProvider>
     </BrowserRouter>
   );
 }

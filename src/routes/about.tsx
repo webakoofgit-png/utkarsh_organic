@@ -91,7 +91,7 @@ export default function AboutPage() {
 
             {/* Subtitle */}
             <p className="mt-3 text-xs sm:text-sm md:text-base leading-relaxed text-emerald-100/90 max-w-xl hidden sm:block">
-              Utkarsh Organic Farm was founded in Wai (Satara, Maharashtra) with a simple belief — that real food comes from real farms. We're here to make natural, clean, and honest ingredients accessible to every kitchen.
+              Utkarsh Organic Farm is listed as a 2026 manufacturer and supplier from Satara, Maharashtra, offering dehydrated vegetables, organic powders and spice ingredients across Pan India.
             </p>
           </div>
 
@@ -104,7 +104,7 @@ export default function AboutPage() {
                 className="h-28 sm:h-36 md:h-44 lg:h-52 xl:h-60 w-40 sm:w-56 md:w-64 lg:w-80 xl:w-96 object-cover rounded-xl"
               />
               <div className="absolute bottom-3 right-3 rounded-xl border border-emerald-400/40 bg-emerald-950/90 px-3 py-1 text-xs font-bold text-emerald-300 shadow-lg backdrop-blur-md hidden sm:block">
-                🌱 Wai (Satara) Farm
+                MIDC Satara Unit
               </div>
             </div>
           </div>
@@ -125,9 +125,9 @@ export default function AboutPage() {
       {/* Leadership & Founders Section */}
       <section className="container-x py-20 lg:py-24">
         <SectionHeading
-          eyebrow="Guided by Expertise"
-          title="Meet Our Leadership Team"
-          sub="Combining agricultural excellence with scientific nutrition for your family's health."
+          eyebrow="Official Business Profile"
+          title="Founder & Supply Details"
+          sub="The official listing names Mr. Prafull Chorage as founder and mentor of Utkarsh Organic Farm."
         />
 
         <div className="mt-12 grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
@@ -138,13 +138,13 @@ export default function AboutPage() {
                 <Wheat className="h-8 w-8" />
               </div>
               <h3 className="mt-5 font-display text-2xl font-extrabold text-foreground">
-                Prafulla Pradeep Chorge
+                Mr. Prafull Chorage
               </h3>
               <p className="text-xs font-bold uppercase tracking-wider text-accent mt-1">
                 प्रफुल्ल प्रदीप चोरगे (कृषी तज्ञ - Agricultural Expert)
               </p>
               <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-                Co-Founder leading organic farm cultivation, sustainable crop selection, and advanced low-temperature dehydration protocols at Wai (Satara).
+                Leads Utkarsh Organic Farm's manufacturer and supplier operations for dehydrated vegetables, organic powders and spice ingredients.
               </p>
             </div>
           </Reveal>
@@ -156,13 +156,13 @@ export default function AboutPage() {
                 <Stethoscope className="h-8 w-8" />
               </div>
               <h3 className="mt-5 font-display text-2xl font-extrabold text-foreground">
-                Dr. Padmashree Prafulla Chorge
+                Manufacturer & Supplier
               </h3>
               <p className="text-xs font-bold uppercase tracking-wider text-accent mt-1">
                 डॉ. पद्मश्री प्रफुल्ल चोरगे (पोषण तज्ञ - Nutrition Expert)
               </p>
               <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-                Co-Founder &amp; Nutritionist formulating our functional wellness line including Moringa Lemon Tea, Moringa Soup, Amla Powder, and nutrient-dense fruit powders.
+                Official business profile lists dehydrated vegetables, organic powder, dried tomato flakes, dried sweet corn, turmeric powder, coriander powder and ayurvedic moringa leaf powder.
               </p>
             </div>
           </Reveal>
@@ -188,7 +188,7 @@ export default function AboutPage() {
                 "प्रीमियम दर्जाची सुकवलेली फळे आणि भाजीपाला (Premium Dried Veggies)",
                 "विविध प्रकारची पोषण-युक्त फळ व भाजी पावडर (Fruit & Veg Powders)",
                 "विशेष निवडक सुका मेवा आणि सुके मसाले (Dry Fruits & Whole Spices)",
-                "रेडी टू कूक (Ready to Cook) Moringa Soup, Noodles & Mixed Veggies",
+                "Wholesale catalog with 100 Kilogram MOQ on official product listings",
               ].map((point) => (
                 <div key={point} className="flex items-center gap-3 font-semibold text-sm">
                   <CheckCircle2 className="h-5 w-5 text-accent shrink-0" />
@@ -200,7 +200,7 @@ export default function AboutPage() {
           <Reveal delay={0.12}>
             <img
               src={farm}
-              alt="Utkarsh Organic Farm in Wai Satara"
+              alt="Utkarsh Organic Farm in Satara"
               className="h-[420px] w-full rounded-3xl object-cover shadow-lift"
             />
           </Reveal>

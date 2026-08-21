@@ -2,19 +2,22 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { PRODUCTS, inr, priceFor } from "@/lib/products";
+import { inr, priceFor } from "@/lib/products";
+import { useCatalog } from "@/lib/catalog";
 import { useStore } from "@/lib/store";
 
 export default function CartPage() {
-  const { cart, removeLine, setQty, subtotal, clearCart } = useStore();
+  const { products } = useCatalog();
+  const { cart, removeLine, setQty, clearCart } = useStore();
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(0);
   const [couponApplied, setCouponApplied] = useState(false);
 
   const lines = cart.flatMap((line) => {
-    const product = PRODUCTS.find((item) => item.slug === line.slug);
+    const product = products.find((item) => item.slug === line.slug);
     return product ? [{ ...line, product, amount: priceFor(product, line.weight).price * line.qty }] : [];
   });
+  const subtotal = lines.reduce((sum, line) => sum + line.amount, 0);
 
   const handleCoupon = (e: React.FormEvent) => {
     e.preventDefault();

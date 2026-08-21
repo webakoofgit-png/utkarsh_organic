@@ -1,0 +1,24 @@
+{
+  "name": "utkarsh-organic-admin",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node ../node_modules/vite/bin/vite.js --host 127.0.0.1 --port 5176",
+    "build": "node ../node_modules/typescript/bin/tsc -b && node ../node_modules/vite/bin/vite.js build",
+    "preview": "node ../node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 4176"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.2.0",
+    "lucide-react": "^0.575.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.1.5",
+    "recharts": "^2.15.4",
+    "sonner": "^2.0.7",
+    "vite": "^8.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

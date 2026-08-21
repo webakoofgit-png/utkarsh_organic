@@ -2,11 +2,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { CheckCircle2, ShieldCheck, Truck, CreditCard, Banknote, Building, ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { PRODUCTS, inr, priceFor } from "@/lib/products";
+import { inr, priceFor } from "@/lib/products";
+import { storeApi } from "@/lib/api";
+import { useCatalog } from "@/lib/catalog";
 import { useStore } from "@/lib/store";
 
 export default function CheckoutPage() {
-  const { cart, subtotal, clearCart, addOrder } = useStore();
+  const { products } = useCatalog();
+  const { cart, clearCart, addOrder } = useStore();
   const navigate = useNavigate();
 
   const [paymentMethod, setPaymentMethod] = useState<"upi" | "cod" | "card">("upi");
@@ -25,14 +28,15 @@ export default function CheckoutPage() {
   });
 
   const lines = cart.flatMap((line) => {
-    const product = PRODUCTS.find((item) => item.slug === line.slug);
+    const product = products.find((item) => item.slug === line.slug);
     return product ? [{ ...line, product, amount: priceFor(product, line.weight).price * line.qty }] : [];
   });
 
+  const subtotal = lines.reduce((sum, line) => sum + line.amount, 0);
   const shipping = subtotal > 499 ? 0 : 50;
   const grandTotal = subtotal + shipping;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.phone || !formData.address || !formData.pincode) {
       toast.error("Please fill in all required delivery fields.");
@@ -40,22 +44,51 @@ export default function CheckoutPage() {
     }
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      const generatedId = `UO-${Math.floor(100000 + Math.random() * 900000)}`;
+    try {
+      const apiPaymentMethod = paymentMethod === "cod" ? "COD" : paymentMethod === "upi" ? "UPI" : "Card";
+      const response = await storeApi.createOrder({
+        customer: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+        },
+        shippingAddress: {
+          name: formData.name,
+          phone: formData.phone,
+          line1: formData.address,
+          city: formData.city,
+          state: formData.state,
+          pincode: formData.pincode,
+          country: "India",
+        },
+        items: lines.map((line) => ({
+          slug: line.product.slug,
+          weight: line.weight,
+          quantity: line.qty,
+        })),
+        paymentMethod: apiPaymentMethod,
+      });
+
+      const created = response.data;
+      const generatedId = created.orderNumber || `UO-${Math.floor(100000 + Math.random() * 900000)}`;
       setOrderId(generatedId);
       addOrder({
         id: generatedId,
         date: new Date().toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }),
         items: lines.map((l) => ({ name: l.product.name, weight: l.weight, qty: l.qty, price: l.amount })),
-        total: grandTotal,
-        status: "Processing",
+        total: Number(created.grandTotal || grandTotal),
+        status: created.orderStatus || "Confirmed",
         address: `${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}`,
+        payment: apiPaymentMethod,
       });
       clearCart();
-      setIsSubmitting(false);
       setOrderComplete(true);
       toast.success("Order placed successfully!");
-    }, 1200);
+    } catch (error: any) {
+      toast.error(error.message || "Unable to place order right now.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (orderComplete) {

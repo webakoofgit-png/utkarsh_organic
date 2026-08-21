@@ -1,13 +1,34 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, Calendar, Clock } from "lucide-react";
-import farm from "@/assets/farm.jpg";
+import { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
 import flatlay from "@/assets/flatlay.jpg";
-import { Reveal, SectionHeading } from "@/components/site/motion-primitives";
+import { Reveal } from "@/components/site/motion-primitives";
+import { storeApi } from "@/lib/api";
 import { BLOG_POSTS } from "@/lib/products";
+import { normalizeBlog, type BlogPost } from "@/lib/blogs";
 
 export default function BlogPage() {
-  const featured = BLOG_POSTS[0];
-  const rest = BLOG_POSTS.slice(1);
+  const [posts, setPosts] = useState<BlogPost[]>(BLOG_POSTS);
+  const featured = posts[0];
+  const rest = posts.slice(1);
+
+  useEffect(() => {
+    let active = true;
+
+    storeApi
+      .blogs()
+      .then((response) => {
+        const nextPosts: BlogPost[] = Array.isArray(response.data) ? response.data.map(normalizeBlog) : [];
+        if (active && nextPosts.length) setPosts(nextPosts);
+      })
+      .catch(() => {
+        if (active) setPosts(BLOG_POSTS);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   return (
     <main className="pt-24 pb-20 lg:pt-28">

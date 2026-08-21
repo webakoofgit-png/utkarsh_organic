@@ -15,7 +15,8 @@ import {
 } from "lucide-react";
 import { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { CATEGORIES, PRODUCTS, type Category } from "@/lib/products";
+import { type Category } from "@/lib/products";
+import { useCatalog } from "@/lib/catalog";
 import { ProductCard } from "@/components/site/ProductCard";
 import flatlay from "@/assets/flatlay.jpg";
 import onion from "@/assets/p-onion.jpg";
@@ -24,9 +25,9 @@ import spinach from "@/assets/p-spinach.jpg";
 const bannerSlides = [
   {
     id: "whole-collection",
-    eyebrow: "THE WHOLE COLLECTION",
-    titleLine1: "A more useful pantry,",
-    titleLine2: "naturally.",
+    eyebrow: "OFFICIAL UTKARSH CATALOG",
+    titleLine1: "Wholesale ingredients,",
+    titleLine2: "source-ready.",
     subtitle: "Clean, concentrated ingredients for home kitchens, cafés and food businesses.",
     features: [
       { icon: Leaf, title: "100% Natural", sub: "Pure & Clean" },
@@ -38,8 +39,8 @@ const bannerSlides = [
   {
     id: "dehydrated-veg",
     eyebrow: "DEHYDRATED VEGETABLES & POWDERS",
-    titleLine1: "Direct from Satara farm,",
-    titleLine2: "shelf-ready.",
+    titleLine1: "Official per-kg quotes,",
+    titleLine2: "with MOQ.",
     subtitle: "Zero peeling, zero chopping. Pure dehydrated powders packed with natural aroma & nutrition.",
     features: [
       { icon: FlaskConical, title: "No Preservatives", sub: "100% Dehydrated" },
@@ -50,10 +51,10 @@ const bannerSlides = [
   },
   {
     id: "wellness-mixes",
-    eyebrow: "HERBAL TEAS & WELLNESS MIXES",
-    titleLine1: "Health & vitality in",
-    titleLine2: "every spoonful.",
-    subtitle: "Moringa lemon tea, soup mixes and immunity powders for everyday wellness.",
+    eyebrow: "ORGANIC & AYURVEDIC POWDERS",
+    titleLine1: "Amla, beetroot,",
+    titleLine2: "ginger & moringa.",
+    subtitle: "Organic and ayurvedic powders for ingredient buyers and commercial kitchens.",
     features: [
       { icon: Leaf, title: "Moringa Rich", sub: "High Antioxidants" },
       { icon: Sparkles, title: "Pure Energy", sub: "Clean Wellness" },
@@ -66,12 +67,13 @@ const bannerSlides = [
 export function CataloguePage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { products, categories, categoryLabel } = useCatalog();
 
   const initialQ = searchParams.get("q") || "";
   const initialCat = (searchParams.get("category") as Category) || "all";
 
   const [q, setQ] = useState(initialQ);
-  const [category, setCategory] = useState<Category | "all">(initialCat);
+  const [category, setCategory] = useState<string | "all">(initialCat);
   const [sort, setSort] = useState("featured");
 
   // Hero Banner Carousel state
@@ -89,19 +91,19 @@ export function CataloguePage() {
   useEffect(() => {
     setQ(searchParams.get("q") || "");
     const c = searchParams.get("category");
-    if (c && ["vegetable", "spice", "wellness", "bulk"].includes(c)) {
-      setCategory(c as Category);
+    if (c && categories.some((item) => item.id === c)) {
+      setCategory(c);
     } else {
       setCategory("all");
     }
-  }, [searchParams]);
+  }, [searchParams, categories]);
 
   const items = useMemo(() => {
     const term = q.trim().toLowerCase();
-    const selected = PRODUCTS.filter(
+    const selected = products.filter(
       (product) =>
         (category === "all" || product.category === category) &&
-        (!term || `${product.name} ${product.short} ${product.category}`.toLowerCase().includes(term))
+        (!term || `${product.name} ${product.short} ${categoryLabel(product.category)}`.toLowerCase().includes(term))
     );
     return [...selected].sort((a, b) =>
       sort === "price-low"
@@ -112,9 +114,9 @@ export function CataloguePage() {
         ? b.rating - a.rating
         : Number(Boolean(b.bestSeller)) - Number(Boolean(a.bestSeller))
     );
-  }, [category, q, sort]);
+  }, [category, q, sort, products, categoryLabel]);
 
-  const updateSearch = (nextQ: string, nextCategory: Category | "all") => {
+  const updateSearch = (nextQ: string, nextCategory: string | "all") => {
     const params = new URLSearchParams();
     if (nextQ.trim()) params.set("q", nextQ.trim());
     if (nextCategory !== "all") params.set("category", nextCategory);
@@ -306,7 +308,7 @@ export function CataloguePage() {
 
           {/* Category Filter Badges */}
           <div className="flex flex-wrap items-center gap-2">
-            {[{ id: "all" as const, name: "All Products" }, ...CATEGORIES].map((item) => (
+            {[{ id: "all" as const, name: "All Products" }, ...categories].map((item) => (
               <button
                 key={item.id}
                 onClick={() => {

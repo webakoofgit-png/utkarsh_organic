@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
-import { inr, PRODUCTS, priceFor } from "@/lib/products";
+import { inr, priceFor } from "@/lib/products";
+import { useCatalog } from "@/lib/catalog";
 import { useStore } from "@/lib/store";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 
 export function CartDrawer() {
-  const { cart, cartOpen, setCartOpen, removeLine, setQty, subtotal } = useStore();
+  const { products } = useCatalog();
+  const { cart, cartOpen, setCartOpen, removeLine, setQty } = useStore();
   const lines = cart.flatMap((line) => {
-    const product = PRODUCTS.find((item) => item.slug === line.slug);
+    const product = products.find((item) => item.slug === line.slug);
     return product ? [{ ...line, product, amount: priceFor(product, line.weight).price * line.qty }] : [];
   });
+  const subtotal = lines.reduce((sum, line) => sum + line.amount, 0);
 
   return (
     <Sheet open={cartOpen} onOpenChange={setCartOpen}>

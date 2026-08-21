@@ -2,12 +2,14 @@ import { Link, useSearchParams } from "react-router-dom";
 import { Heart, LogOut, Package, User, MapPin, Truck } from "lucide-react";
 import { useState, useEffect } from "react";
 import { ProductCard } from "@/components/site/ProductCard";
-import { PRODUCTS, inr } from "@/lib/products";
+import { inr } from "@/lib/products";
+import { useCatalog } from "@/lib/catalog";
 import { useStore } from "@/lib/store";
 
 export default function AccountPage() {
   const [searchParams] = useSearchParams();
   const { user, logout, wishlist, orders } = useStore();
+  const { products } = useCatalog();
   const tabParam = searchParams.get("tab") as "orders" | "wishlist" | "profile" | "addresses" | null;
   const [activeTab, setActiveTab] = useState<"orders" | "wishlist" | "profile" | "addresses">(tabParam || "orders");
 
@@ -17,7 +19,7 @@ export default function AccountPage() {
     }
   }, [tabParam]);
 
-  const wishlistProducts = PRODUCTS.filter((item) => wishlist.includes(item.slug));
+  const wishlistProducts = products.filter((item) => wishlist.includes(item.slug));
 
   return (
     <main className="pt-24 pb-20 lg:pt-28">

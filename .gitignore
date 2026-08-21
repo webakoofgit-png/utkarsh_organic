@@ -10,15 +10,23 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+*.tsbuildinfo
 .output
 .vinxi
 .tanstack/**
 .nitro
 *.local
+.env
+.env.*
+!**/.env.example
+backend/uploads/*
+!backend/uploads/.gitkeep
 
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars
+IMAGE_TO_VIDEO_PROMPT_Use_both.mp4
+Prompt__Use_the_uploaded_image.mp4
 
 # Editor directories and files
 .vscode/*

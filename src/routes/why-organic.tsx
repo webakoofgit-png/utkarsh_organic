@@ -27,8 +27,8 @@ export default function WhyOrganicPage() {
 
   const faqs = [
     {
-      q: "Does dehydration lose the nutritional value of onions, spinach or drumstick (shevga)?",
-      a: "No! Our gentle low-temperature drying process removes water content while conserving up to 95% of essential vitamins, minerals, dietary fiber, and natural aromatic oils.",
+      q: "What does the official catalog say about dehydrated ingredients?",
+      a: "Most listings describe washed, sliced or peeled produce that is dehydrated, ground or graded, with moisture ranges commonly below 6-8% under proper storage conditions.",
     },
     {
       q: "Are there any anti-caking agents or chemical preservatives added?",
@@ -39,12 +39,12 @@ export default function WhyOrganicPage() {
       a: `We are FSSAI Registered (${COMPANY_INFO.fssaiRegNo}), MSME Udyam Certified (${COMPANY_INFO.udyamRegNo}), and GSTIN Registered (${COMPANY_INFO.gstin}).`,
     },
     {
-      q: "How long is the shelf life of these powders?",
-      a: "When stored in an airtight jar in a cool, dry pantry away from steam, our powders maintain prime freshness for 12 to 18 months without refrigeration.",
+      q: "How long is the shelf life of these products?",
+      a: "Official listings commonly mention 12-18 months or 18-24 months shelf life when products are kept in cool, dry and airtight storage conditions.",
     },
     {
-      q: "How does 1 tsp of onion or garlic powder compare to fresh produce?",
-      a: "Approximately 1 teaspoon (approx 5g) of Utkarsh Organic Onion Powder replaces one medium fresh onion (~80g fresh) in terms of flavor and aroma.",
+      q: "Can I order by product specs?",
+      a: "Yes. Product pages include details such as form, color, botanical name, processing method, moisture range, particle size and storage condition.",
     },
   ];
 
@@ -226,7 +226,7 @@ export default function WhyOrganicPage() {
                 desc: "Dehydrated at controlled temperatures preserving 95% vital nutrients.",
               },
               {
-                title: "Wai (Satara) Sourced",
+                title: "Satara, Maharashtra Supplier",
                 desc: "Grown in rich Western Ghats soil known for high essential oil content.",
               },
               {

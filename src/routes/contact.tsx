@@ -20,6 +20,7 @@ import { motion } from "motion/react";
 import heroContact from "@/assets/hero-contact.jpg";
 import { Reveal, SectionHeading } from "@/components/site/motion-primitives";
 import { COMPANY_INFO } from "@/lib/products";
+import { storeApi } from "@/lib/api";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -31,14 +32,19 @@ export default function ContactPage() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
       toast.error("Please fill in all required fields.");
       return;
     }
-    setSubmitted(true);
-    toast.success("Message sent! Praful Chorge & team will respond shortly.");
+    try {
+      await storeApi.contact(formData);
+      setSubmitted(true);
+      toast.success("Message sent! Utkarsh Organic Farm will respond shortly.");
+    } catch (error: any) {
+      toast.error(error.message || "Message could not be sent.");
+    }
   };
 
   return (
@@ -138,11 +144,11 @@ export default function ContactPage() {
             <div className="relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-emerald-950/40 p-2 backdrop-blur-md shadow-2xl">
               <img
                 src={heroContact}
-                alt="Utkarsh Organic Farm Wai Unit"
+                alt="Utkarsh Organic Farm Satara Unit"
                 className="h-28 sm:h-36 md:h-44 lg:h-52 xl:h-60 w-40 sm:w-56 md:w-64 lg:w-80 xl:w-96 object-cover rounded-xl"
               />
               <div className="absolute bottom-3 right-3 rounded-xl border border-emerald-400/40 bg-emerald-950/90 px-3 py-1 text-xs font-bold text-emerald-300 shadow-lg backdrop-blur-md hidden sm:block">
-                🌱 Wai (Satara) Unit
+                MIDC Satara Unit
               </div>
             </div>
           </motion.div>
@@ -190,7 +196,7 @@ export default function ContactPage() {
                   <div>
                     <p className="font-bold">Direct Call &amp; Support</p>
                     <p className="text-xs text-forest-foreground/80 mt-1">
-                      {COMPANY_INFO.phonePrimary} / {COMPANY_INFO.phoneSecondary}
+                      {COMPANY_INFO.phoneSecondary ? `${COMPANY_INFO.phonePrimary} / ${COMPANY_INFO.phoneSecondary}` : COMPANY_INFO.phonePrimary}
                     </p>
                   </div>
                 </div>
@@ -200,7 +206,7 @@ export default function ContactPage() {
                   <div>
                     <p className="font-bold">Email Addresses</p>
                     <p className="text-xs text-forest-foreground/80 mt-1">
-                      {COMPANY_INFO.email} / {COMPANY_INFO.officialEmail}
+                      {COMPANY_INFO.officialEmail ? `${COMPANY_INFO.email} / ${COMPANY_INFO.officialEmail}` : COMPANY_INFO.email}
                     </p>
                   </div>
                 </div>
@@ -258,7 +264,7 @@ export default function ContactPage() {
                   <ShieldCheck className="mx-auto h-12 w-12 text-accent" />
                   <h4 className="mt-4 font-display text-xl font-bold">Message Received!</h4>
                   <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
-                    Thank you! Praful Chorge &amp; team at Utkarsh Organic Farm will reply to your message shortly.
+                    Thank you! Utkarsh Organic Farm will reply to your message shortly.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}

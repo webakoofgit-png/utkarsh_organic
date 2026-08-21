@@ -20,6 +20,7 @@ import farm from "@/assets/farm.jpg";
 import heroBulkOrders from "@/assets/hero-bulk-orders.jpg";
 import flatlay from "@/assets/flatlay.jpg";
 import { Reveal, SectionHeading } from "@/components/site/motion-primitives";
+import { storeApi } from "@/lib/api";
 
 export default function BulkOrdersPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -33,10 +34,23 @@ export default function BulkOrdersPage() {
     requirements: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    toast.success("Bulk order inquiry received! Our B2B team will contact you within 4 hours.");
+    try {
+      await storeApi.bulkOrder({
+        name: formData.contactPerson,
+        businessName: formData.companyName,
+        email: formData.email,
+        phone: formData.phone,
+        product: formData.requirements,
+        quantity: formData.quantity,
+        message: `Industry: ${formData.industry}\n${formData.requirements}`,
+      });
+      setSubmitted(true);
+      toast.success("Bulk order inquiry received! Our B2B team will contact you within 4 hours.");
+    } catch (error: any) {
+      toast.error(error.message || "Bulk order inquiry could not be sent.");
+    }
   };
 
   return (
@@ -190,7 +204,7 @@ export default function BulkOrdersPage() {
             <div className="mt-10 rounded-2xl bg-background p-6 border border-border">
               <p className="text-xs font-bold uppercase tracking-widest text-accent">Request Sample Kit</p>
               <p className="mt-1 font-display font-bold text-base">Want to test our powders in your R&amp;D lab?</p>
-              <p className="mt-1 text-xs text-muted-foreground">We ship 100g sample kits directly to registered food businesses across India.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Official listings use 100 Kilogram MOQ; share your spec needs and volume for a current quote.</p>
             </div>
           </div>
 
