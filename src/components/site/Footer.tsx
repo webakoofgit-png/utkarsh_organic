@@ -41,7 +41,7 @@ export function Footer() {
                 <img src={logo} alt="Utkarsh Organic logo" className="h-full w-full object-contain" />
               </div>
               <div>
-                <h2 className="font-display text-2xl font-black tracking-tight text-white uppercase leading-none">
+                <h2 className="font-display text-2xl font-black text-white uppercase leading-none">
                   UTKARSH
                 </h2>
                 <p className="font-display text-xs font-extrabold tracking-widest text-emerald-400 uppercase mt-0.5">

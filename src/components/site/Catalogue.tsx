@@ -130,8 +130,8 @@ export function CataloguePage() {
     <main className="pt-16 lg:pt-20 bg-background">
       {/* Top Full Viewport Width Dark Green Breadcrumb Bar */}
       <div className="w-full bg-[#041a0e] border-b border-emerald-500/20 py-3">
-        <div className="container-x flex items-center justify-between text-xs sm:text-sm text-emerald-100 font-medium">
-          <div className="flex items-center gap-2 sm:gap-3">
+        <div className="container-x flex min-w-0 items-center justify-between text-xs sm:text-sm text-emerald-100 font-medium">
+          <div className="flex min-w-0 items-center gap-2 overflow-x-auto sm:gap-3">
             <Link
               to="/"
               className="grid h-7 w-7 place-items-center rounded-full bg-emerald-950/90 border border-emerald-400/40 text-emerald-400 hover:bg-emerald-500 hover:text-black transition"
@@ -145,7 +145,7 @@ export function CataloguePage() {
             <ChevronRight className="h-4 w-4 text-emerald-500/60" />
             <span className="font-bold text-emerald-400">Products</span>
             <ChevronRight className="h-4 w-4 text-emerald-500/60" />
-            <span className="text-emerald-200/90 font-medium">The Whole Collection</span>
+            <span className="hidden shrink-0 text-emerald-200/90 font-medium sm:inline">The Whole Collection</span>
           </div>
 
           <div className="flex items-center gap-1.5 text-emerald-400">
@@ -157,7 +157,7 @@ export function CataloguePage() {
       {/* 100% Full Viewport Width Hero Banner Header */}
       {/* Desktop (1920): 300px | Laptop (1440): 250px | Tablet (768): 210px | Mobile (390): 160px */}
       <section
-        className="relative w-full overflow-hidden min-h-[140px] h-[160px] sm:h-[180px] md:h-[210px] lg:h-[250px] xl:h-[300px] flex items-center bg-gradient-to-r from-[#051f12] via-[#04170d] to-[#020e07] text-white border-b border-emerald-500/20 shadow-md"
+        className="relative flex min-h-[170px] w-full items-center overflow-hidden bg-gradient-to-r from-[#051f12] via-[#04170d] to-[#020e07] text-white border-b border-emerald-500/20 shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
@@ -173,10 +173,10 @@ export function CataloguePage() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.35, ease: "easeInOut" }}
-              className="flex w-full items-center justify-between gap-6"
+              className="flex w-full min-w-0 items-center justify-between gap-6"
             >
               {/* Left Content */}
-              <div className="max-w-2xl py-2">
+              <div className="min-w-0 max-w-2xl py-2 pr-2">
                 {/* Eyebrow Pill */}
                 <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-emerald-300 tracking-wider">
                   <Leaf className="h-3.5 w-3.5 text-emerald-400" />
@@ -185,7 +185,7 @@ export function CataloguePage() {
                 </div>
 
                 {/* Headline */}
-                <h1 className="mt-2 font-serif text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black leading-tight tracking-tight text-white">
+                <h1 className="mt-2 break-words font-serif text-2xl font-black leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
                   {slide.titleLine1}{" "}
                   <span className="relative inline-block text-emerald-400">
                     {slide.titleLine2}
@@ -212,12 +212,12 @@ export function CataloguePage() {
               </div>
 
               {/* Right Visual Image */}
-              <div className="relative shrink-0 flex items-center justify-end">
+              <div className="relative hidden shrink-0 items-center justify-end sm:flex">
                 <div className="relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-emerald-950/40 p-2 backdrop-blur-md shadow-2xl">
                   <img
                     src={slide.image}
                     alt={slide.eyebrow}
-                    className="h-28 sm:h-36 md:h-44 lg:h-52 xl:h-60 w-40 sm:w-56 md:w-64 lg:w-80 xl:w-96 object-cover rounded-xl"
+                    className="h-32 w-52 rounded-xl bg-white/10 object-contain p-1 md:h-44 md:w-64 lg:h-52 lg:w-80 xl:h-60 xl:w-96"
                   />
                   <div className="absolute bottom-3 right-3 rounded-xl border border-emerald-400/40 bg-emerald-950/90 px-3 py-1 text-xs font-bold text-emerald-300 shadow-lg backdrop-blur-md hidden sm:block">
                     🌱 100% Pure &amp; Natural
@@ -276,9 +276,9 @@ export function CataloguePage() {
       {/* Catalogue Filters & Grid */}
       <section className="container-x py-6 lg:py-10">
         {/* Search & Categories Bar */}
-        <div className="flex flex-col gap-4 rounded-3xl border border-emerald-900/10 bg-[#faf8f5] p-4 lg:flex-row lg:items-center lg:justify-between lg:p-5 shadow-sm">
+        <div className="flex min-w-0 flex-col gap-4 rounded-3xl border border-emerald-900/10 bg-[#faf8f5] p-4 shadow-sm lg:flex-row lg:items-center lg:justify-between lg:p-5">
           {/* Search Input Container */}
-          <div className="relative flex-1 min-w-[260px] lg:max-w-md">
+          <div className="relative w-full min-w-0 flex-1 lg:max-w-md">
             <div className="relative flex items-center w-full rounded-full border border-emerald-900/15 bg-white px-4 py-3 shadow-inner focus-within:border-emerald-600 focus-within:ring-2 focus-within:ring-emerald-600/20 transition-all">
               <Search className="h-4.5 w-4.5 shrink-0 text-emerald-800/70" />
               <input
@@ -307,7 +307,7 @@ export function CataloguePage() {
           </div>
 
           {/* Category Filter Badges */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex min-w-0 flex-wrap items-center gap-2">
             {[{ id: "all" as const, name: "All Products" }, ...categories].map((item) => (
               <button
                 key={item.id}
@@ -315,7 +315,7 @@ export function CataloguePage() {
                   setCategory(item.id);
                   updateSearch(q, item.id);
                 }}
-                className={`rounded-full px-4 py-2.5 text-xs font-bold transition-all shadow-sm ${
+                className={`rounded-full px-3.5 py-2.5 text-xs font-bold transition-all shadow-sm sm:px-4 ${
                   category === item.id
                     ? "bg-primary text-primary-foreground shadow-md scale-105"
                     : "bg-white border border-emerald-900/10 text-foreground/80 hover:bg-emerald-50 hover:text-emerald-900"
@@ -333,12 +333,12 @@ export function CataloguePage() {
             <strong className="text-foreground">{items.length}</strong> naturally good choices
             {q ? <> for “{q}”</> : null}
           </p>
-          <label className="flex items-center gap-2 text-sm font-semibold">
+          <label className="flex w-full items-center gap-2 text-sm font-semibold sm:w-auto">
             <SlidersHorizontal className="h-4 w-4 text-accent" /> Sort{" "}
             <select
               value={sort}
               onChange={(event) => setSort(event.target.value)}
-              className="rounded-full border border-border bg-background px-3 py-2 text-sm font-medium outline-none"
+              className="min-w-0 flex-1 rounded-full border border-border bg-background px-3 py-2 text-sm font-medium outline-none sm:flex-none"
             >
               <option value="featured">Featured</option>
               <option value="rating">Top rated</option>

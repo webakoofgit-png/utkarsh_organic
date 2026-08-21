@@ -173,7 +173,7 @@ export default function HomePage() {
               <span>{COMPANY_INFO.marathiHeader}</span>
             </div>
 
-            <h1 className="mt-6 font-serif text-5xl font-black leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl text-white">
+            <h1 className="mt-6 font-serif text-4xl font-black leading-[1.08] text-white sm:text-6xl lg:text-7xl">
               Real Ingredients. <br />
               <span className="text-emerald-400">Real Taste.</span> <br />
               Real You.
@@ -219,7 +219,7 @@ export default function HomePage() {
         </div>
         <div className="container-x pt-4">
         <div className="rounded-3xl border border-emerald-500/20 bg-gradient-to-r from-[#051f12] to-[#03130a] p-6 shadow-xl text-white">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-emerald-500/20">
+          <div className="grid grid-cols-2 gap-6 text-center md:grid-cols-4 md:divide-x md:divide-emerald-500/20">
             <div>
               <p className="font-serif text-3xl font-extrabold text-emerald-400">
                 <Counter to={23} suffix="+" />
@@ -259,7 +259,7 @@ export default function HomePage() {
           <p className="text-xs font-extrabold tracking-[0.25em] text-[#6b9d28] uppercase flex items-center justify-center gap-2">
             <span>➔</span> FIND YOUR FLAVOUR <span>➔</span>
           </p>
-          <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+          <h2 className="mt-3 font-display text-4xl font-extrabold text-foreground sm:text-5xl">
             Naturally good, in{" "}
             <span className="relative inline-block text-[#1b5e2b]">
               every category
@@ -273,7 +273,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {customCategories.map((cat, index) => {
             const Icon = cat.icon;
             return (
@@ -287,11 +287,11 @@ export default function HomePage() {
                     <Icon className="h-5 w-5" />
                   </div>
 
-                  <div className="mt-4 relative h-48 w-full overflow-hidden rounded-2xl bg-white/60 p-3 shadow-inner flex items-center justify-center">
+                  <div className="mt-4 relative grid h-48 w-full place-items-center overflow-hidden rounded-2xl bg-white/60 p-4 shadow-inner">
                     <img
                       src={cat.image}
                       alt={cat.name}
-                      className="h-40 w-full object-cover rounded-xl transition duration-500 hover:scale-105"
+                      className="max-h-full max-w-full rounded-xl object-contain transition duration-500 hover:scale-[1.02]"
                     />
                   </div>
 
@@ -321,7 +321,7 @@ export default function HomePage() {
           })}
         </div>
 
-        <div className="mt-14 rounded-full border border-[#d6ebd3] bg-[#f0f7ef] p-4 sm:p-5 shadow-sm">
+        <div className="mt-14 rounded-[2rem] border border-[#d6ebd3] bg-[#f0f7ef] p-4 shadow-sm md:rounded-full sm:p-5">
           <div className="grid grid-cols-2 gap-4 md:grid-cols-5 md:divide-x divide-[#d6ebd3]">
             <div className="flex items-center gap-3 justify-center">
               <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#7ca938]/20 text-[#7ca938]">
@@ -443,7 +443,7 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.12}>
             <video
-              className="h-[400px] w-full rounded-3xl object-cover"
+              className="h-auto max-h-[400px] w-full rounded-3xl bg-emerald-950/40 object-contain"
               src={everydayHeroVideo}
               autoPlay
               muted
@@ -508,7 +508,7 @@ export default function HomePage() {
             {[...testimonials, ...testimonials, ...testimonials].map(({ quote, name, place }, idx) => (
               <div
                 key={idx}
-                className="surface-card flex h-full w-[360px] shrink-0 flex-col justify-between p-8 shadow-lift border border-border/80 rounded-3xl bg-background transition hover:border-emerald-400 hover:shadow-xl"
+                className="surface-card flex h-full w-[min(360px,calc(100vw-2rem))] shrink-0 flex-col justify-between p-6 shadow-lift border border-border/80 rounded-3xl bg-background transition hover:border-emerald-400 hover:shadow-xl sm:p-8"
               >
                 <div>
                   <Quote className="h-8 w-8 text-emerald-500 fill-emerald-500/10" />
@@ -551,7 +551,7 @@ export default function HomePage() {
                   <img
                     src={[flatlay, carrot, turmeric][index]}
                     alt=""
-                    className="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
+                    className="h-52 w-full bg-cream object-contain p-3 transition duration-500 group-hover:scale-[1.02]"
                   />
                   <div className="p-6">
                     <p className="text-xs font-bold uppercase tracking-widest text-accent">

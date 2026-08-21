@@ -113,7 +113,7 @@ export default function BlogPostPage() {
 
         {/* Featured Image */}
         <div className="mt-8 overflow-hidden rounded-3xl">
-          <img src={flatlay} alt={post.title} className="h-80 w-full object-cover sm:h-96" />
+          <img src={flatlay} alt={post.title} className="h-80 w-full bg-cream object-contain p-3 sm:h-96" />
         </div>
 
         {/* Article Body */}

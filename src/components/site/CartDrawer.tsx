@@ -36,7 +36,9 @@ export function CartDrawer() {
             <div className="flex-1 space-y-5 overflow-y-auto px-6 py-5">
               {lines.map(({ product, weight, qty, amount }) => (
                 <div key={`${product.slug}-${weight}`} className="flex gap-3">
-                  <img src={product.image} alt="" className="h-20 w-20 rounded-2xl object-cover" />
+                  <div className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl bg-cream p-2">
+                    <img src={product.image} alt="" className="max-h-full max-w-full object-contain" />
+                  </div>
                   <div className="min-w-0 flex-1">
                     <Link to={`/product/${product.slug}`} onClick={() => setCartOpen(false)} className="font-display text-sm font-bold text-foreground hover:text-accent">{product.name}</Link>
                     <p className="mt-1 text-xs text-muted-foreground">{weight} &middot; {inr(priceFor(product, weight).price)}</p>

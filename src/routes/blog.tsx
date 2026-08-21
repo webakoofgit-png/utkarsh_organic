@@ -44,7 +44,7 @@ export default function BlogPage() {
         {/* Featured Post */}
         {featured && (
           <div className="mt-14 overflow-hidden rounded-[2.5rem] bg-forest text-forest-foreground grid lg:grid-cols-2">
-            <img src={flatlay} alt={featured.title} className="h-80 lg:h-full w-full object-cover" />
+            <img src={flatlay} alt={featured.title} className="h-80 w-full bg-cream object-contain p-3 lg:h-full" />
             <div className="p-8 sm:p-12 flex flex-col justify-center">
               <span className="text-xs font-bold uppercase tracking-widest text-accent">Featured Story &middot; {featured.read}</span>
               <h2 className="mt-4 font-display text-3xl font-extrabold leading-snug sm:text-4xl">{featured.title}</h2>

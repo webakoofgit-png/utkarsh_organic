@@ -28,11 +28,11 @@ export default function RecipesPage() {
           {RECIPES.map((recipe, index) => (
             <Reveal key={recipe.slug} delay={index * 0.06}>
               <div className="surface-card overflow-hidden flex flex-col h-full group">
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative grid h-56 place-items-center overflow-hidden bg-cream p-3">
                   <img
                     src={images[index % images.length]}
                     alt={recipe.title}
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    className="max-h-full max-w-full object-contain transition duration-500 group-hover:scale-[1.02]"
                   />
                   <div className="absolute top-4 right-4 rounded-full bg-background/90 backdrop-blur-md px-3 py-1 text-xs font-bold text-foreground">
                     {recipe.level}

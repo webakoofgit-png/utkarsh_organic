@@ -53,14 +53,14 @@ export default function AboutPage() {
 
       {/* 100% Full Viewport Width Hero Banner Section (Matching Uploaded Design Image media_1787120746684.png) */}
       {/* Desktop (1920): 300px | Laptop (1440): 250px | Tablet (768): 210px | Mobile (390): 160px */}
-      <section className="relative w-full overflow-hidden min-h-[140px] h-[160px] sm:h-[180px] md:h-[210px] lg:h-[250px] xl:h-[300px] flex items-center bg-gradient-to-r from-[#051f12] via-[#04170d] to-[#020e07] text-white border-b border-emerald-500/20 shadow-md">
+      <section className="relative flex min-h-[170px] w-full items-center overflow-hidden bg-gradient-to-r from-[#051f12] via-[#04170d] to-[#020e07] text-white border-b border-emerald-500/20 shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]">
         {/* Ambient Leaf Glow */}
         <div className="absolute top-0 right-1/3 h-80 w-80 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
 
         {/* Content Centered inside container-x */}
-        <div className="container-x w-full relative z-10 flex items-center justify-between gap-6">
+        <div className="container-x relative z-10 flex w-full min-w-0 items-center justify-between gap-6">
           {/* Left Content */}
-          <div className="max-w-2xl py-2">
+          <div className="min-w-0 max-w-2xl py-2 pr-2">
             {/* Top Eyebrow Pill */}
             <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-emerald-300 tracking-wider">
               <Leaf className="h-3.5 w-3.5 text-emerald-400" />
@@ -69,7 +69,7 @@ export default function AboutPage() {
             </div>
 
             {/* Headline */}
-            <h1 className="mt-2 font-serif text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black leading-tight tracking-tight text-white">
+            <h1 className="mt-2 break-words font-serif text-2xl font-black leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
               Rooted in nature.{" "}
               <span className="relative inline-block text-emerald-400">
                 Driven by purpose.
@@ -96,12 +96,12 @@ export default function AboutPage() {
           </div>
 
           {/* Right Visual Image */}
-          <div className="relative shrink-0 flex items-center justify-end">
+          <div className="relative hidden shrink-0 items-center justify-end sm:flex">
             <div className="relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-emerald-950/40 p-2 backdrop-blur-md shadow-2xl">
               <img
                 src={hero}
                 alt="Utkarsh Organic Farm"
-                className="h-28 sm:h-36 md:h-44 lg:h-52 xl:h-60 w-40 sm:w-56 md:w-64 lg:w-80 xl:w-96 object-cover rounded-xl"
+                className="h-32 w-52 rounded-xl bg-white/10 object-contain p-1 md:h-44 md:w-64 lg:h-52 lg:w-80 xl:h-60 xl:w-96"
               />
               <div className="absolute bottom-3 right-3 rounded-xl border border-emerald-400/40 bg-emerald-950/90 px-3 py-1 text-xs font-bold text-emerald-300 shadow-lg backdrop-blur-md hidden sm:block">
                 MIDC Satara Unit
@@ -201,7 +201,7 @@ export default function AboutPage() {
             <img
               src={farm}
               alt="Utkarsh Organic Farm in Satara"
-              className="h-[420px] w-full rounded-3xl object-cover shadow-lift"
+              className="h-auto max-h-[420px] w-full rounded-3xl bg-cream object-contain p-3 shadow-lift"
             />
           </Reveal>
         </div>

@@ -80,9 +80,11 @@ export default function CartPage() {
                     key={`${product.slug}-${weight}`}
                     className="flex flex-col gap-4 rounded-2xl border border-border bg-background p-5 sm:grid sm:grid-cols-[2fr_1fr_1fr_auto] sm:items-center"
                   >
-                    <div className="flex gap-4 items-center">
-                      <img src={product.image} alt={product.name} className="h-20 w-20 rounded-xl object-cover shrink-0" />
-                      <div>
+                    <div className="flex min-w-0 gap-4 items-center">
+                      <div className="grid h-20 w-20 shrink-0 place-items-center rounded-xl bg-cream p-2">
+                        <img src={product.image} alt={product.name} className="max-h-full max-w-full object-contain" />
+                      </div>
+                      <div className="min-w-0">
                         <Link to={`/product/${product.slug}`} className="font-display text-base font-bold text-foreground hover:text-accent">
                           {product.name}
                         </Link>

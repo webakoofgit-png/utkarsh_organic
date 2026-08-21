@@ -46,7 +46,7 @@ export function Navbar() {
             <img src={logo} alt="Utkarsh Organic logo" className="h-full w-full object-contain" />
           </div>
           <span className="flex flex-col leading-none">
-            <span className="font-display text-lg sm:text-xl font-black tracking-tight text-foreground">
+            <span className="font-display text-lg sm:text-xl font-black text-foreground">
               Utkarsh
             </span>
             <span className="text-[0.65rem] font-bold tracking-[0.3em] text-primary">
