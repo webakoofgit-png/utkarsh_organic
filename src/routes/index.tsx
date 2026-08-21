@@ -1,138 +1,99 @@
 import { Link } from "react-router-dom";
+import type { ReactNode } from "react";
 import {
   ArrowRight,
-  Award,
   BadgeCheck,
-  Building2,
-  Check,
-  ChefHat,
-  ChevronRight,
-  Coffee,
+  CheckCircle2,
   Factory,
-  FlaskConical,
+  GalleryHorizontal,
   HeartHandshake,
-  Home,
   Leaf,
+  MapPin,
+  PackageCheck,
   Play,
   Quote,
   ShieldCheck,
   ShoppingBag,
-  Soup,
   Sparkles,
   Sprout,
   Star,
   Tractor,
   Truck,
   Users,
-  Utensils,
-  UtensilsCrossed,
 } from "lucide-react";
 import farm from "@/assets/farm.jpg";
-import flatlay from "@/assets/flatlay.jpg";
-import hero from "@/assets/hero-onion.jpg";
-import carrot from "@/assets/p-carrot.jpg";
-import onion from "@/assets/p-onion.jpg";
-import spinach from "@/assets/p-spinach.jpg";
-import turmeric from "@/assets/p-turmeric.jpg";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Counter, Reveal, SectionHeading } from "@/components/site/motion-primitives";
-import { BLOG_POSTS, RECIPES, COMPANY_INFO } from "@/lib/products";
 import { useCatalog } from "@/lib/catalog";
+import { COMPANY_INFO } from "@/lib/products";
+import { GALLERY_ITEMS } from "@/lib/gallery";
+import { CUSTOMER_TESTIMONIALS } from "@/lib/testimonials";
 import heroVideo from "../../IMAGE_TO_VIDEO_PROMPT_Use_both.mp4";
-import everydayHeroVideo from "../../Prompt__Use_the_uploaded_image.mp4";
+import storyVideo from "../../Prompt__Use_the_uploaded_image.mp4";
 
-const customCategories = [
+const heroTrustPoints = [
+  "Farm-to-kitchen dehydrated ingredients",
+  "FSSAI registered food business",
+  "Bulk ready MOQ and Pan India supply",
+];
+
+const uspCards = [
   {
-    id: "dehydrated-flakes",
-    name: "Dehydrated Vegetables & Flakes",
-    items: "Okra, onion, garlic, carrot, spinach, cluster beans, lemon and moringa sticks",
-    image: spinach,
-    badgeBg: "bg-[#7ca938]",
-    cardBg: "bg-[#f0f7ef] border-[#d6ebd3]",
-    btnBg: "bg-[#7ca938] hover:bg-[#69922c]",
-    icon: Leaf,
+    icon: Sprout,
+    title: "Farm-First Sourcing",
+    text: "Vegetables and herbs are selected for dependable aroma, color and everyday cooking performance.",
   },
   {
-    id: "dehydrated-powders",
-    name: "Dehydrated Vegetable Powders",
-    items: "White onion, red onion, spinach, carrot and curry leaf powders",
-    image: onion,
-    badgeBg: "bg-[#1b5e2b]",
-    cardBg: "bg-[#edf6ef] border-[#ceebd4]",
-    btnBg: "bg-[#1b5e2b] hover:bg-[#134720]",
-    icon: Coffee,
+    icon: Factory,
+    title: "Careful Dehydration",
+    text: "The catalog focuses on shelf-stable flakes and powders made for consistent use in homes and commercial kitchens.",
   },
   {
-    id: "organic-powders",
-    name: "Organic & Ayurvedic Powders",
-    items: "Amla, beetroot, garlic, ginger and moringa leaf powder",
-    image: carrot,
-    badgeBg: "bg-[#c24e27]",
-    cardBg: "bg-[#fdf2ec] border-[#f7d6c4]",
-    btnBg: "bg-[#c24e27] hover:bg-[#a53f1d]",
-    icon: Soup,
+    icon: ShieldCheck,
+    title: "Transparent Quality",
+    text: "Every product keeps visible specs like form, processing, moisture guidance, MOQ and storage details.",
   },
   {
-    id: "spices",
-    name: "Spice Powders",
-    items: "Turmeric powder and coriander powder",
-    image: turmeric,
-    badgeBg: "bg-[#e6a119]",
-    cardBg: "bg-[#fdf7e7] border-[#f5e4b8]",
-    btnBg: "bg-[#e6a119] hover:bg-[#cc8e12]",
-    icon: UtensilsCrossed,
-  },
-  {
-    id: "dried-specialty",
-    name: "Dried Specialty Ingredients",
-    items: "Dried tomato flakes and dried sweet corn",
-    image: flatlay,
-    badgeBg: "bg-[#7c5a28]",
-    cardBg: "bg-[#f8f1e7] border-[#ecdcc5]",
-    btnBg: "bg-[#7c5a28] hover:bg-[#65491f]",
-    icon: Soup,
+    icon: Truck,
+    title: "Bulk Order Support",
+    text: "Utkarsh Organic Farm serves HoReCa, distributors and food processors with MOQ-led product formats.",
   },
 ];
 
-const testimonials = [
+const processSteps = [
   {
-    quote: "I make gravies for 120 guests at a time. The onion powder is consistently fragrant, which makes a real difference to my prep.",
-    name: "Chef Rohan Mehta",
-    place: "Nashik",
+    title: "Select",
+    text: "Fresh produce and ingredients are chosen for the intended powder, flakes or dried specialty format.",
   },
   {
-    quote: "The beetroot and spinach powders have become the easiest way to add colour to our weekend breakfast experiments.",
-    name: "Ayesha Kulkarni",
-    place: "Pune",
+    title: "Clean",
+    text: "Ingredients are washed and prepared before drying so the final format is simple to use.",
   },
   {
-    quote: "I appreciate being able to read exactly what is in every pack. The garlic powder is a permanent pantry item now.",
-    name: "Nisha Shah",
-    place: "Mumbai",
+    title: "Dehydrate",
+    text: "Moisture is reduced to create stable ingredients for kitchens, processors and bulk buyers.",
   },
   {
-    quote: "The moringa leaf powder and dried vegetable formats make it easy to plan production without depending on fresh stock every day.",
-    name: "Dr. Vikram Joshi",
-    place: "Kolhapur",
+    title: "Pack",
+    text: "Products are packed with clear MOQ, storage and specification details for confident ordering.",
   },
-  {
-    quote: "The carrot and spinach powder formats are useful wherever color, consistency and shelf stability matter.",
-    name: "Sunita Deshmukh",
-    place: "Satara",
-  },
-  {
-    quote: "The dehydrated mixed vegetables rehydrate in 5 minutes! Essential for our resort kitchen's high-volume daily service.",
-    name: "Chef Sameer Patil",
-    place: "Goa",
-  },
+];
+
+const trustStrip = [
+  { label: "GSTIN", value: COMPANY_INFO.gstin },
+  { label: "FSSAI", value: COMPANY_INFO.fssaiRegNo },
+  { label: "Udyam", value: COMPANY_INFO.udyamRegNo },
+  { label: "Market", value: COMPANY_INFO.marketCovered },
 ];
 
 export default function HomePage() {
-  const { products } = useCatalog();
-  const bestSellers = products.filter((product) => product.bestSeller).slice(0, 4);
+  const { products, categories } = useCatalog();
+  const bestSellerProducts = products.filter((product) => product.bestSeller).slice(0, 6);
+  const featuredProducts = bestSellerProducts.length >= 4 ? bestSellerProducts : products.slice(0, 6);
+  const galleryPreview = GALLERY_ITEMS.slice(0, 5);
 
   return (
-    <main className="pt-16 lg:pt-20">
+    <main className="overflow-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -140,16 +101,25 @@ export default function HomePage() {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: COMPANY_INFO.name,
-            url: "https://utkarshorganic.com",
-            description: "Organic dehydrated food powders for home and professional kitchens.",
+            url: COMPANY_INFO.website,
+            email: COMPANY_INFO.email,
+            telephone: COMPANY_INFO.phonePrimary,
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: `${COMPANY_INFO.address.doorNo} ${COMPANY_INFO.address.locality}`,
+              addressLocality: COMPANY_INFO.address.city,
+              addressRegion: COMPANY_INFO.address.state,
+              postalCode: COMPANY_INFO.address.pincode,
+              addressCountry: "IN",
+            },
+            description: COMPANY_INFO.marathiDescription,
           }),
         }}
       />
 
-      {/* Custom Hero Section */}
-      <section className="relative bg-gradient-to-b from-[#051f12] via-[#04170d] to-[#020e07] text-white pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden">
+      <section className="relative min-h-[100svh] overflow-hidden bg-[#03150b] pb-16 pt-28 text-white sm:pt-32 lg:pb-24 lg:pt-36">
         <video
-          className="absolute inset-0 h-full w-full object-cover opacity-100"
+          className="absolute inset-0 h-full w-full object-cover opacity-70"
           src={heroVideo}
           autoPlay
           muted
@@ -158,250 +128,126 @@ export default function HomePage() {
           preload="metadata"
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#020e07]/72 via-[#04170d]/42 to-[#051f12]/18" />
-        <div className="absolute inset-0 bg-black/8" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#020d06]/88 via-[#062414]/60 to-[#062414]/22" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#03150b] via-transparent to-transparent" />
         <HomeBackgroundAnimation />
 
-        <div className="container-x relative z-10">
-          {/* Left Hero Content */}
-          <Reveal y={24} className="max-w-3xl">
-            <div className="inline-flex animate-gentle-float items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-950/70 px-4 py-2 text-xs font-bold text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-              <Leaf className="h-3.5 w-3.5 text-emerald-400" />
-              <span>{COMPANY_INFO.marathiHeader}</span>
+        <div className="container-x relative z-10 grid min-h-[calc(100svh-9rem)] items-center gap-12 lg:grid-cols-[minmax(0,1fr)_420px]">
+          <Reveal y={28} className="max-w-4xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/30 bg-emerald-950/60 px-4 py-2 text-xs font-bold text-emerald-100 shadow-[0_0_24px_rgba(52,211,153,0.18)] backdrop-blur-md">
+              <Leaf className="h-3.5 w-3.5 text-emerald-300" />
+              <span>From Our Farm to Your Kitchen</span>
             </div>
 
-            <h1 className="mt-6 font-serif text-4xl font-black leading-[1.08] text-white sm:text-6xl lg:text-7xl">
-              Real Ingredients. <br />
-              <span className="text-emerald-400">Real Taste.</span> <br />
-              Real You.
+            <h1 className="mt-6 max-w-4xl text-balance font-display text-4xl font-black leading-[1.08] text-white sm:text-6xl lg:text-7xl">
+              शुद्ध निसर्गाचा स्पर्श,
+              <span className="block text-emerald-300">आरोग्याचा उत्कर्ष!</span>
             </h1>
 
-            <div className="mt-6 flex items-center gap-3">
-              <div className="h-[2px] w-12 animate-draw-line bg-emerald-400" />
-              <Leaf className="h-4 w-4 text-emerald-400 shrink-0" />
-            </div>
-
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-emerald-100/90 sm:text-base">
-              {COMPANY_INFO.marathiDescription}
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-emerald-50/86 sm:text-lg">
+              Naturally grown, carefully dehydrated vegetables and powders crafted for modern healthy kitchens, bulk buyers and food processors.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
                 to="/products"
-                className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-emerald-500 px-7 py-3.5 text-sm font-extrabold text-black shadow-[0_0_20px_rgba(16,185,129,0.4)] transition duration-200 hover:-translate-y-0.5 hover:scale-105 hover:bg-emerald-400"
+                className="group inline-flex items-center gap-2.5 rounded-full bg-saffron px-7 py-3.5 text-sm font-extrabold text-foreground shadow-[0_16px_42px_rgba(230,161,25,0.24)] transition hover:-translate-y-0.5 hover:bg-white"
               >
-                <span className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-white/35 opacity-0 group-hover:animate-shine-sweep group-hover:opacity-100" />
-                <ShoppingBag className="relative z-10 h-4 w-4" />
-                <span className="relative z-10">Shop Now</span>
-                <ChevronRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                <ShoppingBag className="h-4 w-4" />
+                Explore Products
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
-              <Link
-                to="/why-organic"
-                className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-950/40 px-7 py-3.5 text-sm font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-emerald-500/20"
+              <a
+                href="#farm-story"
+                className="inline-flex items-center gap-2 rounded-full border border-white/28 bg-white/10 px-7 py-3.5 text-sm font-bold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/16"
               >
-                <span>Explore More</span>
-                <Play className="h-3.5 w-3.5 fill-current text-emerald-400" />
-              </Link>
+                <Play className="h-3.5 w-3.5 fill-current text-emerald-300" />
+                Our Farm Story
+              </a>
             </div>
+
+            <ul className="mt-8 grid gap-3 text-sm font-semibold text-emerald-50/86 sm:grid-cols-3">
+              {heroTrustPoints.map((point) => (
+                <li key={point} className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-300" />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
           </Reveal>
 
+          <Reveal delay={0.12} className="lg:justify-self-end">
+            <div className="rounded-[1.75rem] border border-white/16 bg-white/12 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.24)] backdrop-blur-xl">
+              <div className="rounded-[1.35rem] bg-white p-4 text-foreground">
+                <div className="grid aspect-[4/3] place-items-center overflow-hidden rounded-2xl bg-cream p-3">
+                  <img src={farm} alt="Utkarsh Organic Farm view" className="h-full w-full object-contain" />
+                </div>
+                <div className="mt-5">
+                  <p className="text-xs font-extrabold uppercase text-accent">Satara, Maharashtra</p>
+                  <h2 className="mt-2 font-display text-2xl font-black">Good food begins with good farming.</h2>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    Manufacturer and supplier of dehydrated vegetables, organic powders, spice powders and dried specialty ingredients.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Counter Cards */}
-      <section className="relative bg-background pb-8">
+      <section className="relative bg-background pb-10">
         <div className="w-full overflow-hidden leading-none">
           <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block h-10 w-full fill-background">
             <path d="M0,0 C150,90 350,-40 500,60 C650,140 900,10 1200,40 L1200,120 L0,120 Z" />
           </svg>
         </div>
-        <div className="container-x pt-4">
-        <div className="rounded-3xl border border-emerald-500/20 bg-gradient-to-r from-[#051f12] to-[#03130a] p-6 shadow-xl text-white">
-          <div className="grid grid-cols-2 gap-6 text-center md:grid-cols-4 md:divide-x md:divide-emerald-500/20">
-            <div>
-              <p className="font-serif text-3xl font-extrabold text-emerald-400">
-                <Counter to={23} suffix="+" />
-              </p>
-              <p className="mt-1 text-xs font-semibold text-emerald-200">Official Products</p>
-            </div>
-
-            <div>
-              <p className="font-serif text-3xl font-extrabold text-emerald-400">
-                <Counter to={1000} suffix="+" />
-              </p>
-              <p className="mt-1 text-xs font-semibold text-emerald-200">Happy Customers</p>
-            </div>
-
-            <div>
-              <p className="font-serif text-3xl font-extrabold text-emerald-400">
-                <Counter to={10} suffix="+" />
-              </p>
-              <p className="mt-1 text-xs font-semibold text-emerald-200">Farm Partners</p>
-            </div>
-
-            <div>
-              <p className="font-serif text-3xl font-extrabold text-emerald-400 flex items-center justify-center gap-1">
-                <Counter to={5} suffix="" />
-                <Star className="h-5 w-5 fill-emerald-400 text-emerald-400" />
-              </p>
-              <p className="mt-1 text-xs font-semibold text-emerald-200">Customer Rating</p>
-            </div>
+        <div className="container-x -mt-1">
+          <div className="grid gap-3 rounded-[1.75rem] border border-emerald-500/16 bg-white p-4 shadow-lift sm:grid-cols-2 lg:grid-cols-4">
+            <StatCard label="Official Products" value={<Counter to={products.length || 23} suffix="+" />} icon={PackageCheck} />
+            <StatCard label="Minimum Order Quantity" value={<><Counter to={100} /> kg</>} icon={ShoppingBag} />
+            <StatCard label="Team Members" value={<Counter to={15} suffix=" people" />} icon={Users} />
+            <StatCard label="Market Coverage" value="Pan India" icon={Truck} />
           </div>
-        </div>
         </div>
       </section>
 
-      {/* Category Section */}
       <section className="container-x py-16 lg:py-24">
-        <div className="text-center max-w-3xl mx-auto">
-          <p className="text-xs font-extrabold tracking-[0.25em] text-[#6b9d28] uppercase flex items-center justify-center gap-2">
-            <span>➔</span> FIND YOUR FLAVOUR <span>➔</span>
-          </p>
-          <h2 className="mt-3 font-display text-4xl font-extrabold text-foreground sm:text-5xl">
-            Naturally good, in{" "}
-            <span className="relative inline-block text-[#1b5e2b]">
-              every category
-              <svg className="absolute -bottom-2 left-0 w-full h-3 text-[#7ca938]" viewBox="0 0 100 20" preserveAspectRatio="none">
-                <path d="M0,10 Q50,20 100,5" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" />
-              </svg>
-            </span>
-          </h2>
-          <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xl mx-auto">
-            Every listing now follows the official Utkarsh Organic Farm catalog from Satara, with per-kg quotes, MOQ and product specifications.
-          </p>
-        </div>
-
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {customCategories.map((cat, index) => {
-            const Icon = cat.icon;
-            return (
-              <Reveal key={cat.id} delay={index * 0.08}>
-                <div
-                  className={`group/card relative flex h-full flex-col justify-between rounded-[2rem] border ${cat.cardBg} p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}
-                >
-                  <div
-                    className={`absolute -top-5 left-6 grid h-11 w-11 place-items-center rounded-full ${cat.badgeBg} text-white shadow-md transition-transform duration-300 group-hover/card:-translate-y-1 group-hover/card:rotate-3 group-hover/card:scale-110`}
-                  >
-                    <Icon className="h-5 w-5" />
-                  </div>
-
-                  <div className="mt-4 relative grid h-48 w-full place-items-center overflow-hidden rounded-2xl bg-white/60 p-4 shadow-inner">
-                    <img
-                      src={cat.image}
-                      alt={cat.name}
-                      className="max-h-full max-w-full rounded-xl object-contain transition duration-500 group-hover/card:-translate-y-1"
-                    />
-                  </div>
-
-                  <div className="mt-6 flex-1 flex flex-col justify-between">
-                    <div>
-                      <h3 className="font-display text-lg font-black text-foreground">
-                        {cat.name}
-                      </h3>
-                      <p className="mt-2 text-xs leading-relaxed text-muted-foreground/90">
-                        {cat.items}
-                      </p>
-                    </div>
-
-                    <div className="mt-6">
-                      <Link
-                        to={`/products?category=${cat.id}`}
-                        className={`inline-flex items-center gap-1.5 rounded-full ${cat.btnBg} px-6 py-2.5 text-xs font-extrabold text-white shadow-sm transition hover:-translate-y-0.5 hover:scale-105`}
-                      >
-                        <span>Explore</span>
-                        <span>➔</span>
-                      </Link>
-                    </div>
-                  </div>
+        <SectionHeading
+          eyebrow="Why choose Utkarsh Organic?"
+          title="Pure ingredients with a practical farm-to-business backbone."
+          sub="A premium organic feel backed by clear product specifications, transparent contact details and bulk-ready catalog data."
+        />
+        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {uspCards.map(({ icon: Icon, title, text }, index) => (
+            <Reveal key={title} delay={index * 0.07}>
+              <article className="surface-card group h-full p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lift">
+                <div className="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-accent transition group-hover:bg-primary group-hover:text-primary-foreground">
+                  <Icon className="h-6 w-6" />
                 </div>
-              </Reveal>
-            );
-          })}
-        </div>
-
-        <div className="mt-14 rounded-[2rem] border border-[#d6ebd3] bg-[#f0f7ef] p-4 shadow-sm md:rounded-full sm:p-5">
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-5 md:divide-x divide-[#d6ebd3]">
-            <div className="flex items-center gap-3 justify-center">
-              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#7ca938]/20 text-[#7ca938]">
-                <Leaf className="h-5 w-5" />
-              </div>
-              <div className="text-left leading-tight">
-                <p className="text-xs font-bold text-foreground">100% Natural</p>
-                <p className="text-[11px] text-muted-foreground">No Chemicals</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3 justify-center md:pl-4">
-              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#7ca938]/20 text-[#7ca938]">
-                <Tractor className="h-5 w-5" />
-              </div>
-              <div className="text-left leading-tight">
-                <p className="text-xs font-bold text-foreground">Farm Fresh</p>
-                <p className="text-[11px] text-muted-foreground">Directly from Farms</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3 justify-center md:pl-4">
-              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#7ca938]/20 text-[#7ca938]">
-                <ShieldCheck className="h-5 w-5" />
-              </div>
-              <div className="text-left leading-tight">
-                <p className="text-xs font-bold text-foreground">Premium Quality</p>
-                <p className="text-[11px] text-muted-foreground">Carefully Selected</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3 justify-center md:pl-4">
-              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#7ca938]/20 text-[#7ca938]">
-                <FlaskConical className="h-5 w-5" />
-              </div>
-              <div className="text-left leading-tight">
-                <p className="text-xs font-bold text-foreground">No Preservatives</p>
-                <p className="text-[11px] text-muted-foreground">Pure &amp; Safe</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3 justify-center md:pl-4">
-              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#7ca938]/20 text-[#7ca938]">
-                <Users className="h-5 w-5" />
-              </div>
-              <div className="text-left leading-tight">
-                <p className="text-xs font-bold text-foreground">Trusted by Thousands</p>
-                <p className="text-[11px] text-muted-foreground">Happy Customers</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-gradient-to-r from-[#051f12] via-[#04170d] to-[#020e07] px-6 py-2.5 text-xs font-extrabold text-white shadow-md">
-            <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
-            <span>Pure by <strong className="text-emerald-400">Nature.</strong> ✦ Trusted by <strong className="text-emerald-400">You.</strong></span>
-            <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
-          </div>
+                <h3 className="mt-6 font-display text-xl font-bold">{title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p>
+              </article>
+            </Reveal>
+          ))}
         </div>
       </section>
 
-      {/* Best Sellers */}
-      <section className="bg-beige/45 py-20 lg:py-28">
+      <section className="bg-beige/45 py-16 lg:py-24">
         <div className="container-x">
           <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <SectionHeading
               align="left"
-              eyebrow="Loved in real kitchens"
-              title="Our Best Sellers"
-              sub="The pantry staples cooks keep coming back for."
+              eyebrow="Best sellers"
+              title="Products customers discover first."
+              sub="Real catalog items with the same product detail routes, cart handlers, wishlist state and MOQ data."
             />
-            <Link
-              to="/products"
-              className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-primary hover:text-accent"
-            >
-              Shop all products <ArrowRight className="h-4 w-4" />
+            <Link to="/products" className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-primary hover:text-accent">
+              View all products <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {bestSellers.map((product, index) => (
-              <Reveal key={product.slug} delay={index * 0.06}>
+          <div className="mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {featuredProducts.map((product, index) => (
+              <Reveal key={product.slug} delay={index * 0.05}>
                 <ProductCard product={product} />
               </Reveal>
             ))}
@@ -409,183 +255,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Everyday Hero Section */}
-      <section className="container-x py-20 lg:py-28">
-        <div className="grid items-center gap-10 overflow-hidden rounded-[2rem] bg-forest p-7 text-forest-foreground md:p-10 lg:grid-cols-2 lg:p-14">
-          <Reveal>
-            <p className="eyebrow text-accent">The everyday hero</p>
-            <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight sm:text-5xl">
-              One spoonful. <br />A world of flavour.
-            </h2>
-            <p className="mt-5 max-w-lg leading-relaxed text-forest-foreground/75">
-              Dehydrated White Onion Powder is the official spotlight product for gravies, marinades, seasoning blends and food processing.
-            </p>
-            <ul className="mt-7 grid gap-3 sm:grid-cols-2">
-              {[
-                "Fine mesh powder",
-                "White to off-white color",
-                "Fresh sharp onion aroma",
-                "MOQ 100 Kilogram",
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-2 text-sm font-semibold">
-                  <Check className="h-4 w-4 text-accent" /> {item}
-                </li>
-              ))}
-            </ul>
-            <Link
-              to="/product/dehydrated-white-onion-powder"
-              className="mt-9 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-bold text-accent-foreground"
-            >
-              View white onion powder <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Reveal>
-          <Reveal delay={0.12}>
-            <video
-              className="h-auto max-h-[400px] w-full rounded-3xl bg-emerald-950/40 object-contain"
-              src={everydayHeroVideo}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-label="Organic vegetable powder ingredients video"
-            />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Promise & Farm Journey */}
-      <section className="bg-gradient-cream py-20 lg:py-28">
-        <div className="container-x">
-          <SectionHeading eyebrow="Our promise" title="Good for your plate. Better by nature." />
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {[
-              {
-                icon: Sprout,
-                title: "Thoughtfully sourced",
-                text: "We present official product data from Utkarsh Organic Farm, Satara, Maharashtra.",
-              },
-              {
-                icon: Factory,
-                title: "Gently processed",
-                text: "Low-temperature dehydration keeps colour, aroma and everyday ease intact.",
-              },
-              {
-                icon: HeartHandshake,
-                title: "Honestly packed",
-                text: "No fillers, artificial colour or shortcuts—just a clear ingredient list.",
-              },
-            ].map(({ icon: Icon, title, text }, index) => (
-              <Reveal key={title} delay={index * 0.08}>
-                <div className="surface-card h-full p-7">
-                  <div className="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-accent">
-                    <Icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="mt-6 font-display text-xl font-bold">{title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Community Words - Continuous Infinite Moving Marquee Ticker */}
-      <section className="py-20 lg:py-28 overflow-hidden bg-gradient-to-b from-transparent via-emerald-50/20 to-transparent">
-        <div className="container-x text-center mb-12">
-          <SectionHeading eyebrow="From our community" title="Kind words from well-fed kitchens" />
-        </div>
-
-        {/* Marquee Track Container with Fade Edge Overlays */}
-        <div className="relative w-full overflow-hidden group">
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-background to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-background to-transparent" />
-
-          {/* Infinite Moving Marquee Track */}
-          <div className="flex w-max gap-6 animate-marquee group-hover:[animation-play-state:paused]">
-            {[...testimonials, ...testimonials, ...testimonials].map(({ quote, name, place }, idx) => (
-              <div
-                key={idx}
-                className="surface-card flex h-full w-[min(360px,calc(100vw-2rem))] shrink-0 flex-col justify-between p-6 shadow-lift border border-border/80 rounded-3xl bg-background transition hover:border-emerald-400 hover:shadow-xl sm:p-8"
+      <section className="container-x py-16 lg:py-24">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          {categories.slice(0, 5).map((category, index) => (
+            <Reveal key={category.id} delay={index * 0.05}>
+              <Link
+                to={`/products?category=${category.id}`}
+                className="group flex h-full min-h-44 flex-col justify-between rounded-[1.5rem] border border-border bg-white p-6 shadow-soft transition hover:-translate-y-1 hover:border-emerald-300 hover:shadow-lift"
               >
                 <div>
-                  <Quote className="h-8 w-8 text-emerald-500 fill-emerald-500/10" />
-                  <blockquote className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                    “{quote}”
-                  </blockquote>
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-border/50">
-                  <p className="font-display font-bold text-foreground">{name}</p>
-                  <p className="text-xs text-emerald-600 font-semibold">{place}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Recipes Section */}
-      <section className="bg-beige/45 py-20 lg:py-28">
-        <div className="container-x">
-          <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-            <SectionHeading
-              align="left"
-              eyebrow="Simple ideas"
-              title="Make something nourishing"
-              sub="Easy recipes with little shortcuts and plenty of flavour."
-            />
-            <Link
-              to="/recipes"
-              className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-primary hover:text-accent"
-            >
-              See all recipes <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="mt-11 grid gap-5 md:grid-cols-3">
-            {RECIPES.slice(0, 3).map((recipe, index) => (
-              <Reveal key={recipe.slug} delay={index * 0.08}>
-                <Link to="/recipes" className="group surface-card block overflow-hidden">
-                  <img
-                    src={[flatlay, carrot, turmeric][index]}
-                    alt=""
-                    className="h-52 w-full bg-cream object-contain p-3 transition duration-500 group-hover:scale-[1.02]"
-                  />
-                  <div className="p-6">
-                    <p className="text-xs font-bold uppercase tracking-widest text-accent">
-                      {recipe.time} &middot; {recipe.level}
-                    </p>
-                    <h3 className="mt-2 font-display text-xl font-bold">{recipe.title}</h3>
-                    <p className="mt-3 text-sm text-muted-foreground">
-                      Made with {recipe.uses.join(" and ")}
-                    </p>
+                  <div className="grid h-11 w-11 place-items-center rounded-2xl bg-secondary text-accent">
+                    <Leaf className="h-5 w-5" />
                   </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Blog & Journal */}
-      <section className="container-x py-20 lg:py-28">
-        <SectionHeading eyebrow="Field notes" title="A little more to savour" />
-        <div className="mt-11 grid gap-5 md:grid-cols-3">
-          {BLOG_POSTS.slice(0, 3).map((post, index) => (
-            <Reveal key={post.slug} delay={index * 0.08}>
-              <Link
-                to={`/blog/${post.slug}`}
-                className="group block h-full rounded-3xl border border-border bg-background p-6 transition hover:-translate-y-1 hover:shadow-lift"
-              >
-                <p className="text-xs font-bold uppercase tracking-widest text-accent">
-                  Journal &middot; {post.read}
-                </p>
-                <h3 className="mt-4 font-display text-xl font-bold leading-snug">{post.title}</h3>
-                <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
-                  {post.excerpt}
-                </p>
+                  <h3 className="mt-5 font-display text-lg font-black">{category.name}</h3>
+                  {category.blurb ? <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{category.blurb}</p> : null}
+                </div>
                 <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary">
-                  Read story <ArrowRight className="h-4 w-4" />
+                  Explore <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
             </Reveal>
@@ -593,48 +279,211 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer CTA Banner */}
-      <section className="container-x py-20 lg:py-24">
-        <div className="rounded-[2rem] bg-secondary px-7 py-12 text-center md:px-12">
-          <Leaf className="mx-auto h-8 w-8 text-accent" />
-          <h2 className="mt-4 font-display text-3xl font-extrabold sm:text-4xl">
-            A better pantry starts here.
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
-            Get simple recipe ideas, new product news and a gentle nudge to cook something good.
-          </p>
-          <form
-            className="mx-auto mt-7 flex max-w-md flex-col gap-3 sm:flex-row"
-            onSubmit={(event) => {
-              event.preventDefault();
-              (event.currentTarget.elements.namedItem("email") as HTMLInputElement).value = "";
-            }}
-          >
-            <input
-              name="email"
-              required
-              type="email"
-              placeholder="Your email address"
-              className="h-12 flex-1 rounded-full border border-border bg-background px-5 text-sm outline-none ring-ring focus:ring-2"
-            />
-            <button className="h-12 rounded-full bg-primary px-6 text-sm font-bold text-primary-foreground">
-              Join the good list
-            </button>
-          </form>
-          <p className="mt-3 text-xs text-muted-foreground">
-            No noise. Just useful things for your kitchen.
-          </p>
+      <section id="farm-story" className="bg-gradient-cream py-16 lg:py-24">
+        <div className="container-x grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+          <Reveal>
+            <p className="eyebrow mb-3">Farm story</p>
+            <h2 className="font-display text-3xl font-black leading-tight sm:text-5xl">Good Food Begins With Good Farming.</h2>
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+              Utkarsh Organic Farm brings Satara-grown sensibility into dehydrated vegetables, powders, spice powders and specialty dried ingredients that are easier to store, ship and use.
+            </p>
+            <div className="mt-8 grid gap-4">
+              {processSteps.map((step, index) => (
+                <div key={step.title} className="flex gap-4">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary text-sm font-extrabold text-primary-foreground">
+                    {index + 1}
+                  </div>
+                  <div>
+                    <h3 className="font-display text-lg font-bold">{step.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{step.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.12}>
+            <div className="rounded-[2rem] border border-border bg-white p-3 shadow-lift">
+              <div className="grid aspect-[4/3] place-items-center overflow-hidden rounded-[1.55rem] bg-cream p-3">
+                <img src={farm} alt="Utkarsh Organic Farm process" className="h-full w-full object-contain" />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="container-x py-16 lg:py-24">
+        <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+          <SectionHeading
+            align="left"
+            eyebrow="Farm gallery"
+            title="A closer look at the farm, products and pantry-ready formats."
+            sub="The gallery uses existing site assets and product photos, framed so images stay visible instead of cropped."
+          />
+          <Link to="/gallery" className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-primary hover:text-accent">
+            Open gallery <GalleryHorizontal className="h-4 w-4" />
+          </Link>
+        </div>
+
+        <div className="mt-11 grid gap-5 md:grid-cols-4">
+          {galleryPreview.map((item, index) => (
+            <Reveal key={item.title} delay={index * 0.05} className={item.featured ? "md:col-span-2 md:row-span-2" : ""}>
+              <Link to="/gallery" className="group surface-card block h-full overflow-hidden p-3">
+                <div className={`grid place-items-center overflow-hidden rounded-[1.25rem] bg-cream p-3 ${item.featured ? "aspect-[4/3] md:h-full" : "aspect-[4/3]"}`}>
+                  <img src={item.image} alt={item.title} className="h-full w-full object-contain transition duration-500 group-hover:scale-[1.03]" />
+                </div>
+                <div className="p-3">
+                  <p className="text-xs font-extrabold uppercase text-accent">{item.label}</p>
+                  <h3 className="mt-1 font-display text-lg font-bold">{item.title}</h3>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-[#052314] py-16 text-white lg:py-24">
+        <div className="container-x grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <Reveal>
+            <p className="eyebrow mb-3 text-emerald-300">Video story</p>
+            <h2 className="font-display text-3xl font-black leading-tight sm:text-5xl">Watch the Utkarsh Organic story in motion.</h2>
+            <p className="mt-5 text-base leading-relaxed text-white/72">
+              A responsive 16:9 video section with controls, poster image and no audio autoplay, so visitors stay in control while browsing.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/24 bg-emerald-400/10 px-4 py-2 text-xs font-bold text-emerald-100">
+                <Play className="h-3.5 w-3.5" />
+                Controls enabled
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/24 bg-emerald-400/10 px-4 py-2 text-xs font-bold text-emerald-100">
+                <Leaf className="h-3.5 w-3.5" />
+                Mobile friendly
+              </span>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.12}>
+            <div className="rounded-[2rem] border border-white/14 bg-white/8 p-3 shadow-[0_24px_80px_rgba(0,0,0,0.25)]">
+              <video
+                className="aspect-video w-full rounded-[1.5rem] bg-black object-contain"
+                src={storyVideo}
+                poster={farm}
+                controls
+                preload="metadata"
+                playsInline
+                aria-label="Utkarsh Organic Farm video story"
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="overflow-hidden py-16 lg:py-24">
+        <div className="container-x">
+          <SectionHeading
+            eyebrow="Loved by our customers"
+            title="Customer stories, ready for verified reviews."
+            sub="The carousel is wired from central testimonial data. Current entries are clearly marked placeholders until real reviews are approved."
+          />
+        </div>
+
+        <div className="relative mt-11 w-full overflow-hidden">
+          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-background to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-background to-transparent" />
+          <div className="flex w-max gap-5 animate-marquee hover:[animation-play-state:paused]">
+            {[...CUSTOMER_TESTIMONIALS, ...CUSTOMER_TESTIMONIALS, ...CUSTOMER_TESTIMONIALS].map((testimonial, index) => (
+              <article key={`${testimonial.name}-${index}`} className="surface-card flex w-[min(360px,calc(100vw-2rem))] shrink-0 flex-col justify-between p-6">
+                <div>
+                  <div className="flex items-center justify-between gap-3">
+                    <Quote className="h-8 w-8 fill-emerald-500/10 text-emerald-500" />
+                    {testimonial.status === "placeholder" ? (
+                      <span className="rounded-full bg-secondary px-3 py-1 text-[11px] font-bold text-primary">Placeholder</span>
+                    ) : (
+                      <span className="rounded-full bg-emerald-100 px-3 py-1 text-[11px] font-bold text-primary">Verified</span>
+                    )}
+                  </div>
+                  <blockquote className="mt-5 text-sm leading-relaxed text-muted-foreground">"{testimonial.quote}"</blockquote>
+                </div>
+                <div className="mt-7 border-t border-border pt-4">
+                  <p className="font-display font-bold text-foreground">{testimonial.name}</p>
+                  <p className="mt-1 text-xs font-semibold text-accent">{testimonial.place}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-forest py-10 text-forest-foreground">
+        <div className="container-x grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {trustStrip.map((item, index) => (
+            <Reveal key={item.label} delay={index * 0.04}>
+              <div className="rounded-[1.25rem] border border-white/12 bg-white/8 p-5">
+                <p className="text-xs font-bold uppercase text-emerald-200">{item.label}</p>
+                <p className="mt-2 break-words font-display text-lg font-extrabold text-white">{item.value}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="container-x py-16 lg:py-24">
+        <div className="grid gap-8 rounded-[2rem] bg-secondary p-7 md:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <p className="eyebrow mb-3">Visit or order</p>
+            <h2 className="font-display text-3xl font-black sm:text-4xl">Plan a bulk order or speak with the farm team.</h2>
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              {COMPANY_INFO.address.full}. Exact map coordinates are not listed in the project data, so contact the team before planning a visit.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+            <Link to="/bulk-orders" className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-extrabold text-primary-foreground transition hover:-translate-y-0.5 hover:bg-forest">
+              <PackageCheck className="h-4 w-4" />
+              Bulk Order
+            </Link>
+            <a
+              href={`https://wa.me/${COMPANY_INFO.whatsappNumber}`}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-primary/25 bg-white px-6 py-3 text-sm font-extrabold text-primary transition hover:-translate-y-0.5"
+            >
+              <MapPin className="h-4 w-4" />
+              Contact for Visit
+            </a>
+          </div>
         </div>
       </section>
     </main>
   );
 }
 
+function StatCard({
+  label,
+  value,
+  icon: Icon,
+}: {
+  label: string;
+  value: ReactNode;
+  icon: typeof BadgeCheck;
+}) {
+  return (
+    <div className="flex items-center gap-4 rounded-[1.25rem] bg-cream p-4">
+      <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary text-primary-foreground">
+        <Icon className="h-5 w-5" />
+      </div>
+      <div>
+        <p className="font-display text-xl font-black text-foreground">{value}</p>
+        <p className="mt-1 text-xs font-semibold text-muted-foreground">{label}</p>
+      </div>
+    </div>
+  );
+}
+
 function HomeBackgroundAnimation() {
   const leaves = [
-    "left-[7%] top-[14%] h-8 w-8 opacity-35 [animation-delay:0s] [animation-duration:15s]",
-    "left-[18%] top-[64%] h-6 w-6 opacity-25 [animation-delay:2s] [animation-duration:18s]",
-    "left-[52%] top-[18%] h-7 w-7 opacity-30 [animation-delay:4s] [animation-duration:17s]",
+    "left-[7%] top-[18%] h-8 w-8 opacity-35 [animation-delay:0s] [animation-duration:15s]",
+    "left-[18%] top-[68%] h-6 w-6 opacity-25 [animation-delay:2s] [animation-duration:18s]",
+    "left-[52%] top-[16%] h-7 w-7 opacity-30 [animation-delay:4s] [animation-duration:17s]",
     "left-[70%] top-[58%] h-9 w-9 opacity-25 [animation-delay:1s] [animation-duration:20s]",
     "left-[86%] top-[28%] h-6 w-6 opacity-30 [animation-delay:6s] [animation-duration:16s]",
   ];
@@ -644,11 +493,7 @@ function HomeBackgroundAnimation() {
       <div className="home-organic-backdrop absolute inset-0 opacity-70" />
       <div className="home-vine-lines absolute inset-x-0 bottom-0 h-40 opacity-50" />
       {leaves.map((className, index) => (
-        <Leaf
-          key={index}
-          className={`home-drifting-leaf absolute text-emerald-300/60 ${className}`}
-          strokeWidth={1.6}
-        />
+        <Leaf key={index} className={`home-drifting-leaf absolute text-emerald-300/60 ${className}`} strokeWidth={1.6} />
       ))}
     </div>
   );

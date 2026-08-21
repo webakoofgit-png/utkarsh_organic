@@ -24,6 +24,7 @@ import RecipesPage from "@/routes/recipes";
 import BlogPage from "@/routes/blog";
 import BlogPostPage from "@/routes/blog.$slug";
 import ContactPage from "@/routes/contact";
+import GalleryPage from "@/routes/gallery";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -59,6 +60,7 @@ export default function App() {
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/why-organic" element={<WhyOrganicPage />} />
                 <Route path="/bulk-orders" element={<BulkOrdersPage />} />
+                <Route path="/gallery" element={<GalleryPage />} />
                 <Route path="/recipes" element={<RecipesPage />} />
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/blog/:slug" element={<BlogPostPage />} />

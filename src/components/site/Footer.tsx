@@ -1,184 +1,148 @@
 import { Link } from "react-router-dom";
 import {
-  Facebook,
-  FileText,
+  BadgeCheck,
+  ExternalLink,
+  GalleryHorizontal,
   HelpCircle,
   Home,
-  Instagram,
   Leaf,
-  Linkedin,
   Mail,
   MapPin,
   MessageCircle,
   Package,
   Phone,
-  RotateCcw,
   ShieldCheck,
   ShoppingBag,
-  ShoppingCart,
-  Truck,
   User,
   Users,
-  Youtube,
 } from "lucide-react";
 import logo from "@/assets/logo-mark.png";
 import { COMPANY_INFO } from "@/lib/products";
 import { WhatsAppIcon } from "./FloatingActions";
 
+const quickLinks = [
+  { icon: Home, label: "Home", to: "/" },
+  { icon: Users, label: "About Us", to: "/about" },
+  { icon: ShoppingBag, label: "Products", to: "/products" },
+  { icon: Leaf, label: "Why Organic", to: "/why-organic" },
+  { icon: GalleryHorizontal, label: "Farm Gallery", to: "/gallery" },
+  { icon: Package, label: "Bulk Orders", to: "/bulk-orders" },
+];
+
+const helpLinks = [
+  { icon: User, label: "My Account", to: "/account" },
+  { icon: Package, label: "Track Order", to: "/track-order" },
+  { icon: HelpCircle, label: "Contact Support", to: "/contact" },
+  { icon: ShieldCheck, label: "Quality & Trust", to: "/why-organic" },
+];
+
 export function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="relative bg-gradient-to-b from-[#051f12] via-[#04170d] to-[#020e07] text-white font-sans border-t border-emerald-500/20">
-      {/* Top Decorative Organic Wave Glow */}
-      <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent" />
+    <footer className="relative overflow-hidden border-t border-emerald-500/20 bg-[#03150b] text-white">
+      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-emerald-400/60 to-transparent" />
+      <div className="home-vine-lines pointer-events-none absolute inset-x-0 top-0 h-36 opacity-20" />
 
-      {/* Main Footer Container */}
-      <div className="container-x relative pt-16 pb-12 lg:pt-20">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Column 1: Brand & Overview */}
-          <div className="space-y-6">
-            <div className="flex items-center gap-3">
-              <div className="grid h-12 w-12 place-items-center rounded-xl bg-white border border-emerald-500/40 p-1 shadow-[0_0_15px_rgba(16,185,129,0.2)] overflow-hidden shrink-0">
-                <img src={logo} alt="Utkarsh Organic logo" className="h-full w-full object-contain" />
+      <div className="container-x relative py-14 lg:py-20">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.25fr_0.9fr_0.9fr_1.25fr]">
+          <div className="space-y-5">
+            <Link to="/" className="inline-flex items-center gap-3">
+              <div className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-xl border border-emerald-500/40 bg-white p-1 shadow-[0_0_18px_rgba(16,185,129,0.18)]">
+                <img src={logo} alt="Utkarsh Organic Farm logo" className="h-full w-full object-contain" />
               </div>
-              <div>
-                <h2 className="font-display text-2xl font-black text-white uppercase leading-none">
-                  UTKARSH
-                </h2>
-                <p className="font-display text-xs font-extrabold tracking-widest text-emerald-400 uppercase mt-0.5">
-                  ORGANIC FARM
-                </p>
-              </div>
-            </div>
-
-            <p className="hidden">
-              🌱 शेतापासून थेट तुमच्या स्वयंपाकघरापर्यंत! 🌱
-            </p>
-
-            <p className="hidden">
-              ताजा, सकस, नैसर्गिक – विषमुक्त आणि आरोग्याची Dehydrated Vegetables &amp; Powders आता उपलब्ध. १००% नैसर्गिक, कोणतीही प्रिझर्व्हेटिव्ह्ज नसलेली शुद्ध उत्पादने!
-            </p>
-
-            <p className="text-xs font-bold text-emerald-400 flex items-center gap-1.5 leading-snug">
-              {COMPANY_INFO.marathiHeader}
-            </p>
-
-            <p className="text-xs leading-relaxed text-white max-w-xs">
-              {COMPANY_INFO.marathiDescription}
-            </p>
-
-            {/* Social Follow Icons */}
-            <div className="flex gap-3 pt-2">
-              {[
-                { icon: Instagram, href: "https://instagram.com" },
-                { icon: Facebook, href: "https://facebook.com" },
-                { icon: Linkedin, href: "https://linkedin.com" },
-                { icon: Youtube, href: "https://youtube.com" },
-              ].map(({ icon: Icon, href }, i) => (
-                <a
-                  key={i}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Social link"
-                  className="grid h-9 w-9 place-items-center rounded-full border border-emerald-500/30 bg-emerald-950/60 text-emerald-300 transition-all hover:scale-110 hover:border-emerald-400 hover:bg-emerald-500 hover:text-black shadow-[0_0_10px_rgba(16,185,129,0.15)]"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Column 2: Quick Links */}
-          <div>
-            <h3 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-emerald-400 pb-2 border-b border-emerald-500/20">
-              <Leaf className="h-4 w-4 text-emerald-400" /> QUICK LINKS
-            </h3>
-            <ul className="mt-5 space-y-3 text-xs text-white font-medium">
-              {[
-                { icon: Home, label: "Home", to: "/" },
-                { icon: Users, label: "About Us", to: "/about" },
-                { icon: ShoppingCart, label: "Shop Catalogue", to: "/products" },
-                { icon: ShoppingBag, label: "Bulk / Commercial Packs", to: "/bulk-orders" },
-                { icon: FileText, label: "Field Notes & Blog", to: "/blog" },
-                { icon: Phone, label: "Contact Us", to: "/contact" },
-              ].map(({ icon: Icon, label, to }) => (
-                <li key={label}>
-                  <Link
-                    to={to}
-                    className="flex items-center gap-2.5 transition-colors hover:text-emerald-400 hover:translate-x-1 duration-200"
-                  >
-                    <Icon className="h-4 w-4 text-emerald-400" />
-                    <span>{label}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Customer Support */}
-          <div>
-            <h3 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-emerald-400 pb-2 border-b border-emerald-500/20">
-              <Leaf className="h-4 w-4 text-emerald-400" /> CUSTOMER SUPPORT
-            </h3>
-            <ul className="mt-5 space-y-3 text-xs text-white font-medium">
-              {[
-                { icon: User, label: "My Account", to: "/account" },
-                { icon: Package, label: "Track Order", to: "/track-order" },
-                { icon: Truck, label: "Shipping Policy", to: "/contact" },
-                { icon: RotateCcw, label: "Return Policy", to: "/contact" },
-                { icon: HelpCircle, label: "Why Organic & FAQ", to: "/why-organic" },
-                { icon: ShieldCheck, label: "Privacy Policy", to: "/contact" },
-              ].map(({ icon: Icon, label, to }) => (
-                <li key={label}>
-                  <Link
-                    to={to}
-                    className="flex items-center gap-2.5 transition-colors hover:text-emerald-400 hover:translate-x-1 duration-200"
-                  >
-                    <Icon className="h-4 w-4 text-emerald-400" />
-                    <span>{label}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4: Contact & Farm Unit */}
-          <div>
-            <h3 className="flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-emerald-400 pb-2 border-b border-emerald-500/20">
-              <Leaf className="h-4 w-4 text-emerald-400" /> CONTACT &amp; FARM UNIT
-            </h3>
-            <div className="mt-5 space-y-3.5 text-xs text-white font-medium">
-              <div className="leading-snug space-y-0.5">
-                <p className="font-semibold text-white">{COMPANY_INFO.contactPerson}</p>
-                <p className="font-semibold text-white">{COMPANY_INFO.natureOfBusiness} &middot; Est. {COMPANY_INFO.yearEstablished}</p>
-              </div>
-
-              <div className="flex items-center gap-2.5 text-white">
-                <Phone className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span>{COMPANY_INFO.phoneSecondary ? `${COMPANY_INFO.phonePrimary} / ${COMPANY_INFO.phoneSecondary}` : COMPANY_INFO.phonePrimary}</span>
-              </div>
-
-              <div className="flex items-center gap-2.5 text-white">
-                <Mail className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span>{COMPANY_INFO.email}</span>
-              </div>
-
-              <div className="flex items-start gap-2.5 text-white">
-                <MapPin className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span className="leading-relaxed">
-                  {COMPANY_INFO.address.full}
+              <span>
+                <span className="block font-display text-2xl font-black uppercase leading-none">Utkarsh</span>
+                <span className="mt-1 block text-xs font-extrabold uppercase tracking-[0.22em] text-emerald-300">
+                  Organic Farm
                 </span>
-              </div>
+              </span>
+            </Link>
 
-              <div className="pt-1">
+            <div>
+              <p className="text-sm font-bold text-emerald-300">{COMPANY_INFO.marathiSlogan}</p>
+              <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/72">
+                {COMPANY_INFO.marathiDescription}
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2 text-[11px] font-bold text-emerald-100">
+              <span className="rounded-full border border-emerald-400/25 bg-emerald-400/10 px-3 py-1.5">FSSAI {COMPANY_INFO.fssaiRegNo}</span>
+              <span className="rounded-full border border-emerald-400/25 bg-emerald-400/10 px-3 py-1.5">GST {COMPANY_INFO.gstin}</span>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="flex items-center gap-2 text-sm font-extrabold uppercase text-emerald-300">
+              <Leaf className="h-4 w-4" />
+              Quick Links
+            </h3>
+            <ul className="mt-5 grid gap-3 text-sm text-white/76">
+              {quickLinks.map(({ icon: Icon, label, to }) => (
+                <li key={label}>
+                  <Link to={to} className="flex items-center gap-2.5 transition hover:translate-x-1 hover:text-emerald-300">
+                    <Icon className="h-4 w-4 text-emerald-300" />
+                    <span>{label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="flex items-center gap-2 text-sm font-extrabold uppercase text-emerald-300">
+              <BadgeCheck className="h-4 w-4" />
+              Help
+            </h3>
+            <ul className="mt-5 grid gap-3 text-sm text-white/76">
+              {helpLinks.map(({ icon: Icon, label, to }) => (
+                <li key={label}>
+                  <Link to={to} className="flex items-center gap-2.5 transition hover:translate-x-1 hover:text-emerald-300">
+                    <Icon className="h-4 w-4 text-emerald-300" />
+                    <span>{label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="flex items-center gap-2 text-sm font-extrabold uppercase text-emerald-300">
+              <MessageCircle className="h-4 w-4" />
+              Contact
+            </h3>
+            <div className="mt-5 grid gap-4 text-sm text-white/76">
+              <p className="font-semibold text-white">{COMPANY_INFO.contactPerson}</p>
+              <a href={`tel:${COMPANY_INFO.phonePrimary.replace(/\s/g, "")}`} className="flex items-center gap-2.5 hover:text-emerald-300">
+                <Phone className="h-4 w-4 shrink-0 text-emerald-300" />
+                <span>{COMPANY_INFO.phonePrimary}</span>
+              </a>
+              <a href={`mailto:${COMPANY_INFO.email}`} className="flex items-center gap-2.5 break-all hover:text-emerald-300">
+                <Mail className="h-4 w-4 shrink-0 text-emerald-300" />
+                <span>{COMPANY_INFO.email}</span>
+              </a>
+              <p className="flex items-start gap-2.5 leading-relaxed">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" />
+                <span>{COMPANY_INFO.address.full}</span>
+              </p>
+              <div className="flex flex-wrap gap-3 pt-1">
                 <a
                   href={`https://wa.me/${COMPANY_INFO.whatsappNumber}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 text-xs font-extrabold text-[#25D366] hover:text-white transition"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-xs font-extrabold text-[#06230f] transition hover:-translate-y-0.5"
                 >
-                  <WhatsAppIcon className="h-4 w-4 fill-current text-[#25D366]" />
-                  <span>WhatsApp: {COMPANY_INFO.phonePrimary}</span>
+                  <WhatsAppIcon className="h-4 w-4 fill-current" />
+                  WhatsApp
+                </a>
+                <a
+                  href={COMPANY_INFO.website}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 px-4 py-2 text-xs font-extrabold text-emerald-200 transition hover:-translate-y-0.5 hover:bg-emerald-400/10"
+                >
+                  Website
+                  <ExternalLink className="h-3.5 w-3.5" />
                 </a>
               </div>
             </div>
@@ -186,31 +150,17 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar (Copyright, Webakoof Credit, FSSAI) */}
-      <div className="border-t border-emerald-500/20 bg-black/50 py-5">
-        <div className="container-x flex flex-col items-center justify-between gap-4 text-xs text-white font-medium md:flex-row">
-          <div className="flex items-center gap-2">
-            <Leaf className="h-4 w-4 text-emerald-400 shrink-0" />
-            <p className="text-white">
-              © 2026 UTKARSH ORGANIC FARM. All Rights Reserved. | Developed by{" "}
-              <a
-                href="https://webakoof.com"
-                target="_blank"
-                rel="noreferrer"
-                className="font-extrabold text-emerald-400 hover:underline hover:text-emerald-300 transition"
-              >
-                Webakoof
-              </a>
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-3 text-[11px] text-white font-semibold">
-            <span>FSSAI License # 21526039003217</span>
-            <span className="text-emerald-500/60">|</span>
-            <span>GSTIN 27CKXPB5409F1ZZ</span>
-            <span className="text-emerald-500/60">|</span>
-            <span>Udyam UDYAM-MH-30-0197446</span>
-          </div>
+      <div className="border-t border-emerald-500/20 bg-black/35 py-5">
+        <div className="container-x flex flex-col items-center justify-between gap-4 text-center text-xs text-white/70 md:flex-row md:text-left">
+          <p>
+            © {currentYear} UTKARSH ORGANIC FARM. All Rights Reserved. Developed by{" "}
+            <a href="https://webakoof.com" target="_blank" rel="noreferrer" className="font-extrabold text-emerald-300 hover:underline">
+              Webakoof
+            </a>
+          </p>
+          <p className="font-semibold text-white/72">
+            GSTIN {COMPANY_INFO.gstin} · FSSAI {COMPANY_INFO.fssaiRegNo} · Udyam {COMPANY_INFO.udyamRegNo}
+          </p>
         </div>
       </div>
     </footer>

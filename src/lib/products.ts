@@ -29,10 +29,10 @@ export const COMPANY_INFO = {
   email: "PrafullChorage143@gmail.com",
   officialEmail: "",
   website: "https://www.utkarshorgfarm.in/",
-  marathiHeader: "Manufacturer and supplier of dehydrated vegetables and organic powders",
-  marathiSlogan: "Optimum quality dehydrated and powdered ingredients from Satara, Maharashtra",
+  marathiHeader: "शेतातून थेट तुमच्या स्वयंपाकघरापर्यंत",
+  marathiSlogan: "शुद्ध निसर्गाचा स्पर्श, आरोग्याचा उत्कर्ष!",
   marathiDescription:
-    "Established in 2026, Utkarsh Organic Farm supplies dehydrated vegetables, organic powders, dried tomato flakes, dried sweet corn, turmeric powder, coriander powder and ayurvedic moringa leaf powder across Pan India.",
+    "सातारा, महाराष्ट्र येथून Pan India साठी dehydrated vegetables, organic powders, spice powders आणि specialty dried ingredients पुरवणारे उत्पादक व पुरवठादार.",
 };
 
 export type Weight = "1kg" | "5kg" | "25kg" | "100kg";
