@@ -160,10 +160,7 @@ export default function HomePage() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#020e07]/72 via-[#04170d]/42 to-[#051f12]/18" />
         <div className="absolute inset-0 bg-black/8" />
-
-        {/* Ambient Background Leaf Glow */}
-        <div className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
-        <div className="absolute top-1/3 right-1/4 h-96 w-96 rounded-full bg-emerald-400/10 blur-3xl pointer-events-none" />
+        <HomeBackgroundAnimation />
 
         <div className="container-x relative z-10">
           {/* Left Hero Content */}
@@ -630,5 +627,29 @@ export default function HomePage() {
         </div>
       </section>
     </main>
+  );
+}
+
+function HomeBackgroundAnimation() {
+  const leaves = [
+    "left-[7%] top-[14%] h-8 w-8 opacity-35 [animation-delay:0s] [animation-duration:15s]",
+    "left-[18%] top-[64%] h-6 w-6 opacity-25 [animation-delay:2s] [animation-duration:18s]",
+    "left-[52%] top-[18%] h-7 w-7 opacity-30 [animation-delay:4s] [animation-duration:17s]",
+    "left-[70%] top-[58%] h-9 w-9 opacity-25 [animation-delay:1s] [animation-duration:20s]",
+    "left-[86%] top-[28%] h-6 w-6 opacity-30 [animation-delay:6s] [animation-duration:16s]",
+  ];
+
+  return (
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="home-organic-backdrop absolute inset-0 opacity-70" />
+      <div className="home-vine-lines absolute inset-x-0 bottom-0 h-40 opacity-50" />
+      {leaves.map((className, index) => (
+        <Leaf
+          key={index}
+          className={`home-drifting-leaf absolute text-emerald-300/60 ${className}`}
+          strokeWidth={1.6}
+        />
+      ))}
+    </div>
   );
 }
