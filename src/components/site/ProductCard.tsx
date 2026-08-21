@@ -17,27 +17,27 @@ export function ProductCard({ product, compact = false }: { product: Product; co
 
   return (
     <article className="group surface-card relative flex h-full min-w-0 flex-col overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-lift">
-      <div className="relative grid aspect-square place-items-center overflow-hidden bg-gradient-to-b from-cream to-background">
+      <div className="relative grid aspect-[4/3.75] min-h-[260px] place-items-center overflow-hidden bg-white sm:min-h-[290px]">
         <Link
           to={`/product/${product.slug}`}
           aria-label={`View ${product.name}`}
-          className="absolute inset-0 grid place-items-center p-4 sm:p-5"
+          className="absolute inset-0 grid place-items-center px-7 pb-8 pt-14 sm:px-9 sm:pb-9 sm:pt-16"
         >
           <img
             src={product.image}
             alt={product.name}
             loading="lazy"
-            className="max-h-full max-w-full object-contain transition duration-500 group-hover:scale-[1.02]"
+            className="h-full w-full object-contain object-center"
           />
         </Link>
-        <div className="absolute left-3 top-3 flex flex-col gap-2">
+        <div className="absolute left-3 top-3 z-10 flex flex-col gap-2">
           {product.bestSeller ? <span className="rounded-full bg-forest px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-forest-foreground">Best seller</span> : null}
           {product.newArrival ? <span className="rounded-full bg-saffron px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-foreground">New</span> : null}
         </div>
         <button
           aria-label={saved ? `Remove ${product.name} from wishlist` : `Save ${product.name} to wishlist`}
           onClick={() => toggleWishlist(product.slug)}
-          className={`absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-background/90 shadow-sm transition hover:bg-background ${saved ? "text-destructive" : "text-foreground"}`}
+          className={`absolute right-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full bg-background/90 shadow-sm transition hover:bg-background ${saved ? "text-destructive" : "text-foreground"}`}
         >
           <Heart className="h-4 w-4" fill={saved ? "currentColor" : "none"} />
         </button>
