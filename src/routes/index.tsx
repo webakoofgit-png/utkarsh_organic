@@ -245,12 +245,25 @@ export default function HomePage() {
               View all products <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {featuredProducts.map((product, index) => (
-              <Reveal key={product.slug} delay={index * 0.05}>
-                <ProductCard product={product} />
-              </Reveal>
-            ))}
+          <div className="relative mt-11 overflow-hidden">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-beige/80 to-transparent sm:w-20" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-beige/80 to-transparent sm:w-20" />
+            <div className="flex w-max animate-marquee [animation-duration:34s] hover:[animation-play-state:paused] focus-within:[animation-play-state:paused]">
+              <div className="flex gap-5 pr-5">
+                {featuredProducts.map((product, index) => (
+                  <Reveal key={product.slug} delay={index * 0.05} className="w-[min(78vw,18rem)] shrink-0 sm:w-[18.5rem] lg:w-[19rem]">
+                    <ProductCard product={product} />
+                  </Reveal>
+                ))}
+              </div>
+              <div aria-hidden="true" inert className="flex gap-5 pr-5">
+                {featuredProducts.map((product) => (
+                  <div key={`carousel-copy-${product.slug}`} className="w-[min(78vw,18rem)] shrink-0 sm:w-[18.5rem] lg:w-[19rem]">
+                    <ProductCard product={product} />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
