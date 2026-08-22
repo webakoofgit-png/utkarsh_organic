@@ -27,7 +27,7 @@ export function ProductCard({ product, compact = false }: { product: Product; co
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="relative grid aspect-[4/3.75] min-h-[260px] place-items-center overflow-hidden bg-white sm:min-h-[290px]">
-        <span className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-1/3 bg-gradient-to-r from-transparent via-emerald-50/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:animate-shine-sweep group-hover:opacity-100" />
+        <span className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-1/3 bg-gradient-to-r from-transparent via-teal-50/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:animate-shine-sweep group-hover:opacity-100" />
         <Link
           to={`/product/${product.slug}`}
           aria-label={`View ${product.name}`}

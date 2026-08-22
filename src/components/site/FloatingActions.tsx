@@ -32,7 +32,7 @@ export function FloatingActions() {
         />
 
         {/* Hover Tooltip */}
-        <span className="absolute right-16 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-lg bg-emerald-950 px-3 py-1.5 text-xs font-bold text-emerald-300 shadow-xl border border-emerald-500/30 opacity-0 transition-all duration-200 group-hover:opacity-100 pointer-events-none">
+        <span className="absolute right-16 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-lg bg-teal-950 px-3 py-1.5 text-xs font-bold text-lime-200 shadow-xl border border-teal-300/30 opacity-0 transition-all duration-200 group-hover:opacity-100 pointer-events-none">
           💬 Chat with Utkarsh Farm
         </span>
       </a>

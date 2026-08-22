@@ -106,7 +106,7 @@ const trustStrip = [
 const categoryIconMap = {
   "dehydrated-flakes": {
     icon: Carrot,
-    shell: "bg-emerald-50 text-emerald-700 ring-emerald-100",
+    shell: "bg-teal-50 text-teal-700 ring-teal-100",
   },
   "dehydrated-powders": {
     icon: CookingPot,
@@ -159,7 +159,7 @@ export default function HomePage() {
         }}
       />
 
-      <section className="relative min-h-[100svh] overflow-hidden bg-[#03150b] pb-16 pt-28 text-white sm:pt-32 lg:pb-24 lg:pt-36">
+      <section className="relative min-h-[100svh] overflow-hidden bg-[#052c33] pb-16 pt-28 text-white sm:pt-32 lg:pb-24 lg:pt-36">
         <video
           className="absolute inset-0 h-full w-full object-cover opacity-70"
           src={heroVideo}
@@ -170,23 +170,23 @@ export default function HomePage() {
           preload="metadata"
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#020d06]/88 via-[#062414]/60 to-[#062414]/22" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#03150b] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#041e28]/88 via-[#0b4a50]/60 to-[#0b4a50]/22" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#052c33] via-transparent to-transparent" />
         <HomeBackgroundAnimation />
 
         <div className="container-x relative z-10 grid min-h-[calc(100svh-9rem)] items-center gap-12 lg:grid-cols-[minmax(0,1fr)_420px]">
           <Reveal y={28} className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/30 bg-emerald-950/60 px-4 py-2 text-xs font-bold text-emerald-100 shadow-[0_0_24px_rgba(52,211,153,0.18)] backdrop-blur-md">
-              <Leaf className="h-3.5 w-3.5 text-emerald-300" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-lime-300/35 bg-teal-950/60 px-4 py-2 text-xs font-bold text-lime-100 shadow-[0_0_24px_rgba(190,242,100,0.2)] backdrop-blur-md">
+              <Leaf className="h-3.5 w-3.5 text-lime-300" />
               <span>From Our Farm to Your Kitchen</span>
             </div>
 
             <h1 className="mt-6 max-w-4xl text-balance font-display text-4xl font-black leading-[1.08] text-white sm:text-6xl lg:text-7xl">
               शुद्ध निसर्गाचा स्पर्श,
-              <span className="block text-emerald-300">आरोग्याचा उत्कर्ष!</span>
+              <span className="block text-lime-300">आरोग्याचा उत्कर्ष!</span>
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-emerald-50/86 sm:text-lg">
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-teal-50/86 sm:text-lg">
               Naturally grown, carefully dehydrated vegetables and powders crafted for modern healthy kitchens, bulk buyers and food processors.
             </p>
 
@@ -203,15 +203,15 @@ export default function HomePage() {
                 href="#farm-story"
                 className="inline-flex items-center gap-2 rounded-full border border-white/28 bg-white/10 px-7 py-3.5 text-sm font-bold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/16"
               >
-                <Play className="h-3.5 w-3.5 fill-current text-emerald-300" />
+                <Play className="h-3.5 w-3.5 fill-current text-lime-300" />
                 Our Farm Story
               </a>
             </div>
 
-            <ul className="mt-8 grid gap-3 text-sm font-semibold text-emerald-50/86 sm:grid-cols-3">
+            <ul className="mt-8 grid gap-3 text-sm font-semibold text-teal-50/86 sm:grid-cols-3">
               {heroTrustPoints.map((point) => (
                 <li key={point} className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-300" />
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-lime-300" />
                   <span>{point}</span>
                 </li>
               ))}
@@ -244,7 +244,7 @@ export default function HomePage() {
           </svg>
         </div>
         <div className="container-x -mt-1">
-          <div className="grid gap-3 rounded-[1.75rem] border border-emerald-500/16 bg-white p-4 shadow-lift sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-3 rounded-[1.75rem] border border-teal-500/16 bg-white p-4 shadow-lift sm:grid-cols-2 lg:grid-cols-4">
             <StatCard label="Official Products" value={<Counter to={products.length || 23} suffix="+" />} icon={PackageCheck} />
             <StatCard label="Minimum Order Quantity" value={<><Counter to={100} /> kg</>} icon={ShoppingBag} />
             <StatCard label="Team Members" value={<Counter to={15} suffix=" people" />} icon={Users} />
@@ -341,7 +341,7 @@ export default function HomePage() {
               <Reveal key={category.id} delay={index * 0.05}>
                 <Link
                   to={`/products?category=${category.id}`}
-                  className="group flex h-full min-h-44 flex-col justify-between rounded-[1.5rem] border border-border bg-white p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-emerald-300 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  className="group flex h-full min-h-44 flex-col justify-between rounded-[1.5rem] border border-border bg-white p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime-300 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   <div>
                     <div
@@ -458,20 +458,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[#052314] py-16 text-white lg:py-24">
+      <section className="bg-[#073f46] py-16 text-white lg:py-24">
         <div className="container-x grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal>
-            <p className="eyebrow mb-3 text-emerald-300">Video story</p>
+            <p className="eyebrow mb-3 text-lime-300">Video story</p>
             <h2 className="font-display text-3xl font-black leading-tight sm:text-5xl">Watch the Utkarsh Organic story in motion.</h2>
             <p className="mt-5 text-base leading-relaxed text-white/72">
               A responsive 16:9 video section with controls, poster image and no audio autoplay, so visitors stay in control while browsing.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/24 bg-emerald-400/10 px-4 py-2 text-xs font-bold text-emerald-100">
+              <span className="inline-flex items-center gap-2 rounded-full border border-lime-300/24 bg-lime-300/10 px-4 py-2 text-xs font-bold text-lime-100">
                 <Play className="h-3.5 w-3.5" />
                 Controls enabled
               </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/24 bg-emerald-400/10 px-4 py-2 text-xs font-bold text-emerald-100">
+              <span className="inline-flex items-center gap-2 rounded-full border border-lime-300/24 bg-lime-300/10 px-4 py-2 text-xs font-bold text-lime-100">
                 <Leaf className="h-3.5 w-3.5" />
                 Mobile friendly
               </span>
@@ -511,7 +511,7 @@ export default function HomePage() {
               <article key={`${testimonial.name}-${index}`} className="surface-card flex w-[min(360px,calc(100vw-2rem))] shrink-0 flex-col justify-between p-6">
                 <div>
                   <div className="flex items-center justify-between gap-3">
-                    <Quote className="h-8 w-8 fill-emerald-500/10 text-emerald-500" />
+                    <Quote className="h-8 w-8 fill-teal-500/10 text-teal-500" />
                   </div>
                   <blockquote className="mt-5 text-sm leading-relaxed text-muted-foreground">"{testimonial.quote}"</blockquote>
                 </div>
@@ -530,7 +530,7 @@ export default function HomePage() {
           {trustStrip.map((item, index) => (
             <Reveal key={item.label} delay={index * 0.04}>
               <div className="rounded-[1.25rem] border border-white/12 bg-white/8 p-5">
-                <p className="text-xs font-bold uppercase text-emerald-200">{item.label}</p>
+                <p className="text-xs font-bold uppercase text-lime-200">{item.label}</p>
                 <p className="mt-2 break-words font-display text-lg font-extrabold text-white">{item.value}</p>
               </div>
             </Reveal>
@@ -603,7 +603,7 @@ function HomeBackgroundAnimation() {
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
       <div className="home-vine-lines absolute inset-x-0 bottom-0 h-40 opacity-50" />
       {leaves.map((className, index) => (
-        <Leaf key={index} className={`home-drifting-leaf absolute text-emerald-300/60 ${className}`} strokeWidth={1.6} />
+        <Leaf key={index} className={`home-drifting-leaf absolute text-teal-300/60 ${className}`} strokeWidth={1.6} />
       ))}
     </div>
   );

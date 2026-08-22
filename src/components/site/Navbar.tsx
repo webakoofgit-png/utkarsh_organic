@@ -48,12 +48,12 @@ export function Navbar() {
     >
       <div className="container-x flex h-16 items-center justify-between gap-3 lg:h-20">
         <Link to="/" className="flex min-w-0 shrink-0 items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5">
-          <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl border border-emerald-500/30 bg-white p-1 shadow-sm">
+          <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl border border-teal-500/30 bg-white p-1 shadow-sm">
             <img src={logo} alt="Utkarsh Organic Farm logo" className="h-full w-full object-contain" />
           </div>
           <span className="flex min-w-0 flex-col leading-none">
             <span className="font-display text-lg font-black sm:text-xl">Utkarsh</span>
-            <span className={`text-[0.65rem] font-bold uppercase tracking-[0.28em] ${solid ? "text-primary" : "text-emerald-200"}`}>
+            <span className={`text-[0.65rem] font-bold uppercase tracking-[0.28em] ${solid ? "text-primary" : "text-teal-200"}`}>
               Organic Farm
             </span>
           </span>

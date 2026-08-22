@@ -49,37 +49,37 @@ export default function ContactPage() {
 
   return (
     <main className="pt-16 lg:pt-20 bg-background">
-      {/* Top Full Viewport Width Dark Green Breadcrumb Bar */}
-      <div className="w-full bg-[#041a0e] border-b border-emerald-500/20 py-3">
-        <div className="container-x flex items-center justify-between text-xs sm:text-sm text-emerald-100 font-medium">
+      {/* Top Full Viewport Width Fresh Teal Breadcrumb Bar */}
+      <div className="w-full bg-[#083b3f] border-b border-teal-500/20 py-3">
+        <div className="container-x flex items-center justify-between text-xs sm:text-sm text-teal-100 font-medium">
           <div className="flex items-center gap-2 sm:gap-3">
             <Link
               to="/"
-              className="grid h-7 w-7 place-items-center rounded-full bg-emerald-950/90 border border-emerald-400/40 text-emerald-400 hover:bg-emerald-500 hover:text-black transition"
+              className="grid h-7 w-7 place-items-center rounded-full bg-teal-950/90 border border-teal-300/40 text-teal-200 hover:bg-lime-300 hover:text-teal-950 transition"
             >
               <Home className="h-3.5 w-3.5" />
             </Link>
-            <ChevronRight className="h-4 w-4 text-emerald-500/60" />
-            <Link to="/" className="text-emerald-100 hover:text-emerald-400 transition font-medium">
+            <ChevronRight className="h-4 w-4 text-teal-500/60" />
+            <Link to="/" className="text-teal-100 hover:text-lime-200 transition font-medium">
               Home
             </Link>
-            <ChevronRight className="h-4 w-4 text-emerald-500/60" />
-            <span className="font-bold text-emerald-400">Contact Us</span>
-            <ChevronRight className="h-4 w-4 text-emerald-500/60" />
-            <span className="text-emerald-200/90 font-medium">Get in Touch with Utkarsh Farm</span>
+            <ChevronRight className="h-4 w-4 text-teal-500/60" />
+            <span className="font-bold text-lime-200">Contact Us</span>
+            <ChevronRight className="h-4 w-4 text-teal-500/60" />
+            <span className="text-teal-200/90 font-medium">Get in Touch with Utkarsh Farm</span>
           </div>
 
-          <div className="flex items-center gap-1.5 text-emerald-400">
-            <Leaf className="h-4.5 w-4.5 fill-emerald-400/30 text-emerald-400" />
+          <div className="flex items-center gap-1.5 text-lime-200">
+            <Leaf className="h-4.5 w-4.5 fill-lime-300/30 text-lime-200" />
           </div>
         </div>
       </div>
 
       {/* 100% Full Viewport Width Professional Animated Hero Banner Section */}
       {/* Desktop (1920): 300px | Laptop (1440): 250px | Tablet (768): 210px | Mobile (390): 160px */}
-      <section className="relative flex min-h-[170px] w-full items-center overflow-hidden bg-gradient-to-r from-[#051f12] via-[#04170d] to-[#020e07] text-white border-b border-emerald-500/20 shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]">
+      <section className="relative flex min-h-[170px] w-full items-center overflow-hidden bg-gradient-to-r from-[#0a4b4d] via-[#08383e] to-[#051f29] text-white border-b border-teal-500/20 shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]">
         {/* Ambient Leaf Glow */}
-        <div className="absolute top-0 right-1/3 h-80 w-80 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-1/3 h-80 w-80 rounded-full bg-lime-300/15 blur-3xl pointer-events-none" />
 
         {/* Content Centered inside container-x */}
         <div className="container-x relative z-10 flex w-full min-w-0 items-center justify-between gap-6">
@@ -90,11 +90,11 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-emerald-300 tracking-wider"
+              className="inline-flex items-center gap-1.5 rounded-full border border-lime-300/40 bg-teal-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-lime-200 tracking-wider"
             >
-              <Sprout className="h-3.5 w-3.5 text-emerald-400" />
+              <Sprout className="h-3.5 w-3.5 text-lime-300" />
               <span>{COMPANY_INFO.marathiHeader}</span>
-              <Sparkles className="h-3 w-3 text-emerald-400" />
+              <Sparkles className="h-3 w-3 text-amber-300" />
             </motion.div>
 
             {/* Headline */}
@@ -105,10 +105,10 @@ export default function ContactPage() {
               className="mt-2 break-words font-serif text-2xl font-black leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl"
             >
               Get in{" "}
-              <span className="relative inline-block text-emerald-400">
+              <span className="relative inline-block text-lime-300">
                 Touch with Us
                 <svg
-                  className="absolute -bottom-1 left-0 w-full h-2.5 text-emerald-400"
+                  className="absolute -bottom-1 left-0 w-full h-2.5 text-lime-300"
                   viewBox="0 0 100 20"
                   preserveAspectRatio="none"
                 >
@@ -128,7 +128,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-3 text-xs sm:text-sm md:text-base leading-relaxed text-emerald-100/90 max-w-xl hidden sm:block"
+              className="mt-3 text-xs sm:text-sm md:text-base leading-relaxed text-teal-100/90 max-w-xl hidden sm:block"
             >
               {COMPANY_INFO.marathiDescription}
             </motion.p>
@@ -141,13 +141,13 @@ export default function ContactPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="relative hidden shrink-0 items-center justify-end sm:flex"
           >
-            <div className="relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-emerald-950/40 p-2 backdrop-blur-md shadow-2xl">
+            <div className="relative overflow-hidden rounded-2xl border border-teal-500/30 bg-teal-950/40 p-2 backdrop-blur-md shadow-2xl">
               <img
                 src={heroContact}
                 alt="Utkarsh Organic Farm Satara Unit"
                 className="h-32 w-52 rounded-xl bg-white/10 object-contain p-1 md:h-44 md:w-64 lg:h-52 lg:w-80 xl:h-60 xl:w-96"
               />
-              <div className="absolute bottom-3 right-3 rounded-xl border border-emerald-400/40 bg-emerald-950/90 px-3 py-1 text-xs font-bold text-emerald-300 shadow-lg backdrop-blur-md hidden sm:block">
+              <div className="absolute bottom-3 right-3 rounded-xl border border-lime-300/35 bg-teal-950/90 px-3 py-1 text-xs font-bold text-lime-200 shadow-lg backdrop-blur-md hidden sm:block">
                 MIDC Satara Unit
               </div>
             </div>
@@ -159,7 +159,7 @@ export default function ContactPage() {
           <svg
             viewBox="0 0 1200 40"
             preserveAspectRatio="none"
-            className="relative block w-full h-4 text-[#0a3520] fill-current opacity-80"
+            className="relative block w-full h-4 text-[#0b4a4d] fill-current opacity-80"
           >
             <path d="M0,0 C300,30 600,-10 1200,20 L1200,40 L0,40 Z"></path>
           </svg>
