@@ -601,7 +601,6 @@ function HomeBackgroundAnimation() {
 
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="home-organic-backdrop absolute inset-0 opacity-70" />
       <div className="home-vine-lines absolute inset-x-0 bottom-0 h-40 opacity-50" />
       {leaves.map((className, index) => (
         <Leaf key={index} className={`home-drifting-leaf absolute text-emerald-300/60 ${className}`} strokeWidth={1.6} />
