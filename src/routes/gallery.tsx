@@ -1,26 +1,57 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Camera, Leaf, MapPin, PackageCheck } from "lucide-react";
+import { ArrowRight, Camera, ChevronRight, Home, Leaf, MapPin, PackageCheck, Sparkles } from "lucide-react";
 import { Reveal, SectionHeading } from "@/components/site/motion-primitives";
+import farm from "@/assets/farm.jpg";
 import { COMPANY_INFO } from "@/lib/products";
 import { GALLERY_ITEMS } from "@/lib/gallery";
 
 export default function GalleryPage() {
   return (
     <main className="pt-16 lg:pt-20">
-      <section className="relative overflow-hidden bg-[#052314] py-16 text-white lg:py-24">
-        <div className="home-organic-backdrop absolute inset-0 opacity-35" aria-hidden="true" />
-        <div className="home-vine-lines absolute inset-x-0 bottom-0 h-40 opacity-35" aria-hidden="true" />
+      <div className="w-full border-b border-emerald-500/20 bg-[#041a0e] py-3">
+        <div className="container-x flex items-center justify-between text-xs font-medium text-emerald-100 sm:text-sm">
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+            <Link
+              to="/"
+              className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-emerald-400/40 bg-emerald-950/90 text-emerald-400 transition hover:bg-emerald-500 hover:text-black"
+            >
+              <Home className="h-3.5 w-3.5" />
+            </Link>
+            <ChevronRight className="h-4 w-4 shrink-0 text-emerald-500/60" />
+            <Link to="/" className="text-emerald-100 transition hover:text-emerald-400">
+              Home
+            </Link>
+            <ChevronRight className="h-4 w-4 shrink-0 text-emerald-500/60" />
+            <span className="font-bold text-emerald-400">Gallery</span>
+            <ChevronRight className="hidden h-4 w-4 shrink-0 text-emerald-500/60 sm:block" />
+            <span className="hidden truncate text-emerald-200/90 sm:block">Farm, products and pantry-ready formats</span>
+          </div>
+
+          <Leaf className="h-4.5 w-4.5 shrink-0 fill-emerald-400/30 text-emerald-400" />
+        </div>
+      </div>
+
+      <section className="relative flex min-h-[170px] w-full items-center overflow-hidden border-b border-emerald-500/20 bg-[#052314] text-white shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]">
+        <img src={farm} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover object-center opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#03180d]/96 via-[#052314]/88 to-[#052314]/72" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(3,24,13,0.38)_62%,rgba(3,24,13,0.9)_100%)]" />
+        <div className="home-vine-lines pointer-events-none absolute inset-x-0 bottom-0 h-32 opacity-35" aria-hidden="true" />
+        <Leaf className="home-drifting-leaf pointer-events-none absolute left-[18%] top-[22%] h-7 w-7 text-emerald-300/45" aria-hidden="true" />
+        <Leaf className="home-drifting-leaf pointer-events-none absolute right-[22%] top-[18%] h-8 w-8 rotate-12 text-emerald-300/45 [animation-delay:1.2s]" aria-hidden="true" />
+        <Leaf className="home-drifting-leaf pointer-events-none absolute right-[8%] bottom-[22%] h-6 w-6 text-emerald-300/35 [animation-delay:2.2s]" aria-hidden="true" />
+
         <div className="container-x relative z-10">
-          <Reveal className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/30 bg-white/10 px-4 py-2 text-xs font-bold text-emerald-100 backdrop-blur-md">
-              <Camera className="h-3.5 w-3.5 text-emerald-300" />
-              Farm Gallery
+          <Reveal className="mx-auto max-w-4xl text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/50 bg-emerald-950/72 px-5 py-2 text-sm font-extrabold text-emerald-100 shadow-[0_0_24px_rgba(52,211,153,0.18)] backdrop-blur-md">
+              <Camera className="h-4 w-4 text-emerald-300" />
+              <span>Farm Gallery</span>
+              <Sparkles className="h-3.5 w-3.5 text-emerald-300" />
             </div>
-            <h1 className="mt-6 font-display text-4xl font-black leading-tight sm:text-6xl">
-              Farm, products and pantry-ready formats.
+            <h1 className="mx-auto mt-5 max-w-4xl text-balance font-display text-3xl font-black leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+              Farm, products and <span className="text-emerald-400">pantry-ready</span> formats.
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/74">
-              A clean visual gallery using existing Utkarsh Organic Farm assets. Product photos are framed with contain-fit layouts so bowls, packs and ingredients stay visible.
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/78 sm:text-base">
+              A clean visual gallery using existing Utkarsh Organic Farm assets. Product photos are framed so bowls, packs and ingredients stay visible.
             </p>
           </Reveal>
         </div>
@@ -35,15 +66,20 @@ export default function GalleryPage() {
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {GALLERY_ITEMS.map((item, index) => (
-            <Reveal key={item.title} delay={index * 0.04} className={item.featured ? "lg:col-span-2" : ""}>
-              <article className="surface-card h-full overflow-hidden p-3">
-                <div className={`grid place-items-center overflow-hidden rounded-[1.25rem] bg-cream p-3 ${item.featured ? "aspect-[16/10]" : "aspect-[4/3]"}`}>
-                  <img src={item.image} alt={item.title} className="h-full w-full object-contain" loading={index > 2 ? "lazy" : "eager"} />
+            <Reveal key={item.title} delay={index * 0.04}>
+              <article className="surface-card flex h-full min-h-[25rem] flex-col overflow-hidden p-3">
+                <div className={`grid aspect-[4/3] place-items-center overflow-hidden rounded-[1.25rem] bg-cream ${item.fit === "contain" ? "p-4" : "p-0"}`}>
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className={`h-full w-full object-center ${item.fit === "contain" ? "object-contain" : "object-cover"}`}
+                    loading={index > 2 ? "lazy" : "eager"}
+                  />
                 </div>
-                <div className="p-4">
+                <div className="flex flex-1 flex-col p-4">
                   <p className="text-xs font-extrabold uppercase text-accent">{item.label}</p>
                   <h2 className="mt-2 font-display text-xl font-bold">{item.title}</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+                  <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
                 </div>
               </article>
             </Reveal>

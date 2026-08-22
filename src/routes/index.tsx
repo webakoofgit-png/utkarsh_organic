@@ -3,13 +3,17 @@ import type { ReactNode } from "react";
 import {
   ArrowRight,
   BadgeCheck,
+  Carrot,
   CheckCircle2,
+  CookingPot,
   Factory,
+  Flame,
   GalleryHorizontal,
   HeartHandshake,
   Leaf,
   MapPin,
   PackageCheck,
+  PackageOpen,
   Play,
   Quote,
   ShieldCheck,
@@ -20,6 +24,7 @@ import {
   Tractor,
   Truck,
   Users,
+  Vegan,
 } from "lucide-react";
 import farm from "@/assets/farm.jpg";
 import { ProductCard } from "@/components/site/ProductCard";
@@ -28,6 +33,10 @@ import { useCatalog } from "@/lib/catalog";
 import { COMPANY_INFO } from "@/lib/products";
 import { GALLERY_ITEMS } from "@/lib/gallery";
 import { CUSTOMER_TESTIMONIALS } from "@/lib/testimonials";
+import flatlay from "@/assets/flatlay.jpg";
+import heroBulkOrders from "@/assets/hero-bulk-orders.jpg";
+import heroOnion from "@/assets/hero-onion.jpg";
+import farmStoryProductPackaging from "@/assets/farm-story-product-packaging.png";
 import heroVideo from "../../IMAGE_TO_VIDEO_PROMPT_Use_both.mp4";
 import storyVideo from "../../Prompt__Use_the_uploaded_image.mp4";
 
@@ -42,21 +51,29 @@ const uspCards = [
     icon: Sprout,
     title: "Farm-First Sourcing",
     text: "Vegetables and herbs are selected for dependable aroma, color and everyday cooking performance.",
+    image: farm,
+    imageAlt: "Fresh Utkarsh Organic farm sourcing view",
   },
   {
     icon: Factory,
     title: "Careful Dehydration",
     text: "The catalog focuses on shelf-stable flakes and powders made for consistent use in homes and commercial kitchens.",
+    image: flatlay,
+    imageAlt: "Dehydrated ingredients and powders arranged for processing",
   },
   {
     icon: ShieldCheck,
     title: "Transparent Quality",
     text: "Every product keeps visible specs like form, processing, moisture guidance, MOQ and storage details.",
+    image: heroOnion,
+    imageAlt: "Quality checked onion powder ingredient presentation",
   },
   {
     icon: Truck,
     title: "Bulk Order Support",
     text: "Utkarsh Organic Farm serves HoReCa, distributors and food processors with MOQ-led product formats.",
+    image: heroBulkOrders,
+    imageAlt: "Bulk organic ingredient order and supply support",
   },
 ];
 
@@ -86,11 +103,36 @@ const trustStrip = [
   { label: "Market", value: COMPANY_INFO.marketCovered },
 ];
 
+const categoryIconMap = {
+  "dehydrated-flakes": {
+    icon: Carrot,
+    shell: "bg-emerald-50 text-emerald-700 ring-emerald-100",
+  },
+  "dehydrated-powders": {
+    icon: CookingPot,
+    shell: "bg-amber-50 text-earth ring-amber-100",
+  },
+  "organic-powders": {
+    icon: Vegan,
+    shell: "bg-lime-50 text-accent ring-lime-100",
+  },
+  spices: {
+    icon: Flame,
+    shell: "bg-orange-50 text-orange-600 ring-orange-100",
+  },
+  "dried-specialty": {
+    icon: PackageOpen,
+    shell: "bg-stone-100 text-forest ring-stone-200",
+  },
+} as const;
+
 export default function HomePage() {
   const { products, categories } = useCatalog();
   const bestSellerProducts = products.filter((product) => product.bestSeller).slice(0, 6);
   const featuredProducts = bestSellerProducts.length >= 4 ? bestSellerProducts : products.slice(0, 6);
   const galleryPreview = GALLERY_ITEMS.slice(0, 5);
+  const featuredGalleryItem = galleryPreview[0];
+  const galleryCardItems = galleryPreview.slice(1, 5);
 
   return (
     <main className="overflow-hidden">
@@ -218,14 +260,35 @@ export default function HomePage() {
           sub="A premium organic feel backed by clear product specifications, transparent contact details and bulk-ready catalog data."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {uspCards.map(({ icon: Icon, title, text }, index) => (
+          {uspCards.map(({ icon: Icon, title, text, image, imageAlt }, index) => (
             <Reveal key={title} delay={index * 0.07}>
-              <article className="surface-card group h-full p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lift">
-                <div className="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-accent transition group-hover:bg-primary group-hover:text-primary-foreground">
-                  <Icon className="h-6 w-6" />
+              <article
+                tabIndex={0}
+                aria-label={title}
+                className="group h-full min-h-[20rem] rounded-[1.5rem] outline-none [perspective:1200px]"
+              >
+                <div className="relative h-full min-h-[20rem] transition duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-focus:[transform:rotateY(180deg)]">
+                  <div className="surface-card absolute inset-0 flex flex-col p-6 transition duration-300 [backface-visibility:hidden] group-hover:shadow-lift group-focus:shadow-lift">
+                    <div
+                      className="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-accent transition duration-300 animate-gentle-float group-hover:bg-primary group-hover:text-primary-foreground group-hover:[animation-play-state:paused]"
+                      style={{ animationDelay: `${index * 0.16}s` }}
+                    >
+                      <Icon className="h-6 w-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" />
+                    </div>
+                    <h3 className="mt-6 font-display text-xl font-bold">{title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p>
+                  </div>
+                  <div className="surface-card absolute inset-0 overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                    <img src={image} alt={imageAlt} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105 group-focus:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-forest/88 via-forest/24 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                      <div className="mb-3 grid h-11 w-11 place-items-center rounded-2xl bg-white/90 text-primary shadow-soft">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <h3 className="font-display text-xl font-black">{title}</h3>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="mt-6 font-display text-xl font-bold">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p>
               </article>
             </Reveal>
           ))}
@@ -270,25 +333,33 @@ export default function HomePage() {
 
       <section className="container-x py-16 lg:py-24">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-          {categories.slice(0, 5).map((category, index) => (
-            <Reveal key={category.id} delay={index * 0.05}>
-              <Link
-                to={`/products?category=${category.id}`}
-                className="group flex h-full min-h-44 flex-col justify-between rounded-[1.5rem] border border-border bg-white p-6 shadow-soft transition hover:-translate-y-1 hover:border-emerald-300 hover:shadow-lift"
-              >
-                <div>
-                  <div className="grid h-11 w-11 place-items-center rounded-2xl bg-secondary text-accent">
-                    <Leaf className="h-5 w-5" />
+          {categories.slice(0, 5).map((category, index) => {
+            const iconMeta = categoryIconMap[category.id as keyof typeof categoryIconMap] || categoryIconMap["dehydrated-flakes"];
+            const CategoryIcon = iconMeta.icon;
+
+            return (
+              <Reveal key={category.id} delay={index * 0.05}>
+                <Link
+                  to={`/products?category=${category.id}`}
+                  className="group flex h-full min-h-44 flex-col justify-between rounded-[1.5rem] border border-border bg-white p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-emerald-300 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                >
+                  <div>
+                    <div
+                      className={`grid h-12 w-12 place-items-center rounded-2xl ring-1 transition duration-300 animate-gentle-float group-hover:-translate-y-1 group-hover:scale-110 group-hover:rotate-3 ${iconMeta.shell}`}
+                      style={{ animationDelay: `${index * 0.18}s` }}
+                    >
+                      <CategoryIcon className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" strokeWidth={1.9} aria-hidden="true" />
+                    </div>
+                    <h3 className="mt-5 font-display text-lg font-black">{category.name}</h3>
+                    {category.blurb ? <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{category.blurb}</p> : null}
                   </div>
-                  <h3 className="mt-5 font-display text-lg font-black">{category.name}</h3>
-                  {category.blurb ? <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{category.blurb}</p> : null}
-                </div>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary">
-                  Explore <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-            </Reveal>
-          ))}
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary">
+                    Explore <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </Link>
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 
@@ -317,8 +388,8 @@ export default function HomePage() {
 
           <Reveal delay={0.12}>
             <div className="rounded-[2rem] border border-border bg-white p-3 shadow-lift">
-              <div className="grid aspect-[4/3] place-items-center overflow-hidden rounded-[1.55rem] bg-cream p-3">
-                <img src={farm} alt="Utkarsh Organic Farm process" className="h-full w-full object-contain" />
+              <div className="grid aspect-[4/3] place-items-center overflow-hidden rounded-[1.55rem] bg-cream">
+                <img src={farmStoryProductPackaging} alt="Utkarsh Organic Farm product packaging and dehydrated ingredients" className="h-full w-full object-cover object-center" />
               </div>
             </div>
           </Reveal>
@@ -338,20 +409,52 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="mt-11 grid gap-5 md:grid-cols-4">
-          {galleryPreview.map((item, index) => (
-            <Reveal key={item.title} delay={index * 0.05} className={item.featured ? "md:col-span-2 md:row-span-2" : ""}>
+        <div className="mt-11 grid gap-5 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,1fr)]">
+          {featuredGalleryItem ? (
+            <Reveal delay={0.05}>
               <Link to="/gallery" className="group surface-card block h-full overflow-hidden p-3">
-                <div className={`grid place-items-center overflow-hidden rounded-[1.25rem] bg-cream p-3 ${item.featured ? "aspect-[4/3] md:h-full" : "aspect-[4/3]"}`}>
-                  <img src={item.image} alt={item.title} className="h-full w-full object-contain transition duration-500 group-hover:scale-[1.03]" />
+                <div className={`grid place-items-center overflow-hidden rounded-[1.25rem] bg-cream ${featuredGalleryItem.fit === "contain" ? "p-4" : "p-0"} ${featuredGalleryItem.frameClass || "aspect-[4/3]"}`}>
+                  <img
+                    src={featuredGalleryItem.image}
+                    alt={featuredGalleryItem.title}
+                    className={`h-full w-full object-center transition duration-500 group-hover:scale-[1.03] ${featuredGalleryItem.fit === "contain" ? "object-contain" : "object-cover"}`}
+                  />
                 </div>
                 <div className="p-3">
-                  <p className="text-xs font-extrabold uppercase text-accent">{item.label}</p>
-                  <h3 className="mt-1 font-display text-lg font-bold">{item.title}</h3>
+                  <p className="text-xs font-extrabold uppercase text-accent">{featuredGalleryItem.label}</p>
+                  <h3 className="mt-1 font-display text-lg font-bold">{featuredGalleryItem.title}</h3>
+                  <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">{featuredGalleryItem.description}</p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {["Farm-first sourcing", "Fresh ingredient formats", "Bulk-ready catalog"].map((item) => (
+                      <span key={item} className="rounded-full bg-secondary px-3 py-1.5 text-xs font-bold text-primary">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </Link>
             </Reveal>
-          ))}
+          ) : null}
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            {galleryCardItems.map((item, index) => (
+              <Reveal key={item.title} delay={(index + 1) * 0.05}>
+                <Link to="/gallery" className="group surface-card block h-full overflow-hidden p-3">
+                  <div className={`grid place-items-center overflow-hidden rounded-[1.25rem] bg-cream ${item.fit === "contain" ? "p-3" : "p-0"} ${item.frameClass || "aspect-[4/3]"}`}>
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className={`h-full w-full object-center transition duration-500 group-hover:scale-[1.03] ${item.fit === "contain" ? "object-contain" : "object-cover"}`}
+                    />
+                  </div>
+                  <div className="p-3">
+                    <p className="text-xs font-extrabold uppercase text-accent">{item.label}</p>
+                    <h3 className="mt-1 font-display text-base font-bold leading-snug">{item.title}</h3>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -395,8 +498,8 @@ export default function HomePage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Loved by our customers"
-            title="Customer stories, ready for verified reviews."
-            sub="The carousel is wired from central testimonial data. Current entries are clearly marked placeholders until real reviews are approved."
+            title="Customer stories from kitchens and bulk buyers."
+            sub="A moving wall of feedback from people exploring Utkarsh Organic products for everyday cooking and commercial use."
           />
         </div>
 
@@ -409,11 +512,6 @@ export default function HomePage() {
                 <div>
                   <div className="flex items-center justify-between gap-3">
                     <Quote className="h-8 w-8 fill-emerald-500/10 text-emerald-500" />
-                    {testimonial.status === "placeholder" ? (
-                      <span className="rounded-full bg-secondary px-3 py-1 text-[11px] font-bold text-primary">Placeholder</span>
-                    ) : (
-                      <span className="rounded-full bg-emerald-100 px-3 py-1 text-[11px] font-bold text-primary">Verified</span>
-                    )}
                   </div>
                   <blockquote className="mt-5 text-sm leading-relaxed text-muted-foreground">"{testimonial.quote}"</blockquote>
                 </div>
