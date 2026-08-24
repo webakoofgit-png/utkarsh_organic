@@ -269,7 +269,19 @@ export default function HomePage() {
                 className="group h-full min-h-[20rem] rounded-[1.5rem] outline-none [perspective:1200px]"
               >
                 <div className="relative h-full min-h-[20rem] transition duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-focus:[transform:rotateY(180deg)]">
-                  <div className="surface-card absolute inset-0 flex flex-col p-6 transition duration-300 [backface-visibility:hidden] group-hover:shadow-lift group-focus:shadow-lift">
+                  <div className="surface-card absolute inset-0 overflow-hidden [backface-visibility:hidden]">
+                    <img
+                      src={image}
+                      alt={imageAlt}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition duration-700 group-hover:scale-105 group-focus:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-forest/18 via-transparent to-transparent" />
+                    <div className="absolute left-5 top-5 grid h-12 w-12 place-items-center rounded-2xl bg-white/92 text-primary shadow-soft backdrop-blur">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                  </div>
+                  <div className="surface-card absolute inset-0 flex flex-col p-6 transition duration-300 [backface-visibility:hidden] [transform:rotateY(180deg)] group-hover:shadow-lift group-focus:shadow-lift">
                     <div
                       className="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-accent transition duration-300 animate-gentle-float group-hover:bg-primary group-hover:text-primary-foreground group-hover:[animation-play-state:paused]"
                       style={{ animationDelay: `${index * 0.16}s` }}
@@ -278,16 +290,6 @@ export default function HomePage() {
                     </div>
                     <h3 className="mt-6 font-display text-xl font-bold">{title}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p>
-                  </div>
-                  <div className="surface-card absolute inset-0 overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                    <img src={image} alt={imageAlt} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105 group-focus:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-forest/88 via-forest/24 to-transparent" />
-                    <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                      <div className="mb-3 grid h-11 w-11 place-items-center rounded-2xl bg-white/90 text-primary shadow-soft">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <h3 className="font-display text-xl font-black">{title}</h3>
-                    </div>
                   </div>
                 </div>
               </article>
