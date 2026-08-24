@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Heart, Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useStore } from "@/lib/store";
+import { LanguageToggle } from "@/components/site/LanguageToggle";
 import logo from "@/assets/logo-mark.png";
 
 const NAV = [
@@ -48,12 +49,12 @@ export function Navbar() {
     >
       <div className="container-x flex h-16 items-center justify-between gap-3 lg:h-20">
         <Link to="/" className="flex min-w-0 shrink-0 items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5">
-          <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl border border-teal-500/30 bg-white p-1 shadow-sm">
+          <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl border border-green-500/30 bg-white p-1 shadow-sm">
             <img src={logo} alt="Utkarsh Organic Farm logo" className="h-full w-full object-contain" />
           </div>
           <span className="flex min-w-0 flex-col leading-none">
             <span className="font-display text-lg font-black sm:text-xl">Utkarsh</span>
-            <span className={`text-[0.65rem] font-bold uppercase tracking-[0.28em] ${solid ? "text-primary" : "text-teal-200"}`}>
+            <span className={`text-[0.65rem] font-bold uppercase tracking-[0.28em] ${solid ? "text-primary" : "text-green-200"}`}>
               Organic Farm
             </span>
           </span>
@@ -90,6 +91,7 @@ export function Navbar() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-1.5">
+          <LanguageToggle solid={solid} />
           <Link
             to="/products"
             className={`hidden items-center gap-2 rounded-full px-4 py-2.5 text-sm font-extrabold shadow-sm transition hover:-translate-y-0.5 lg:inline-flex ${
@@ -223,6 +225,9 @@ export function Navbar() {
                   </Link>
                 </motion.li>
               ))}
+              <li className="px-4 py-2">
+                <LanguageToggle solid />
+              </li>
               <li className="pt-2">
                 <Link
                   to="/products"

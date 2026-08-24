@@ -129,23 +129,23 @@ export function CataloguePage() {
   return (
     <main className="pt-16 lg:pt-20 bg-background">
       {/* Top Full Viewport Width Fresh Teal Breadcrumb Bar */}
-      <div className="w-full bg-[#083b3f] border-b border-teal-300/25 py-3">
-        <div className="container-x flex min-w-0 items-center justify-between text-xs sm:text-sm text-teal-50 font-medium">
+      <div className="w-full bg-[#163d24] border-b border-green-300/25 py-3">
+        <div className="container-x flex min-w-0 items-center justify-between text-xs sm:text-sm text-green-50 font-medium">
           <div className="flex min-w-0 items-center gap-2 overflow-x-auto sm:gap-3">
             <Link
               to="/"
-              className="grid h-7 w-7 place-items-center rounded-full bg-teal-950/90 border border-teal-300/45 text-teal-200 hover:bg-lime-300 hover:text-teal-950 transition"
+              className="grid h-7 w-7 place-items-center rounded-full bg-green-950/90 border border-green-300/45 text-green-200 hover:bg-lime-300 hover:text-green-950 transition"
             >
               <Home className="h-3.5 w-3.5" />
             </Link>
-            <ChevronRight className="h-4 w-4 text-teal-200/60" />
-            <Link to="/" className="text-teal-50 hover:text-lime-200 transition font-medium">
+            <ChevronRight className="h-4 w-4 text-green-200/60" />
+            <Link to="/" className="text-green-50 hover:text-lime-200 transition font-medium">
               Home
             </Link>
-            <ChevronRight className="h-4 w-4 text-teal-200/60" />
+            <ChevronRight className="h-4 w-4 text-green-200/60" />
             <span className="font-bold text-lime-200">Products</span>
-            <ChevronRight className="h-4 w-4 text-teal-200/60" />
-            <span className="hidden shrink-0 text-teal-100/90 font-medium sm:inline">The Whole Collection</span>
+            <ChevronRight className="h-4 w-4 text-green-200/60" />
+            <span className="hidden shrink-0 text-green-100/90 font-medium sm:inline">The Whole Collection</span>
           </div>
 
           <div className="flex items-center gap-1.5 text-lime-200">
@@ -157,7 +157,7 @@ export function CataloguePage() {
       {/* 100% Full Viewport Width Hero Banner Header */}
       {/* Desktop (1920): 300px | Laptop (1440): 250px | Tablet (768): 210px | Mobile (390): 160px */}
       <section
-        className="relative flex min-h-[170px] w-full items-center overflow-hidden bg-gradient-to-r from-[#0a4b4d] via-[#08383e] to-[#051f29] text-white border-b border-teal-300/20 shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]"
+        className="relative flex min-h-[170px] w-full items-center overflow-hidden bg-gradient-to-r from-[#1f5a2f] via-[#163d24] to-[#10281a] text-white border-b border-green-300/20 shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
@@ -178,7 +178,7 @@ export function CataloguePage() {
               {/* Left Content */}
               <div className="min-w-0 max-w-2xl py-2 pr-2">
                 {/* Eyebrow Pill */}
-                <div className="inline-flex items-center gap-1.5 rounded-full border border-teal-200/45 bg-teal-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-lime-200 tracking-wider">
+                <div className="inline-flex items-center gap-1.5 rounded-full border border-green-200/45 bg-green-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-lime-200 tracking-wider">
                   <Leaf className="h-3.5 w-3.5 text-lime-200" />
                   <span>{slide.eyebrow}</span>
                   <Sparkles className="h-3 w-3 text-amber-300" />
@@ -206,20 +206,20 @@ export function CataloguePage() {
                 </h1>
 
                 {/* Subtitle */}
-                <p className="mt-3 text-xs sm:text-sm md:text-base leading-relaxed text-teal-50/90 max-w-xl hidden sm:block">
+                <p className="mt-3 text-xs sm:text-sm md:text-base leading-relaxed text-green-50/90 max-w-xl hidden sm:block">
                   {slide.subtitle}
                 </p>
               </div>
 
               {/* Right Visual Image */}
               <div className="relative hidden shrink-0 items-center justify-end sm:flex">
-                <div className="relative overflow-hidden rounded-2xl border border-teal-200/30 bg-teal-950/40 p-2 backdrop-blur-md shadow-2xl">
+                <div className="relative overflow-hidden rounded-2xl border border-green-200/30 bg-green-950/40 p-2 backdrop-blur-md shadow-2xl">
                   <img
                     src={slide.image}
                     alt={slide.eyebrow}
                     className="h-32 w-52 rounded-xl bg-white/10 object-contain p-1 md:h-44 md:w-64 lg:h-52 lg:w-80 xl:h-60 xl:w-96"
                   />
-                  <div className="absolute bottom-3 right-3 rounded-xl border border-teal-200/40 bg-teal-950/90 px-3 py-1 text-xs font-bold text-lime-200 shadow-lg backdrop-blur-md hidden sm:block">
+                  <div className="absolute bottom-3 right-3 rounded-xl border border-green-200/40 bg-green-950/90 px-3 py-1 text-xs font-bold text-lime-200 shadow-lg backdrop-blur-md hidden sm:block">
                     🌱 100% Pure &amp; Natural
                   </div>
                 </div>
@@ -233,7 +233,7 @@ export function CataloguePage() {
           <svg
             viewBox="0 0 1200 40"
             preserveAspectRatio="none"
-            className="relative block w-full h-4 text-[#0b4a4d] fill-current opacity-80"
+            className="relative block w-full h-4 text-[#235c32] fill-current opacity-80"
           >
             <path d="M0,0 C300,30 600,-10 1200,20 L1200,40 L0,40 Z"></path>
           </svg>
@@ -245,7 +245,7 @@ export function CataloguePage() {
             <button
               onClick={() => setActiveSlide((prev) => (prev - 1 + bannerSlides.length) % bannerSlides.length)}
               aria-label="Previous slide"
-              className="grid h-7 w-7 place-items-center rounded-full border border-teal-200/35 bg-teal-950/90 text-teal-100 transition hover:bg-lime-300 hover:text-teal-950"
+              className="grid h-7 w-7 place-items-center rounded-full border border-green-200/35 bg-green-950/90 text-green-100 transition hover:bg-lime-300 hover:text-green-950"
             >
               <ChevronLeft className="h-3.5 w-3.5" />
             </button>
@@ -256,7 +256,7 @@ export function CataloguePage() {
                   key={idx}
                   onClick={() => setActiveSlide(idx)}
                   className={`h-1.5 rounded-full transition-all ${
-                    activeSlide === idx ? "w-4 bg-lime-300" : "w-1.5 bg-teal-800"
+                    activeSlide === idx ? "w-4 bg-lime-300" : "w-1.5 bg-green-800"
                   }`}
                 />
               ))}
@@ -265,7 +265,7 @@ export function CataloguePage() {
             <button
               onClick={() => setActiveSlide((prev) => (prev + 1) % bannerSlides.length)}
               aria-label="Next slide"
-              className="grid h-7 w-7 place-items-center rounded-full border border-teal-200/35 bg-teal-950/90 text-teal-100 transition hover:bg-lime-300 hover:text-teal-950"
+              className="grid h-7 w-7 place-items-center rounded-full border border-green-200/35 bg-green-950/90 text-green-100 transition hover:bg-lime-300 hover:text-green-950"
             >
               <ChevronRight className="h-3.5 w-3.5" />
             </button>
@@ -276,11 +276,11 @@ export function CataloguePage() {
       {/* Catalogue Filters & Grid */}
       <section className="container-x py-6 lg:py-10">
         {/* Search & Categories Bar */}
-        <div className="flex min-w-0 flex-col gap-4 rounded-3xl border border-teal-900/10 bg-[#f5fbf7] p-4 shadow-sm lg:flex-row lg:items-center lg:justify-between lg:p-5">
+        <div className="flex min-w-0 flex-col gap-4 rounded-3xl border border-green-900/10 bg-[#f7fbef] p-4 shadow-sm lg:flex-row lg:items-center lg:justify-between lg:p-5">
           {/* Search Input Container */}
           <div className="relative w-full min-w-0 flex-1 lg:max-w-md">
-            <div className="relative flex items-center w-full rounded-full border border-teal-900/15 bg-white px-4 py-3 shadow-inner focus-within:border-teal-600 focus-within:ring-2 focus-within:ring-lime-400/25 transition-all">
-              <Search className="h-4.5 w-4.5 shrink-0 text-teal-800/70" />
+            <div className="relative flex items-center w-full rounded-full border border-green-900/15 bg-white px-4 py-3 shadow-inner focus-within:border-green-600 focus-within:ring-2 focus-within:ring-lime-400/25 transition-all">
+              <Search className="h-4.5 w-4.5 shrink-0 text-green-800/70" />
               <input
                 type="text"
                 value={q}
@@ -297,7 +297,7 @@ export function CataloguePage() {
                     setQ("");
                     updateSearch("", category);
                   }}
-                  className="absolute right-3.5 grid h-5 w-5 place-items-center rounded-full bg-teal-100 text-teal-800 hover:bg-lime-200 transition text-xs font-bold"
+                  className="absolute right-3.5 grid h-5 w-5 place-items-center rounded-full bg-green-100 text-green-800 hover:bg-lime-200 transition text-xs font-bold"
                   aria-label="Clear search"
                 >
                   ✕
@@ -318,7 +318,7 @@ export function CataloguePage() {
                 className={`rounded-full px-3.5 py-2.5 text-xs font-bold transition-all shadow-sm sm:px-4 ${
                   category === item.id
                     ? "bg-primary text-primary-foreground shadow-md scale-105"
-                    : "bg-white border border-teal-900/10 text-foreground/80 hover:bg-teal-50 hover:text-teal-900"
+                    : "bg-white border border-green-900/10 text-foreground/80 hover:bg-green-50 hover:text-green-900"
                 }`}
               >
                 {item.name}

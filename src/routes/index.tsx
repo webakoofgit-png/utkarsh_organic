@@ -30,7 +30,7 @@ import farm from "@/assets/farm.jpg";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Counter, Reveal, SectionHeading } from "@/components/site/motion-primitives";
 import { useCatalog } from "@/lib/catalog";
-import { COMPANY_INFO } from "@/lib/products";
+import { COMPANY_INFO, MARATHI_PROMO } from "@/lib/products";
 import { GALLERY_ITEMS } from "@/lib/gallery";
 import { CUSTOMER_TESTIMONIALS } from "@/lib/testimonials";
 import flatlay from "@/assets/flatlay.jpg";
@@ -41,37 +41,37 @@ import heroVideo from "../../IMAGE_TO_VIDEO_PROMPT_Use_both.mp4";
 import storyVideo from "../../Prompt__Use_the_uploaded_image.mp4";
 
 const heroTrustPoints = [
-  "Farm-to-kitchen dehydrated ingredients",
-  "FSSAI registered food business",
-  "Bulk ready MOQ and Pan India supply",
+  MARATHI_PROMO.farmText,
+  MARATHI_PROMO.processingText,
+  MARATHI_PROMO.naturalText,
 ];
 
 const uspCards = [
   {
     icon: Sprout,
-    title: "Farm-First Sourcing",
-    text: "Vegetables and herbs are selected for dependable aroma, color and everyday cooking performance.",
+    title: MARATHI_PROMO.farmTitle,
+    text: MARATHI_PROMO.farmText,
     image: farm,
     imageAlt: "Fresh Utkarsh Organic farm sourcing view",
   },
   {
     icon: Factory,
-    title: "Careful Dehydration",
-    text: "The catalog focuses on shelf-stable flakes and powders made for consistent use in homes and commercial kitchens.",
+    title: MARATHI_PROMO.processingTitle,
+    text: MARATHI_PROMO.processingText,
     image: flatlay,
     imageAlt: "Dehydrated ingredients and powders arranged for processing",
   },
   {
     icon: ShieldCheck,
-    title: "Transparent Quality",
-    text: "Every product keeps visible specs like form, processing, moisture guidance, MOQ and storage details.",
+    title: MARATHI_PROMO.productsTitle,
+    text: `${MARATHI_PROMO.productsText} ${MARATHI_PROMO.examples}`,
     image: heroOnion,
     imageAlt: "Quality checked onion powder ingredient presentation",
   },
   {
     icon: Truck,
-    title: "Bulk Order Support",
-    text: "Utkarsh Organic Farm serves HoReCa, distributors and food processors with MOQ-led product formats.",
+    title: "थेट संपर्क आणि ऑर्डर",
+    text: MARATHI_PROMO.contactLine,
     image: heroBulkOrders,
     imageAlt: "Bulk organic ingredient order and supply support",
   },
@@ -79,20 +79,20 @@ const uspCards = [
 
 const processSteps = [
   {
-    title: "Select",
-    text: "Fresh produce and ingredients are chosen for the intended powder, flakes or dried specialty format.",
+    title: "Our Farm",
+    text: MARATHI_PROMO.farmText,
   },
   {
-    title: "Clean",
-    text: "Ingredients are washed and prepared before drying so the final format is simple to use.",
+    title: "Processing",
+    text: MARATHI_PROMO.processingText,
   },
   {
-    title: "Dehydrate",
-    text: "Moisture is reduced to create stable ingredients for kitchens, processors and bulk buyers.",
+    title: "Products",
+    text: `${MARATHI_PROMO.productsText} ${MARATHI_PROMO.examples}`,
   },
   {
-    title: "Pack",
-    text: "Products are packed with clear MOQ, storage and specification details for confident ordering.",
+    title: "Contact",
+    text: MARATHI_PROMO.contactLine,
   },
 ];
 
@@ -106,7 +106,7 @@ const trustStrip = [
 const categoryIconMap = {
   "dehydrated-flakes": {
     icon: Carrot,
-    shell: "bg-teal-50 text-teal-700 ring-teal-100",
+    shell: "bg-green-50 text-green-700 ring-green-100",
   },
   "dehydrated-powders": {
     icon: CookingPot,
@@ -159,7 +159,7 @@ export default function HomePage() {
         }}
       />
 
-      <section className="relative min-h-[100svh] overflow-hidden bg-[#052c33] pb-16 pt-28 text-white sm:pt-32 lg:pb-24 lg:pt-36">
+      <section className="relative min-h-[100svh] overflow-hidden bg-[#102f1d] pb-16 pt-28 text-white sm:pt-32 lg:pb-24 lg:pt-36">
         <video
           className="absolute inset-0 h-full w-full object-cover opacity-70"
           src={heroVideo}
@@ -170,24 +170,24 @@ export default function HomePage() {
           preload="metadata"
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#041e28]/88 via-[#0b4a50]/60 to-[#0b4a50]/22" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#052c33] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#081c13]/88 via-[#1d4d2b]/60 to-[#1d4d2b]/22" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#102f1d] via-transparent to-transparent" />
         <HomeBackgroundAnimation />
 
         <div className="container-x relative z-10 grid min-h-[calc(100svh-9rem)] items-center gap-12 lg:grid-cols-[minmax(0,1fr)_420px]">
           <Reveal y={28} className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-lime-300/35 bg-teal-950/60 px-4 py-2 text-xs font-bold text-lime-100 shadow-[0_0_24px_rgba(190,242,100,0.2)] backdrop-blur-md">
+            <div className="inline-flex items-center gap-2 rounded-full border border-lime-300/35 bg-green-950/60 px-4 py-2 text-xs font-bold text-lime-100 shadow-[0_0_24px_rgba(190,242,100,0.2)] backdrop-blur-md">
               <Leaf className="h-3.5 w-3.5 text-lime-300" />
-              <span>From Our Farm to Your Kitchen</span>
+              <span>उत्कर्ष फार्म</span>
             </div>
 
             <h1 className="mt-6 max-w-4xl text-balance font-display text-4xl font-black leading-[1.08] text-white sm:text-6xl lg:text-7xl">
-              शुद्ध निसर्गाचा स्पर्श,
-              <span className="block text-lime-300">आरोग्याचा उत्कर्ष!</span>
+              उत्कर्ष फार्म
+              <span className="block text-lime-300">{MARATHI_PROMO.heroTitle}</span>
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-teal-50/86 sm:text-lg">
-              Naturally grown, carefully dehydrated vegetables and powders crafted for modern healthy kitchens, bulk buyers and food processors.
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-green-50/86 sm:text-lg">
+              {MARATHI_PROMO.campaignText} {MARATHI_PROMO.naturalText}
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -196,7 +196,7 @@ export default function HomePage() {
                 className="group inline-flex items-center gap-2.5 rounded-full bg-saffron px-7 py-3.5 text-sm font-extrabold text-foreground shadow-[0_16px_42px_rgba(230,161,25,0.24)] transition hover:-translate-y-0.5 hover:bg-white"
               >
                 <ShoppingBag className="h-4 w-4" />
-                Explore Products
+                उत्पादने पाहा
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <a
@@ -204,11 +204,11 @@ export default function HomePage() {
                 className="inline-flex items-center gap-2 rounded-full border border-white/28 bg-white/10 px-7 py-3.5 text-sm font-bold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/16"
               >
                 <Play className="h-3.5 w-3.5 fill-current text-lime-300" />
-                Our Farm Story
+                आमची प्रक्रिया
               </a>
             </div>
 
-            <ul className="mt-8 grid gap-3 text-sm font-semibold text-teal-50/86 sm:grid-cols-3">
+            <ul className="mt-8 grid gap-3 text-sm font-semibold text-green-50/86 sm:grid-cols-3">
               {heroTrustPoints.map((point) => (
                 <li key={point} className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 shrink-0 text-lime-300" />
@@ -226,10 +226,11 @@ export default function HomePage() {
                 </div>
                 <div className="mt-5">
                   <p className="text-xs font-extrabold uppercase text-accent">Satara, Maharashtra</p>
-                  <h2 className="mt-2 font-display text-2xl font-black">Good food begins with good farming.</h2>
+                  <h2 className="mt-2 font-display text-2xl font-black">{MARATHI_PROMO.campaignTitle}</h2>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    Manufacturer and supplier of dehydrated vegetables, organic powders, spice powders and dried specialty ingredients.
+                    {MARATHI_PROMO.naturalText}
                   </p>
+                  <p className="mt-3 text-xs font-bold text-primary">{MARATHI_PROMO.contactLine}</p>
                 </div>
               </div>
             </div>
@@ -244,7 +245,7 @@ export default function HomePage() {
           </svg>
         </div>
         <div className="container-x -mt-1">
-          <div className="grid gap-3 rounded-[1.75rem] border border-teal-500/16 bg-white p-4 shadow-lift sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-3 rounded-[1.75rem] border border-green-500/16 bg-white p-4 shadow-lift sm:grid-cols-2 lg:grid-cols-4">
             <StatCard label="Official Products" value={<Counter to={products.length || 23} suffix="+" />} icon={PackageCheck} />
             <StatCard label="Minimum Order Quantity" value={<><Counter to={100} /> kg</>} icon={ShoppingBag} />
             <StatCard label="Team Members" value={<Counter to={15} suffix=" people" />} icon={Users} />
@@ -255,9 +256,9 @@ export default function HomePage() {
 
       <section className="container-x py-16 lg:py-24">
         <SectionHeading
-          eyebrow="Why choose Utkarsh Organic?"
-          title="Pure ingredients with a practical farm-to-business backbone."
-          sub="A premium organic feel backed by clear product specifications, transparent contact details and bulk-ready catalog data."
+          eyebrow="उत्कर्ष फार्म"
+          title={MARATHI_PROMO.campaignTitle}
+          sub={`${MARATHI_PROMO.campaignText} ${MARATHI_PROMO.naturalText}`}
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {uspCards.map(({ icon: Icon, title, text, image, imageAlt }, index) => (
@@ -366,10 +367,10 @@ export default function HomePage() {
       <section id="farm-story" className="bg-gradient-cream py-16 lg:py-24">
         <div className="container-x grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
           <Reveal>
-            <p className="eyebrow mb-3">Farm story</p>
-            <h2 className="font-display text-3xl font-black leading-tight sm:text-5xl">Good Food Begins With Good Farming.</h2>
+            <p className="eyebrow mb-3">Our Farm</p>
+            <h2 className="font-display text-3xl font-black leading-tight sm:text-5xl">{COMPANY_INFO.marathiHeader}</h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              Utkarsh Organic Farm brings Satara-grown sensibility into dehydrated vegetables, powders, spice powders and specialty dried ingredients that are easier to store, ship and use.
+              {MARATHI_PROMO.campaignText} {MARATHI_PROMO.naturalText}
             </p>
             <div className="mt-8 grid gap-4">
               {processSteps.map((step, index) => (
@@ -425,7 +426,7 @@ export default function HomePage() {
                   <h3 className="mt-1 font-display text-lg font-bold">{featuredGalleryItem.title}</h3>
                   <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">{featuredGalleryItem.description}</p>
                   <div className="mt-5 flex flex-wrap gap-2">
-                    {["Farm-first sourcing", "Fresh ingredient formats", "Bulk-ready catalog"].map((item) => (
+                    {["विषमुक्त शेती", "हायजीनिक प्रक्रिया", "शुद्ध पावडर्स"].map((item) => (
                       <span key={item} className="rounded-full bg-secondary px-3 py-1.5 text-xs font-bold text-primary">
                         {item}
                       </span>
@@ -458,22 +459,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[#073f46] py-16 text-white lg:py-24">
+      <section className="bg-[#173d23] py-16 text-white lg:py-24">
         <div className="container-x grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal>
-            <p className="eyebrow mb-3 text-lime-300">Video story</p>
-            <h2 className="font-display text-3xl font-black leading-tight sm:text-5xl">Watch the Utkarsh Organic story in motion.</h2>
+            <p className="eyebrow mb-3 text-lime-300">Processing</p>
+            <h2 className="font-display text-3xl font-black leading-tight sm:text-5xl">आधुनिक तंत्रज्ञानाने हायजीनिक प्रक्रिया.</h2>
             <p className="mt-5 text-base leading-relaxed text-white/72">
-              A responsive 16:9 video section with controls, poster image and no audio autoplay, so visitors stay in control while browsing.
+              {MARATHI_PROMO.processingText} {MARATHI_PROMO.productsText}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <span className="inline-flex items-center gap-2 rounded-full border border-lime-300/24 bg-lime-300/10 px-4 py-2 text-xs font-bold text-lime-100">
                 <Play className="h-3.5 w-3.5" />
-                Controls enabled
+                Dehydrated Vegetables
               </span>
               <span className="inline-flex items-center gap-2 rounded-full border border-lime-300/24 bg-lime-300/10 px-4 py-2 text-xs font-bold text-lime-100">
                 <Leaf className="h-3.5 w-3.5" />
-                Mobile friendly
+                १००% नॅचरल
               </span>
             </div>
           </Reveal>
@@ -511,7 +512,7 @@ export default function HomePage() {
               <article key={`${testimonial.name}-${index}`} className="surface-card flex w-[min(360px,calc(100vw-2rem))] shrink-0 flex-col justify-between p-6">
                 <div>
                   <div className="flex items-center justify-between gap-3">
-                    <Quote className="h-8 w-8 fill-teal-500/10 text-teal-500" />
+                    <Quote className="h-8 w-8 fill-green-500/10 text-green-500" />
                   </div>
                   <blockquote className="mt-5 text-sm leading-relaxed text-muted-foreground">"{testimonial.quote}"</blockquote>
                 </div>
@@ -542,9 +543,9 @@ export default function HomePage() {
         <div className="grid gap-8 rounded-[2rem] bg-secondary p-7 md:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
             <p className="eyebrow mb-3">Visit or order</p>
-            <h2 className="font-display text-3xl font-black sm:text-4xl">Plan a bulk order or speak with the farm team.</h2>
+            <h2 className="font-display text-3xl font-black sm:text-4xl">{MARATHI_PROMO.contactLine}</h2>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-              {COMPANY_INFO.address.full}. Exact map coordinates are not listed in the project data, so contact the team before planning a visit.
+              {MARATHI_PROMO.campaignText} {COMPANY_INFO.address.full}.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
@@ -559,7 +560,7 @@ export default function HomePage() {
               className="inline-flex items-center justify-center gap-2 rounded-full border border-primary/25 bg-white px-6 py-3 text-sm font-extrabold text-primary transition hover:-translate-y-0.5"
             >
               <MapPin className="h-4 w-4" />
-              Contact for Visit
+              WhatsApp संपर्क
             </a>
           </div>
         </div>
@@ -603,7 +604,7 @@ function HomeBackgroundAnimation() {
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
       <div className="home-vine-lines absolute inset-x-0 bottom-0 h-40 opacity-50" />
       {leaves.map((className, index) => (
-        <Leaf key={index} className={`home-drifting-leaf absolute text-teal-300/60 ${className}`} strokeWidth={1.6} />
+        <Leaf key={index} className={`home-drifting-leaf absolute text-green-300/60 ${className}`} strokeWidth={1.6} />
       ))}
     </div>
   );

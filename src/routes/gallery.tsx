@@ -8,41 +8,41 @@ import { GALLERY_ITEMS } from "@/lib/gallery";
 export default function GalleryPage() {
   return (
     <main className="pt-16 lg:pt-20">
-      <div className="w-full border-b border-teal-500/20 bg-[#083b3f] py-3">
-        <div className="container-x flex items-center justify-between text-xs font-medium text-teal-100 sm:text-sm">
+      <div className="w-full border-b border-green-500/20 bg-[#163d24] py-3">
+        <div className="container-x flex items-center justify-between text-xs font-medium text-green-100 sm:text-sm">
           <div className="flex min-w-0 items-center gap-2 sm:gap-3">
             <Link
               to="/"
-              className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-teal-300/40 bg-teal-950/90 text-teal-200 transition hover:bg-lime-300 hover:text-teal-950"
+              className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-green-300/40 bg-green-950/90 text-green-200 transition hover:bg-lime-300 hover:text-green-950"
             >
               <Home className="h-3.5 w-3.5" />
             </Link>
-            <ChevronRight className="h-4 w-4 shrink-0 text-teal-500/60" />
-            <Link to="/" className="text-teal-100 transition hover:text-lime-200">
+            <ChevronRight className="h-4 w-4 shrink-0 text-green-500/60" />
+            <Link to="/" className="text-green-100 transition hover:text-lime-200">
               Home
             </Link>
-            <ChevronRight className="h-4 w-4 shrink-0 text-teal-500/60" />
+            <ChevronRight className="h-4 w-4 shrink-0 text-green-500/60" />
             <span className="font-bold text-lime-200">Gallery</span>
-            <ChevronRight className="hidden h-4 w-4 shrink-0 text-teal-500/60 sm:block" />
-            <span className="hidden truncate text-teal-200/90 sm:block">Farm, products and pantry-ready formats</span>
+            <ChevronRight className="hidden h-4 w-4 shrink-0 text-green-500/60 sm:block" />
+            <span className="hidden truncate text-green-200/90 sm:block">Farm, products and pantry-ready formats</span>
           </div>
 
           <Leaf className="h-4.5 w-4.5 shrink-0 fill-lime-300/30 text-lime-200" />
         </div>
       </div>
 
-      <section className="relative flex min-h-[170px] w-full items-center overflow-hidden border-b border-teal-500/20 bg-[#073f46] text-white shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]">
+      <section className="relative flex min-h-[170px] w-full items-center overflow-hidden border-b border-green-500/20 bg-[#173d23] text-white shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]">
         <img src={farm} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover object-center opacity-60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#03180d]/96 via-[#073f46]/88 to-[#073f46]/72" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#03180d]/96 via-[#173d23]/88 to-[#173d23]/72" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(3,24,13,0.38)_62%,rgba(3,24,13,0.9)_100%)]" />
         <div className="home-vine-lines pointer-events-none absolute inset-x-0 bottom-0 h-32 opacity-35" aria-hidden="true" />
-        <Leaf className="home-drifting-leaf pointer-events-none absolute left-[18%] top-[22%] h-7 w-7 text-teal-300/45" aria-hidden="true" />
-        <Leaf className="home-drifting-leaf pointer-events-none absolute right-[22%] top-[18%] h-8 w-8 rotate-12 text-teal-300/45 [animation-delay:1.2s]" aria-hidden="true" />
-        <Leaf className="home-drifting-leaf pointer-events-none absolute right-[8%] bottom-[22%] h-6 w-6 text-teal-300/35 [animation-delay:2.2s]" aria-hidden="true" />
+        <Leaf className="home-drifting-leaf pointer-events-none absolute left-[18%] top-[22%] h-7 w-7 text-green-300/45" aria-hidden="true" />
+        <Leaf className="home-drifting-leaf pointer-events-none absolute right-[22%] top-[18%] h-8 w-8 rotate-12 text-green-300/45 [animation-delay:1.2s]" aria-hidden="true" />
+        <Leaf className="home-drifting-leaf pointer-events-none absolute right-[8%] bottom-[22%] h-6 w-6 text-green-300/35 [animation-delay:2.2s]" aria-hidden="true" />
 
         <div className="container-x relative z-10">
           <Reveal className="mx-auto max-w-4xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-lime-300/45 bg-teal-950/72 px-5 py-2 text-sm font-extrabold text-lime-100 shadow-[0_0_24px_rgba(190,242,100,0.18)] backdrop-blur-md">
+            <div className="inline-flex items-center gap-2 rounded-full border border-lime-300/45 bg-green-950/72 px-5 py-2 text-sm font-extrabold text-lime-100 shadow-[0_0_24px_rgba(190,242,100,0.18)] backdrop-blur-md">
               <Camera className="h-4 w-4 text-lime-300" />
               <span>Farm Gallery</span>
               <Sparkles className="h-3.5 w-3.5 text-amber-300" />

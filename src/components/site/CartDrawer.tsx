@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
+import { ProductImageWithLogo } from "@/components/site/ProductImageWithLogo";
 import { inr, priceFor } from "@/lib/products";
 import { useCatalog } from "@/lib/catalog";
 import { useStore } from "@/lib/store";
@@ -36,8 +37,14 @@ export function CartDrawer() {
             <div className="flex-1 space-y-5 overflow-y-auto px-6 py-5">
               {lines.map(({ product, weight, qty, amount }) => (
                 <div key={`${product.slug}-${weight}`} className="flex gap-3">
-                  <div className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl bg-cream p-2">
-                    <img src={product.image} alt="" className="max-h-full max-w-full object-contain" />
+                  <div className="grid h-20 w-20 shrink-0 place-items-center overflow-hidden rounded-2xl bg-cream p-2">
+                    <ProductImageWithLogo
+                      src={product.image}
+                      alt={product.name}
+                      className="h-full w-full"
+                      imageClassName="max-h-full max-w-full"
+                      stampClassName="bottom-0.5 right-0.5 h-6 w-6 rounded-md p-0.5"
+                    />
                   </div>
                   <div className="min-w-0 flex-1">
                     <Link to={`/product/${product.slug}`} onClick={() => setCartOpen(false)} className="font-display text-sm font-bold text-foreground hover:text-accent">{product.name}</Link>

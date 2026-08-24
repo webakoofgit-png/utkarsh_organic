@@ -5,7 +5,7 @@ export const COMPANY_INFO = {
   tradeName: "Utkarsh Organic Farm",
   legalName: "Utkarsh Organic Farm",
   founders: [{ name: "Mr. Prafull Chorage", role: "Founder and Mentor" }],
-  contactPerson: "Mr. Prafull Chorage",
+  contactPerson: "Prafull Chorage",
   yearEstablished: "2026",
   natureOfBusiness: "Manufacturer & Supplier",
   employees: "15 People",
@@ -29,10 +29,27 @@ export const COMPANY_INFO = {
   email: "PrafullChorage143@gmail.com",
   officialEmail: "",
   website: "https://www.utkarshorgfarm.in/",
-  marathiHeader: "शेतातून थेट तुमच्या स्वयंपाकघरापर्यंत",
-  marathiSlogan: "शुद्ध निसर्गाचा स्पर्श, आरोग्याचा उत्कर्ष!",
+  marathiHeader: "उत्कर्ष फार्म – शेतापासून थेट तुमच्या स्वयंपाकघरापर्यंत!",
+  marathiSlogan: "आधुनिक काळाची नवी गरज – उत्कर्ष फार्म उत्पादने!",
   marathiDescription:
-    "सातारा, महाराष्ट्र येथून Pan India साठी dehydrated vegetables, organic powders, spice powders आणि specialty dried ingredients पुरवणारे उत्पादक व पुरवठादार.",
+    "भाज्यांची चव आणि पोषणमूल्ये टिकवून ठेवणारी आमची विशेष Dehydrated Vegetables & Powders आता उपलब्ध. १००% नॅचरल, कोणतीही प्रिझर्व्हेटिव्ह्ज नसलेली शुद्ध उत्पादने!",
+};
+
+export const MARATHI_PROMO = {
+  heroTitle: "शेतापासून थेट तुमच्या स्वयंपाकघरापर्यंत!",
+  farmTitle: "खेळते आणि ताजे शेत",
+  farmText: "विषमुक्त आणि नैसर्गिक पद्धतीने पिकवलेल्या ताज्या भाज्या.",
+  processingTitle: "अद्ययावत प्रक्रिया",
+  processingText: "आधुनिक तंत्रज्ञानाने पूर्णपणे डीहायड्रेटेड आणि हायजीनिक पद्धतीने केलेली प्रक्रिया.",
+  productsTitle: "डीहायड्रेटेड उत्पादने आणि पावडर",
+  productsText:
+    "प्रदीर्घ काळ टिकणाऱ्या दर्जेदार वाळवलेल्या भाज्या आणि आरोग्यासाठी फायदेशीर शुद्ध व्हेजिटेबल पावडर्स.",
+  examples: "पालक, बीट, कांदा, शेवगा आणि पाला, लसूण, आले, गाजर पावडर.",
+  campaignTitle: "आधुनिक काळाची नवी गरज – उत्कर्ष फार्म उत्पादने!",
+  campaignText:
+    "भाज्यांची चव आणि पोषणमूल्ये टिकवून ठेवणारी आमची विशेष Dehydrated Vegetables & Powders आता उपलब्ध.",
+  naturalText: "१००% नॅचरल, कोणतीही प्रिझर्व्हेटिव्ह्ज नसलेली शुद्ध उत्पादने!",
+  contactLine: "संपर्क ७५०७३७९०१८ प्रफुल्ल चोरगे",
 };
 
 export type Weight = "1kg" | "5kg" | "25kg" | "100kg";

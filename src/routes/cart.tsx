@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { ProductImageWithLogo } from "@/components/site/ProductImageWithLogo";
 import { inr, priceFor } from "@/lib/products";
 import { useCatalog } from "@/lib/catalog";
 import { useStore } from "@/lib/store";
@@ -81,8 +82,14 @@ export default function CartPage() {
                     className="flex flex-col gap-4 rounded-2xl border border-border bg-background p-5 sm:grid sm:grid-cols-[2fr_1fr_1fr_auto] sm:items-center"
                   >
                     <div className="flex min-w-0 gap-4 items-center">
-                      <div className="grid h-20 w-20 shrink-0 place-items-center rounded-xl bg-cream p-2">
-                        <img src={product.image} alt={product.name} className="max-h-full max-w-full object-contain" />
+                      <div className="grid h-20 w-20 shrink-0 place-items-center overflow-hidden rounded-xl bg-cream p-2">
+                        <ProductImageWithLogo
+                          src={product.image}
+                          alt={product.name}
+                          className="h-full w-full"
+                          imageClassName="max-h-full max-w-full"
+                          stampClassName="bottom-0.5 right-0.5 h-6 w-6 rounded-md p-0.5"
+                        />
                       </div>
                       <div className="min-w-0">
                         <Link to={`/product/${product.slug}`} className="font-display text-base font-bold text-foreground hover:text-accent">

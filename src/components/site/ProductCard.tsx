@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { type Product } from "@/lib/products";
 import { useCatalog } from "@/lib/catalog";
 import { useStore } from "@/lib/store";
+import { ProductImageWithLogo } from "@/components/site/ProductImageWithLogo";
 
 export function ProductCard({ product, compact = false }: { product: Product; compact?: boolean }) {
   const { addToCart, toggleWishlist, wishlist } = useStore();
@@ -27,17 +28,18 @@ export function ProductCard({ product, compact = false }: { product: Product; co
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="relative grid aspect-[4/3.75] min-h-[260px] place-items-center overflow-hidden bg-white sm:min-h-[290px]">
-        <span className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-1/3 bg-gradient-to-r from-transparent via-teal-50/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:animate-shine-sweep group-hover:opacity-100" />
+        <span className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-1/3 bg-gradient-to-r from-transparent via-green-50/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:animate-shine-sweep group-hover:opacity-100" />
         <Link
           to={`/product/${product.slug}`}
           aria-label={`View ${product.name}`}
           className="absolute inset-0 grid place-items-center px-7 pb-8 pt-14 sm:px-9 sm:pb-9 sm:pt-16"
         >
-          <img
+          <ProductImageWithLogo
             src={product.image}
             alt={product.name}
-            loading="lazy"
-            className="h-full w-full object-contain object-center transition-transform duration-500 group-hover:-translate-y-1"
+            className="h-full w-full transition-transform duration-500 group-hover:-translate-y-1"
+            stampClassName="h-14 w-14 sm:h-16 sm:w-16"
+            imgProps={{ loading: "lazy" }}
           />
         </Link>
         <div className="absolute left-3 top-3 z-10 flex flex-col gap-2">

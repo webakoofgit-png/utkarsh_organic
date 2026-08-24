@@ -26,23 +26,23 @@ export default function AboutPage() {
   return (
     <main className="pt-16 lg:pt-20 bg-background">
       {/* Top Full Viewport Width Fresh Teal Breadcrumb Bar */}
-      <div className="w-full bg-[#083b3f] border-b border-teal-500/20 py-3">
-        <div className="container-x flex items-center justify-between text-xs sm:text-sm text-teal-100 font-medium">
+      <div className="w-full bg-[#163d24] border-b border-green-500/20 py-3">
+        <div className="container-x flex items-center justify-between text-xs sm:text-sm text-green-100 font-medium">
           <div className="flex items-center gap-2 sm:gap-3">
             <Link
               to="/"
-              className="grid h-7 w-7 place-items-center rounded-full bg-teal-950/90 border border-teal-300/40 text-teal-200 hover:bg-lime-300 hover:text-teal-950 transition"
+              className="grid h-7 w-7 place-items-center rounded-full bg-green-950/90 border border-green-300/40 text-green-200 hover:bg-lime-300 hover:text-green-950 transition"
             >
               <Home className="h-3.5 w-3.5" />
             </Link>
-            <ChevronRight className="h-4 w-4 text-teal-500/60" />
-            <Link to="/" className="text-teal-100 hover:text-lime-200 transition font-medium">
+            <ChevronRight className="h-4 w-4 text-green-500/60" />
+            <Link to="/" className="text-green-100 hover:text-lime-200 transition font-medium">
               Home
             </Link>
-            <ChevronRight className="h-4 w-4 text-teal-500/60" />
+            <ChevronRight className="h-4 w-4 text-green-500/60" />
             <span className="font-bold text-lime-200">About Us</span>
-            <ChevronRight className="h-4 w-4 text-teal-500/60" />
-            <span className="text-teal-200/90 font-medium">About Utkarsh Organic Farm</span>
+            <ChevronRight className="h-4 w-4 text-green-500/60" />
+            <span className="text-green-200/90 font-medium">About Utkarsh Organic Farm</span>
           </div>
 
           <div className="flex items-center gap-1.5 text-lime-200">
@@ -53,7 +53,7 @@ export default function AboutPage() {
 
       {/* 100% Full Viewport Width Hero Banner Section (Matching Uploaded Design Image media_1787120746684.png) */}
       {/* Desktop (1920): 300px | Laptop (1440): 250px | Tablet (768): 210px | Mobile (390): 160px */}
-      <section className="relative flex min-h-[170px] w-full items-center overflow-hidden bg-gradient-to-r from-[#0a4b4d] via-[#08383e] to-[#051f29] text-white border-b border-teal-500/20 shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]">
+      <section className="relative flex min-h-[170px] w-full items-center overflow-hidden bg-gradient-to-r from-[#1f5a2f] via-[#163d24] to-[#10281a] text-white border-b border-green-500/20 shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]">
         {/* Ambient Leaf Glow */}
         <div className="absolute top-0 right-1/3 h-80 w-80 rounded-full bg-lime-300/15 blur-3xl pointer-events-none" />
 
@@ -62,7 +62,7 @@ export default function AboutPage() {
           {/* Left Content */}
           <div className="min-w-0 max-w-2xl py-2 pr-2">
             {/* Top Eyebrow Pill */}
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-lime-300/40 bg-teal-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-lime-200 tracking-wider">
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-lime-300/40 bg-green-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-lime-200 tracking-wider">
               <Leaf className="h-3.5 w-3.5 text-lime-300" />
               <span>ABOUT US</span>
               <Sparkles className="h-3 w-3 text-amber-300" />
@@ -90,20 +90,20 @@ export default function AboutPage() {
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-3 text-xs sm:text-sm md:text-base leading-relaxed text-teal-100/90 max-w-xl hidden sm:block">
+            <p className="mt-3 text-xs sm:text-sm md:text-base leading-relaxed text-green-100/90 max-w-xl hidden sm:block">
               Utkarsh Organic Farm is listed as a 2026 manufacturer and supplier from Satara, Maharashtra, offering dehydrated vegetables, organic powders and spice ingredients across Pan India.
             </p>
           </div>
 
           {/* Right Visual Image */}
           <div className="relative hidden shrink-0 items-center justify-end sm:flex">
-            <div className="relative overflow-hidden rounded-2xl border border-teal-500/30 bg-teal-950/40 p-2 backdrop-blur-md shadow-2xl">
+            <div className="relative overflow-hidden rounded-2xl border border-green-500/30 bg-green-950/40 p-2 backdrop-blur-md shadow-2xl">
               <img
                 src={hero}
                 alt="Utkarsh Organic Farm"
                 className="h-32 w-52 rounded-xl bg-white/10 object-contain p-1 md:h-44 md:w-64 lg:h-52 lg:w-80 xl:h-60 xl:w-96"
               />
-              <div className="absolute bottom-3 right-3 rounded-xl border border-lime-300/35 bg-teal-950/90 px-3 py-1 text-xs font-bold text-lime-200 shadow-lg backdrop-blur-md hidden sm:block">
+              <div className="absolute bottom-3 right-3 rounded-xl border border-lime-300/35 bg-green-950/90 px-3 py-1 text-xs font-bold text-lime-200 shadow-lg backdrop-blur-md hidden sm:block">
                 MIDC Satara Unit
               </div>
             </div>
@@ -115,7 +115,7 @@ export default function AboutPage() {
           <svg
             viewBox="0 0 1200 40"
             preserveAspectRatio="none"
-            className="relative block w-full h-4 text-[#0b4a4d] fill-current opacity-80"
+            className="relative block w-full h-4 text-[#235c32] fill-current opacity-80"
           >
             <path d="M0,0 C300,30 600,-10 1200,20 L1200,40 L0,40 Z"></path>
           </svg>
@@ -141,7 +141,7 @@ export default function AboutPage() {
                 Mr. Prafull Chorage
               </h3>
               <p className="text-xs font-bold uppercase tracking-wider text-accent mt-1">
-                प्रफुल्ल प्रदीप चोरगे (कृषी तज्ञ - Agricultural Expert)
+                Prafull Pradeep Chorage (Agricultural Expert)
               </p>
               <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
                 Leads Utkarsh Organic Farm's manufacturer and supplier operations for dehydrated vegetables, organic powders and spice ingredients.
@@ -159,7 +159,7 @@ export default function AboutPage() {
                 Manufacturer & Supplier
               </h3>
               <p className="text-xs font-bold uppercase tracking-wider text-accent mt-1">
-                डॉ. पद्मश्री प्रफुल्ल चोरगे (पोषण तज्ञ - Nutrition Expert)
+                Dr. Padmashri Prafull Chorage (Nutrition Expert)
               </p>
               <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
                 Official business profile lists dehydrated vegetables, organic powder, dried tomato flakes, dried sweet corn, turmeric powder, coriander powder and ayurvedic moringa leaf powder.
@@ -177,17 +177,17 @@ export default function AboutPage() {
               align="left"
               eyebrow="Our Product Range"
               title="Fresh + Dehydrated Foods"
-              sub="वापरायला अत्यंत सोपे: रेडी टू कूक (Ready to Cook) &amp; रेडी टू युज (Ready to Use)!"
+              sub="Easy to use: ready to cook and ready to use."
             />
             <p className="mt-6 text-muted-foreground leading-relaxed">
               At Utkarsh Organic Farm, we bridge fresh produce with modern daily convenience. Our zero-preservative processing preserves natural flavor, aroma, and essential vitamins for up to 18 months.
             </p>
             <div className="mt-8 space-y-3">
               {[
-                "ताजी फळे व भाजीपाला आणि Dehydrated प्रोसेसिंग प्रॉडक्ट (Fresh & Dehydrated Range)",
-                "प्रीमियम दर्जाची सुकवलेली फळे आणि भाजीपाला (Premium Dried Veggies)",
-                "विविध प्रकारची पोषण-युक्त फळ व भाजी पावडर (Fruit & Veg Powders)",
-                "विशेष निवडक सुका मेवा आणि सुके मसाले (Dry Fruits & Whole Spices)",
+                "Fresh fruits, vegetables and dehydrated processing products",
+                "Premium quality dried fruits and vegetables",
+                "Different nutritious fruit and vegetable powders",
+                "Special selected dry fruits and whole spices",
                 "Wholesale catalog with 100 Kilogram MOQ on official product listings",
               ].map((point) => (
                 <div key={point} className="flex items-center gap-3 font-semibold text-sm">

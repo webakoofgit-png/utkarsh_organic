@@ -3,6 +3,7 @@ import { Check, ChevronRight, Heart, Minus, Plus, ShieldCheck, ShoppingBag, Star
 import { useState } from "react";
 import { toast } from "sonner";
 import { ProductCard } from "@/components/site/ProductCard";
+import { ProductImageWithLogo } from "@/components/site/ProductImageWithLogo";
 import { inr, priceFor, WEIGHTS, type Weight } from "@/lib/products";
 import { useCatalog } from "@/lib/catalog";
 import { useStore } from "@/lib/store";
@@ -38,7 +39,15 @@ export default function ProductDetailPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Product", name: product.name, description: product.short, sku: product.sku, brand: { "@type": "Brand", name: "Utkarsh Organic" }, offers: { "@type": "Offer", priceCurrency: "INR", price: prices.price, availability: "https://schema.org/InStock" }, aggregateRating: { "@type": "AggregateRating", ratingValue: product.rating, reviewCount: product.reviews } }) }} />
       <div className="container-x py-5 text-xs text-muted-foreground"><Link to="/" className="hover:text-primary">Home</Link> <ChevronRight className="mx-1 inline h-3 w-3" /> <Link to="/shop" className="hover:text-primary">Shop</Link> <ChevronRight className="mx-1 inline h-3 w-3" /> <span>{product.name}</span></div>
       <section className="container-x grid gap-10 pb-16 pt-4 lg:grid-cols-2 lg:pb-24">
-        <div className="grid aspect-square place-items-center overflow-hidden rounded-[2rem] bg-gradient-to-b from-cream to-background p-5 sm:p-8"><img src={product.image} alt={product.name} className="max-h-full max-w-full object-contain" /></div>
+        <div className="grid aspect-square place-items-center overflow-hidden rounded-[2rem] bg-gradient-to-b from-cream to-background p-5 sm:p-8">
+          <ProductImageWithLogo
+            src={product.image}
+            alt={product.name}
+            className="h-full w-full"
+            imageClassName="max-h-full max-w-full"
+            stampClassName="bottom-4 right-4 h-20 w-20 rounded-2xl sm:h-24 sm:w-24"
+          />
+        </div>
         <div className="min-w-0 lg:py-4"><p className="eyebrow">{categoryLabel(product.category)}</p><div className="mt-3 flex items-start justify-between gap-4"><h1 className="break-words font-display text-3xl font-extrabold leading-tight sm:text-5xl">{product.name}</h1><button onClick={() => toggleWishlist(product.slug)} aria-label="Add product to wishlist" className={`grid h-11 w-11 shrink-0 place-items-center rounded-full border border-border ${saved ? "bg-secondary text-destructive" : "text-foreground hover:bg-secondary"}`}><Heart className="h-5 w-5" fill={saved ? "currentColor" : "none"} /></button></div><div className="mt-4 flex flex-wrap items-center gap-3 sm:gap-4"><span className="flex items-center gap-1 text-sm font-bold"><Star className="h-4 w-4 fill-saffron text-saffron" /> {product.rating} <span className="font-normal text-muted-foreground">({product.reviews} reviews)</span></span><span className="hidden h-4 border-l border-border sm:block" /><span className="text-sm font-semibold text-accent">{product.inStock ? "Available for quote" : "Currently unavailable"}</span><span className="hidden h-4 border-l border-border sm:block" /><span className="text-sm font-semibold text-muted-foreground">MOQ {product.moq}</span></div><p className="mt-6 max-w-xl leading-relaxed text-muted-foreground">{product.description}</p>
           <div className="mt-7"><p className="text-sm font-bold">Choose pack size</p><div className="mt-3 flex flex-wrap gap-2">{WEIGHTS.map((option) => <button key={option} onClick={() => setWeight(option)} className={`rounded-full border px-4 py-2.5 text-sm font-bold transition ${weight === option ? "border-primary bg-primary text-primary-foreground" : "border-border bg-background hover:border-accent"}`}>{option}</button>)}</div></div>
           <div className="mt-7 flex items-end gap-4"><div><p className="font-display text-3xl font-extrabold">{priceLabel}</p><p className="mt-1 text-sm text-muted-foreground">{weight} selected &middot; Official listing: {product.priceLabel}</p></div></div>
