@@ -38,7 +38,7 @@ import heroOnion from "@/assets/hero-onion.jpg";
 import flipOnionPowder from "@/assets/flip-onion-powder.png";
 import flipBulkPowders from "@/assets/flip-bulk-powders.png";
 import heroFarmFamily from "@/assets/hero-farm-family.png";
-import farmStoryProductPackaging from "@/assets/farm-story-product-packaging.png";
+import heroOnionProductLineup from "@/assets/hero-onion-product-lineup.png";
 import heroVideo from "../../utkarsh.mp4";
 import storyVideo from "../../Prompt__Use_the_uploaded_image.mp4";
 
@@ -449,7 +449,7 @@ export default function HomePage() {
             <div className="rounded-[2rem] border border-border bg-white p-3 shadow-lift">
               <div className="grid aspect-[4/3] place-items-center overflow-hidden rounded-[1.55rem] bg-cream">
                 <img
-                  src={farmStoryProductPackaging}
+                  src={heroOnionProductLineup}
                   alt="Utkarsh Organic Farm product packaging and dehydrated ingredients"
                   className="h-full w-full object-cover object-center"
                 />

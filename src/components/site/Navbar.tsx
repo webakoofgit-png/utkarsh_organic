@@ -77,7 +77,7 @@ export function Navbar() {
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-50 overflow-hidden border-b border-green-900/10 bg-white text-foreground shadow-md backdrop-blur-xl transition-all duration-300"
+      className="fixed inset-x-0 top-0 z-50 border-b border-green-900/10 bg-white text-foreground shadow-md backdrop-blur-xl transition-all duration-300"
     >
       <MoringaLeafSprig className="pointer-events-none absolute left-[8rem] top-1/2 hidden h-14 w-44 -translate-y-1/2 text-primary/10 lg:block" />
       <MoringaLeafSprig className="pointer-events-none absolute right-[26rem] top-1/2 hidden h-12 w-40 -translate-y-1/2 rotate-180 text-primary/10 xl:block" />
@@ -105,14 +105,14 @@ export function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 xl:flex">
+        <nav className="hidden flex-nowrap items-center gap-0.5 xl:flex">
           {NAV.map((item) => {
             const isActive = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
             return (
               <Link
                 key={item.to}
                 to={item.to}
-                className={`relative overflow-hidden rounded-full px-3 py-2 text-sm font-semibold transition-colors ${
+                className={`relative shrink-0 overflow-hidden whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold transition-colors ${
                   isActive
                     ? solid
                       ? "text-primary"
@@ -129,7 +129,7 @@ export function Navbar() {
                     transition={{ type: "spring", stiffness: 420, damping: 34 }}
                   />
                 ) : null}
-                <span className="relative z-10">{item.label}</span>
+                <span className="relative z-10 whitespace-nowrap">{item.label}</span>
               </Link>
             );
           })}
