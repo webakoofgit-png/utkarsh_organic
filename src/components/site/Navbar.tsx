@@ -86,9 +86,9 @@ export function Navbar() {
       <div className="container-x relative z-10 flex h-16 items-center justify-between gap-3 lg:h-20">
         <Link
           to="/"
-          className="flex min-w-0 shrink-0 items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5"
+          className="flex min-w-0 shrink-0 items-center gap-2 transition-transform duration-300 hover:-translate-y-0.5 sm:gap-3"
         >
-          <div className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-xl border border-green-500/30 bg-white p-0.5 shadow-sm sm:h-14 sm:w-14">
+          <div className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-xl border border-green-500/30 bg-white p-0.5 shadow-sm min-[380px]:h-12 min-[380px]:w-12 sm:h-14 sm:w-14">
             <img
               src={logo}
               alt="Utkarsh Organic Farm logo"
@@ -96,9 +96,11 @@ export function Navbar() {
             />
           </div>
           <span className="flex min-w-0 flex-col leading-none">
-            <span className="font-display text-lg font-black sm:text-xl">Utkarsh</span>
+            <span className="font-display text-base font-black min-[380px]:text-lg sm:text-xl">
+              Utkarsh
+            </span>
             <span
-              className={`text-[0.65rem] font-bold uppercase tracking-[0.28em] ${solid ? "text-primary" : "text-green-200"}`}
+              className={`text-[0.56rem] font-bold uppercase tracking-[0.16em] min-[380px]:text-[0.65rem] min-[380px]:tracking-[0.28em] ${solid ? "text-primary" : "text-green-200"}`}
             >
               Organic Farm
             </span>
@@ -230,7 +232,7 @@ export function Navbar() {
                 e.preventDefault();
                 const q = new FormData(e.currentTarget).get("q") as string;
                 setSearchOpen(false);
-                navigate(`/shop?q=${encodeURIComponent(q ?? "")}`);
+                navigate(`/products?q=${encodeURIComponent(q ?? "")}`);
               }}
             >
               <Search className="h-4 w-4 text-muted-foreground" />

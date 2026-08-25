@@ -78,6 +78,7 @@ export function AdminLayout() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { admin, logout } = useAuth();
   const navigate = useNavigate();
+  const showSidebarLabels = !collapsed || mobileOpen;
 
   const handleLogout = async () => {
     await logout();
@@ -89,7 +90,7 @@ export function AdminLayout() {
       <aside className={`sidebar ${mobileOpen ? "open" : ""}`}>
         <div className="sidebar-brand">
           <span className="brand-mark">U</span>
-          {!collapsed && (
+          {showSidebarLabels && (
             <div>
               <strong>UTKARSH</strong>
               <span>Organic Admin</span>
@@ -103,11 +104,11 @@ export function AdminLayout() {
         <nav className="sidebar-section">
           {groups.map((group) => (
             <div key={group.label}>
-              {!collapsed && <div className="sidebar-label">{group.label}</div>}
+              {showSidebarLabels && <div className="sidebar-label">{group.label}</div>}
               {group.items.map(({ to, label, icon: Icon }) => (
                 <NavLink key={to} to={to} end={to === "/"} className="nav-link" onClick={() => setMobileOpen(false)}>
                   <Icon />
-                  {!collapsed && <span>{label}</span>}
+                  {showSidebarLabels && <span>{label}</span>}
                 </NavLink>
               ))}
             </div>

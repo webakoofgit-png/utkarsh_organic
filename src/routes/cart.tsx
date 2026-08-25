@@ -38,7 +38,7 @@ export default function CartPage() {
     <main className="pt-24 pb-20 lg:pt-28">
       <div className="container-x">
         <div className="flex items-center gap-4">
-          <Link to="/shop" className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground">
+          <Link to="/products" className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground">
             <ArrowLeft className="h-4 w-4" /> Continue Shopping
           </Link>
         </div>
@@ -58,16 +58,16 @@ export default function CartPage() {
               Explore our range of 100% natural, farm-fresh organic powders and stock up your pantry today.
             </p>
             <Link
-              to="/shop"
+              to="/products"
               className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-bold text-primary-foreground transition hover:bg-forest"
             >
               Browse Shop <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         ) : (
-          <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_380px]">
+          <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,380px)] lg:gap-10">
             <div className="space-y-4">
-              <div className="hidden rounded-2xl bg-secondary/60 px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-muted-foreground sm:grid sm:grid-cols-[2fr_1fr_1fr_auto] sm:items-center">
+              <div className="hidden rounded-2xl bg-secondary/60 px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-muted-foreground md:grid md:grid-cols-[2fr_1fr_1fr_auto] md:items-center">
                 <span>Product</span>
                 <span className="text-center">Quantity</span>
                 <span className="text-right">Total</span>
@@ -79,9 +79,9 @@ export default function CartPage() {
                 return (
                   <div
                     key={`${product.slug}-${weight}`}
-                    className="flex flex-col gap-4 rounded-2xl border border-border bg-background p-5 sm:grid sm:grid-cols-[2fr_1fr_1fr_auto] sm:items-center"
+                    className="flex flex-col gap-4 rounded-2xl border border-border bg-background p-4 sm:p-5 md:grid md:grid-cols-[2fr_1fr_1fr_auto] md:items-center"
                   >
-                    <div className="flex min-w-0 gap-4 items-center">
+                    <div className="flex min-w-0 items-start gap-3 min-[420px]:items-center sm:gap-4">
                       <div className="grid h-20 w-20 shrink-0 place-items-center overflow-hidden rounded-xl bg-cream p-2">
                         <ProductImageWithLogo
                           src={product.image}
@@ -99,7 +99,7 @@ export default function CartPage() {
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-center">
+                    <div className="flex items-center justify-start md:justify-center">
                       <div className="flex items-center rounded-full border border-border bg-secondary/50">
                         <button
                           aria-label="Decrease quantity"
@@ -119,7 +119,8 @@ export default function CartPage() {
                       </div>
                     </div>
 
-                    <div className="text-right">
+                    <div className="flex items-center justify-between gap-3 md:block md:text-right">
+                      <span className="text-xs font-semibold text-muted-foreground md:hidden">Total</span>
                       <span className="font-display text-base font-bold">{inr(amount)}</span>
                       <p className="text-[11px] text-muted-foreground hidden sm:block">{inr(itemPrice)} each</p>
                     </div>
@@ -137,14 +138,14 @@ export default function CartPage() {
                 );
               })}
 
-              <div className="flex justify-between items-center pt-2">
+              <div className="flex flex-col gap-2 pt-2 min-[480px]:flex-row min-[480px]:items-center min-[480px]:justify-between">
                 <button
                   onClick={() => { clearCart(); toast.info("Cart cleared"); }}
                   className="text-xs font-semibold text-muted-foreground hover:text-destructive underline"
                 >
                   Clear all items
                 </button>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-muted-foreground min-[480px]:text-right">
                   {subtotal > 499 ? "🎉 Free shipping applied!" : `Add ${inr(500 - subtotal)} more for Free Shipping`}
                 </p>
               </div>
@@ -183,7 +184,7 @@ export default function CartPage() {
                   placeholder="Promo code (ORGANIC10)"
                   value={coupon}
                   onChange={(e) => setCoupon(e.target.value)}
-                  className="flex-1 rounded-full border border-border bg-background px-4 py-2.5 text-xs outline-none focus:ring-1 focus:ring-accent"
+                  className="min-w-0 flex-1 rounded-full border border-border bg-background px-4 py-2.5 text-xs outline-none focus:ring-1 focus:ring-accent"
                 />
                 <button type="submit" className="rounded-full bg-secondary px-4 py-2.5 text-xs font-bold text-secondary-foreground hover:bg-secondary/80">
                   Apply

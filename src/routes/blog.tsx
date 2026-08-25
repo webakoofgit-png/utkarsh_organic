@@ -43,17 +43,17 @@ export default function BlogPage() {
 
         {/* Featured Post */}
         {featured && (
-          <div className="mt-14 overflow-hidden rounded-[2.5rem] bg-forest text-forest-foreground grid lg:grid-cols-2">
+          <div className="mt-14 grid overflow-hidden rounded-[1.75rem] bg-forest text-forest-foreground sm:rounded-[2.5rem] lg:grid-cols-2">
             <img src={flatlay} alt={featured.title} className="h-80 w-full bg-cream object-contain p-3 lg:h-full" />
-            <div className="p-8 sm:p-12 flex flex-col justify-center">
+            <div className="flex flex-col justify-center p-6 sm:p-12">
               <span className="text-xs font-bold uppercase tracking-widest text-accent">Featured Story &middot; {featured.read}</span>
               <h2 className="mt-4 font-display text-3xl font-extrabold leading-snug sm:text-4xl">{featured.title}</h2>
               <p className="mt-4 text-sm text-forest-foreground/80 leading-relaxed">{featured.excerpt}</p>
-              <div className="mt-8 flex items-center justify-between">
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <span className="text-xs text-forest-foreground/60">{featured.date}</span>
                 <Link
                   to={`/blog/${featured.slug}`}
-                  className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-xs font-bold text-accent-foreground transition hover:scale-105"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-xs font-bold text-accent-foreground transition hover:scale-105"
                 >
                   Read Article <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -70,7 +70,7 @@ export default function BlogPage() {
                 to={`/blog/${post.slug}`}
                 className="group flex flex-col h-full rounded-3xl border border-border bg-background p-7 transition hover:-translate-y-1 hover:shadow-lift"
               >
-                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
                   <span className="font-bold text-accent">{post.read}</span>
                   <span>{post.date}</span>
                 </div>

@@ -121,7 +121,7 @@ export default function GalleryPage() {
       </section>
 
       <section className="bg-gradient-cream py-16 lg:py-20">
-        <div className="container-x grid gap-8 rounded-[2rem] bg-white p-7 shadow-soft md:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div className="container-x grid gap-8 rounded-[2rem] bg-white p-5 shadow-soft sm:p-7 md:p-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
           <div>
             <p className="eyebrow mb-3">Visit and orders</p>
             <h2 className="font-display text-3xl font-black sm:text-4xl">

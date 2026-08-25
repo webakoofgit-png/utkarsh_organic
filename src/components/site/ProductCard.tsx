@@ -27,12 +27,12 @@ export function ProductCard({ product, compact = false }: { product: Product; co
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="relative grid aspect-[4/3.75] min-h-[260px] place-items-center overflow-hidden bg-white sm:min-h-[290px]">
+      <div className="relative grid aspect-[4/3.75] min-h-[220px] place-items-center overflow-hidden bg-white min-[420px]:min-h-[250px] sm:min-h-[290px]">
         <span className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-1/3 bg-gradient-to-r from-transparent via-green-50/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:animate-shine-sweep group-hover:opacity-100" />
         <Link
           to={`/product/${product.slug}`}
           aria-label={`View ${product.name}`}
-          className="absolute inset-0 grid place-items-center px-7 pb-8 pt-14 sm:px-9 sm:pb-9 sm:pt-16"
+          className="absolute inset-0 grid place-items-center px-5 pb-6 pt-12 min-[420px]:px-7 min-[420px]:pb-8 min-[420px]:pt-14 sm:px-9 sm:pb-9 sm:pt-16"
         >
           <ProductImageWithLogo
             src={product.image}

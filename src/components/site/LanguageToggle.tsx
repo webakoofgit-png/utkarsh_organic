@@ -36,13 +36,13 @@ export function LanguageToggle({ solid }: { solid: boolean }) {
         type="button"
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
-        className={`inline-flex h-10 min-w-28 items-center justify-between gap-2 rounded-full border px-3 text-sm font-extrabold shadow-sm backdrop-blur-md transition ${
+        className={`inline-flex h-10 w-10 items-center justify-center gap-2 rounded-full border px-0 text-sm font-extrabold shadow-sm backdrop-blur-md transition min-[420px]:w-auto min-[420px]:min-w-28 min-[420px]:justify-between min-[420px]:px-3 ${
           solid
             ? "border-border bg-secondary/80 text-foreground hover:bg-white"
             : "border-white/25 bg-white/12 text-white hover:bg-white/16"
         }`}
       >
-        <span className="whitespace-nowrap">{current.label}</span>
+        <span className="hidden whitespace-nowrap min-[420px]:inline">{current.label}</span>
         <ChevronDown className={`h-4 w-4 shrink-0 transition ${open ? "rotate-180" : ""}`} />
       </button>
 

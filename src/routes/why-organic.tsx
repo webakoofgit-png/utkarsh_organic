@@ -52,27 +52,27 @@ export default function WhyOrganicPage() {
     <main className="pt-16 lg:pt-20 bg-background">
       {/* Top Full Viewport Width Fresh Teal Breadcrumb Bar */}
       <div className="w-full bg-primary border-b border-green-500/20 py-3">
-        <div className="container-x flex items-center justify-between text-xs sm:text-sm text-green-100 font-medium">
-          <div className="flex items-center gap-2 sm:gap-3">
+        <div className="container-x flex items-center justify-between gap-3 text-xs font-medium text-green-100 sm:text-sm">
+          <div className="flex min-w-0 flex-wrap items-center gap-2 sm:gap-3">
             <Link
               to="/"
               className="grid h-7 w-7 place-items-center rounded-full bg-green-950/90 border border-green-300/40 text-green-200 hover:bg-earth hover:text-white transition"
             >
               <Home className="h-3.5 w-3.5" />
             </Link>
-            <ChevronRight className="h-4 w-4 text-green-500/60" />
+            <ChevronRight className="h-4 w-4 shrink-0 text-green-500/60" />
             <Link to="/" className="text-green-100 hover:text-beige transition font-medium">
               Home
             </Link>
-            <ChevronRight className="h-4 w-4 text-green-500/60" />
+            <ChevronRight className="h-4 w-4 shrink-0 text-green-500/60" />
             <span className="font-bold text-beige">Why Organic</span>
-            <ChevronRight className="h-4 w-4 text-green-500/60" />
+            <ChevronRight className="h-4 w-4 shrink-0 text-green-500/60" />
             <span className="text-green-200/90 font-medium">
               Why Switch to Utkarsh Organic Powders?
             </span>
           </div>
 
-          <div className="flex items-center gap-1.5 text-beige">
+          <div className="hidden shrink-0 items-center gap-1.5 text-beige sm:flex">
             <Leaf className="h-4.5 w-4.5 fill-earth/30 text-beige" />
           </div>
         </div>
@@ -85,18 +85,18 @@ export default function WhyOrganicPage() {
         <div className="absolute top-0 right-1/3 h-80 w-80 rounded-full bg-earth/15 blur-3xl pointer-events-none" />
 
         {/* Content Centered inside container-x */}
-        <div className="container-x relative z-10 flex w-full min-w-0 items-center justify-between gap-6">
+        <div className="container-x relative z-10 flex w-full min-w-0 items-center justify-between gap-6 py-6 sm:py-0">
           {/* Left Content */}
           <div className="min-w-0 max-w-2xl py-2 pr-2">
             {/* Top Eyebrow Marathi Banner */}
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-earth/40 bg-green-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-beige tracking-wider">
+            <div className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-earth/40 bg-green-950/80 px-3 py-1 text-[10px] font-extrabold tracking-wider text-beige sm:px-3.5 sm:text-xs">
               <Sprout className="h-3.5 w-3.5 text-beige" />
-              <span>{COMPANY_INFO.marathiHeader}</span>
+              <span className="min-w-0 truncate">{COMPANY_INFO.marathiHeader}</span>
               <Sprout className="h-3.5 w-3.5 text-beige" />
             </div>
 
             {/* Headline */}
-            <h1 className="mt-2 break-words font-serif text-2xl font-black leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
+            <h1 className="mt-2 break-words font-serif text-2xl font-black leading-tight text-white min-[390px]:text-3xl md:text-4xl lg:text-5xl">
               Why Switch to{" "}
               <span className="relative inline-block text-beige">
                 Utkarsh Organic
@@ -192,7 +192,7 @@ export default function WhyOrganicPage() {
           <SectionHeading eyebrow="Head to Head" title="How Utkarsh Organic Compares" />
 
           <div className="mt-10 overflow-x-auto">
-            <table className="w-full text-left border-collapse rounded-3xl overflow-hidden border border-border bg-background shadow-soft">
+            <table className="min-w-[720px] w-full overflow-hidden rounded-3xl border border-border bg-background text-left shadow-soft">
               <thead>
                 <tr className="bg-forest text-forest-foreground text-sm font-display font-bold">
                   <th className="p-5 sm:p-6">Feature</th>

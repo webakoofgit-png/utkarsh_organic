@@ -39,8 +39,8 @@ export default function RecipesPage() {
                   </div>
                 </div>
 
-                <div className="p-6 flex flex-col flex-1">
-                  <div className="flex items-center gap-4 text-xs font-semibold text-accent">
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                  <div className="flex flex-wrap items-center gap-3 text-xs font-semibold text-accent sm:gap-4">
                     <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5" /> {recipe.time}</span>
                     <span className="flex items-center gap-1"><ChefHat className="h-3.5 w-3.5" /> Easy Prep</span>
                   </div>
@@ -55,7 +55,7 @@ export default function RecipesPage() {
                     ))}
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-border flex items-center justify-between mt-auto">
+                  <div className="mt-auto flex flex-col gap-3 border-t border-border pt-4 min-[420px]:flex-row min-[420px]:items-center min-[420px]:justify-between">
                     <button
                       onClick={() => setSelectedRecipe(recipe)}
                       className="text-xs font-bold text-primary hover:text-accent underline underline-offset-4"
@@ -63,7 +63,7 @@ export default function RecipesPage() {
                       View Step-by-Step
                     </button>
                     <Link
-                      to="/shop"
+                      to="/products"
                       className="inline-flex items-center gap-1 text-xs font-bold text-muted-foreground hover:text-foreground"
                     >
                       Get Powders &rarr;
@@ -78,7 +78,7 @@ export default function RecipesPage() {
         {/* Modal for recipe detail */}
         {selectedRecipe && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-            <div className="w-full max-w-lg rounded-3xl bg-background border border-border p-7 shadow-lift max-h-[90vh] overflow-y-auto">
+            <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-3xl border border-border bg-background p-5 shadow-lift sm:p-7">
               <div className="flex justify-between items-start">
                 <div>
                   <span className="text-xs font-bold uppercase tracking-widest text-accent">{selectedRecipe.time} &middot; {selectedRecipe.level}</span>

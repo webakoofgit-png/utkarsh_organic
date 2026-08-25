@@ -115,13 +115,13 @@ export default function CheckoutPage() {
           <div className="mt-8 flex flex-wrap gap-4 justify-center">
             <Link
               to={`/track-order?orderId=${orderId}`}
-              className="rounded-full bg-primary px-7 py-3.5 text-sm font-bold text-primary-foreground transition hover:bg-forest"
+              className="w-full rounded-full bg-primary px-7 py-3.5 text-center text-sm font-bold text-primary-foreground transition hover:bg-forest min-[420px]:w-auto"
             >
               Track Order Status
             </Link>
             <Link
-              to="/shop"
-              className="rounded-full border border-border bg-background px-7 py-3.5 text-sm font-bold text-foreground transition hover:bg-secondary"
+              to="/products"
+              className="w-full rounded-full border border-border bg-background px-7 py-3.5 text-center text-sm font-bold text-foreground transition hover:bg-secondary min-[420px]:w-auto"
             >
               Back to Shop
             </Link>
@@ -142,10 +142,10 @@ export default function CheckoutPage() {
         {lines.length === 0 ? (
           <div className="mt-10 text-center py-12 bg-cream rounded-3xl border border-border">
             <p className="text-muted-foreground">Your cart is empty. Please add products before checking out.</p>
-            <Link to="/shop" className="mt-4 inline-block font-bold text-primary underline">Return to shop</Link>
+            <Link to="/products" className="mt-4 inline-block font-bold text-primary underline">Return to shop</Link>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="mt-10 grid gap-10 lg:grid-cols-[1fr_400px]">
+          <form onSubmit={handleSubmit} className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,400px)] lg:gap-10">
             <div className="space-y-8">
               {/* Delivery Details */}
               <div className="rounded-3xl border border-border bg-background p-6 sm:p-8">
@@ -234,7 +234,7 @@ export default function CheckoutPage() {
                 </h2>
 
                 <div className="mt-6 space-y-3">
-                  <label className={`flex items-center justify-between p-4 rounded-2xl border cursor-pointer transition ${paymentMethod === "upi" ? "border-accent bg-secondary/40" : "border-border"}`}>
+                  <label className={`flex cursor-pointer flex-col gap-3 rounded-2xl border p-4 transition sm:flex-row sm:items-center sm:justify-between ${paymentMethod === "upi" ? "border-accent bg-secondary/40" : "border-border"}`}>
                     <div className="flex items-center gap-3">
                       <input type="radio" name="payment" checked={paymentMethod === "upi"} onChange={() => setPaymentMethod("upi")} className="accent-accent" />
                       <div>
@@ -245,7 +245,7 @@ export default function CheckoutPage() {
                     <span className="text-xs font-bold text-accent">Fastest</span>
                   </label>
 
-                  <label className={`flex items-center justify-between p-4 rounded-2xl border cursor-pointer transition ${paymentMethod === "cod" ? "border-accent bg-secondary/40" : "border-border"}`}>
+                  <label className={`flex cursor-pointer flex-col gap-3 rounded-2xl border p-4 transition sm:flex-row sm:items-center sm:justify-between ${paymentMethod === "cod" ? "border-accent bg-secondary/40" : "border-border"}`}>
                     <div className="flex items-center gap-3">
                       <input type="radio" name="payment" checked={paymentMethod === "cod"} onChange={() => setPaymentMethod("cod")} className="accent-accent" />
                       <div>
@@ -256,7 +256,7 @@ export default function CheckoutPage() {
                     <Banknote className="h-5 w-5 text-muted-foreground" />
                   </label>
 
-                  <label className={`flex items-center justify-between p-4 rounded-2xl border cursor-pointer transition ${paymentMethod === "card" ? "border-accent bg-secondary/40" : "border-border"}`}>
+                  <label className={`flex cursor-pointer flex-col gap-3 rounded-2xl border p-4 transition sm:flex-row sm:items-center sm:justify-between ${paymentMethod === "card" ? "border-accent bg-secondary/40" : "border-border"}`}>
                     <div className="flex items-center gap-3">
                       <input type="radio" name="payment" checked={paymentMethod === "card"} onChange={() => setPaymentMethod("card")} className="accent-accent" />
                       <div>
@@ -276,12 +276,12 @@ export default function CheckoutPage() {
 
               <div className="mt-6 max-h-60 overflow-y-auto space-y-3 pr-1">
                 {lines.map(({ product, weight, qty, amount }) => (
-                  <div key={`${product.slug}-${weight}`} className="flex justify-between text-xs items-center py-1">
-                    <div className="flex items-center gap-2">
+                  <div key={`${product.slug}-${weight}`} className="flex items-start justify-between gap-3 py-1 text-xs">
+                    <div className="flex min-w-0 items-start gap-2">
                       <span className="font-bold">{qty}x</span>
-                      <span>{product.name} ({weight})</span>
+                      <span className="min-w-0">{product.name} ({weight})</span>
                     </div>
-                    <span className="font-bold">{inr(amount)}</span>
+                    <span className="shrink-0 text-right font-bold">{inr(amount)}</span>
                   </div>
                 ))}
               </div>

@@ -35,10 +35,11 @@ import { GALLERY_ITEMS } from "@/lib/gallery";
 import { CUSTOMER_TESTIMONIALS } from "@/lib/testimonials";
 import flatlay from "@/assets/flatlay.jpg";
 import heroOnion from "@/assets/hero-onion.jpg";
-import flipOnionPowder from "@/assets/flip-onion-powder.png";
+import flipCardFarmFresh from "@/assets/flip-card-farm-fresh.png";
+import flipCardMoringaWellness from "@/assets/flip-card-moringa-wellness.png";
 import flipBulkPowders from "@/assets/flip-bulk-powders.png";
 import heroFarmFamily from "@/assets/hero-farm-family.png";
-import heroOnionProductLineup from "@/assets/hero-onion-product-lineup.png";
+import farmStoryOnionProductLineup from "@/assets/farm-story-onion-product-lineup.png";
 import heroVideo from "../../utkarsh.mp4";
 import storyVideo from "../../Prompt__Use_the_uploaded_image.mp4";
 
@@ -53,8 +54,9 @@ const uspCards = [
     icon: Sprout,
     title: MARATHI_PROMO.farmTitle,
     text: MARATHI_PROMO.farmText,
-    image: farm,
-    imageAlt: "Fresh Utkarsh Organic farm sourcing view",
+    image: flipCardFarmFresh,
+    imageAlt: "Utkarsh Farm fresh and vibrant naturally grown vegetable field",
+    imagePosition: "20% center",
   },
   {
     icon: Factory,
@@ -67,8 +69,8 @@ const uspCards = [
     icon: ShieldCheck,
     title: MARATHI_PROMO.productsTitle,
     text: `${MARATHI_PROMO.productsText} ${MARATHI_PROMO.examples}`,
-    image: flipOnionPowder,
-    imageAlt: "Quality checked onion powder ingredient presentation",
+    image: flipCardMoringaWellness,
+    imageAlt: "Utkarsh Farm moringa leaf powder natural wellness product display",
   },
   {
     icon: Truck,
@@ -162,7 +164,7 @@ export default function HomePage() {
         }}
       />
 
-      <section className="relative min-h-[100svh] overflow-hidden bg-forest pb-16 pt-28 text-white sm:pt-32 lg:pb-24 lg:pt-36">
+      <section className="relative min-h-[100svh] overflow-hidden bg-forest pb-12 pt-24 text-white sm:pt-32 lg:pb-24 lg:pt-36">
         <video
           className="absolute inset-0 h-full w-full object-cover opacity-85"
           src={heroVideo}
@@ -177,14 +179,14 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-forest/55 via-transparent to-transparent" />
         <HomeBackgroundAnimation />
 
-        <div className="container-x relative z-10 grid min-h-[calc(100svh-9rem)] items-center gap-12 lg:grid-cols-[minmax(0,1fr)_420px]">
+        <div className="container-x relative z-10 grid min-h-[calc(100svh-7rem)] items-center gap-8 lg:min-h-[calc(100svh-9rem)] lg:grid-cols-[minmax(0,1fr)_420px] lg:gap-12">
           <Reveal y={28} className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-earth/35 bg-green-950/60 px-4 py-2 text-xs font-bold text-cream shadow-[0_0_24px_rgba(122,82,52,0.22)] backdrop-blur-md">
+            <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-earth/35 bg-green-950/60 px-3 py-2 text-xs font-bold text-cream shadow-[0_0_24px_rgba(122,82,52,0.22)] backdrop-blur-md sm:px-4">
               <Leaf className="h-3.5 w-3.5 text-beige" />
               <span>उत्कर्ष फार्म</span>
             </div>
 
-            <h1 className="mt-6 max-w-4xl text-balance font-display text-4xl font-black leading-[1.08] text-white sm:text-6xl lg:text-7xl">
+            <h1 className="mt-6 max-w-4xl text-balance font-display text-3xl font-black leading-[1.08] text-white min-[390px]:text-4xl sm:text-6xl lg:text-7xl">
               उत्कर्ष फार्म
               <span className="block text-beige">{MARATHI_PROMO.heroTitle}</span>
             </h1>
@@ -193,10 +195,10 @@ export default function HomePage() {
               {MARATHI_PROMO.campaignText} {MARATHI_PROMO.naturalText}
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
               <Link
                 to="/products"
-                className="group inline-flex items-center gap-2.5 rounded-full bg-saffron px-7 py-3.5 text-sm font-extrabold text-white shadow-[0_16px_42px_rgba(122,82,52,0.28)] transition hover:-translate-y-0.5 hover:bg-white hover:text-primary"
+                className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-saffron px-5 py-3.5 text-sm font-extrabold text-white shadow-[0_16px_42px_rgba(122,82,52,0.28)] transition hover:-translate-y-0.5 hover:bg-white hover:text-primary min-[420px]:w-auto sm:px-7"
               >
                 <ShoppingBag className="h-4 w-4" />
                 उत्पादने पाहा
@@ -204,7 +206,7 @@ export default function HomePage() {
               </Link>
               <a
                 href="#farm-story"
-                className="inline-flex items-center gap-2 rounded-full border border-white/28 bg-white/10 px-7 py-3.5 text-sm font-bold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/16"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/28 bg-white/10 px-5 py-3.5 text-sm font-bold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/16 min-[420px]:w-auto sm:px-7"
               >
                 <Play className="h-3.5 w-3.5 fill-current text-beige" />
                 आमची प्रक्रिया
@@ -213,17 +215,17 @@ export default function HomePage() {
 
             <ul className="mt-8 grid gap-3 text-sm font-semibold text-green-50/86 sm:grid-cols-3">
               {heroTrustPoints.map((point) => (
-                <li key={point} className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-beige" />
+                <li key={point} className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-beige" />
                   <span>{point}</span>
                 </li>
               ))}
             </ul>
           </Reveal>
 
-          <Reveal delay={0.12} className="lg:justify-self-end">
-            <div className="rounded-[1.75rem] border border-white/16 bg-white/12 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.24)] backdrop-blur-xl">
-              <div className="rounded-[1.35rem] bg-white p-4 text-foreground">
+          <Reveal delay={0.12} className="mx-auto w-full max-w-md lg:justify-self-end">
+            <div className="rounded-[1.5rem] border border-white/16 bg-white/12 p-3 shadow-[0_24px_80px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:rounded-[1.75rem] sm:p-5">
+              <div className="rounded-[1.25rem] bg-white p-3 text-foreground sm:rounded-[1.35rem] sm:p-4">
                 <div className="grid aspect-[4/3] place-items-center overflow-hidden rounded-2xl bg-cream p-3">
                   <img
                     src={heroFarmFamily}
@@ -292,20 +294,21 @@ export default function HomePage() {
           sub={`${MARATHI_PROMO.campaignText} ${MARATHI_PROMO.naturalText}`}
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {uspCards.map(({ icon: Icon, title, text, image, imageAlt }, index) => (
+          {uspCards.map(({ icon: Icon, title, text, image, imageAlt, imagePosition }, index) => (
             <Reveal key={title} delay={index * 0.07}>
               <article
                 tabIndex={0}
                 aria-label={title}
-                className="group h-full min-h-[20rem] rounded-[1.5rem] outline-none [perspective:1200px]"
+                className="group h-full min-h-[18rem] rounded-[1.5rem] outline-none [perspective:1200px] sm:min-h-[20rem]"
               >
-                <div className="relative h-full min-h-[20rem] transition duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-focus:[transform:rotateY(180deg)]">
+                <div className="relative h-full min-h-[18rem] transition duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-focus:[transform:rotateY(180deg)] sm:min-h-[20rem]">
                   <div className="surface-card absolute inset-0 overflow-hidden [backface-visibility:hidden]">
                     <img
                       src={image}
                       alt={imageAlt}
                       loading="lazy"
                       className="h-full w-full object-cover transition duration-700 group-hover:scale-105 group-focus:scale-105"
+                      style={imagePosition ? { objectPosition: imagePosition } : undefined}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-forest/18 via-transparent to-transparent" />
                     <div className="absolute left-5 top-5 grid h-12 w-12 place-items-center rounded-2xl bg-white/92 text-primary shadow-soft backdrop-blur">
@@ -447,9 +450,9 @@ export default function HomePage() {
 
           <Reveal delay={0.12}>
             <div className="rounded-[2rem] border border-border bg-white p-3 shadow-lift">
-              <div className="grid aspect-[4/3] place-items-center overflow-hidden rounded-[1.55rem] bg-cream">
+              <div className="grid aspect-[5/4] place-items-center overflow-hidden rounded-[1.55rem] bg-cream">
                 <img
-                  src={heroOnionProductLineup}
+                  src={farmStoryOnionProductLineup}
                   alt="Utkarsh Organic Farm product packaging and dehydrated ingredients"
                   className="h-full w-full object-cover object-center"
                 />
@@ -631,7 +634,7 @@ export default function HomePage() {
       </section>
 
       <section className="container-x py-16 lg:py-24">
-        <div className="grid gap-8 rounded-[2rem] bg-secondary p-7 md:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div className="grid gap-8 rounded-[2rem] bg-secondary p-5 sm:p-7 md:p-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
           <div>
             <p className="eyebrow mb-3">Visit or order</p>
             <h2 className="font-display text-3xl font-black sm:text-4xl">

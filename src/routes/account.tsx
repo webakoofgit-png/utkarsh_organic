@@ -25,16 +25,16 @@ export default function AccountPage() {
     <main className="pt-24 pb-20 lg:pt-28">
       <div className="container-x">
         {/* Header banner */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 rounded-3xl bg-forest p-8 text-forest-foreground">
-          <div className="flex items-center gap-4">
-            <div className="grid h-16 w-16 place-items-center rounded-2xl bg-accent text-accent-foreground font-display text-2xl font-bold">
+        <div className="flex flex-col justify-between gap-6 rounded-3xl bg-forest p-5 text-forest-foreground sm:flex-row sm:items-center sm:p-8">
+          <div className="flex min-w-0 items-start gap-4 sm:items-center">
+            <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-accent text-accent-foreground font-display text-2xl font-bold sm:h-16 sm:w-16">
               {user ? user.name.charAt(0).toUpperCase() : "G"}
             </div>
-            <div>
+            <div className="min-w-0">
               <h1 className="font-display text-2xl font-extrabold sm:text-3xl">
                 {user ? `Hello, ${user.name}!` : "Welcome to Your Account"}
               </h1>
-              <p className="text-xs text-forest-foreground/75 mt-1">
+              <p className="mt-1 break-all text-xs text-forest-foreground/75">
                 {user ? user.email : "Manage your pantry orders, wishlist and address book."}
               </p>
             </div>
@@ -61,7 +61,7 @@ export default function AccountPage() {
             <button
               key={id}
               onClick={() => setActiveTab(id as any)}
-              className={`flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition ${
+              className={`flex max-w-full items-center gap-2 rounded-full px-4 py-2.5 text-left text-sm font-bold transition sm:px-5 ${
                 activeTab === id ? "bg-primary text-primary-foreground" : "bg-cream text-foreground hover:bg-secondary"
               }`}
             >
@@ -79,13 +79,13 @@ export default function AccountPage() {
                   <Package className="mx-auto h-12 w-12 text-muted-foreground" />
                   <h3 className="mt-4 font-display text-xl font-bold">No orders placed yet</h3>
                   <p className="mt-1 text-sm text-muted-foreground">Once you order, your shipment details will show up here.</p>
-                  <Link to="/shop" className="mt-5 inline-block rounded-full bg-primary px-6 py-3 text-xs font-bold text-primary-foreground">
+                  <Link to="/products" className="mt-5 inline-block rounded-full bg-primary px-6 py-3 text-xs font-bold text-primary-foreground">
                     Start Shopping
                   </Link>
                 </div>
               ) : (
                 orders.map((order) => (
-                  <div key={order.id} className="rounded-3xl border border-border bg-background p-6 space-y-4">
+                  <div key={order.id} className="space-y-4 rounded-3xl border border-border bg-background p-5 sm:p-6">
                     <div className="flex flex-wrap justify-between items-start gap-4 border-b border-border pb-4">
                       <div>
                         <span className="text-xs font-bold uppercase tracking-wider text-accent">Order #{order.id}</span>
@@ -106,9 +106,9 @@ export default function AccountPage() {
 
                     <div className="space-y-2">
                       {order.items.map((item, i) => (
-                        <div key={i} className="flex justify-between text-sm">
-                          <span>{item.qty}x {item.name} ({item.weight})</span>
-                          <span className="font-semibold">{inr(item.price)}</span>
+                        <div key={i} className="flex items-start justify-between gap-3 text-sm">
+                          <span className="min-w-0">{item.qty}x {item.name} ({item.weight})</span>
+                          <span className="shrink-0 text-right font-semibold">{inr(item.price)}</span>
                         </div>
                       ))}
                     </div>
@@ -130,7 +130,7 @@ export default function AccountPage() {
                   <Heart className="mx-auto h-12 w-12 text-muted-foreground" />
                   <h3 className="mt-4 font-display text-xl font-bold">Your wishlist is empty</h3>
                   <p className="mt-1 text-sm text-muted-foreground">Tap the heart icon on any product to save it for later.</p>
-                  <Link to="/shop" className="mt-5 inline-block rounded-full bg-primary px-6 py-3 text-xs font-bold text-primary-foreground">
+                  <Link to="/products" className="mt-5 inline-block rounded-full bg-primary px-6 py-3 text-xs font-bold text-primary-foreground">
                     Explore Catalogue
                   </Link>
                 </div>

@@ -27,25 +27,25 @@ export default function AboutPage() {
     <main className="pt-16 lg:pt-20 bg-background">
       {/* Top Full Viewport Width Fresh Teal Breadcrumb Bar */}
       <div className="w-full bg-primary border-b border-green-500/20 py-3">
-        <div className="container-x flex items-center justify-between text-xs sm:text-sm text-green-100 font-medium">
-          <div className="flex items-center gap-2 sm:gap-3">
+        <div className="container-x flex items-center justify-between gap-3 text-xs font-medium text-green-100 sm:text-sm">
+          <div className="flex min-w-0 flex-wrap items-center gap-2 sm:gap-3">
             <Link
               to="/"
               className="grid h-7 w-7 place-items-center rounded-full bg-green-950/90 border border-green-300/40 text-green-200 hover:bg-earth hover:text-white transition"
             >
               <Home className="h-3.5 w-3.5" />
             </Link>
-            <ChevronRight className="h-4 w-4 text-green-500/60" />
+            <ChevronRight className="h-4 w-4 shrink-0 text-green-500/60" />
             <Link to="/" className="text-green-100 hover:text-beige transition font-medium">
               Home
             </Link>
-            <ChevronRight className="h-4 w-4 text-green-500/60" />
+            <ChevronRight className="h-4 w-4 shrink-0 text-green-500/60" />
             <span className="font-bold text-beige">About Us</span>
-            <ChevronRight className="h-4 w-4 text-green-500/60" />
+            <ChevronRight className="h-4 w-4 shrink-0 text-green-500/60" />
             <span className="text-green-200/90 font-medium">About Utkarsh Organic Farm</span>
           </div>
 
-          <div className="flex items-center gap-1.5 text-beige">
+          <div className="hidden shrink-0 items-center gap-1.5 text-beige sm:flex">
             <Leaf className="h-4.5 w-4.5 fill-earth/30 text-beige" />
           </div>
         </div>
@@ -58,18 +58,18 @@ export default function AboutPage() {
         <div className="absolute top-0 right-1/3 h-80 w-80 rounded-full bg-earth/15 blur-3xl pointer-events-none" />
 
         {/* Content Centered inside container-x */}
-        <div className="container-x relative z-10 flex w-full min-w-0 items-center justify-between gap-6">
+        <div className="container-x relative z-10 flex w-full min-w-0 items-center justify-between gap-6 py-6 sm:py-0">
           {/* Left Content */}
           <div className="min-w-0 max-w-2xl py-2 pr-2">
             {/* Top Eyebrow Pill */}
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-earth/40 bg-green-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-beige tracking-wider">
+            <div className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-earth/40 bg-green-950/80 px-3 py-1 text-[10px] font-extrabold tracking-wider text-beige sm:px-3.5 sm:text-xs">
               <Leaf className="h-3.5 w-3.5 text-beige" />
               <span>ABOUT US</span>
               <Sparkles className="h-3 w-3 text-beige" />
             </div>
 
             {/* Headline */}
-            <h1 className="mt-2 break-words font-serif text-2xl font-black leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
+            <h1 className="mt-2 break-words font-serif text-2xl font-black leading-tight text-white min-[390px]:text-3xl md:text-4xl lg:text-5xl">
               Rooted in nature.{" "}
               <span className="relative inline-block text-beige">
                 Driven by purpose.

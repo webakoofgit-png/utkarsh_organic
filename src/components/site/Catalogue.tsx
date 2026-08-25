@@ -127,25 +127,25 @@ export function CataloguePage() {
       {/* 100% Full Viewport Width Hero Banner Header */}
       {/* Desktop (1920): 300px | Laptop (1440): 250px | Tablet (768): 210px | Mobile (390): 160px */}
       <section
-        className="relative flex min-h-[170px] w-full items-center overflow-hidden bg-gradient-to-r from-primary via-leaf to-earth text-white border-b border-green-300/20 shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]"
+        className="relative flex min-h-[170px] w-full items-center overflow-hidden border-b border-green-300/20 bg-gradient-to-r from-primary via-leaf to-earth text-white shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]"
       >
         {/* Subtle Ambient Leaf Glow */}
         <div className="absolute top-0 right-1/3 h-80 w-80 rounded-full bg-earth/15 blur-3xl pointer-events-none" />
 
         {/* Content Centered inside container-x */}
-        <div className="container-x w-full relative z-10 flex items-center justify-between">
+        <div className="container-x relative z-10 flex w-full items-center justify-between py-6 sm:py-0">
           <div className="flex w-full min-w-0 items-center justify-between gap-6">
               {/* Left Content */}
               <div className="min-w-0 max-w-2xl py-2 pr-2">
                 {/* Eyebrow Pill */}
-                <div className="inline-flex items-center gap-1.5 rounded-full border border-green-200/45 bg-green-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-beige tracking-wider">
+                <div className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-green-200/45 bg-green-950/80 px-3 py-1 text-[10px] font-extrabold tracking-wider text-beige sm:px-3.5 sm:text-xs">
                   <Leaf className="h-3.5 w-3.5 text-beige" />
-                  <span>{heroBanner.eyebrow}</span>
+                  <span className="min-w-0 truncate">{heroBanner.eyebrow}</span>
                   <Sparkles className="h-3 w-3 text-beige" />
                 </div>
 
                 {/* Headline */}
-                <h1 className="mt-2 break-words font-serif text-2xl font-black leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
+                <h1 className="mt-2 break-words font-serif text-2xl font-black leading-tight text-white min-[390px]:text-3xl md:text-4xl lg:text-5xl">
                   {heroBanner.titleLine1}{" "}
                   <span className="relative inline-block text-beige">
                     {heroBanner.titleLine2}
@@ -242,7 +242,7 @@ export function CataloguePage() {
                   setCategory(item.id);
                   updateSearch(q, item.id);
                 }}
-                className={`rounded-full px-3.5 py-2.5 text-xs font-bold transition-all shadow-sm sm:px-4 ${
+                className={`max-w-full rounded-full px-3.5 py-2.5 text-left text-xs font-bold shadow-sm transition-all sm:px-4 ${
                   category === item.id
                     ? "bg-primary text-primary-foreground shadow-md scale-105"
                     : "bg-white border border-green-900/10 text-foreground/80 hover:bg-green-50 hover:text-green-900"

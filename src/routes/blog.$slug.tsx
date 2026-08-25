@@ -91,8 +91,8 @@ export default function BlogPostPage() {
             {post.excerpt}
           </p>
 
-          <div className="mt-6 flex items-center justify-between border-y border-border py-4">
-            <div className="flex items-center gap-3">
+          <div className="mt-6 flex flex-col gap-4 border-y border-border py-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex min-w-0 items-center gap-3">
               <div className="grid h-10 w-10 place-items-center rounded-full bg-forest text-forest-foreground font-bold font-display text-sm">
                 UO
               </div>
@@ -126,8 +126,8 @@ export default function BlogPostPage() {
         </article>
 
         {/* Product callout inside article */}
-        <div className="mt-12 rounded-3xl bg-cream border border-border p-8 text-center sm:text-left sm:flex sm:items-center sm:justify-between gap-6">
-          <div>
+        <div className="mt-12 gap-6 rounded-3xl border border-border bg-cream p-6 text-center sm:flex sm:items-center sm:justify-between sm:p-8 sm:text-left">
+          <div className="min-w-0">
             <span className="text-xs font-bold uppercase tracking-widest text-accent">Pantry Shortcut</span>
             <h3 className="mt-1 font-display text-xl font-bold">Try Dehydrated White Onion Powder</h3>
             <p className="mt-1 text-xs text-muted-foreground">Fine mesh onion powder for gravies, seasoning blends and food processing.</p>

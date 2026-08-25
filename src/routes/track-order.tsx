@@ -114,21 +114,21 @@ export default function TrackOrderPage() {
               className="w-full bg-transparent text-sm outline-none"
             />
           </div>
-          <button type="submit" className="rounded-full bg-primary px-7 py-3 text-sm font-bold text-primary-foreground hover:bg-forest">
+          <button type="submit" className="w-full rounded-full bg-primary px-7 py-3 text-sm font-bold text-primary-foreground hover:bg-forest sm:w-auto">
             Track
           </button>
         </form>
 
         {activeOrder && (
-          <div className="mt-12 rounded-3xl border border-border bg-background p-8 shadow-soft">
-            <div className="flex flex-wrap justify-between items-center gap-4 border-b border-border pb-6">
-              <div>
+          <div className="mt-12 rounded-3xl border border-border bg-background p-5 shadow-soft sm:p-8">
+            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6">
+              <div className="min-w-0">
                 <span className="text-xs font-bold uppercase tracking-widest text-accent">Tracking Order</span>
                 <h2 className="font-display text-2xl font-extrabold mt-1">#{activeOrder.id}</h2>
                 <p className="text-xs text-muted-foreground mt-0.5">Destination: {activeOrder.address}</p>
               </div>
 
-              <div className="rounded-2xl bg-cream px-5 py-3 text-right">
+              <div className="w-full rounded-2xl bg-cream px-5 py-3 text-left sm:w-auto sm:text-right">
                 <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">Estimated Delivery</p>
                 <p className="font-display font-extrabold text-primary text-base">Tomorrow by 6:00 PM</p>
               </div>
@@ -163,9 +163,9 @@ export default function TrackOrderPage() {
               <h4 className="font-display font-bold text-xs uppercase tracking-wider text-muted-foreground">Parcel Contents</h4>
               <div className="mt-3 space-y-2 text-sm">
                 {activeOrder.items.map((item: any, i: number) => (
-                  <div key={i} className="flex justify-between font-medium">
-                    <span>{item.qty}x {item.name} ({item.weight})</span>
-                    <span>Installed &amp; Sealed</span>
+                  <div key={i} className="flex flex-col gap-1 font-medium sm:flex-row sm:justify-between sm:gap-3">
+                    <span className="min-w-0">{item.qty}x {item.name} ({item.weight})</span>
+                    <span className="shrink-0 text-muted-foreground sm:text-right">Installed &amp; Sealed</span>
                   </div>
                 ))}
               </div>

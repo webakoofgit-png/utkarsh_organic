@@ -166,6 +166,7 @@
   body {
     width: 100%;
     min-width: 0;
+    min-height: 100svh;
     overflow-x: hidden;
     background:
       linear-gradient(180deg, rgb(255 255 255 / 0.98), rgb(247 244 238 / 0.6)),
@@ -182,6 +183,35 @@
     max-width: 100%;
   }
 
+  #root,
+  main,
+  section,
+  article,
+  aside,
+  header,
+  footer {
+    min-width: 0;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    max-width: 100%;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  a,
+  span,
+  strong,
+  li {
+    overflow-wrap: break-word;
+  }
+
   h1,
   h2,
   h3,
@@ -195,7 +225,7 @@
   margin-inline: auto;
   width: 100%;
   max-width: 80rem;
-  padding-inline: clamp(1rem, 4vw, 1.5rem);
+  padding-inline: clamp(0.875rem, 4vw, 1.5rem);
 }
 
 @utility eyebrow {
