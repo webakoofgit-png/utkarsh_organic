@@ -1,12 +1,14 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 
-export type Language = "en" | "mr";
+export type Language = "en" | "mr" | "hi";
 
 const STORAGE_KEY = "utkarsh-site-language";
+const LANGUAGE_KEYS = ["en", "mr", "hi"] as const;
 
 type TranslationPair = {
   en: string;
   mr: string;
+  hi?: string;
 };
 
 const TRANSLATIONS: TranslationPair[] = [
@@ -378,8 +380,307 @@ const TRANSLATIONS: TranslationPair[] = [
   { en: "The page you are looking for does not exist.", mr: "तुम्ही शोधत असलेले पृष्ठ अस्तित्वात नाही." },
 ];
 
-const sortedTranslations = [...TRANSLATIONS].sort(
-  (a, b) => Math.max(b.en.length, b.mr.length) - Math.max(a.en.length, a.mr.length)
+const HINDI_TRANSLATIONS: Record<string, string> = {
+  English: "अंग्रेजी",
+  Marathi: "मराठी",
+  Hindi: "हिंदी",
+  Language: "भाषा",
+  "Select language": "भाषा चुनें",
+  "Change language": "भाषा बदलें",
+
+  "Utkarsh Organic Farm": "उत्कर्ष ऑर्गेनिक फार्म",
+  "UTKARSH ORGANIC FARM": "उत्कर्ष ऑर्गेनिक फार्म",
+  "Utkarsh Organic": "उत्कर्ष ऑर्गेनिक",
+  "Organic Farm": "ऑर्गेनिक फार्म",
+  "Utkarsh Farm": "उत्कर्ष फार्म",
+  Utkarsh: "उत्कर्ष",
+  Organic: "ऑर्गेनिक",
+  "Prafull Chorage": "प्रफुल्ल चोरगे",
+
+  Home: "होम",
+  "About Us": "हमारे बारे में",
+  About: "हमारे बारे में",
+  Products: "उत्पाद",
+  Product: "उत्पाद",
+  Shop: "दुकान",
+  "Why Organic": "ऑर्गेनिक क्यों?",
+  "Farm Gallery": "फार्म गैलरी",
+  Gallery: "गैलरी",
+  "Bulk Orders": "बल्क ऑर्डर",
+  "Bulk Order": "बल्क ऑर्डर",
+  "Contact Us": "संपर्क करें",
+  Contact: "संपर्क",
+  Recipes: "रेसिपी",
+  Blog: "ब्लॉग",
+  "My Account": "मेरा खाता",
+  "Track Order": "ऑर्डर ट्रैक करें",
+  "Contact Support": "सपोर्ट से संपर्क",
+  "Quality & Trust": "गुणवत्ता और भरोसा",
+  "Quick Links": "त्वरित लिंक",
+  Help: "मदद",
+
+  "Shop Now": "अभी खरीदें",
+  "Shop Products": "उत्पाद खरीदें",
+  "Browse products": "उत्पाद देखें",
+  "Browse Shop": "दुकान देखें",
+  "View cart": "कार्ट देखें",
+  "Your cart": "आपका कार्ट",
+  "Your cart is empty": "आपका कार्ट खाली है",
+  "Your Shopping Cart": "आपका शॉपिंग कार्ट",
+  "No products in your cart yet": "आपके कार्ट में अभी कोई उत्पाद नहीं है",
+  "Continue Shopping": "खरीदारी जारी रखें",
+  "Proceed to checkout": "चेकआउट पर जाएं",
+  "Proceed to Checkout": "चेकआउट पर जाएं",
+  Checkout: "चेकआउट",
+  "Back to Cart": "कार्ट पर वापस जाएं",
+  "Return to shop": "दुकान पर वापस जाएं",
+  "Order Summary": "ऑर्डर सारांश",
+  Summary: "सारांश",
+  Subtotal: "उप-योग",
+  Shipping: "शिपिंग",
+  "Delivery Charge": "डिलीवरी शुल्क",
+  "Grand Total": "कुल राशि",
+  "Total Payable": "देय कुल",
+  Apply: "लागू करें",
+  "Promo code": "प्रोमो कोड",
+  "Clear all items": "सभी आइटम हटाएं",
+  FREE: "मुफ्त",
+  "Free shipping applied!": "मुफ्त शिपिंग लागू हुई!",
+  Add: "जोड़ें",
+  "Add to cart": "कार्ट में जोड़ें",
+  "Buy now": "अभी खरीदें",
+  "Best seller": "बेस्ट सेलर",
+  New: "नया",
+  MOQ: "न्यूनतम ऑर्डर",
+  "Available for quote": "कोट के लिए उपलब्ध",
+  "Currently unavailable": "फिलहाल उपलब्ध नहीं",
+  "Choose pack size": "पैक साइज चुनें",
+  selected: "चयनित",
+  "Official listing": "आधिकारिक सूची",
+  "Pan India supply": "पूरे भारत में आपूर्ति",
+  "Manufacturer & supplier": "निर्माता और आपूर्तिकर्ता",
+  "Source specs included": "स्रोत विवरण शामिल",
+  "Why buyers choose it": "खरीदार इसे क्यों चुनते हैं",
+  "The essentials": "मुख्य जानकारी",
+  "Raw Material": "कच्चा माल",
+  Storage: "भंडारण",
+  "How to use it": "इसे कैसे उपयोग करें",
+  "Product specifications": "उत्पाद विवरण",
+  "Based on the official Utkarsh Organic Farm listing": "उत्कर्ष ऑर्गेनिक फार्म की आधिकारिक सूची के अनुसार",
+  "Keep exploring": "और देखें",
+  "You may also like": "आपको यह भी पसंद आ सकता है",
+  "All products": "सभी उत्पाद",
+  "Product Not Found": "उत्पाद नहीं मिला",
+  "Back to Shop": "दुकान पर वापस जाएं",
+
+  "Search products": "उत्पाद खोजें",
+  Search: "खोजें",
+  "Search organic powders & spices...": "ऑर्गेनिक पाउडर और मसाले खोजें...",
+  "Search onion powder, turmeric, moringa tea, bulk packs...": "प्याज पाउडर, हल्दी, मोरिंगा चाय, बल्क पैक खोजें...",
+  "Clear search": "खोज साफ करें",
+  "Clear filters": "फिल्टर साफ करें",
+  "All Products": "सभी उत्पाद",
+  "naturally good choices": "प्राकृतिक अच्छे विकल्प",
+  Sort: "क्रमबद्ध करें",
+  Featured: "चुनिंदा",
+  "Top rated": "शीर्ष रेटेड",
+  "Price: low to high": "कीमत: कम से ज्यादा",
+  "Price: high to low": "कीमत: ज्यादा से कम",
+  "Nothing matched that search.": "इस खोज से कुछ मेल नहीं खाया.",
+  "Try a product name or clear the filters.": "उत्पाद का नाम आजमाएं या फिल्टर साफ करें.",
+  "Looking for commercial packs?": "कमर्शियल पैक चाहिए?",
+  "Explore bulk orders": "बल्क ऑर्डर देखें",
+
+  "OFFICIAL UTKARSH CATALOG": "आधिकारिक उत्कर्ष कैटलॉग",
+  "Wholesale ingredients,": "थोक सामग्री,",
+  "source-ready.": "स्रोत के लिए तैयार.",
+  "Clean, concentrated ingredients for home kitchens, cafés and food businesses.": "घर की रसोई, कैफे और फूड बिजनेस के लिए साफ और केंद्रित सामग्री.",
+  "DEHYDRATED VEGETABLES & POWDERS": "डिहाइड्रेटेड सब्जियां और पाउडर",
+  "Official per-kg quotes,": "आधिकारिक प्रति किलो दर,",
+  "with MOQ.": "न्यूनतम ऑर्डर के साथ.",
+  "Zero peeling, zero chopping. Pure dehydrated powders packed with natural aroma & nutrition.": "न छीलना, न काटना. प्राकृतिक सुगंध और पोषण से भरपूर शुद्ध डिहाइड्रेटेड पाउडर.",
+  "ORGANIC & AYURVEDIC POWDERS": "ऑर्गेनिक और आयुर्वेदिक पाउडर",
+  "Amla, beetroot,": "आंवला, चुकंदर,",
+  "ginger & moringa.": "अदरक और मोरिंगा.",
+  "Organic and ayurvedic powders for ingredient buyers and commercial kitchens.": "सामग्री खरीदारों और कमर्शियल किचन के लिए ऑर्गेनिक और आयुर्वेदिक पाउडर.",
+
+  "100% Natural": "100% प्राकृतिक",
+  "Pure & Clean": "शुद्ध और साफ",
+  "No Additives": "कोई एडिटिव नहीं",
+  "No Shortcuts": "गुणवत्ता में कोई समझौता नहीं",
+  "Farm to Pantry": "फार्म से पैंट्री तक",
+  "Trusted Source": "विश्वसनीय स्रोत",
+  "No Preservatives": "कोई प्रिजर्वेटिव नहीं",
+  "100% Dehydrated": "100% डिहाइड्रेटेड",
+  "Farm Fresh": "फार्म फ्रेश",
+  "Satara Sourced": "सातारा से स्रोत",
+  Hygienic: "स्वच्छ",
+  "Modern Tech": "आधुनिक तकनीक",
+  "Moringa Rich": "मोरिंगा से भरपूर",
+  "High Antioxidants": "उच्च एंटीऑक्सिडेंट",
+  "Pure Energy": "शुद्ध ऊर्जा",
+  "Clean Wellness": "स्वच्छ सेहत",
+  "Nutritionist Approved": "पोषण विशेषज्ञ द्वारा स्वीकृत",
+  "Doctor Formulated": "डॉक्टर द्वारा तैयार",
+  "100% Pure & Natural": "100% शुद्ध और प्राकृतिक",
+
+  "Utkarsh Farm - From our farm directly to your kitchen!": "उत्कर्ष फार्म - हमारे खेत से सीधे आपकी रसोई तक!",
+  "From our farm directly to your kitchen!": "हमारे खेत से सीधे आपकी रसोई तक!",
+  "Fresh and vibrant farm": "ताजा और जीवंत खेत",
+  "Farm-fresh and naturally grown vegetables.": "फार्म-फ्रेश और प्राकृतिक रूप से उगाई गई सब्जियां.",
+  "Advanced processing": "उन्नत प्रोसेसिंग",
+  "Fully dehydrated and hygienically processed using modern technology.": "आधुनिक तकनीक से पूरी तरह डिहाइड्रेटेड और स्वच्छ तरीके से प्रोसेस किया गया.",
+  "Dehydrated Products and Powders": "डिहाइड्रेटेड उत्पाद और पाउडर",
+  "Quality dried vegetables and health-friendly pure vegetable powders with long shelf life.": "लंबी शेल्फ लाइफ वाली गुणवत्ता वाली सूखी सब्जियां और स्वास्थ्य-अनुकूल शुद्ध वेजिटेबल पाउडर.",
+  "Quality dried vegetables and pure vegetable powders with long shelf life.": "लंबी शेल्फ लाइफ वाली गुणवत्ता वाली सूखी सब्जियां और शुद्ध वेजिटेबल पाउडर.",
+  "Spinach, beetroot, onion, moringa leaves, garlic, ginger and carrot powder.": "पालक, चुकंदर, प्याज, मोरिंगा पत्ती, लहसुन, अदरक और गाजर पाउडर.",
+  "A new modern need - Utkarsh Farm products!": "आधुनिक समय की नई जरूरत - उत्कर्ष फार्म उत्पाद!",
+  "Our special dehydrated vegetables and powders are now available while preserving the taste and nutrition of vegetables. 100% natural, no preservatives, pure products!": "सब्जियों का स्वाद और पोषण बनाए रखने वाले हमारे विशेष डिहाइड्रेटेड वेजिटेबल्स और पाउडर अब उपलब्ध हैं. 100% प्राकृतिक, बिना प्रिजर्वेटिव, शुद्ध उत्पाद!",
+  "Our special dehydrated vegetables and powders are now available while preserving taste and nutrition.": "स्वाद और पोषण बनाए रखने वाले हमारे विशेष डिहाइड्रेटेड वेजिटेबल्स और पाउडर अब उपलब्ध हैं.",
+  "100% natural, no preservatives, pure products!": "100% प्राकृतिक, बिना प्रिजर्वेटिव, शुद्ध उत्पाद!",
+  "100% natural": "100% प्राकृतिक",
+  "Contact 7507379018 Prafull Chorage": "संपर्क 7507379018 प्रफुल्ल चोरगे",
+  "View Products": "उत्पाद देखें",
+  "Our Process": "हमारी प्रक्रिया",
+  "Direct Contact and Orders": "सीधा संपर्क और ऑर्डर",
+  "Residue-free farming": "रेजिड्यू-फ्री खेती",
+  "Hygienic process": "स्वच्छ प्रक्रिया",
+  "Pure powders": "शुद्ध पाउडर",
+  "Hygienic processing with modern technology.": "आधुनिक तकनीक से स्वच्छ प्रोसेसिंग.",
+  "WhatsApp Contact": "WhatsApp संपर्क",
+  "Official Products": "आधिकारिक उत्पाद",
+  "Minimum Order Quantity": "न्यूनतम ऑर्डर मात्रा",
+
+  "Rooted in nature.": "प्रकृति से जुड़ा.",
+  "Driven by purpose.": "उद्देश्य से प्रेरित.",
+  "About Utkarsh Organic Farm": "उत्कर्ष ऑर्गेनिक फार्म के बारे में",
+  "Official Business Profile": "आधिकारिक बिजनेस प्रोफाइल",
+  "Founder & Supply Details": "संस्थापक और आपूर्ति विवरण",
+  "Leadership Team": "लीडरशिप टीम",
+  "Manufacturer & Supplier": "निर्माता और आपूर्तिकर्ता",
+  "Our farm story": "हमारी फार्म कहानी",
+  "Our Certifications": "हमारे प्रमाणपत्र",
+  "Certified & Registered": "प्रमाणित और पंजीकृत",
+  "Enterprise Registration & Licensing": "उद्यम पंजीकरण और लाइसेंसिंग",
+  "FSSAI License": "FSSAI लाइसेंस",
+  "GSTIN Registration": "GSTIN पंजीकरण",
+  "MSME Udyam Reg": "MSME उद्यम पंजीकरण",
+
+  "Why Switch to Utkarsh Organic Powders?": "उत्कर्ष ऑर्गेनिक पाउडर क्यों चुनें?",
+  "Why Switch to": "क्यों चुनें",
+  "Powders?": "पाउडर?",
+  "FSSAI Certified": "FSSAI प्रमाणित",
+  "GSTIN Registered": "GSTIN पंजीकृत",
+  "MSME Udyam Reg.": "MSME उद्यम पंजीकरण",
+  "Head to Head": "सीधी तुलना",
+  "How Utkarsh Organic Compares": "उत्कर्ष ऑर्गेनिक की तुलना",
+  Feature: "विशेषता",
+  "Utkarsh Organic Powders": "उत्कर्ष ऑर्गेनिक पाउडर",
+  "Conventional Spice Powders": "सामान्य मसाला पाउडर",
+  "Raw Fresh Produce": "ताजा कच्ची उपज",
+  "Core Value Pillars": "मुख्य मूल्य स्तंभ",
+  "Built for modern everyday cooking": "आधुनिक रोजमर्रा की कुकिंग के लिए बनाया गया",
+  "Got Questions?": "सवाल हैं?",
+  "Frequently Asked Questions": "अक्सर पूछे जाने वाले प्रश्न",
+
+  "B2B & Commercial Supply": "B2B और कमर्शियल सप्लाई",
+  "B2B & COMMERCIAL SUPPLY": "B2B और कमर्शियल सप्लाई",
+  Reliable: "विश्वसनीय",
+  "Bulk Dehydrated": "बल्क डिहाइड्रेटेड",
+  "Powders for Food Enterprises": "फूड एंटरप्राइज के लिए पाउडर",
+  "Who We Serve": "हम किनके लिए काम करते हैं",
+  "Tailored Packaging & Volume Pricing": "कस्टम पैकेजिंग और वॉल्यूम प्राइसिंग",
+  "B2B Assurance": "B2B आश्वासन",
+  "Why Food Captains Trust Utkarsh Organic": "फूड बिजनेस उत्कर्ष ऑर्गेनिक पर क्यों भरोसा करते हैं",
+  "Request Sample Kit": "सैंपल किट मांगें",
+  "Request Bulk Price Quote": "बल्क प्राइस कोट मांगें",
+  "Submit Commercial Inquiry": "कमर्शियल इन्क्वायरी भेजें",
+  "Send Another Inquiry": "एक और इन्क्वायरी भेजें",
+  "Inquiry Sent Successfully!": "इन्क्वायरी सफलतापूर्वक भेजी गई!",
+
+  "Get in Touch with Utkarsh Farm": "उत्कर्ष फार्म से संपर्क करें",
+  "Get in": "हमसे",
+  "Touch with Us": "संपर्क करें",
+  "Direct Farm Unit": "डायरेक्ट फार्म यूनिट",
+  "Contact Person": "संपर्क व्यक्ति",
+  "Farm & Factory Address": "फार्म और फैक्ट्री पता",
+  "Direct Call & Support": "सीधा कॉल और सपोर्ट",
+  "Email Addresses": "ईमेल पते",
+  "WhatsApp Direct Order": "WhatsApp डायरेक्ट ऑर्डर",
+  "Send Us a Message": "हमें संदेश भेजें",
+  "Message Received!": "संदेश प्राप्त हुआ!",
+  "Send Another Message": "एक और संदेश भेजें",
+  "Send Message": "संदेश भेजें",
+  "Your Full Name": "आपका पूरा नाम",
+  "Email Address": "ईमेल पता",
+  "Phone Number": "फोन नंबर",
+  "Inquiry Subject": "इन्क्वायरी विषय",
+  "Your Message": "आपका संदेश",
+  "General Inquiry": "सामान्य इन्क्वायरी",
+  "Product & Usage Guidance": "उत्पाद और उपयोग मार्गदर्शन",
+  "Retail Order Support": "रिटेल ऑर्डर सपोर्ट",
+  "Bulk & Commercial Supply": "बल्क और कमर्शियल सप्लाई",
+  "Distributor Partnership": "डिस्ट्रिब्यूटर पार्टनरशिप",
+
+  "Farm, products and pantry-ready formats": "फार्म, उत्पाद और पैंट्री-रेडी फॉर्मेट",
+  "Farm, products and": "फार्म, उत्पाद और",
+  "pantry-ready": "पैंट्री-रेडी",
+  "formats.": "फॉर्मेट.",
+  "Every image has space to breathe.": "हर तस्वीर को खुली जगह दी गई है.",
+  "Visit and orders": "भेंट और ऑर्डर",
+  "Connect before visiting the farm unit.": "फार्म यूनिट आने से पहले संपर्क करें.",
+  "Satara Farm Story": "सातारा फार्म कहानी",
+  "Dehydrated Onion Ingredients": "डिहाइड्रेटेड प्याज सामग्री",
+  "Product Flatlay": "उत्पाद फ्लैटले",
+  "Red Onion Powder": "लाल प्याज पाउडर",
+  "Beetroot Powder": "चुकंदर पाउडर",
+  "Carrot Powder": "गाजर पाउडर",
+  "Bulk Order Ready": "बल्क ऑर्डर के लिए तैयार",
+  "Quality Promise": "गुणवत्ता का वादा",
+  "Contact The Farm": "फार्म से संपर्क करें",
+
+  "Pantry Inspirations": "पैंट्री प्रेरणा",
+  "Kitchen Recipes & Shortcuts": "किचन रेसिपी और शॉर्टकट",
+  "Easy Prep": "आसान तैयारी",
+  "View Step-by-Step": "स्टेप-बाय-स्टेप देखें",
+  "Get Powders": "पाउडर लें",
+  "Key Ingredients": "मुख्य सामग्री",
+  Instructions: "निर्देश",
+  "Close Recipe": "रेसिपी बंद करें",
+
+  "Field Notes & Kitchen Guides": "फील्ड नोट्स और किचन गाइड",
+  "The Utkarsh Organic Journal": "उत्कर्ष ऑर्गेनिक जर्नल",
+  "Featured Story": "फीचर्ड स्टोरी",
+  "Read Article": "लेख पढ़ें",
+  "Read full story": "पूरी कहानी पढ़ें",
+  "Article Not Found": "लेख नहीं मिला",
+  "Back to Journal": "जर्नल पर वापस जाएं",
+  Journal: "जर्नल",
+  Share: "शेयर करें",
+  "Pantry Shortcut": "पैंट्री शॉर्टकट",
+  "More to Read": "और पढ़ें",
+
+  "Welcome back": "वापसी पर स्वागत है",
+  "Sign in to track orders and save your favourite items": "ऑर्डर ट्रैक करने और पसंदीदा आइटम सेव करने के लिए साइन इन करें",
+  Password: "पासवर्ड",
+  "Forgot?": "भूल गए?",
+  "Sign In": "साइन इन",
+  "Don't have an account?": "खाता नहीं है?",
+  "Create account": "खाता बनाएं",
+  "Page Not Found": "पेज नहीं मिला",
+  "The page you are looking for does not exist.": "आप जिस पेज को खोज रहे हैं वह मौजूद नहीं है.",
+};
+
+const localizedTranslations: TranslationPair[] = TRANSLATIONS.map((pair) => {
+  const hi = HINDI_TRANSLATIONS[pair.en];
+  return hi ? { ...pair, hi } : pair;
+});
+
+const translationLength = (pair: TranslationPair) =>
+  Math.max(...LANGUAGE_KEYS.map((key) => pair[key]?.length ?? 0));
+
+const sortedTranslations = [...localizedTranslations].sort(
+  (a, b) => translationLength(b) - translationLength(a)
 );
 
 type LanguageContextValue = {
@@ -393,7 +694,7 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 function getInitialLanguage(): Language {
   if (typeof window === "undefined") return "en";
   const stored = window.localStorage.getItem(STORAGE_KEY);
-  return stored === "mr" ? "mr" : "en";
+  return stored === "mr" || stored === "hi" ? stored : "en";
 }
 
 function preserveOuterWhitespace(original: string, translated: string) {
@@ -406,14 +707,17 @@ export function translateValue(value: string, language: Language) {
   if (!value.trim()) return value;
 
   let translated = value.trim();
-  const fromKey = language === "mr" ? "en" : "mr";
-  const toKey = language === "mr" ? "mr" : "en";
+  const sourceLanguages = LANGUAGE_KEYS.filter((key) => key !== language);
 
   for (const pair of sortedTranslations) {
-    const source = pair[fromKey];
-    const target = pair[toKey];
-    if (!source || !target || source === target || !translated.includes(source)) continue;
-    translated = translated.split(source).join(target);
+    const target = pair[language];
+    if (!target) continue;
+
+    for (const sourceKey of sourceLanguages) {
+      const source = pair[sourceKey];
+      if (!source || source === target || !translated.includes(source)) continue;
+      translated = translated.split(source).join(target);
+    }
   }
 
   return preserveOuterWhitespace(value, translated);
@@ -428,7 +732,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    document.documentElement.lang = language === "mr" ? "mr-IN" : "en";
+    document.documentElement.lang =
+      language === "mr" ? "mr-IN" : language === "hi" ? "hi-IN" : "en";
   }, [language]);
 
   const value = useMemo<LanguageContextValue>(

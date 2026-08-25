@@ -3,11 +3,11 @@ import farmFreshNaturalOrganic from "@/assets/farm-gallery-fresh-natural-organic
 import flatlay from "@/assets/flatlay.jpg";
 import heroBulkOrders from "@/assets/hero-bulk-orders.jpg";
 import heroContact from "@/assets/hero-contact.jpg";
-import heroOnion from "@/assets/hero-onion.jpg";
+import flipOnionPowder from "@/assets/flip-onion-powder.png";
 import heroWhyOrganic from "@/assets/hero-why-organic.jpg";
-import beetroot from "@/assets/p-beetroot.jpg";
+import beetrootPowder from "@/assets/product-beetroot-powder.png";
 import carrot from "@/assets/p-carrot.jpg";
-import redOnionPowder from "@/assets/product-red-onion-powder-full-bowl.png";
+import redOnionPowder from "@/assets/product-red-onion-powder-pouch.png";
 
 export type GalleryItem = {
   title: string;
@@ -32,7 +32,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   {
     title: "Dehydrated Onion Ingredients",
     label: "Ingredients",
-    image: heroOnion,
+    image: flipOnionPowder,
     description: "Onion based dehydrated ingredients prepared for consistent kitchen use.",
     frameClass: "aspect-[4/3]",
     fit: "cover",
@@ -49,17 +49,17 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: "Red Onion Powder",
     label: "Best Seller",
     image: redOnionPowder,
-    description: "Full bowl product photo for the dehydrated red onion powder listing.",
+    description: "Pouch product image for the dehydrated red onion powder listing.",
     frameClass: "aspect-square",
     fit: "contain",
   },
   {
     title: "Beetroot Powder",
     label: "Organic Powder",
-    image: beetroot,
+    image: beetrootPowder,
     description: "Bright natural powder format for color, nutrition and food applications.",
     frameClass: "aspect-square",
-    fit: "cover",
+    fit: "contain",
   },
   {
     title: "Carrot Powder",

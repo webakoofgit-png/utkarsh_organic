@@ -6,8 +6,8 @@
 
 /*
  * Utkarsh Organic design system.
- * Forest organic palette: richer greens, sage cream, warm earth brown and leaf accents.
- * All colors in oklch. Never hardcode colors in components.
+ * Green + earth-brown + white palette for a cleaner farm-first brand theme.
+ * Prefer semantic utility colors and design tokens in components.
  */
 
 @theme inline {
@@ -64,86 +64,91 @@
 :root {
   --radius: 0.75rem;
 
-  --background: oklch(0.99 0.014 105);
-  --foreground: oklch(0.22 0.035 135);
+  --background: #ffffff;
+  --foreground: #223127;
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.035 135);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.035 135);
+  --card: #ffffff;
+  --card-foreground: #223127;
+  --popover: #ffffff;
+  --popover-foreground: #223127;
 
-  /* Rich forest green */
-  --primary: oklch(0.38 0.095 145);
-  --primary-foreground: oklch(0.99 0.015 100);
+  /* Deep organic green */
+  --primary: #123d2a;
+  --primary-foreground: #ffffff;
 
-  /* Sage cream */
-  --secondary: oklch(0.955 0.03 105);
-  --secondary-foreground: oklch(0.28 0.06 140);
+  /* Warm white surface */
+  --secondary: #f7f4ee;
+  --secondary-foreground: #3e2d21;
 
-  --muted: oklch(0.957 0.025 112);
-  --muted-foreground: oklch(0.48 0.035 120);
+  --muted: #f2eee7;
+  --muted-foreground: #6b6258;
 
-  /* Fresh leaf green */
-  --accent: oklch(0.68 0.16 138);
-  --accent-foreground: oklch(0.15 0.04 140);
+  /* Earth brown accent */
+  --accent: #7a5234;
+  --accent-foreground: #ffffff;
 
-  --destructive: oklch(0.56 0.2 27);
-  --destructive-foreground: oklch(0.985 0.01 95);
+  --destructive: #b23b2e;
+  --destructive-foreground: #ffffff;
 
-  --border: oklch(0.88 0.027 98);
-  --input: oklch(0.88 0.027 98);
-  --ring: oklch(0.68 0.16 138);
+  --border: #e2d7c8;
+  --input: #e2d7c8;
+  --ring: #7a5234;
 
-  --cream: oklch(0.985 0.016 100);
-  --beige: oklch(0.94 0.035 85);
-  --earth: oklch(0.55 0.08 63);
-  --forest: oklch(0.29 0.075 145);
-  --forest-foreground: oklch(0.98 0.018 105);
-  --leaf: oklch(0.68 0.16 138);
-  --saffron: oklch(0.78 0.13 73);
-  --whatsapp: oklch(0.74 0.18 150);
+  --cream: #ffffff;
+  --beige: #efe4d2;
+  --earth: #7a5234;
+  --forest: #0e2f20;
+  --forest-foreground: #ffffff;
+  --leaf: #2f6d3d;
+  --saffron: #8a5a38;
+  --whatsapp: #25d366;
 
-  --chart-1: oklch(0.68 0.16 138);
-  --chart-2: oklch(0.55 0.08 63);
-  --chart-3: oklch(0.38 0.095 145);
-  --chart-4: oklch(0.78 0.13 73);
-  --chart-5: oklch(0.62 0.13 35);
+  --chart-1: #123d2a;
+  --chart-2: #7a5234;
+  --chart-3: #2f6d3d;
+  --chart-4: #8a5a38;
+  --chart-5: #efe4d2;
 
-  --sidebar: oklch(0.985 0.016 100);
-  --sidebar-foreground: oklch(0.22 0.035 135);
-  --sidebar-primary: oklch(0.38 0.095 145);
-  --sidebar-primary-foreground: oklch(0.99 0.015 100);
-  --sidebar-accent: oklch(0.955 0.03 105);
-  --sidebar-accent-foreground: oklch(0.28 0.06 140);
-  --sidebar-border: oklch(0.88 0.027 98);
-  --sidebar-ring: oklch(0.68 0.16 138);
+  --sidebar: #ffffff;
+  --sidebar-foreground: #223127;
+  --sidebar-primary: #123d2a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f7f4ee;
+  --sidebar-accent-foreground: #3e2d21;
+  --sidebar-border: #e2d7c8;
+  --sidebar-ring: #7a5234;
 
-  --gradient-forest: linear-gradient(135deg, oklch(0.29 0.075 145), oklch(0.45 0.12 138));
-  --gradient-cream: linear-gradient(180deg, oklch(0.995 0.012 100), oklch(0.955 0.03 105));
-  --shadow-soft: 0 1px 2px oklch(0.29 0.075 145 / 0.04), 0 12px 32px -16px oklch(0.29 0.075 145 / 0.18);
-  --shadow-lift: 0 24px 48px -24px oklch(0.29 0.075 145 / 0.3);
+  --gradient-forest: linear-gradient(135deg, #123d2a 0%, #1f4a32 54%, #7a5234 100%);
+  --gradient-cream: linear-gradient(180deg, #ffffff 0%, #f7f4ee 100%);
+  --shadow-soft: 0 1px 2px rgb(18 61 42 / 0.04), 0 12px 32px -16px rgb(18 61 42 / 0.18);
+  --shadow-lift: 0 24px 48px -24px rgb(18 61 42 / 0.3);
 }
 
 .dark {
-  --background: oklch(0.18 0.035 145);
-  --foreground: oklch(0.96 0.01 95);
-  --card: oklch(0.22 0.04 145);
-  --card-foreground: oklch(0.96 0.01 95);
-  --popover: oklch(0.22 0.04 145);
-  --popover-foreground: oklch(0.96 0.01 95);
-  --primary: oklch(0.68 0.15 138);
-  --primary-foreground: oklch(0.16 0.04 145);
-  --secondary: oklch(0.27 0.045 125);
-  --secondary-foreground: oklch(0.96 0.01 95);
-  --muted: oklch(0.27 0.045 125);
-  --muted-foreground: oklch(0.72 0.02 120);
-  --accent: oklch(0.75 0.16 130);
-  --accent-foreground: oklch(0.16 0.04 145);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 15%);
-  --cream: oklch(0.22 0.04 145);
-  --beige: oklch(0.3 0.045 82);
-  --forest: oklch(0.15 0.04 145);
+  --background: #0e2f20;
+  --foreground: #ffffff;
+  --card: #123d2a;
+  --card-foreground: #ffffff;
+  --popover: #123d2a;
+  --popover-foreground: #ffffff;
+  --primary: #f7f4ee;
+  --primary-foreground: #123d2a;
+  --secondary: #1f4a32;
+  --secondary-foreground: #ffffff;
+  --muted: #1f4a32;
+  --muted-foreground: #d8d0c4;
+  --accent: #b78352;
+  --accent-foreground: #ffffff;
+  --border: rgb(255 255 255 / 0.14);
+  --input: rgb(255 255 255 / 0.18);
+  --ring: #b78352;
+  --cream: #123d2a;
+  --beige: #efe4d2;
+  --earth: #b78352;
+  --forest: #0a2418;
+  --forest-foreground: #ffffff;
+  --leaf: #2f6d3d;
+  --saffron: #b78352;
 }
 
 @layer base {
@@ -162,7 +167,9 @@
     width: 100%;
     min-width: 0;
     overflow-x: hidden;
-    background-color: var(--color-background);
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.98), rgb(247 244 238 / 0.6)),
+      var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -276,10 +283,14 @@
 
 @keyframes organic-backdrop-drift {
   from {
-    background-position: 0 0, 0 0;
+    background-position:
+      0 0,
+      0 0;
   }
   to {
-    background-position: 280px 180px, -180px 240px;
+    background-position:
+      280px 180px,
+      -180px 240px;
   }
 }
 
@@ -314,17 +325,19 @@
       38deg,
       transparent 0,
       transparent 42px,
-      oklch(0.70 0.14 145 / 0.08) 43px,
+      oklch(0.7 0.14 145 / 0.08) 43px,
       transparent 45px
     ),
     repeating-linear-gradient(
       122deg,
       transparent 0,
       transparent 64px,
-      oklch(0.72 0.10 72 / 0.07) 65px,
+      oklch(0.72 0.1 72 / 0.07) 65px,
       transparent 67px
     );
-  background-size: 280px 280px, 220px 220px;
+  background-size:
+    280px 280px,
+    220px 220px;
   animation: organic-backdrop-drift 28s linear infinite;
 }
 

@@ -88,7 +88,6 @@ export default function CartPage() {
                           alt={product.name}
                           className="h-full w-full"
                           imageClassName="max-h-full max-w-full"
-                          stampClassName="bottom-0.5 right-0.5 h-6 w-6 rounded-md p-0.5"
                         />
                       </div>
                       <div className="min-w-0">

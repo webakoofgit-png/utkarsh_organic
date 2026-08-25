@@ -51,55 +51,57 @@ export default function WhyOrganicPage() {
   return (
     <main className="pt-16 lg:pt-20 bg-background">
       {/* Top Full Viewport Width Fresh Teal Breadcrumb Bar */}
-      <div className="w-full bg-[#163d24] border-b border-green-500/20 py-3">
+      <div className="w-full bg-primary border-b border-green-500/20 py-3">
         <div className="container-x flex items-center justify-between text-xs sm:text-sm text-green-100 font-medium">
           <div className="flex items-center gap-2 sm:gap-3">
             <Link
               to="/"
-              className="grid h-7 w-7 place-items-center rounded-full bg-green-950/90 border border-green-300/40 text-green-200 hover:bg-lime-300 hover:text-green-950 transition"
+              className="grid h-7 w-7 place-items-center rounded-full bg-green-950/90 border border-green-300/40 text-green-200 hover:bg-earth hover:text-white transition"
             >
               <Home className="h-3.5 w-3.5" />
             </Link>
             <ChevronRight className="h-4 w-4 text-green-500/60" />
-            <Link to="/" className="text-green-100 hover:text-lime-200 transition font-medium">
+            <Link to="/" className="text-green-100 hover:text-beige transition font-medium">
               Home
             </Link>
             <ChevronRight className="h-4 w-4 text-green-500/60" />
-            <span className="font-bold text-lime-200">Why Organic</span>
+            <span className="font-bold text-beige">Why Organic</span>
             <ChevronRight className="h-4 w-4 text-green-500/60" />
-            <span className="text-green-200/90 font-medium">Why Switch to Utkarsh Organic Powders?</span>
+            <span className="text-green-200/90 font-medium">
+              Why Switch to Utkarsh Organic Powders?
+            </span>
           </div>
 
-          <div className="flex items-center gap-1.5 text-lime-200">
-            <Leaf className="h-4.5 w-4.5 fill-lime-300/30 text-lime-200" />
+          <div className="flex items-center gap-1.5 text-beige">
+            <Leaf className="h-4.5 w-4.5 fill-earth/30 text-beige" />
           </div>
         </div>
       </div>
 
       {/* 100% Full Viewport Width Hero Banner Section (Matching Uploaded Design Image media_1787120970631.png) */}
       {/* Desktop (1920): 300px | Laptop (1440): 250px | Tablet (768): 210px | Mobile (390): 160px */}
-      <section className="relative flex min-h-[170px] w-full items-center overflow-hidden bg-gradient-to-r from-[#1f5a2f] via-[#163d24] to-[#10281a] text-white border-b border-green-500/20 shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]">
+      <section className="relative flex min-h-[170px] w-full items-center overflow-hidden bg-gradient-to-r from-primary via-leaf to-earth text-white border-b border-green-500/20 shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]">
         {/* Ambient Leaf Glow */}
-        <div className="absolute top-0 right-1/3 h-80 w-80 rounded-full bg-lime-300/15 blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-1/3 h-80 w-80 rounded-full bg-earth/15 blur-3xl pointer-events-none" />
 
         {/* Content Centered inside container-x */}
         <div className="container-x relative z-10 flex w-full min-w-0 items-center justify-between gap-6">
           {/* Left Content */}
           <div className="min-w-0 max-w-2xl py-2 pr-2">
             {/* Top Eyebrow Marathi Banner */}
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-lime-300/40 bg-green-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-lime-200 tracking-wider">
-              <Sprout className="h-3.5 w-3.5 text-lime-300" />
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-earth/40 bg-green-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-beige tracking-wider">
+              <Sprout className="h-3.5 w-3.5 text-beige" />
               <span>{COMPANY_INFO.marathiHeader}</span>
-              <Sprout className="h-3.5 w-3.5 text-amber-300" />
+              <Sprout className="h-3.5 w-3.5 text-beige" />
             </div>
 
             {/* Headline */}
             <h1 className="mt-2 break-words font-serif text-2xl font-black leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
               Why Switch to{" "}
-              <span className="relative inline-block text-lime-300">
+              <span className="relative inline-block text-beige">
                 Utkarsh Organic
                 <svg
-                  className="absolute -bottom-1 left-0 w-full h-2.5 text-lime-300"
+                  className="absolute -bottom-1 left-0 w-full h-2.5 text-earth"
                   viewBox="0 0 100 20"
                   preserveAspectRatio="none"
                 >
@@ -117,7 +119,8 @@ export default function WhyOrganicPage() {
 
             {/* Subtitle */}
             <p className="mt-3 text-xs sm:text-sm md:text-base leading-relaxed text-green-100/90 max-w-xl hidden sm:block">
-              Eliminate food waste, cut prep work in half, and nourish your family with 100% natural, chemical-free dehydrated vegetable &amp; herbal powders.
+              Eliminate food waste, cut prep work in half, and nourish your family with 100%
+              natural, chemical-free dehydrated vegetable &amp; herbal powders.
             </p>
           </div>
 
@@ -129,7 +132,7 @@ export default function WhyOrganicPage() {
                 alt="Utkarsh Organic Farm Powders"
                 className="h-32 w-52 rounded-xl bg-white/10 object-contain p-1 md:h-44 md:w-64 lg:h-52 lg:w-80 xl:h-60 xl:w-96"
               />
-              <div className="absolute bottom-3 right-3 rounded-xl border border-lime-300/35 bg-green-950/90 px-3 py-1 text-xs font-bold text-lime-200 shadow-lg backdrop-blur-md hidden sm:block">
+              <div className="absolute bottom-3 right-3 rounded-xl border border-earth/35 bg-green-950/90 px-3 py-1 text-xs font-bold text-beige shadow-lg backdrop-blur-md hidden sm:block">
                 🌱 100% Organic
               </div>
             </div>
@@ -141,7 +144,7 @@ export default function WhyOrganicPage() {
           <svg
             viewBox="0 0 1200 40"
             preserveAspectRatio="none"
-            className="relative block w-full h-4 text-[#235c32] fill-current opacity-80"
+            className="relative block w-full h-4 text-earth fill-current opacity-80"
           >
             <path d="M0,0 C300,30 600,-10 1200,20 L1200,40 L0,40 Z"></path>
           </svg>
@@ -156,21 +159,29 @@ export default function WhyOrganicPage() {
               <ShieldCheck className="h-8 w-8 text-accent shrink-0" />
               <div>
                 <p className="text-xs font-bold uppercase text-muted-foreground">FSSAI Certified</p>
-                <p className="font-display font-bold text-sm text-foreground">Reg. {COMPANY_INFO.fssaiRegNo}</p>
+                <p className="font-display font-bold text-sm text-foreground">
+                  Reg. {COMPANY_INFO.fssaiRegNo}
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-3 justify-center sm:justify-start border-y sm:border-y-0 sm:border-x border-border/60 py-3 sm:py-0 sm:px-6">
               <Award className="h-8 w-8 text-accent shrink-0" />
               <div>
-                <p className="text-xs font-bold uppercase text-muted-foreground">GSTIN Registered</p>
-                <p className="font-display font-bold text-sm text-foreground">{COMPANY_INFO.gstin}</p>
+                <p className="text-xs font-bold uppercase text-muted-foreground">
+                  GSTIN Registered
+                </p>
+                <p className="font-display font-bold text-sm text-foreground">
+                  {COMPANY_INFO.gstin}
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-3 justify-center sm:justify-start">
               <Award className="h-8 w-8 text-accent shrink-0" />
               <div>
                 <p className="text-xs font-bold uppercase text-muted-foreground">MSME Udyam Reg.</p>
-                <p className="font-display font-bold text-sm text-foreground">{COMPANY_INFO.udyamRegNo}</p>
+                <p className="font-display font-bold text-sm text-foreground">
+                  {COMPANY_INFO.udyamRegNo}
+                </p>
               </div>
             </div>
           </div>
@@ -185,18 +196,40 @@ export default function WhyOrganicPage() {
               <thead>
                 <tr className="bg-forest text-forest-foreground text-sm font-display font-bold">
                   <th className="p-5 sm:p-6">Feature</th>
-                  <th className="p-5 sm:p-6 bg-accent text-accent-foreground">Utkarsh Organic Powders</th>
+                  <th className="p-5 sm:p-6 bg-accent text-accent-foreground">
+                    Utkarsh Organic Powders
+                  </th>
                   <th className="p-5 sm:p-6">Conventional Spice Powders</th>
                   <th className="p-5 sm:p-6">Raw Fresh Produce</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border text-sm">
                 {[
-                  ["Preservatives & Additives", "ZERO Chemicals / 100% Pure", "Often contains anti-caking agents", "None (may contain pesticides)"],
-                  ["Prep Time & Waste", "Instant spoonful, ZERO waste", "Instant", "15-20 min peeling/chopping + 25% waste"],
+                  [
+                    "Preservatives & Additives",
+                    "ZERO Chemicals / 100% Pure",
+                    "Often contains anti-caking agents",
+                    "None (may contain pesticides)",
+                  ],
+                  [
+                    "Prep Time & Waste",
+                    "Instant spoonful, ZERO waste",
+                    "Instant",
+                    "15-20 min peeling/chopping + 25% waste",
+                  ],
                   ["Shelf Life", "12 - 18 Months", "6 - 12 Months", "5 - 10 Days before spoiling"],
-                  ["Flavour Consistency", "100% Consistent year-round", "Varies by batch", "Fluctuates by season & water content"],
-                  ["Storage Requirement", "Compact dry pantry shelf", "Dry pantry", "Bulky refrigerator storage needed"],
+                  [
+                    "Flavour Consistency",
+                    "100% Consistent year-round",
+                    "Varies by batch",
+                    "Fluctuates by season & water content",
+                  ],
+                  [
+                    "Storage Requirement",
+                    "Compact dry pantry shelf",
+                    "Dry pantry",
+                    "Bulky refrigerator storage needed",
+                  ],
                 ].map(([feature, organic, conv, raw], i) => (
                   <tr key={i} className="hover:bg-cream/50 transition">
                     <td className="p-5 font-bold font-display text-foreground">{feature}</td>
@@ -234,7 +267,10 @@ export default function WhyOrganicPage() {
                 desc: "No tearing eyes while chopping onions or sticky garlic fingers.",
               },
             ].map(({ title, desc }) => (
-              <div key={title} className="rounded-3xl border border-border bg-cream p-6 shadow-soft">
+              <div
+                key={title}
+                className="rounded-3xl border border-border bg-cream p-6 shadow-soft"
+              >
                 <Leaf className="h-6 w-6 text-accent" />
                 <h3 className="mt-4 font-display font-bold text-lg">{title}</h3>
                 <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{desc}</p>

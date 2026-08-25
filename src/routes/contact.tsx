@@ -50,36 +50,36 @@ export default function ContactPage() {
   return (
     <main className="pt-16 lg:pt-20 bg-background">
       {/* Top Full Viewport Width Fresh Teal Breadcrumb Bar */}
-      <div className="w-full bg-[#163d24] border-b border-green-500/20 py-3">
+      <div className="w-full bg-primary border-b border-green-500/20 py-3">
         <div className="container-x flex items-center justify-between text-xs sm:text-sm text-green-100 font-medium">
           <div className="flex items-center gap-2 sm:gap-3">
             <Link
               to="/"
-              className="grid h-7 w-7 place-items-center rounded-full bg-green-950/90 border border-green-300/40 text-green-200 hover:bg-lime-300 hover:text-green-950 transition"
+              className="grid h-7 w-7 place-items-center rounded-full bg-green-950/90 border border-green-300/40 text-green-200 hover:bg-earth hover:text-white transition"
             >
               <Home className="h-3.5 w-3.5" />
             </Link>
             <ChevronRight className="h-4 w-4 text-green-500/60" />
-            <Link to="/" className="text-green-100 hover:text-lime-200 transition font-medium">
+            <Link to="/" className="text-green-100 hover:text-beige transition font-medium">
               Home
             </Link>
             <ChevronRight className="h-4 w-4 text-green-500/60" />
-            <span className="font-bold text-lime-200">Contact Us</span>
+            <span className="font-bold text-beige">Contact Us</span>
             <ChevronRight className="h-4 w-4 text-green-500/60" />
             <span className="text-green-200/90 font-medium">Get in Touch with Utkarsh Farm</span>
           </div>
 
-          <div className="flex items-center gap-1.5 text-lime-200">
-            <Leaf className="h-4.5 w-4.5 fill-lime-300/30 text-lime-200" />
+          <div className="flex items-center gap-1.5 text-beige">
+            <Leaf className="h-4.5 w-4.5 fill-earth/30 text-beige" />
           </div>
         </div>
       </div>
 
       {/* 100% Full Viewport Width Professional Animated Hero Banner Section */}
       {/* Desktop (1920): 300px | Laptop (1440): 250px | Tablet (768): 210px | Mobile (390): 160px */}
-      <section className="relative flex min-h-[170px] w-full items-center overflow-hidden bg-gradient-to-r from-[#1f5a2f] via-[#163d24] to-[#10281a] text-white border-b border-green-500/20 shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]">
+      <section className="relative flex min-h-[170px] w-full items-center overflow-hidden bg-gradient-to-r from-primary via-leaf to-earth text-white border-b border-green-500/20 shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]">
         {/* Ambient Leaf Glow */}
-        <div className="absolute top-0 right-1/3 h-80 w-80 rounded-full bg-lime-300/15 blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-1/3 h-80 w-80 rounded-full bg-earth/15 blur-3xl pointer-events-none" />
 
         {/* Content Centered inside container-x */}
         <div className="container-x relative z-10 flex w-full min-w-0 items-center justify-between gap-6">
@@ -90,11 +90,11 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-1.5 rounded-full border border-lime-300/40 bg-green-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-lime-200 tracking-wider"
+              className="inline-flex items-center gap-1.5 rounded-full border border-earth/40 bg-green-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-beige tracking-wider"
             >
-              <Sprout className="h-3.5 w-3.5 text-lime-300" />
+              <Sprout className="h-3.5 w-3.5 text-beige" />
               <span>{COMPANY_INFO.marathiHeader}</span>
-              <Sparkles className="h-3 w-3 text-amber-300" />
+              <Sparkles className="h-3 w-3 text-beige" />
             </motion.div>
 
             {/* Headline */}
@@ -105,10 +105,10 @@ export default function ContactPage() {
               className="mt-2 break-words font-serif text-2xl font-black leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl"
             >
               Get in{" "}
-              <span className="relative inline-block text-lime-300">
+              <span className="relative inline-block text-beige">
                 Touch with Us
                 <svg
-                  className="absolute -bottom-1 left-0 w-full h-2.5 text-lime-300"
+                  className="absolute -bottom-1 left-0 w-full h-2.5 text-earth"
                   viewBox="0 0 100 20"
                   preserveAspectRatio="none"
                 >
@@ -147,7 +147,7 @@ export default function ContactPage() {
                 alt="Utkarsh Organic Farm Satara Unit"
                 className="h-32 w-52 rounded-xl bg-white/10 object-contain p-1 md:h-44 md:w-64 lg:h-52 lg:w-80 xl:h-60 xl:w-96"
               />
-              <div className="absolute bottom-3 right-3 rounded-xl border border-lime-300/35 bg-green-950/90 px-3 py-1 text-xs font-bold text-lime-200 shadow-lg backdrop-blur-md hidden sm:block">
+              <div className="absolute bottom-3 right-3 rounded-xl border border-earth/35 bg-green-950/90 px-3 py-1 text-xs font-bold text-beige shadow-lg backdrop-blur-md hidden sm:block">
                 MIDC Satara Unit
               </div>
             </div>
@@ -159,7 +159,7 @@ export default function ContactPage() {
           <svg
             viewBox="0 0 1200 40"
             preserveAspectRatio="none"
-            className="relative block w-full h-4 text-[#235c32] fill-current opacity-80"
+            className="relative block w-full h-4 text-earth fill-current opacity-80"
           >
             <path d="M0,0 C300,30 600,-10 1200,20 L1200,40 L0,40 Z"></path>
           </svg>
@@ -177,7 +177,8 @@ export default function ContactPage() {
               </span>
               <h3 className="font-display text-2xl font-extrabold mt-3">{COMPANY_INFO.name}</h3>
               <p className="text-xs text-forest-foreground/80 mt-1">
-                Contact Person: <strong className="text-accent">{COMPANY_INFO.contactPerson}</strong>
+                Contact Person:{" "}
+                <strong className="text-accent">{COMPANY_INFO.contactPerson}</strong>
               </p>
 
               <div className="mt-8 space-y-5 text-sm">
@@ -196,7 +197,9 @@ export default function ContactPage() {
                   <div>
                     <p className="font-bold">Direct Call &amp; Support</p>
                     <p className="text-xs text-forest-foreground/80 mt-1">
-                      {COMPANY_INFO.phoneSecondary ? `${COMPANY_INFO.phonePrimary} / ${COMPANY_INFO.phoneSecondary}` : COMPANY_INFO.phonePrimary}
+                      {COMPANY_INFO.phoneSecondary
+                        ? `${COMPANY_INFO.phonePrimary} / ${COMPANY_INFO.phoneSecondary}`
+                        : COMPANY_INFO.phonePrimary}
                     </p>
                   </div>
                 </div>
@@ -206,7 +209,9 @@ export default function ContactPage() {
                   <div>
                     <p className="font-bold">Email Addresses</p>
                     <p className="text-xs text-forest-foreground/80 mt-1">
-                      {COMPANY_INFO.officialEmail ? `${COMPANY_INFO.email} / ${COMPANY_INFO.officialEmail}` : COMPANY_INFO.email}
+                      {COMPANY_INFO.officialEmail
+                        ? `${COMPANY_INFO.email} / ${COMPANY_INFO.officialEmail}`
+                        : COMPANY_INFO.email}
                     </p>
                   </div>
                 </div>
@@ -254,9 +259,12 @@ export default function ContactPage() {
           {/* Contact Form */}
           <Reveal delay={0.12}>
             <div className="rounded-3xl border border-border bg-cream p-8 shadow-soft">
-              <h3 className="font-display text-2xl font-extrabold text-foreground">Send Us a Message</h3>
+              <h3 className="font-display text-2xl font-extrabold text-foreground">
+                Send Us a Message
+              </h3>
               <p className="mt-1 text-xs text-muted-foreground">
-                Whether you have a product query, feedback, or retail bulk requirement, send us your message!
+                Whether you have a product query, feedback, or retail bulk requirement, send us your
+                message!
               </p>
 
               {submitted ? (
@@ -276,7 +284,9 @@ export default function ContactPage() {
               ) : (
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                   <div>
-                    <label className="block text-xs font-bold text-foreground">Your Full Name *</label>
+                    <label className="block text-xs font-bold text-foreground">
+                      Your Full Name *
+                    </label>
                     <input
                       required
                       type="text"
@@ -289,7 +299,9 @@ export default function ContactPage() {
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label className="block text-xs font-bold text-foreground">Email Address *</label>
+                      <label className="block text-xs font-bold text-foreground">
+                        Email Address *
+                      </label>
                       <input
                         required
                         type="email"
@@ -300,7 +312,9 @@ export default function ContactPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-foreground">Phone Number</label>
+                      <label className="block text-xs font-bold text-foreground">
+                        Phone Number
+                      </label>
                       <input
                         type="tel"
                         value={formData.phone}
@@ -312,7 +326,9 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-foreground">Inquiry Subject</label>
+                    <label className="block text-xs font-bold text-foreground">
+                      Inquiry Subject
+                    </label>
                     <select
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
@@ -327,7 +343,9 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-foreground">Your Message *</label>
+                    <label className="block text-xs font-bold text-foreground">
+                      Your Message *
+                    </label>
                     <textarea
                       required
                       rows={4}

@@ -3,11 +3,7 @@ import whatsappIcon from "@/assets/whatsapp-icon.png";
 
 export function WhatsAppIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
-    <img
-      src={whatsappIcon}
-      alt="WhatsApp"
-      className={`${className} object-contain rounded-full`}
-    />
+    <img src={whatsappIcon} alt="WhatsApp" className={`${className} object-contain rounded-full`} />
   );
 }
 
@@ -32,7 +28,7 @@ export function FloatingActions() {
         />
 
         {/* Hover Tooltip */}
-        <span className="absolute right-16 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-lg bg-green-950 px-3 py-1.5 text-xs font-bold text-lime-200 shadow-xl border border-green-300/30 opacity-0 transition-all duration-200 group-hover:opacity-100 pointer-events-none">
+        <span className="absolute right-16 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-lg bg-green-950 px-3 py-1.5 text-xs font-bold text-beige shadow-xl border border-green-300/30 opacity-0 transition-all duration-200 group-hover:opacity-100 pointer-events-none">
           💬 Chat with Utkarsh Farm
         </span>
       </a>

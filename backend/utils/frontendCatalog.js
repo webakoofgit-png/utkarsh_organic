@@ -20,6 +20,20 @@ function findProductsSource() {
   return sourcePath;
 }
 
+function frontendAssetUrl(specifier) {
+  if (!/\.(png|jpe?g|webp|gif|svg)$/i.test(specifier)) return null;
+
+  if (specifier.startsWith("@/")) {
+    return `/src/${specifier.slice(2)}`;
+  }
+
+  if (specifier.startsWith("./") || specifier.startsWith("../")) {
+    return specifier;
+  }
+
+  return null;
+}
+
 export function loadFrontendCatalog() {
   const sourcePath = findProductsSource();
   const source = fs.readFileSync(sourcePath, "utf8");
@@ -38,6 +52,8 @@ export function loadFrontendCatalog() {
     exports: module.exports,
     console,
     require(specifier) {
+      const assetUrl = frontendAssetUrl(specifier);
+      if (assetUrl) return assetUrl;
       throw new Error(`Unsupported import while loading frontend catalog: ${specifier}`);
     },
   };

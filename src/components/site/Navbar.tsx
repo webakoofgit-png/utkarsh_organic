@@ -4,7 +4,7 @@ import { Heart, Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useStore } from "@/lib/store";
 import { LanguageToggle } from "@/components/site/LanguageToggle";
-import logo from "@/assets/logo-mark.png";
+import logo from "@/assets/logo.png";
 
 const NAV = [
   { label: "Home", to: "/" },
@@ -16,23 +16,59 @@ const NAV = [
   { label: "Contact", to: "/contact" },
 ] as const;
 
+function MoringaLeafSprig({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 180 58"
+      className={className}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12 46C54 18 98 10 166 13"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      {[
+        [31, 34, -28],
+        [44, 27, -18],
+        [58, 22, -10],
+        [74, 18, -4],
+        [91, 15, 4],
+        [109, 14, 11],
+        [128, 14, 18],
+        [147, 15, 25],
+        [39, 43, 24],
+        [55, 36, 18],
+        [72, 31, 12],
+        [90, 28, 5],
+        [110, 26, -5],
+        [130, 25, -13],
+      ].map(([cx, cy, rotate]) => (
+        <ellipse
+          key={`${cx}-${cy}-${rotate}`}
+          cx={cx}
+          cy={cy}
+          rx="8"
+          ry="4.8"
+          transform={`rotate(${rotate} ${cx} ${cy})`}
+          fill="currentColor"
+        />
+      ))}
+    </svg>
+  );
+}
+
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const { cartCount, wishlist, setCartOpen, user } = useStore();
   const location = useLocation();
   const navigate = useNavigate();
   const pathname = location.pathname;
-  const isHome = pathname === "/";
-  const solid = scrolled || !isHome || open || searchOpen;
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const solid = true;
 
   useEffect(() => {
     setOpen(false);
@@ -41,20 +77,29 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
-        solid
-          ? "border-border bg-white/95 text-foreground shadow-md backdrop-blur-xl"
-          : "border-white/15 bg-white/10 text-white shadow-none backdrop-blur-md"
-      }`}
+      className="fixed inset-x-0 top-0 z-50 overflow-hidden border-b border-green-900/10 bg-white text-foreground shadow-md backdrop-blur-xl transition-all duration-300"
     >
-      <div className="container-x flex h-16 items-center justify-between gap-3 lg:h-20">
-        <Link to="/" className="flex min-w-0 shrink-0 items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5">
-          <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl border border-green-500/30 bg-white p-1 shadow-sm">
-            <img src={logo} alt="Utkarsh Organic Farm logo" className="h-full w-full object-contain" />
+      <MoringaLeafSprig className="pointer-events-none absolute left-[8rem] top-1/2 hidden h-14 w-44 -translate-y-1/2 text-primary/10 lg:block" />
+      <MoringaLeafSprig className="pointer-events-none absolute right-[26rem] top-1/2 hidden h-12 w-40 -translate-y-1/2 rotate-180 text-primary/10 xl:block" />
+      <MoringaLeafSprig className="pointer-events-none absolute right-8 top-1/2 hidden h-14 w-44 -translate-y-1/2 text-primary/10 lg:block" />
+
+      <div className="container-x relative z-10 flex h-16 items-center justify-between gap-3 lg:h-20">
+        <Link
+          to="/"
+          className="flex min-w-0 shrink-0 items-center gap-3 transition-transform duration-300 hover:-translate-y-0.5"
+        >
+          <div className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-xl border border-green-500/30 bg-white p-0.5 shadow-sm sm:h-14 sm:w-14">
+            <img
+              src={logo}
+              alt="Utkarsh Organic Farm logo"
+              className="h-full w-full object-contain"
+            />
           </div>
           <span className="flex min-w-0 flex-col leading-none">
             <span className="font-display text-lg font-black sm:text-xl">Utkarsh</span>
-            <span className={`text-[0.65rem] font-bold uppercase tracking-[0.28em] ${solid ? "text-primary" : "text-green-200"}`}>
+            <span
+              className={`text-[0.65rem] font-bold uppercase tracking-[0.28em] ${solid ? "text-primary" : "text-green-200"}`}
+            >
               Organic Farm
             </span>
           </span>
@@ -95,7 +140,9 @@ export function Navbar() {
           <Link
             to="/products"
             className={`hidden items-center gap-2 rounded-full px-4 py-2.5 text-sm font-extrabold shadow-sm transition hover:-translate-y-0.5 lg:inline-flex ${
-              solid ? "bg-primary text-primary-foreground hover:bg-forest" : "bg-saffron text-foreground hover:bg-white"
+              solid
+                ? "bg-primary text-primary-foreground hover:bg-forest"
+                : "bg-saffron text-white hover:bg-white hover:text-primary"
             }`}
           >
             <ShoppingBag className="h-4 w-4" />

@@ -34,10 +34,12 @@ import { COMPANY_INFO, MARATHI_PROMO } from "@/lib/products";
 import { GALLERY_ITEMS } from "@/lib/gallery";
 import { CUSTOMER_TESTIMONIALS } from "@/lib/testimonials";
 import flatlay from "@/assets/flatlay.jpg";
-import heroBulkOrders from "@/assets/hero-bulk-orders.jpg";
 import heroOnion from "@/assets/hero-onion.jpg";
+import flipOnionPowder from "@/assets/flip-onion-powder.png";
+import flipBulkPowders from "@/assets/flip-bulk-powders.png";
+import heroFarmFamily from "@/assets/hero-farm-family.png";
 import farmStoryProductPackaging from "@/assets/farm-story-product-packaging.png";
-import heroVideo from "../../IMAGE_TO_VIDEO_PROMPT_Use_both.mp4";
+import heroVideo from "../../utkarsh.mp4";
 import storyVideo from "../../Prompt__Use_the_uploaded_image.mp4";
 
 const heroTrustPoints = [
@@ -65,14 +67,14 @@ const uspCards = [
     icon: ShieldCheck,
     title: MARATHI_PROMO.productsTitle,
     text: `${MARATHI_PROMO.productsText} ${MARATHI_PROMO.examples}`,
-    image: heroOnion,
+    image: flipOnionPowder,
     imageAlt: "Quality checked onion powder ingredient presentation",
   },
   {
     icon: Truck,
     title: "थेट संपर्क आणि ऑर्डर",
     text: MARATHI_PROMO.contactLine,
-    image: heroBulkOrders,
+    image: flipBulkPowders,
     imageAlt: "Bulk organic ingredient order and supply support",
   },
 ];
@@ -110,15 +112,15 @@ const categoryIconMap = {
   },
   "dehydrated-powders": {
     icon: CookingPot,
-    shell: "bg-amber-50 text-earth ring-amber-100",
+    shell: "bg-secondary text-earth ring-earth/20",
   },
   "organic-powders": {
     icon: Vegan,
-    shell: "bg-lime-50 text-accent ring-lime-100",
+    shell: "bg-secondary text-accent ring-earth/20",
   },
   spices: {
     icon: Flame,
-    shell: "bg-orange-50 text-orange-600 ring-orange-100",
+    shell: "bg-secondary text-earth ring-earth/20",
   },
   "dried-specialty": {
     icon: PackageOpen,
@@ -129,7 +131,8 @@ const categoryIconMap = {
 export default function HomePage() {
   const { products, categories } = useCatalog();
   const bestSellerProducts = products.filter((product) => product.bestSeller).slice(0, 6);
-  const featuredProducts = bestSellerProducts.length >= 4 ? bestSellerProducts : products.slice(0, 6);
+  const featuredProducts =
+    bestSellerProducts.length >= 4 ? bestSellerProducts : products.slice(0, 6);
   const galleryPreview = GALLERY_ITEMS.slice(0, 5);
   const featuredGalleryItem = galleryPreview[0];
   const galleryCardItems = galleryPreview.slice(1, 5);
@@ -159,9 +162,9 @@ export default function HomePage() {
         }}
       />
 
-      <section className="relative min-h-[100svh] overflow-hidden bg-[#102f1d] pb-16 pt-28 text-white sm:pt-32 lg:pb-24 lg:pt-36">
+      <section className="relative min-h-[100svh] overflow-hidden bg-forest pb-16 pt-28 text-white sm:pt-32 lg:pb-24 lg:pt-36">
         <video
-          className="absolute inset-0 h-full w-full object-cover opacity-70"
+          className="absolute inset-0 h-full w-full object-cover opacity-85"
           src={heroVideo}
           autoPlay
           muted
@@ -170,20 +173,20 @@ export default function HomePage() {
           preload="metadata"
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#081c13]/88 via-[#1d4d2b]/60 to-[#1d4d2b]/22" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#102f1d] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-forest/65 via-primary/38 to-primary/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest/55 via-transparent to-transparent" />
         <HomeBackgroundAnimation />
 
         <div className="container-x relative z-10 grid min-h-[calc(100svh-9rem)] items-center gap-12 lg:grid-cols-[minmax(0,1fr)_420px]">
           <Reveal y={28} className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-lime-300/35 bg-green-950/60 px-4 py-2 text-xs font-bold text-lime-100 shadow-[0_0_24px_rgba(190,242,100,0.2)] backdrop-blur-md">
-              <Leaf className="h-3.5 w-3.5 text-lime-300" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-earth/35 bg-green-950/60 px-4 py-2 text-xs font-bold text-cream shadow-[0_0_24px_rgba(122,82,52,0.22)] backdrop-blur-md">
+              <Leaf className="h-3.5 w-3.5 text-beige" />
               <span>उत्कर्ष फार्म</span>
             </div>
 
             <h1 className="mt-6 max-w-4xl text-balance font-display text-4xl font-black leading-[1.08] text-white sm:text-6xl lg:text-7xl">
               उत्कर्ष फार्म
-              <span className="block text-lime-300">{MARATHI_PROMO.heroTitle}</span>
+              <span className="block text-beige">{MARATHI_PROMO.heroTitle}</span>
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-green-50/86 sm:text-lg">
@@ -193,7 +196,7 @@ export default function HomePage() {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
                 to="/products"
-                className="group inline-flex items-center gap-2.5 rounded-full bg-saffron px-7 py-3.5 text-sm font-extrabold text-foreground shadow-[0_16px_42px_rgba(230,161,25,0.24)] transition hover:-translate-y-0.5 hover:bg-white"
+                className="group inline-flex items-center gap-2.5 rounded-full bg-saffron px-7 py-3.5 text-sm font-extrabold text-white shadow-[0_16px_42px_rgba(122,82,52,0.28)] transition hover:-translate-y-0.5 hover:bg-white hover:text-primary"
               >
                 <ShoppingBag className="h-4 w-4" />
                 उत्पादने पाहा
@@ -203,7 +206,7 @@ export default function HomePage() {
                 href="#farm-story"
                 className="inline-flex items-center gap-2 rounded-full border border-white/28 bg-white/10 px-7 py-3.5 text-sm font-bold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/16"
               >
-                <Play className="h-3.5 w-3.5 fill-current text-lime-300" />
+                <Play className="h-3.5 w-3.5 fill-current text-beige" />
                 आमची प्रक्रिया
               </a>
             </div>
@@ -211,7 +214,7 @@ export default function HomePage() {
             <ul className="mt-8 grid gap-3 text-sm font-semibold text-green-50/86 sm:grid-cols-3">
               {heroTrustPoints.map((point) => (
                 <li key={point} className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-lime-300" />
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-beige" />
                   <span>{point}</span>
                 </li>
               ))}
@@ -222,11 +225,19 @@ export default function HomePage() {
             <div className="rounded-[1.75rem] border border-white/16 bg-white/12 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.24)] backdrop-blur-xl">
               <div className="rounded-[1.35rem] bg-white p-4 text-foreground">
                 <div className="grid aspect-[4/3] place-items-center overflow-hidden rounded-2xl bg-cream p-3">
-                  <img src={farm} alt="Utkarsh Organic Farm view" className="h-full w-full object-contain" />
+                  <img
+                    src={heroFarmFamily}
+                    alt="Indian farming family harvesting onions at Utkarsh Organic Farm"
+                    className="h-full w-full object-contain"
+                  />
                 </div>
                 <div className="mt-5">
-                  <p className="text-xs font-extrabold uppercase text-accent">Satara, Maharashtra</p>
-                  <h2 className="mt-2 font-display text-2xl font-black">{MARATHI_PROMO.campaignTitle}</h2>
+                  <p className="text-xs font-extrabold uppercase text-accent">
+                    Satara, Maharashtra
+                  </p>
+                  <h2 className="mt-2 font-display text-2xl font-black">
+                    {MARATHI_PROMO.campaignTitle}
+                  </h2>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                     {MARATHI_PROMO.naturalText}
                   </p>
@@ -240,15 +251,35 @@ export default function HomePage() {
 
       <section className="relative bg-background pb-10">
         <div className="w-full overflow-hidden leading-none">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block h-10 w-full fill-background">
+          <svg
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+            className="relative block h-10 w-full fill-background"
+          >
             <path d="M0,0 C150,90 350,-40 500,60 C650,140 900,10 1200,40 L1200,120 L0,120 Z" />
           </svg>
         </div>
         <div className="container-x -mt-1">
           <div className="grid gap-3 rounded-[1.75rem] border border-green-500/16 bg-white p-4 shadow-lift sm:grid-cols-2 lg:grid-cols-4">
-            <StatCard label="Official Products" value={<Counter to={products.length || 23} suffix="+" />} icon={PackageCheck} />
-            <StatCard label="Minimum Order Quantity" value={<><Counter to={100} /> kg</>} icon={ShoppingBag} />
-            <StatCard label="Team Members" value={<Counter to={15} suffix=" people" />} icon={Users} />
+            <StatCard
+              label="Official Products"
+              value={<Counter to={products.length || 23} suffix="+" />}
+              icon={PackageCheck}
+            />
+            <StatCard
+              label="Minimum Order Quantity"
+              value={
+                <>
+                  <Counter to={100} /> kg
+                </>
+              }
+              icon={ShoppingBag}
+            />
+            <StatCard
+              label="Team Members"
+              value={<Counter to={15} suffix=" people" />}
+              icon={Users}
+            />
             <StatCard label="Market Coverage" value="Pan India" icon={Truck} />
           </div>
         </div>
@@ -307,7 +338,10 @@ export default function HomePage() {
               title="Products customers discover first."
               sub="Real catalog items with the same product detail routes, cart handlers, wishlist state and MOQ data."
             />
-            <Link to="/products" className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-primary hover:text-accent">
+            <Link
+              to="/products"
+              className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-primary hover:text-accent"
+            >
               View all products <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -317,14 +351,21 @@ export default function HomePage() {
             <div className="flex w-max animate-marquee [animation-duration:34s] hover:[animation-play-state:paused] focus-within:[animation-play-state:paused]">
               <div className="flex gap-5 pr-5">
                 {featuredProducts.map((product, index) => (
-                  <Reveal key={product.slug} delay={index * 0.05} className="w-[min(78vw,18rem)] shrink-0 sm:w-[18.5rem] lg:w-[19rem]">
+                  <Reveal
+                    key={product.slug}
+                    delay={index * 0.05}
+                    className="w-[min(78vw,18rem)] shrink-0 sm:w-[18.5rem] lg:w-[19rem]"
+                  >
                     <ProductCard product={product} />
                   </Reveal>
                 ))}
               </div>
               <div aria-hidden="true" inert className="flex gap-5 pr-5">
                 {featuredProducts.map((product) => (
-                  <div key={`carousel-copy-${product.slug}`} className="w-[min(78vw,18rem)] shrink-0 sm:w-[18.5rem] lg:w-[19rem]">
+                  <div
+                    key={`carousel-copy-${product.slug}`}
+                    className="w-[min(78vw,18rem)] shrink-0 sm:w-[18.5rem] lg:w-[19rem]"
+                  >
                     <ProductCard product={product} />
                   </div>
                 ))}
@@ -337,27 +378,38 @@ export default function HomePage() {
       <section className="container-x py-16 lg:py-24">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {categories.slice(0, 5).map((category, index) => {
-            const iconMeta = categoryIconMap[category.id as keyof typeof categoryIconMap] || categoryIconMap["dehydrated-flakes"];
+            const iconMeta =
+              categoryIconMap[category.id as keyof typeof categoryIconMap] ||
+              categoryIconMap["dehydrated-flakes"];
             const CategoryIcon = iconMeta.icon;
 
             return (
               <Reveal key={category.id} delay={index * 0.05}>
                 <Link
                   to={`/products?category=${category.id}`}
-                  className="group flex h-full min-h-44 flex-col justify-between rounded-[1.5rem] border border-border bg-white p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-lime-300 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  className="group flex h-full min-h-44 flex-col justify-between rounded-[1.5rem] border border-border bg-white p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-earth hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   <div>
                     <div
                       className={`grid h-12 w-12 place-items-center rounded-2xl ring-1 transition duration-300 animate-gentle-float group-hover:-translate-y-1 group-hover:scale-110 group-hover:rotate-3 ${iconMeta.shell}`}
                       style={{ animationDelay: `${index * 0.18}s` }}
                     >
-                      <CategoryIcon className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" strokeWidth={1.9} aria-hidden="true" />
+                      <CategoryIcon
+                        className="h-6 w-6 transition-transform duration-300 group-hover:scale-110"
+                        strokeWidth={1.9}
+                        aria-hidden="true"
+                      />
                     </div>
                     <h3 className="mt-5 font-display text-lg font-black">{category.name}</h3>
-                    {category.blurb ? <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{category.blurb}</p> : null}
+                    {category.blurb ? (
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        {category.blurb}
+                      </p>
+                    ) : null}
                   </div>
                   <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary">
-                    Explore <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    Explore{" "}
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 </Link>
               </Reveal>
@@ -370,7 +422,9 @@ export default function HomePage() {
         <div className="container-x grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
           <Reveal>
             <p className="eyebrow mb-3">Our Farm</p>
-            <h2 className="font-display text-3xl font-black leading-tight sm:text-5xl">{COMPANY_INFO.marathiHeader}</h2>
+            <h2 className="font-display text-3xl font-black leading-tight sm:text-5xl">
+              {COMPANY_INFO.marathiHeader}
+            </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
               {MARATHI_PROMO.campaignText} {MARATHI_PROMO.naturalText}
             </p>
@@ -382,7 +436,9 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h3 className="font-display text-lg font-bold">{step.title}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{step.text}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                      {step.text}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -392,7 +448,11 @@ export default function HomePage() {
           <Reveal delay={0.12}>
             <div className="rounded-[2rem] border border-border bg-white p-3 shadow-lift">
               <div className="grid aspect-[4/3] place-items-center overflow-hidden rounded-[1.55rem] bg-cream">
-                <img src={farmStoryProductPackaging} alt="Utkarsh Organic Farm product packaging and dehydrated ingredients" className="h-full w-full object-cover object-center" />
+                <img
+                  src={farmStoryProductPackaging}
+                  alt="Utkarsh Organic Farm product packaging and dehydrated ingredients"
+                  className="h-full w-full object-cover object-center"
+                />
               </div>
             </div>
           </Reveal>
@@ -407,7 +467,10 @@ export default function HomePage() {
             title="A closer look at the farm, products and pantry-ready formats."
             sub="The gallery uses existing site assets and product photos, framed so images stay visible instead of cropped."
           />
-          <Link to="/gallery" className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-primary hover:text-accent">
+          <Link
+            to="/gallery"
+            className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-primary hover:text-accent"
+          >
             Open gallery <GalleryHorizontal className="h-4 w-4" />
           </Link>
         </div>
@@ -416,7 +479,9 @@ export default function HomePage() {
           {featuredGalleryItem ? (
             <Reveal delay={0.05}>
               <Link to="/gallery" className="group surface-card block h-full overflow-hidden p-3">
-                <div className={`grid place-items-center overflow-hidden rounded-[1.25rem] bg-cream ${featuredGalleryItem.fit === "contain" ? "p-4" : "p-0"} ${featuredGalleryItem.frameClass || "aspect-[4/3]"}`}>
+                <div
+                  className={`grid place-items-center overflow-hidden rounded-[1.25rem] bg-cream ${featuredGalleryItem.fit === "contain" ? "p-4" : "p-0"} ${featuredGalleryItem.frameClass || "aspect-[4/3]"}`}
+                >
                   <img
                     src={featuredGalleryItem.image}
                     alt={featuredGalleryItem.title}
@@ -424,12 +489,21 @@ export default function HomePage() {
                   />
                 </div>
                 <div className="p-3">
-                  <p className="text-xs font-extrabold uppercase text-accent">{featuredGalleryItem.label}</p>
-                  <h3 className="mt-1 font-display text-lg font-bold">{featuredGalleryItem.title}</h3>
-                  <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">{featuredGalleryItem.description}</p>
+                  <p className="text-xs font-extrabold uppercase text-accent">
+                    {featuredGalleryItem.label}
+                  </p>
+                  <h3 className="mt-1 font-display text-lg font-bold">
+                    {featuredGalleryItem.title}
+                  </h3>
+                  <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
+                    {featuredGalleryItem.description}
+                  </p>
                   <div className="mt-5 flex flex-wrap gap-2">
                     {["विषमुक्त शेती", "हायजीनिक प्रक्रिया", "शुद्ध पावडर्स"].map((item) => (
-                      <span key={item} className="rounded-full bg-secondary px-3 py-1.5 text-xs font-bold text-primary">
+                      <span
+                        key={item}
+                        className="rounded-full bg-secondary px-3 py-1.5 text-xs font-bold text-primary"
+                      >
                         {item}
                       </span>
                     ))}
@@ -443,7 +517,9 @@ export default function HomePage() {
             {galleryCardItems.map((item, index) => (
               <Reveal key={item.title} delay={(index + 1) * 0.05}>
                 <Link to="/gallery" className="group surface-card block h-full overflow-hidden p-3">
-                  <div className={`grid place-items-center overflow-hidden rounded-[1.25rem] bg-cream ${item.fit === "contain" ? "p-3" : "p-0"} ${item.frameClass || "aspect-[4/3]"}`}>
+                  <div
+                    className={`grid place-items-center overflow-hidden rounded-[1.25rem] bg-cream ${item.fit === "contain" ? "p-3" : "p-0"} ${item.frameClass || "aspect-[4/3]"}`}
+                  >
                     <img
                       src={item.image}
                       alt={item.title}
@@ -452,7 +528,9 @@ export default function HomePage() {
                   </div>
                   <div className="p-3">
                     <p className="text-xs font-extrabold uppercase text-accent">{item.label}</p>
-                    <h3 className="mt-1 font-display text-base font-bold leading-snug">{item.title}</h3>
+                    <h3 className="mt-1 font-display text-base font-bold leading-snug">
+                      {item.title}
+                    </h3>
                   </div>
                 </Link>
               </Reveal>
@@ -461,20 +539,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[#173d23] py-16 text-white lg:py-24">
+      <section className="bg-forest py-16 text-white lg:py-24">
         <div className="container-x grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal>
-            <p className="eyebrow mb-3 text-lime-300">Processing</p>
-            <h2 className="font-display text-3xl font-black leading-tight sm:text-5xl">आधुनिक तंत्रज्ञानाने हायजीनिक प्रक्रिया.</h2>
+            <p className="eyebrow mb-3 text-beige">Processing</p>
+            <h2 className="font-display text-3xl font-black leading-tight sm:text-5xl">
+              आधुनिक तंत्रज्ञानाने हायजीनिक प्रक्रिया.
+            </h2>
             <p className="mt-5 text-base leading-relaxed text-white/72">
               {MARATHI_PROMO.processingText} {MARATHI_PROMO.productsText}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full border border-lime-300/24 bg-lime-300/10 px-4 py-2 text-xs font-bold text-lime-100">
+              <span className="inline-flex items-center gap-2 rounded-full border border-earth/24 bg-earth/10 px-4 py-2 text-xs font-bold text-cream">
                 <Play className="h-3.5 w-3.5" />
                 Dehydrated Vegetables
               </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-lime-300/24 bg-lime-300/10 px-4 py-2 text-xs font-bold text-lime-100">
+              <span className="inline-flex items-center gap-2 rounded-full border border-earth/24 bg-earth/10 px-4 py-2 text-xs font-bold text-cream">
                 <Leaf className="h-3.5 w-3.5" />
                 १००% नॅचरल
               </span>
@@ -510,20 +590,27 @@ export default function HomePage() {
           <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-background to-transparent" />
           <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-background to-transparent" />
           <div className="flex w-max gap-5 animate-marquee hover:[animation-play-state:paused]">
-            {[...CUSTOMER_TESTIMONIALS, ...CUSTOMER_TESTIMONIALS, ...CUSTOMER_TESTIMONIALS].map((testimonial, index) => (
-              <article key={`${testimonial.name}-${index}`} className="surface-card flex w-[min(360px,calc(100vw-2rem))] shrink-0 flex-col justify-between p-6">
-                <div>
-                  <div className="flex items-center justify-between gap-3">
-                    <Quote className="h-8 w-8 fill-green-500/10 text-green-500" />
+            {[...CUSTOMER_TESTIMONIALS, ...CUSTOMER_TESTIMONIALS, ...CUSTOMER_TESTIMONIALS].map(
+              (testimonial, index) => (
+                <article
+                  key={`${testimonial.name}-${index}`}
+                  className="surface-card flex w-[min(360px,calc(100vw-2rem))] shrink-0 flex-col justify-between p-6"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-3">
+                      <Quote className="h-8 w-8 fill-green-500/10 text-green-500" />
+                    </div>
+                    <blockquote className="mt-5 text-sm leading-relaxed text-muted-foreground">
+                      "{testimonial.quote}"
+                    </blockquote>
                   </div>
-                  <blockquote className="mt-5 text-sm leading-relaxed text-muted-foreground">"{testimonial.quote}"</blockquote>
-                </div>
-                <div className="mt-7 border-t border-border pt-4">
-                  <p className="font-display font-bold text-foreground">{testimonial.name}</p>
-                  <p className="mt-1 text-xs font-semibold text-accent">{testimonial.place}</p>
-                </div>
-              </article>
-            ))}
+                  <div className="mt-7 border-t border-border pt-4">
+                    <p className="font-display font-bold text-foreground">{testimonial.name}</p>
+                    <p className="mt-1 text-xs font-semibold text-accent">{testimonial.place}</p>
+                  </div>
+                </article>
+              ),
+            )}
           </div>
         </div>
       </section>
@@ -533,8 +620,10 @@ export default function HomePage() {
           {trustStrip.map((item, index) => (
             <Reveal key={item.label} delay={index * 0.04}>
               <div className="rounded-[1.25rem] border border-white/12 bg-white/8 p-5">
-                <p className="text-xs font-bold uppercase text-lime-200">{item.label}</p>
-                <p className="mt-2 break-words font-display text-lg font-extrabold text-white">{item.value}</p>
+                <p className="text-xs font-bold uppercase text-beige">{item.label}</p>
+                <p className="mt-2 break-words font-display text-lg font-extrabold text-white">
+                  {item.value}
+                </p>
               </div>
             </Reveal>
           ))}
@@ -545,13 +634,18 @@ export default function HomePage() {
         <div className="grid gap-8 rounded-[2rem] bg-secondary p-7 md:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
             <p className="eyebrow mb-3">Visit or order</p>
-            <h2 className="font-display text-3xl font-black sm:text-4xl">{MARATHI_PROMO.contactLine}</h2>
+            <h2 className="font-display text-3xl font-black sm:text-4xl">
+              {MARATHI_PROMO.contactLine}
+            </h2>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
               {MARATHI_PROMO.campaignText} {COMPANY_INFO.address.full}.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-            <Link to="/bulk-orders" className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-extrabold text-primary-foreground transition hover:-translate-y-0.5 hover:bg-forest">
+            <Link
+              to="/bulk-orders"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-extrabold text-primary-foreground transition hover:-translate-y-0.5 hover:bg-forest"
+            >
               <PackageCheck className="h-4 w-4" />
               Bulk Order
             </Link>
@@ -606,7 +700,11 @@ function HomeBackgroundAnimation() {
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
       <div className="home-vine-lines absolute inset-x-0 bottom-0 h-40 opacity-50" />
       {leaves.map((className, index) => (
-        <Leaf key={index} className={`home-drifting-leaf absolute text-green-300/60 ${className}`} strokeWidth={1.6} />
+        <Leaf
+          key={index}
+          className={`home-drifting-leaf absolute text-green-300/60 ${className}`}
+          strokeWidth={1.6}
+        />
       ))}
     </div>
   );

@@ -16,12 +16,40 @@ type CatalogContextValue = {
 
 const CatalogContext = createContext<CatalogContextValue | null>(null);
 
+const PRODUCT_IMAGE_OVERRIDES = new Map([
+  ["dehydrated-white-onion-powder", PRODUCTS.find((item) => item.slug === "dehydrated-white-onion-powder")?.image],
+  ["dehydrated-red-onion-powder", PRODUCTS.find((item) => item.slug === "dehydrated-red-onion-powder")?.image],
+  ["dehydrated-red-onion-flakes", PRODUCTS.find((item) => item.slug === "dehydrated-red-onion-flakes")?.image],
+  ["dehydrated-white-onion-flakes", PRODUCTS.find((item) => item.slug === "dehydrated-white-onion-flakes")?.image],
+  ["dehydrated-garlic-flakes", PRODUCTS.find((item) => item.slug === "dehydrated-garlic-flakes")?.image],
+  ["dehydrated-okra-flakes", PRODUCTS.find((item) => item.slug === "dehydrated-okra-flakes")?.image],
+  ["dehydrated-carrot-flakes", PRODUCTS.find((item) => item.slug === "dehydrated-carrot-flakes")?.image],
+  ["dehydrated-spinach-leaves", PRODUCTS.find((item) => item.slug === "dehydrated-spinach-leaves")?.image],
+  ["dehydrated-cluster-beans", PRODUCTS.find((item) => item.slug === "dehydrated-cluster-beans")?.image],
+  ["dehydrated-lemon-slices", PRODUCTS.find((item) => item.slug === "dehydrated-lemon-slices")?.image],
+  ["dehydrated-moringa-sticks", PRODUCTS.find((item) => item.slug === "dehydrated-moringa-sticks")?.image],
+  ["dried-tomato-flakes", PRODUCTS.find((item) => item.slug === "dried-tomato-flakes")?.image],
+  ["dried-sweet-corn", PRODUCTS.find((item) => item.slug === "dried-sweet-corn")?.image],
+  ["dehydrated-spinach-powder", PRODUCTS.find((item) => item.slug === "dehydrated-spinach-powder")?.image],
+  ["dehydrated-carrot-powder", PRODUCTS.find((item) => item.slug === "dehydrated-carrot-powder")?.image],
+  ["dehydrated-curry-leaf-powder", PRODUCTS.find((item) => item.slug === "dehydrated-curry-leaf-powder")?.image],
+  ["organic-amla-powder", PRODUCTS.find((item) => item.slug === "organic-amla-powder")?.image],
+  ["organic-beetroot-powder", PRODUCTS.find((item) => item.slug === "organic-beetroot-powder")?.image],
+  ["organic-garlic-powder", PRODUCTS.find((item) => item.slug === "organic-garlic-powder")?.image],
+  ["organic-ginger-powder", PRODUCTS.find((item) => item.slug === "organic-ginger-powder")?.image],
+  ["ayurvedic-moringa-leaf-powder", PRODUCTS.find((item) => item.slug === "ayurvedic-moringa-leaf-powder")?.image],
+  ["turmeric-powder", PRODUCTS.find((item) => item.slug === "turmeric-powder")?.image],
+  ["coriander-powder", PRODUCTS.find((item) => item.slug === "coriander-powder")?.image],
+]);
+
 function normalizeProduct(raw: any): Product {
+  const imageOverride = PRODUCT_IMAGE_OVERRIDES.get(raw.slug);
+
   return {
     slug: raw.slug,
     name: raw.name,
     short: raw.short || raw.shortDescription || "",
-    image: raw.image || raw.mainImage || "",
+    image: imageOverride || raw.image || raw.mainImage || "",
     category: (raw.category || raw.categorySlug || "dehydrated-powders") as Category,
     basePrice: Number(raw.basePrice || raw.salePrice || raw.regularPrice || 0),
     baseMrp: Number(raw.baseMrp || raw.regularPrice || raw.salePrice || 0),

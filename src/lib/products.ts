@@ -1,4 +1,27 @@
-import redOnionPowderFullBowl from "@/assets/product-red-onion-powder-full-bowl.png";
+import redOnionPowderPouch from "@/assets/product-red-onion-powder-pouch.png";
+import moringaPowderPouch from "@/assets/product-moringa-powder.png";
+import beetrootPowderPouch from "@/assets/product-beetroot-powder.png";
+import whiteOnionPowderPouch from "@/assets/product-white-onion-powder-pouch.png";
+import mixVegetablesPowderPouch from "@/assets/product-mix-vegetables-powder.png";
+import redOnionFlakesPouch from "@/assets/product-red-onion-flakes.png";
+import amlaPowderPouch from "@/assets/product-amla-powder.png";
+import garlicPowderPouch from "@/assets/product-garlic-powder.png";
+import gingerPowderPouch from "@/assets/product-ginger-powder.png";
+import turmericPowderPouch from "@/assets/product-turmeric-powder.png";
+import corianderPowderPouch from "@/assets/product-coriander-powder.png";
+import whiteOnionFlakesPouch from "@/assets/product-white-onion-flakes.png";
+import garlicFlakesPouch from "@/assets/product-garlic-flakes.png";
+import okraFlakesPouch from "@/assets/product-okra-flakes.png";
+import carrotFlakesPouch from "@/assets/product-carrot-flakes.png";
+import spinachLeavesPouch from "@/assets/product-spinach-leaves.png";
+import lemonSlicesPouch from "@/assets/product-lemon-slices.png";
+import clusterBeansPouch from "@/assets/product-cluster-beans.png";
+import moringaSticksPouch from "@/assets/product-moringa-sticks.png";
+import curryLeafPowderPouch from "@/assets/product-curry-leaf-powder.png";
+import tomatoFlakesPouch from "@/assets/product-tomato-flakes.png";
+import sweetCornPouch from "@/assets/product-sweet-corn.png";
+import spinachPowderPouch from "@/assets/product-spinach-powder.png";
+import carrotPowderPouch from "@/assets/product-carrot-powder.png";
 
 export const COMPANY_INFO = {
   name: "UTKARSH ORGANIC FARM",
@@ -40,7 +63,8 @@ export const MARATHI_PROMO = {
   farmTitle: "खेळते आणि ताजे शेत",
   farmText: "विषमुक्त आणि नैसर्गिक पद्धतीने पिकवलेल्या ताज्या भाज्या.",
   processingTitle: "अद्ययावत प्रक्रिया",
-  processingText: "आधुनिक तंत्रज्ञानाने पूर्णपणे डीहायड्रेटेड आणि हायजीनिक पद्धतीने केलेली प्रक्रिया.",
+  processingText:
+    "आधुनिक तंत्रज्ञानाने पूर्णपणे डीहायड्रेटेड आणि हायजीनिक पद्धतीने केलेली प्रक्रिया.",
   productsTitle: "डीहायड्रेटेड उत्पादने आणि पावडर",
   productsText:
     "प्रदीर्घ काळ टिकणाऱ्या दर्जेदार वाळवलेल्या भाज्या आणि आरोग्यासाठी फायदेशीर शुद्ध व्हेजिटेबल पावडर्स.",
@@ -64,11 +88,7 @@ export const WEIGHT_MULTIPLIER: Record<Weight, number> = {
 };
 
 export type Category =
-  | "dehydrated-flakes"
-  | "dehydrated-powders"
-  | "organic-powders"
-  | "spices"
-  | "dried-specialty";
+  "dehydrated-flakes" | "dehydrated-powders" | "organic-powders" | "spices" | "dried-specialty";
 
 export const CATEGORIES: { id: Category; name: string; blurb: string }[] = [
   {
@@ -79,7 +99,7 @@ export const CATEGORIES: { id: Category; name: string; blurb: string }[] = [
   {
     id: "dehydrated-powders",
     name: "Dehydrated Vegetable Powders",
-    blurb: "White onion, red onion, spinach, carrot and curry leaf powders",
+    blurb: "White onion, red onion, mix vegetables, spinach, carrot and curry leaf powders",
   },
   {
     id: "organic-powders",
@@ -131,50 +151,30 @@ const SITE = "https://www.utkarshorgfarm.in";
 const MOQ = "100 Kilogram (MOQ)";
 
 const IMAGES = {
-  okraFlakes: "https://2.wlimg.com/product_images/bc-500/2026/7/5707612/dehydrated-okra-flakes-8765253-pv1.jpeg",
-  redOnionFlakes:
-    "https://2.wlimg.com/product_images/bc-full/2026/7/5707612/dehydrated-red-onion-flakes-8765256-pv1.jpeg",
-  whiteOnionFlakes:
-    "https://2.wlimg.com/product_images/bc-500/2026/7/5707612/dehydrated-white-onion-flakes-8765259-pv1.jpeg",
-  garlicFlakes:
-    "https://2.wlimg.com/product_images/bc-500/2026/7/5707612/dehydrated-garlic-flakes-8765314-pv1.jpeg",
-  carrotFlakes:
-    "https://2.wlimg.com/product_images/bc-full/2026/7/5707612/dehydrated-carrot-flakes-8765379-pv1.jpeg",
-  whiteOnionPowder:
-    "https://2.wlimg.com/product_images/bc-full/2026/7/5707612/dehydrated-white-onion-powder-8765263-pv1.jpeg",
-  redOnionPowder: redOnionPowderFullBowl,
-  spinachPowder:
-    "https://2.wlimg.com/product_images/bc-500/2026/7/5707612/dehydrated-spinach-powder-8765373-pv1.jpeg",
-  carrotPowder:
-    "https://2.wlimg.com/product_images/bc-500/2026/7/5707612/dehydrated-carrot-powder-8765384-pv1.jpeg",
-  curryLeafPowder:
-    "https://2.wlimg.com/product_images/bc-500/2026/7/5707612/dehydrated-curry-leaf-powder-8765392-pv1.jpeg",
-  clusterBeans:
-    "https://2.wlimg.com/product_images/bc-full/2026/7/5707612/dehydrated-cluster-beans-8765336-pv1.jpeg",
-  lemonSlices:
-    "https://2.wlimg.com/product_images/bc-full/2026/7/5707612/dehydrated-lemon-slices-8765278-pv1.jpeg",
-  moringaSticks:
-    "https://2.wlimg.com/product_images/bc-500/2026/7/5707612/dehydrated-moringa-sticks-8765329-pv1.jpeg",
-  spinachLeaves:
-    "https://2.wlimg.com/product_images/bc-500/2026/7/5707612/dehydrated-spinach-leaves-8765375-pv1.jpeg",
-  amlaPowder:
-    "https://2.wlimg.com/product_images/bc-500/2026/7/5707612/organic-amla-powder-8761455-pv2.jpeg",
-  beetrootPowder:
-    "https://2.wlimg.com/product_images/bc-500/2026/7/5707612/organic-beetroot-powder-8762105-pv2.jpeg",
-  organicGarlicPowder:
-    "https://2.wlimg.com/product_images/bc-full/2026/7/5707612/organic-garlic-powder-8765187-pv1.jpeg",
-  organicGingerPowder:
-    "https://2.wlimg.com/product_images/bc-500/2026/7/5707612/organic-ginger-powder-8765190-pv1.jpeg",
-  tomatoFlakes:
-    "https://2.wlimg.com/product_images/bc-full/2026/7/5707612/dried-tomato-flakes-8765215-pv1.jpeg",
-  sweetCorn:
-    "https://2.wlimg.com/product_images/bc-full/2026/7/5707612/dried-sweet-corn-8765205-pv1.jpeg",
-  turmericPowder:
-    "https://2.wlimg.com/product_images/bc-full/2026/7/5707612/turmeric-powder-8765238-pv1.jpeg",
-  corianderPowder:
-    "https://2.wlimg.com/product_images/bc-full/2026/7/5707612/coriander-powder-8765229-pv1.jpeg",
-  moringaLeafPowder:
-    "https://2.wlimg.com/product_images/bc-500/2026/7/5707612/ayurvedic-moringa-leaf-powder-8765193-pv1.jpeg",
+  okraFlakes: okraFlakesPouch,
+  redOnionFlakes: redOnionFlakesPouch,
+  whiteOnionFlakes: whiteOnionFlakesPouch,
+  garlicFlakes: garlicFlakesPouch,
+  carrotFlakes: carrotFlakesPouch,
+  whiteOnionPowder: whiteOnionPowderPouch,
+  redOnionPowder: redOnionPowderPouch,
+  mixVegetablesPowder: mixVegetablesPowderPouch,
+  spinachPowder: spinachPowderPouch,
+  carrotPowder: carrotPowderPouch,
+  curryLeafPowder: curryLeafPowderPouch,
+  clusterBeans: clusterBeansPouch,
+  lemonSlices: lemonSlicesPouch,
+  moringaSticks: moringaSticksPouch,
+  spinachLeaves: spinachLeavesPouch,
+  amlaPowder: amlaPowderPouch,
+  beetrootPowder: beetrootPowderPouch,
+  organicGarlicPowder: garlicPowderPouch,
+  organicGingerPowder: gingerPowderPouch,
+  tomatoFlakes: tomatoFlakesPouch,
+  sweetCorn: sweetCornPouch,
+  turmericPowder: turmericPowderPouch,
+  corianderPowder: corianderPowderPouch,
+  moringaLeafPowder: moringaPowderPouch,
 };
 
 function productUrl(slug: string) {
@@ -191,7 +191,7 @@ function product(
   data: Omit<Product, "inStock" | "moq" | "sourceUrl"> & {
     sourceSlug: string;
     moq?: string;
-  }
+  },
 ): Product {
   const { sourceSlug, moq = MOQ, ...rest } = data;
   return {
@@ -202,7 +202,8 @@ function product(
   };
 }
 
-const commonStorage = "Store in a cool, dry and airtight container away from moisture and direct sunlight.";
+const commonStorage =
+  "Store in a cool, dry and airtight container away from moisture and direct sunlight.";
 
 export const PRODUCTS: Product[] = [
   product({
@@ -217,7 +218,12 @@ export const PRODUCTS: Product[] = [
     reviews: 214,
     bestSeller: true,
     sku: "UOF-DWOP-001",
-    highlights: ["Fine powder", "White to off-white color", "Fresh sharp onion aroma", "Below 6-8% moisture"],
+    highlights: [
+      "Fine powder",
+      "White to off-white color",
+      "Fresh sharp onion aroma",
+      "Below 6-8% moisture",
+    ],
     description:
       "Official Utkarsh Organic Farm product made from fresh white onions that are washed, peeled, dehydrated and finely ground. It is suited for seasoning blends, gravies, sauces and commercial food processing.",
     benefits: [
@@ -227,7 +233,10 @@ export const PRODUCTS: Product[] = [
       "Shelf-stable ingredient for HoReCa and food manufacturers",
     ],
     ingredients: "Fresh white onions.",
-    usage: ["Use in gravies, spice blends, sauces and ready-to-cook mixes.", "Specify mesh size when ordering for industrial batches."],
+    usage: [
+      "Use in gravies, spice blends, sauces and ready-to-cook mixes.",
+      "Specify mesh size when ordering for industrial batches.",
+    ],
     specs: [
       { label: "Business Type", value: "Manufacturer, Supplier" },
       { label: "Form", value: "Fine Powder" },
@@ -250,7 +259,12 @@ export const PRODUCTS: Product[] = [
     reviews: 176,
     bestSeller: true,
     sku: "UOF-DROP-002",
-    highlights: ["Fine powder", "Pinkish red to light purple", "Strong sweet onion flavor", "Custom fine mesh"],
+    highlights: [
+      "Fine powder",
+      "Pinkish red to light purple",
+      "Strong sweet onion flavor",
+      "Custom fine mesh",
+    ],
     description:
       "Prepared from fresh red onions, this dehydrated powder delivers a strong sweet and pungent onion profile for dry seasoning, marinades, curry bases and packaged foods.",
     benefits: [
@@ -260,13 +274,59 @@ export const PRODUCTS: Product[] = [
       "Long shelf life under proper storage conditions",
     ],
     ingredients: "Fresh red onions.",
-    usage: ["Blend into dry seasoning or instant gravy bases.", "Add gradually to balance sweetness and pungency."],
+    usage: [
+      "Blend into dry seasoning or instant gravy bases.",
+      "Add gradually to balance sweetness and pungency.",
+    ],
     specs: [
       { label: "Business Type", value: "Manufacturer, Supplier" },
       { label: "Form", value: "Fine Powder" },
       { label: "Botanical Name", value: "Allium Cepa" },
       { label: "Processing", value: "Washed, peeled, dehydrated and finely ground" },
       { label: "Moisture", value: "Below 6-8%" },
+      { label: "Country of Origin", value: "India" },
+    ],
+    storage: commonStorage,
+  }),
+  product({
+    slug: "mix-vegetables-powder",
+    sourceSlug: "mix-vegetables-powder",
+    name: "Mix Vegetables Powder",
+    short:
+      "A naturally dehydrated mixed vegetable powder for soups, gravies, sauces and nutrition-rich food blends.",
+    image: IMAGES.mixVegetablesPowder,
+    category: "dehydrated-powders",
+    ...quote(650),
+    rating: 4.8,
+    reviews: 74,
+    newArrival: true,
+    sku: "UOF-MVP-024",
+    highlights: [
+      "Mixed vegetable blend",
+      "Naturally dehydrated",
+      "No preservatives",
+      "Rich in nutrients",
+    ],
+    description:
+      "A farm-fresh mix vegetables powder prepared from dehydrated vegetables and ground into a convenient fine powder. It is designed for quick vegetable flavor, natural color and nutrition support in everyday cooking, commercial kitchens and packaged food applications.",
+    benefits: [
+      "Adds mixed vegetable taste without chopping fresh produce",
+      "Convenient for soups, gravies, sauces and instant mixes",
+      "Helps reduce prep time and seasonal vegetable wastage",
+      "Shelf-stable powder format for home and bulk buyers",
+    ],
+    ingredients:
+      "Dehydrated mixed vegetables such as carrot, spinach, tomato, onion, garlic and green vegetables.",
+    usage: [
+      "Blend into soups, gravies, sauces, khichdi, paratha dough or seasoning bases.",
+      "Start with a small spoonful and adjust based on color, thickness and vegetable flavor.",
+    ],
+    specs: [
+      { label: "Business Type", value: "Manufacturer, Supplier" },
+      { label: "Form", value: "Fine Powder" },
+      { label: "Product Type", value: "Mixed vegetable powder" },
+      { label: "Processing", value: "Washed, dehydrated and finely ground" },
+      { label: "Pack Size", value: "100g retail pack shown; bulk packs available on request" },
       { label: "Country of Origin", value: "India" },
     ],
     storage: commonStorage,
@@ -283,7 +343,12 @@ export const PRODUCTS: Product[] = [
     reviews: 152,
     bestSeller: true,
     sku: "UOF-DROF-003",
-    highlights: ["Flakes form", "Fresh natural onion aroma", "Below 6-8% moisture", "18-24 month shelf life"],
+    highlights: [
+      "Flakes form",
+      "Fresh natural onion aroma",
+      "Below 6-8% moisture",
+      "18-24 month shelf life",
+    ],
     description:
       "Fresh red onions are washed, peeled, sliced and dehydrated into flakes for manufacturers, food-service buyers and spice processors.",
     benefits: [
@@ -293,7 +358,10 @@ export const PRODUCTS: Product[] = [
       "Stable ingredient for bulk storage",
     ],
     ingredients: "Fresh red onions.",
-    usage: ["Use directly in soups, mixes and cooked gravies.", "Soak briefly in warm water when a softer texture is needed."],
+    usage: [
+      "Use directly in soups, mixes and cooked gravies.",
+      "Soak briefly in warm water when a softer texture is needed.",
+    ],
     specs: [
       { label: "Form", value: "Flakes" },
       { label: "Color", value: "Pinkish red to light purple" },
@@ -315,7 +383,12 @@ export const PRODUCTS: Product[] = [
     rating: 4.7,
     reviews: 128,
     sku: "UOF-DWOF-004",
-    highlights: ["White to off-white", "Flakes form", "Sharp onion aroma", "Fresh white onion raw material"],
+    highlights: [
+      "White to off-white",
+      "Flakes form",
+      "Sharp onion aroma",
+      "Fresh white onion raw material",
+    ],
     description:
       "Made from fresh white onions that are sliced and dehydrated for food manufacturers, restaurant kitchens and packaged food brands.",
     benefits: [
@@ -325,7 +398,10 @@ export const PRODUCTS: Product[] = [
       "Useful for soup mixes, snack seasonings and gravies",
     ],
     ingredients: "Fresh white onions.",
-    usage: ["Use in dry soup mixes, sauces, instant meals and savory snack blends.", "Rehydrate before using as a visible onion inclusion."],
+    usage: [
+      "Use in dry soup mixes, sauces, instant meals and savory snack blends.",
+      "Rehydrate before using as a visible onion inclusion.",
+    ],
     specs: [
       { label: "Form", value: "Flakes" },
       { label: "Color", value: "White to off-white" },
@@ -347,7 +423,12 @@ export const PRODUCTS: Product[] = [
     rating: 4.8,
     reviews: 141,
     sku: "UOF-DGF-005",
-    highlights: ["Flakes form", "Rich natural garlic aroma", "Allium Sativum", "Graded after dehydration"],
+    highlights: [
+      "Flakes form",
+      "Rich natural garlic aroma",
+      "Allium Sativum",
+      "Graded after dehydration",
+    ],
     description:
       "Fresh garlic bulbs are peeled, sliced, dehydrated and graded to create pungent flakes for spice processors and food-service buyers.",
     benefits: [
@@ -357,7 +438,10 @@ export const PRODUCTS: Product[] = [
       "Useful in seasonings, sauces and ready meals",
     ],
     ingredients: "Fresh garlic bulbs.",
-    usage: ["Use in seasoning blends, sauces and processed foods.", "Rehydrate before adding where soft garlic texture is required."],
+    usage: [
+      "Use in seasoning blends, sauces and processed foods.",
+      "Rehydrate before adding where soft garlic texture is required.",
+    ],
     specs: [
       { label: "Color", value: "Brown" },
       { label: "Form", value: "Flakes" },
@@ -380,7 +464,12 @@ export const PRODUCTS: Product[] = [
     reviews: 96,
     newArrival: true,
     sku: "UOF-DOF-006",
-    highlights: ["Light green to green", "Mild natural taste", "Fresh okra aroma", "Below 6-8% moisture"],
+    highlights: [
+      "Light green to green",
+      "Mild natural taste",
+      "Fresh okra aroma",
+      "Below 6-8% moisture",
+    ],
     description:
       "Fresh okra is washed, sliced and dehydrated into mild vegetal flakes for ready meals, soups and food-service preparations.",
     benefits: [
@@ -390,7 +479,10 @@ export const PRODUCTS: Product[] = [
       "Convenient for bulk buyers with limited cold storage",
     ],
     ingredients: "Fresh okra (lady finger).",
-    usage: ["Add directly to boiling gravies or soups.", "Hydrate before frying-style preparations."],
+    usage: [
+      "Add directly to boiling gravies or soups.",
+      "Hydrate before frying-style preparations.",
+    ],
     specs: [
       { label: "Form", value: "Flakes" },
       { label: "Color", value: "Light green to green" },
@@ -422,7 +514,10 @@ export const PRODUCTS: Product[] = [
       "Ideal for soup and instant meal manufacturers",
     ],
     ingredients: "Fresh carrots.",
-    usage: ["Use in soups, pulao, dry mixes and instant meals.", "Rehydrate in warm water for visible carrot inclusions."],
+    usage: [
+      "Use in soups, pulao, dry mixes and instant meals.",
+      "Rehydrate in warm water for visible carrot inclusions.",
+    ],
     specs: [
       { label: "Form", value: "Flakes" },
       { label: "Color", value: "Bright orange to deep orange" },
@@ -444,7 +539,12 @@ export const PRODUCTS: Product[] = [
     rating: 4.6,
     reviews: 83,
     sku: "UOF-DSL-008",
-    highlights: ["Whole or crushed leaves", "Natural green to dark green", "Mild earthy flavor", "Blanched and dehydrated"],
+    highlights: [
+      "Whole or crushed leaves",
+      "Natural green to dark green",
+      "Mild earthy flavor",
+      "Blanched and dehydrated",
+    ],
     description:
       "Spinach leaves are washed, blanched and dehydrated for buyers who need shelf-stable leafy inclusions in food applications.",
     benefits: [
@@ -454,7 +554,10 @@ export const PRODUCTS: Product[] = [
       "Easy to crush or blend into application-specific mixes",
     ],
     ingredients: "Fresh spinach leaves.",
-    usage: ["Add to soups, noodles, pulao and vegetable mixes.", "Crush into smaller pieces when needed for seasoning blends."],
+    usage: [
+      "Add to soups, noodles, pulao and vegetable mixes.",
+      "Crush into smaller pieces when needed for seasoning blends.",
+    ],
     specs: [
       { label: "Form", value: "Whole or crushed leaves" },
       { label: "Color", value: "Natural green to dark green" },
@@ -476,7 +579,12 @@ export const PRODUCTS: Product[] = [
     rating: 4.5,
     reviews: 74,
     sku: "UOF-DCB-009",
-    highlights: ["Cut pieces", "Natural green to light green", "Fresh vegetable aroma", "Below 6-8% moisture"],
+    highlights: [
+      "Cut pieces",
+      "Natural green to light green",
+      "Fresh vegetable aroma",
+      "Below 6-8% moisture",
+    ],
     description:
       "Fresh cluster beans are washed, trimmed, cut and dehydrated to create a practical bulk ingredient for vegetable mixes and cooked foods.",
     benefits: [
@@ -486,7 +594,10 @@ export const PRODUCTS: Product[] = [
       "Works in regional vegetable preparations",
     ],
     ingredients: "Fresh cluster beans (guar beans).",
-    usage: ["Hydrate before cooking in sabzis.", "Use in vegetable mixes for soups and ready meals."],
+    usage: [
+      "Hydrate before cooking in sabzis.",
+      "Use in vegetable mixes for soups and ready meals.",
+    ],
     specs: [
       { label: "Form", value: "Cut pieces" },
       { label: "Botanical Name", value: "Cyamopsis Tetragonoloba" },
@@ -518,7 +629,10 @@ export const PRODUCTS: Product[] = [
       "Easy to store for cafe and HoReCa buyers",
     ],
     ingredients: "Fresh lemons.",
-    usage: ["Use in tea, mocktails, infused water and garnish trays.", "Keep sealed after opening to protect aroma."],
+    usage: [
+      "Use in tea, mocktails, infused water and garnish trays.",
+      "Keep sealed after opening to protect aroma.",
+    ],
     specs: [
       { label: "Form", value: "Slices" },
       { label: "Color", value: "Light yellow to golden yellow" },
@@ -540,7 +654,12 @@ export const PRODUCTS: Product[] = [
     rating: 4.6,
     reviews: 77,
     sku: "UOF-DMS-011",
-    highlights: ["Cut sticks", "Moringa Oleifera", "Natural green to greenish brown", "18-24 month shelf life"],
+    highlights: [
+      "Cut sticks",
+      "Moringa Oleifera",
+      "Natural green to greenish brown",
+      "18-24 month shelf life",
+    ],
     description:
       "Fresh moringa pods are washed, cut, dehydrated and graded into shelf-stable sticks for food-service and ingredient buyers.",
     benefits: [
@@ -550,7 +669,10 @@ export const PRODUCTS: Product[] = [
       "Useful for soups, curries and institutional kitchens",
     ],
     ingredients: "Fresh moringa pods.",
-    usage: ["Rehydrate before cooking in soups and curries.", "Use as a visible vegetable inclusion in prepared foods."],
+    usage: [
+      "Rehydrate before cooking in soups and curries.",
+      "Use as a visible vegetable inclusion in prepared foods.",
+    ],
     specs: [
       { label: "Form", value: "Cut sticks" },
       { label: "Color", value: "Natural green to greenish brown" },
@@ -572,7 +694,12 @@ export const PRODUCTS: Product[] = [
     rating: 4.6,
     reviews: 112,
     sku: "UOF-DSP-012",
-    highlights: ["Fine powder", "Natural green to dark green", "Spinacia Oleracea", "Fresh green leafy aroma"],
+    highlights: [
+      "Fine powder",
+      "Natural green to dark green",
+      "Spinacia Oleracea",
+      "Fresh green leafy aroma",
+    ],
     description:
       "Washed and blanched spinach leaves are dehydrated and finely ground into a green powder for soups, noodles, health food applications and dough mixes.",
     benefits: [
@@ -582,7 +709,10 @@ export const PRODUCTS: Product[] = [
       "Convenient for bulk food formulation",
     ],
     ingredients: "Fresh spinach leaves.",
-    usage: ["Blend into soups, pasta dough, roti dough and seasoning blends.", "Add gradually to control color intensity."],
+    usage: [
+      "Blend into soups, pasta dough, roti dough and seasoning blends.",
+      "Add gradually to control color intensity.",
+    ],
     specs: [
       { label: "Form", value: "Fine Powder" },
       { label: "Color", value: "Natural green to dark green" },
@@ -614,7 +744,10 @@ export const PRODUCTS: Product[] = [
       "Suitable for industrial and HoReCa buyers",
     ],
     ingredients: "Fresh carrots.",
-    usage: ["Use in soups, bakery mixes, beverages and seasoning bases.", "Test dosage by color and sweetness target."],
+    usage: [
+      "Use in soups, bakery mixes, beverages and seasoning bases.",
+      "Test dosage by color and sweetness target.",
+    ],
     specs: [
       { label: "Form", value: "Fine Powder" },
       { label: "Color", value: "Bright orange to orange" },
@@ -637,7 +770,12 @@ export const PRODUCTS: Product[] = [
     reviews: 84,
     newArrival: true,
     sku: "UOF-DCLP-014",
-    highlights: ["Fine powder", "Murraya koenigii", "Strong fresh curry leaf aroma", "Shade dried or dehydrated"],
+    highlights: [
+      "Fine powder",
+      "Murraya koenigii",
+      "Strong fresh curry leaf aroma",
+      "Shade dried or dehydrated",
+    ],
     description:
       "Fresh curry leaves are washed, shade dried or dehydrated and finely ground into an aromatic herbal powder for spice mixes and processed foods.",
     benefits: [
@@ -647,7 +785,10 @@ export const PRODUCTS: Product[] = [
       "Shelf-stable under airtight storage",
     ],
     ingredients: "Fresh curry leaves.",
-    usage: ["Add to spice blends, chutney powders, soups and savory snacks.", "Keep away from moisture to protect aroma."],
+    usage: [
+      "Add to spice blends, chutney powders, soups and savory snacks.",
+      "Keep away from moisture to protect aroma.",
+    ],
     specs: [
       { label: "Form", value: "Fine Powder" },
       { label: "Color", value: "Green" },
@@ -670,7 +811,12 @@ export const PRODUCTS: Product[] = [
     reviews: 134,
     bestSeller: true,
     sku: "UOF-OAP-015",
-    highlights: ["Fine powder", "Light brown color", "Phyllanthus Emblica", "Fresh amla raw material"],
+    highlights: [
+      "Fine powder",
+      "Light brown color",
+      "Phyllanthus Emblica",
+      "Fresh amla raw material",
+    ],
     description:
       "Fresh amla is washed, sliced, dehydrated and finely ground into a fine mesh powder for wellness, food and ingredient applications.",
     benefits: [
@@ -680,7 +826,10 @@ export const PRODUCTS: Product[] = [
       "Suitable for commercial ingredient sourcing",
     ],
     ingredients: "Fresh amla (Indian gooseberry).",
-    usage: ["Use in beverages, functional food blends and culinary applications.", "Dose according to the sourness profile needed."],
+    usage: [
+      "Use in beverages, functional food blends and culinary applications.",
+      "Dose according to the sourness profile needed.",
+    ],
     specs: [
       { label: "Form", value: "Fine Powder" },
       { label: "Color", value: "Light brown" },
@@ -702,7 +851,12 @@ export const PRODUCTS: Product[] = [
     rating: 4.7,
     reviews: 101,
     sku: "UOF-OBP-016",
-    highlights: ["Fine powder", "Deep red to purplish red", "Earthy sweet beet flavor", "Customizable mesh"],
+    highlights: [
+      "Fine powder",
+      "Deep red to purplish red",
+      "Earthy sweet beet flavor",
+      "Customizable mesh",
+    ],
     description:
       "Organic beetroot is washed, sliced, dehydrated and pulverized into a fine powder for natural color, beverages, bakery, smoothies and food applications.",
     benefits: [
@@ -712,7 +866,10 @@ export const PRODUCTS: Product[] = [
       "Suitable for food manufacturers and suppliers",
     ],
     ingredients: "Organic beetroot.",
-    usage: ["Use in smoothies, bakery mixes, sauces and natural color applications.", "Begin with small doses and adjust for color."],
+    usage: [
+      "Use in smoothies, bakery mixes, sauces and natural color applications.",
+      "Begin with small doses and adjust for color.",
+    ],
     specs: [
       { label: "Type", value: "Organic" },
       { label: "Form", value: "Fine Powder" },
@@ -735,7 +892,12 @@ export const PRODUCTS: Product[] = [
     reviews: 168,
     bestSeller: true,
     sku: "UOF-OGP-017",
-    highlights: ["Fine powder", "Off-white to light cream", "Allium Sativum", "Rich fresh garlic aroma"],
+    highlights: [
+      "Fine powder",
+      "Off-white to light cream",
+      "Allium Sativum",
+      "Rich fresh garlic aroma",
+    ],
     description:
       "Organic fresh garlic is peeled, dehydrated and finely ground into a high-aroma powder for seasoning, food processing and commercial kitchen use.",
     benefits: [
@@ -745,7 +907,10 @@ export const PRODUCTS: Product[] = [
       "Long shelf life under proper storage",
     ],
     ingredients: "Organic fresh garlic.",
-    usage: ["Blend into masala mixes, marinades, sauces and soup bases.", "Keep sealed after opening to preserve aroma."],
+    usage: [
+      "Blend into masala mixes, marinades, sauces and soup bases.",
+      "Keep sealed after opening to preserve aroma.",
+    ],
     specs: [
       { label: "Form", value: "Fine Powder" },
       { label: "Color", value: "Off-white to light cream" },
@@ -767,7 +932,12 @@ export const PRODUCTS: Product[] = [
     rating: 4.8,
     reviews: 121,
     sku: "UOF-OGNP-018",
-    highlights: ["Fine powder", "Light yellow to pale brown", "Zingiber Officinale", "Strong natural ginger aroma"],
+    highlights: [
+      "Fine powder",
+      "Light yellow to pale brown",
+      "Zingiber Officinale",
+      "Strong natural ginger aroma",
+    ],
     description:
       "Fresh organic ginger is washed, peeled, dried and ground into a fine mesh powder for beverages, seasonings, bakery and food manufacturers.",
     benefits: [
@@ -777,7 +947,10 @@ export const PRODUCTS: Product[] = [
       "Bulk-supply friendly shelf life",
     ],
     ingredients: "Fresh organic ginger.",
-    usage: ["Use in tea blends, masala mixes, bakery and sauces.", "Specify particle size for production applications."],
+    usage: [
+      "Use in tea blends, masala mixes, bakery and sauces.",
+      "Specify particle size for production applications.",
+    ],
     specs: [
       { label: "Form", value: "Fine Powder" },
       { label: "Color", value: "Light yellow to pale brown" },
@@ -810,7 +983,10 @@ export const PRODUCTS: Product[] = [
       "Shelf-stable under airtight storage",
     ],
     ingredients: "Fresh moringa leaves.",
-    usage: ["Use in wellness blends, soups, beverages and dry mixes.", "Keep sealed and away from sunlight to protect green color."],
+    usage: [
+      "Use in wellness blends, soups, beverages and dry mixes.",
+      "Keep sealed and away from sunlight to protect green color.",
+    ],
     specs: [
       { label: "Form", value: "Fine Powder" },
       { label: "Color", value: "Natural green" },
@@ -832,7 +1008,12 @@ export const PRODUCTS: Product[] = [
     rating: 4.7,
     reviews: 117,
     sku: "UOF-DTF-020",
-    highlights: ["Flakes form", "Bright red to deep red", "Solanum Lycopersicum", "Strong tomato aroma"],
+    highlights: [
+      "Flakes form",
+      "Bright red to deep red",
+      "Solanum Lycopersicum",
+      "Strong tomato aroma",
+    ],
     description:
       "Fresh ripe tomatoes are washed, sliced, dehydrated and crushed into flakes for sauces, soups, snacks and food processing.",
     benefits: [
@@ -842,7 +1023,10 @@ export const PRODUCTS: Product[] = [
       "Convenient for bulk food production",
     ],
     ingredients: "Fresh ripe tomatoes.",
-    usage: ["Use in sauce bases, soups, seasoning blends and ready meals.", "Hydrate before using where a softer tomato texture is needed."],
+    usage: [
+      "Use in sauce bases, soups, seasoning blends and ready meals.",
+      "Hydrate before using where a softer tomato texture is needed.",
+    ],
     specs: [
       { label: "Form", value: "Flakes" },
       { label: "Color", value: "Bright red to deep red" },
@@ -864,7 +1048,12 @@ export const PRODUCTS: Product[] = [
     rating: 4.6,
     reviews: 102,
     sku: "UOF-DSC-021",
-    highlights: ["Whole kernels", "Yellow to golden yellow", "Zea Mays Saccharata", "Cleaned, blanched and dehydrated"],
+    highlights: [
+      "Whole kernels",
+      "Yellow to golden yellow",
+      "Zea Mays Saccharata",
+      "Cleaned, blanched and dehydrated",
+    ],
     description:
       "Fresh sweet corn is cleaned, blanched and dehydrated into whole dried kernels for culinary and food manufacturing applications.",
     benefits: [
@@ -874,7 +1063,10 @@ export const PRODUCTS: Product[] = [
       "Useful for institutional and bulk buyers",
     ],
     ingredients: "Fresh sweet corn.",
-    usage: ["Hydrate before adding to soups, rice dishes and mixes.", "Use as a visible kernel inclusion in ready meals."],
+    usage: [
+      "Hydrate before adding to soups, rice dishes and mixes.",
+      "Use as a visible kernel inclusion in ready meals.",
+    ],
     specs: [
       { label: "Form", value: "Whole kernels / dried corn" },
       { label: "Color", value: "Yellow to golden yellow" },
@@ -897,7 +1089,12 @@ export const PRODUCTS: Product[] = [
     reviews: 302,
     bestSeller: true,
     sku: "UOF-TP-022",
-    highlights: ["Fine powder", "Curcuma Longa", "Strong natural turmeric aroma", "Cleaned, dried, ground and sieved"],
+    highlights: [
+      "Fine powder",
+      "Curcuma Longa",
+      "Strong natural turmeric aroma",
+      "Cleaned, dried, ground and sieved",
+    ],
     description:
       "Dried turmeric fingers are cleaned, dried, ground and sieved into a fine powder for spice blends, household cooking and food-service sourcing.",
     benefits: [
@@ -907,7 +1104,10 @@ export const PRODUCTS: Product[] = [
       "Suitable for bulk spice buyers",
     ],
     ingredients: "Dried turmeric fingers.",
-    usage: ["Use in curry blends, marinades, dals and spice mixes.", "Store airtight to protect color and aroma."],
+    usage: [
+      "Use in curry blends, marinades, dals and spice mixes.",
+      "Store airtight to protect color and aroma.",
+    ],
     specs: [
       { label: "Form", value: "Fine Powder" },
       { label: "Color", value: "Bright yellow to deep golden yellow" },
@@ -929,7 +1129,12 @@ export const PRODUCTS: Product[] = [
     rating: 4.7,
     reviews: 118,
     sku: "UOF-CP-023",
-    highlights: ["Fine powder", "Light greenish color", "Coriandrum Sativum", "Fresh warm coriander aroma"],
+    highlights: [
+      "Fine powder",
+      "Light greenish color",
+      "Coriandrum Sativum",
+      "Fresh warm coriander aroma",
+    ],
     description:
       "Dried coriander seeds are cleaned, dried and ground into a fine mesh powder for spice blends, gravies and commercial kitchen use.",
     benefits: [
@@ -939,7 +1144,10 @@ export const PRODUCTS: Product[] = [
       "Bulk-friendly everyday spice ingredient",
     ],
     ingredients: "Dried coriander seeds.",
-    usage: ["Use in gravies, masala blends and seasoning mixes.", "Pair with turmeric and chilli-style blends for balanced flavor."],
+    usage: [
+      "Use in gravies, masala blends and seasoning mixes.",
+      "Pair with turmeric and chilli-style blends for balanced flavor.",
+    ],
     specs: [
       { label: "Form", value: "Fine Powder" },
       { label: "Color", value: "Light greenish" },
@@ -1021,7 +1229,8 @@ export const BLOG_POSTS = [
   {
     slug: "how-to-use-dehydrated-onion-powder",
     title: "How to Use Dehydrated Onion Powder in Commercial Kitchens",
-    excerpt: "Practical ways to standardize onion flavor in gravies, sauces, masala blends and ready-to-cook products.",
+    excerpt:
+      "Practical ways to standardize onion flavor in gravies, sauces, masala blends and ready-to-cook products.",
     date: "12 Aug 2026",
     read: "6 min read",
     body: [
@@ -1033,7 +1242,8 @@ export const BLOG_POSTS = [
   {
     slug: "dehydrated-flakes-for-food-manufacturing",
     title: "Why Food Manufacturers Use Dehydrated Vegetable Flakes",
-    excerpt: "A quick guide to okra, onion, garlic, carrot, spinach, tomato and sweet corn formats for bulk buyers.",
+    excerpt:
+      "A quick guide to okra, onion, garlic, carrot, spinach, tomato and sweet corn formats for bulk buyers.",
     date: "10 Aug 2026",
     read: "5 min read",
     body: [

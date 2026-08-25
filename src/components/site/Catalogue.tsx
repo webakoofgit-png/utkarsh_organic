@@ -1,9 +1,6 @@
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import {
-  ChevronLeft,
-  ChevronRight,
   FlaskConical,
-  Home,
   Leaf,
   Search,
   ShieldCheck,
@@ -14,12 +11,12 @@ import {
   X,
 } from "lucide-react";
 import { useMemo, useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import { type Category } from "@/lib/products";
 import { useCatalog } from "@/lib/catalog";
 import { ProductCard } from "@/components/site/ProductCard";
 import flatlay from "@/assets/flatlay.jpg";
-import onion from "@/assets/p-onion.jpg";
+import moringaPowderHero from "@/assets/product-moringa-powder.png";
+import whiteOnionPowderPouch from "@/assets/product-white-onion-powder-pouch.png";
 import spinach from "@/assets/p-spinach.jpg";
 
 const bannerSlides = [
@@ -41,13 +38,14 @@ const bannerSlides = [
     eyebrow: "DEHYDRATED VEGETABLES & POWDERS",
     titleLine1: "Official per-kg quotes,",
     titleLine2: "with MOQ.",
-    subtitle: "Zero peeling, zero chopping. Pure dehydrated powders packed with natural aroma & nutrition.",
+    subtitle:
+      "Zero peeling, zero chopping. Pure dehydrated powders packed with natural aroma & nutrition.",
     features: [
       { icon: FlaskConical, title: "No Preservatives", sub: "100% Dehydrated" },
       { icon: Tractor, title: "Farm Fresh", sub: "Satara Sourced" },
       { icon: ShieldCheck, title: "Hygienic", sub: "Modern Tech" },
     ],
-    image: onion,
+    image: whiteOnionPowderPouch,
   },
   {
     id: "wellness-mixes",
@@ -64,6 +62,15 @@ const bannerSlides = [
   },
 ];
 
+const heroBanner = {
+  eyebrow: "DEHYDRATED VEGETABLES & POWDERS",
+  titleLine1: "Official per-kg quotes,",
+  titleLine2: "with MOQ.",
+  subtitle:
+    "Zero peeling, zero chopping. Pure dehydrated powders packed with natural aroma & nutrition.",
+  image: moringaPowderHero,
+};
+
 export function CataloguePage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -75,18 +82,6 @@ export function CataloguePage() {
   const [q, setQ] = useState(initialQ);
   const [category, setCategory] = useState<string | "all">(initialCat);
   const [sort, setSort] = useState("featured");
-
-  // Hero Banner Carousel state
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [paused, setPaused] = useState(false);
-
-  useEffect(() => {
-    if (paused) return;
-    const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % bannerSlides.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [paused]);
 
   useEffect(() => {
     setQ(searchParams.get("q") || "");
@@ -103,16 +98,19 @@ export function CataloguePage() {
     const selected = products.filter(
       (product) =>
         (category === "all" || product.category === category) &&
-        (!term || `${product.name} ${product.short} ${categoryLabel(product.category)}`.toLowerCase().includes(term))
+        (!term ||
+          `${product.name} ${product.short} ${categoryLabel(product.category)}`
+            .toLowerCase()
+            .includes(term)),
     );
     return [...selected].sort((a, b) =>
       sort === "price-low"
         ? a.basePrice - b.basePrice
         : sort === "price-high"
-        ? b.basePrice - a.basePrice
-        : sort === "rating"
-        ? b.rating - a.rating
-        : Number(Boolean(b.bestSeller)) - Number(Boolean(a.bestSeller))
+          ? b.basePrice - a.basePrice
+          : sort === "rating"
+            ? b.rating - a.rating
+            : Number(Boolean(b.bestSeller)) - Number(Boolean(a.bestSeller)),
     );
   }, [category, q, sort, products, categoryLabel]);
 
@@ -124,73 +122,35 @@ export function CataloguePage() {
     navigate(queryString ? `/products?${queryString}` : "/products");
   };
 
-  const slide = (bannerSlides[activeSlide % bannerSlides.length] || bannerSlides[0])!;
-
   return (
     <main className="pt-16 lg:pt-20 bg-background">
-      {/* Top Full Viewport Width Fresh Teal Breadcrumb Bar */}
-      <div className="w-full bg-[#163d24] border-b border-green-300/25 py-3">
-        <div className="container-x flex min-w-0 items-center justify-between text-xs sm:text-sm text-green-50 font-medium">
-          <div className="flex min-w-0 items-center gap-2 overflow-x-auto sm:gap-3">
-            <Link
-              to="/"
-              className="grid h-7 w-7 place-items-center rounded-full bg-green-950/90 border border-green-300/45 text-green-200 hover:bg-lime-300 hover:text-green-950 transition"
-            >
-              <Home className="h-3.5 w-3.5" />
-            </Link>
-            <ChevronRight className="h-4 w-4 text-green-200/60" />
-            <Link to="/" className="text-green-50 hover:text-lime-200 transition font-medium">
-              Home
-            </Link>
-            <ChevronRight className="h-4 w-4 text-green-200/60" />
-            <span className="font-bold text-lime-200">Products</span>
-            <ChevronRight className="h-4 w-4 text-green-200/60" />
-            <span className="hidden shrink-0 text-green-100/90 font-medium sm:inline">The Whole Collection</span>
-          </div>
-
-          <div className="flex items-center gap-1.5 text-lime-200">
-            <Leaf className="h-4.5 w-4.5 fill-lime-300/30 text-lime-200" />
-          </div>
-        </div>
-      </div>
-
       {/* 100% Full Viewport Width Hero Banner Header */}
       {/* Desktop (1920): 300px | Laptop (1440): 250px | Tablet (768): 210px | Mobile (390): 160px */}
       <section
-        className="relative flex min-h-[170px] w-full items-center overflow-hidden bg-gradient-to-r from-[#1f5a2f] via-[#163d24] to-[#10281a] text-white border-b border-green-300/20 shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
+        className="relative flex min-h-[170px] w-full items-center overflow-hidden bg-gradient-to-r from-primary via-leaf to-earth text-white border-b border-green-300/20 shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]"
       >
         {/* Subtle Ambient Leaf Glow */}
-        <div className="absolute top-0 right-1/3 h-80 w-80 rounded-full bg-lime-300/15 blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-1/3 h-80 w-80 rounded-full bg-earth/15 blur-3xl pointer-events-none" />
 
         {/* Content Centered inside container-x */}
         <div className="container-x w-full relative z-10 flex items-center justify-between">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={slide.id}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.35, ease: "easeInOut" }}
-              className="flex w-full min-w-0 items-center justify-between gap-6"
-            >
+          <div className="flex w-full min-w-0 items-center justify-between gap-6">
               {/* Left Content */}
               <div className="min-w-0 max-w-2xl py-2 pr-2">
                 {/* Eyebrow Pill */}
-                <div className="inline-flex items-center gap-1.5 rounded-full border border-green-200/45 bg-green-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-lime-200 tracking-wider">
-                  <Leaf className="h-3.5 w-3.5 text-lime-200" />
-                  <span>{slide.eyebrow}</span>
-                  <Sparkles className="h-3 w-3 text-amber-300" />
+                <div className="inline-flex items-center gap-1.5 rounded-full border border-green-200/45 bg-green-950/80 px-3.5 py-1 text-[10px] sm:text-xs font-extrabold text-beige tracking-wider">
+                  <Leaf className="h-3.5 w-3.5 text-beige" />
+                  <span>{heroBanner.eyebrow}</span>
+                  <Sparkles className="h-3 w-3 text-beige" />
                 </div>
 
                 {/* Headline */}
                 <h1 className="mt-2 break-words font-serif text-2xl font-black leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
-                  {slide.titleLine1}{" "}
-                  <span className="relative inline-block text-lime-300">
-                    {slide.titleLine2}
+                  {heroBanner.titleLine1}{" "}
+                  <span className="relative inline-block text-beige">
+                    {heroBanner.titleLine2}
                     <svg
-                      className="absolute -bottom-1 left-0 w-full h-2.5 text-lime-300"
+                      className="absolute -bottom-1 left-0 w-full h-2.5 text-earth"
                       viewBox="0 0 100 20"
                       preserveAspectRatio="none"
                     >
@@ -207,7 +167,7 @@ export function CataloguePage() {
 
                 {/* Subtitle */}
                 <p className="mt-3 text-xs sm:text-sm md:text-base leading-relaxed text-green-50/90 max-w-xl hidden sm:block">
-                  {slide.subtitle}
+                  {heroBanner.subtitle}
                 </p>
               </div>
 
@@ -215,17 +175,16 @@ export function CataloguePage() {
               <div className="relative hidden shrink-0 items-center justify-end sm:flex">
                 <div className="relative overflow-hidden rounded-2xl border border-green-200/30 bg-green-950/40 p-2 backdrop-blur-md shadow-2xl">
                   <img
-                    src={slide.image}
-                    alt={slide.eyebrow}
-                    className="h-32 w-52 rounded-xl bg-white/10 object-contain p-1 md:h-44 md:w-64 lg:h-52 lg:w-80 xl:h-60 xl:w-96"
+                    src={heroBanner.image}
+                    alt="Utkarsh Farm Moringa Powder"
+                    className="h-32 w-32 rounded-xl bg-white/10 object-contain md:h-44 md:w-44 lg:h-52 lg:w-52 xl:h-60 xl:w-60"
                   />
-                  <div className="absolute bottom-3 right-3 rounded-xl border border-green-200/40 bg-green-950/90 px-3 py-1 text-xs font-bold text-lime-200 shadow-lg backdrop-blur-md hidden sm:block">
+                  <div className="absolute bottom-3 right-3 hidden rounded-xl border border-green-200/40 bg-green-950/90 px-3 py-1 text-xs font-bold text-beige shadow-lg backdrop-blur-md lg:block">
                     🌱 100% Pure &amp; Natural
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </AnimatePresence>
+          </div>
         </div>
 
         {/* Bottom Curved Wave Graphic */}
@@ -233,53 +192,21 @@ export function CataloguePage() {
           <svg
             viewBox="0 0 1200 40"
             preserveAspectRatio="none"
-            className="relative block w-full h-4 text-[#235c32] fill-current opacity-80"
+            className="relative block w-full h-4 text-earth fill-current opacity-80"
           >
             <path d="M0,0 C300,30 600,-10 1200,20 L1200,40 L0,40 Z"></path>
           </svg>
         </div>
 
-        {/* Slide Navigation Controls */}
-        <div className="container-x absolute bottom-2.5 inset-x-0 z-20 flex justify-end">
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setActiveSlide((prev) => (prev - 1 + bannerSlides.length) % bannerSlides.length)}
-              aria-label="Previous slide"
-              className="grid h-7 w-7 place-items-center rounded-full border border-green-200/35 bg-green-950/90 text-green-100 transition hover:bg-lime-300 hover:text-green-950"
-            >
-              <ChevronLeft className="h-3.5 w-3.5" />
-            </button>
-
-            <div className="flex gap-1">
-              {bannerSlides.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveSlide(idx)}
-                  className={`h-1.5 rounded-full transition-all ${
-                    activeSlide === idx ? "w-4 bg-lime-300" : "w-1.5 bg-green-800"
-                  }`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={() => setActiveSlide((prev) => (prev + 1) % bannerSlides.length)}
-              aria-label="Next slide"
-              className="grid h-7 w-7 place-items-center rounded-full border border-green-200/35 bg-green-950/90 text-green-100 transition hover:bg-lime-300 hover:text-green-950"
-            >
-              <ChevronRight className="h-3.5 w-3.5" />
-            </button>
-          </div>
-        </div>
       </section>
 
       {/* Catalogue Filters & Grid */}
       <section className="container-x py-6 lg:py-10">
         {/* Search & Categories Bar */}
-        <div className="flex min-w-0 flex-col gap-4 rounded-3xl border border-green-900/10 bg-[#f7fbef] p-4 shadow-sm lg:flex-row lg:items-center lg:justify-between lg:p-5">
+        <div className="flex min-w-0 flex-col gap-4 rounded-3xl border border-green-900/10 bg-secondary p-4 shadow-sm lg:flex-row lg:items-center lg:justify-between lg:p-5">
           {/* Search Input Container */}
           <div className="relative w-full min-w-0 flex-1 lg:max-w-md">
-            <div className="relative flex items-center w-full rounded-full border border-green-900/15 bg-white px-4 py-3 shadow-inner focus-within:border-green-600 focus-within:ring-2 focus-within:ring-lime-400/25 transition-all">
+            <div className="relative flex items-center w-full rounded-full border border-green-900/15 bg-white px-4 py-3 shadow-inner focus-within:border-green-600 focus-within:ring-2 focus-within:ring-earth/25 transition-all">
               <Search className="h-4.5 w-4.5 shrink-0 text-green-800/70" />
               <input
                 type="text"
@@ -297,7 +224,7 @@ export function CataloguePage() {
                     setQ("");
                     updateSearch("", category);
                   }}
-                  className="absolute right-3.5 grid h-5 w-5 place-items-center rounded-full bg-green-100 text-green-800 hover:bg-lime-200 transition text-xs font-bold"
+                  className="absolute right-3.5 grid h-5 w-5 place-items-center rounded-full bg-green-100 text-green-800 hover:bg-beige transition text-xs font-bold"
                   aria-label="Clear search"
                 >
                   ✕
