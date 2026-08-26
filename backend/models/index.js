@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/database.js";
 
-const money = { type: DataTypes.DECIMAL(12, 2), defaultValue: 0 };
+const money = () => ({ type: DataTypes.DECIMAL(12, 2), defaultValue: 0 });
 const statusString = { type: DataTypes.STRING(40), defaultValue: "Active" };
 
 export const Role = sequelize.define("Role", {
@@ -69,7 +69,7 @@ export const Customer = sequelize.define("Customer", {
   email: DataTypes.STRING(190),
   status: { type: DataTypes.STRING(40), defaultValue: "Active" },
   totalOrders: { type: DataTypes.INTEGER.UNSIGNED, defaultValue: 0 },
-  totalSpend: money,
+  totalSpend: money(),
   lastOrderAt: DataTypes.DATE,
 }, { tableName: "customers", paranoid: true, indexes: [{ fields: ["email"] }, { fields: ["mobile"] }] });
 
@@ -118,9 +118,9 @@ export const Product = sequelize.define("Product", {
   subcategoryId: DataTypes.INTEGER.UNSIGNED,
   shortDescription: DataTypes.TEXT,
   fullDescription: DataTypes.TEXT,
-  regularPrice: money,
-  salePrice: money,
-  costPrice: money,
+  regularPrice: money(),
+  salePrice: money(),
+  costPrice: money(),
   gstPercent: { type: DataTypes.DECIMAL(6, 2), defaultValue: 0 },
   hsnCode: DataTypes.STRING(40),
   stockQuantity: { type: DataTypes.INTEGER, defaultValue: 0 },
@@ -166,8 +166,8 @@ export const ProductVariant = sequelize.define("ProductVariant", {
   productId: { type: DataTypes.INTEGER.UNSIGNED, allowNull: false },
   sku: { type: DataTypes.STRING(100), allowNull: false, unique: true },
   weight: { type: DataTypes.STRING(60), allowNull: false },
-  price: money,
-  salePrice: money,
+  price: money(),
+  salePrice: money(),
   stock: { type: DataTypes.INTEGER, defaultValue: 0 },
   status: { type: DataTypes.STRING(40), defaultValue: "Active" },
 }, { tableName: "product_variants", indexes: [{ fields: ["sku"] }, { fields: ["status"] }] });
@@ -209,12 +209,12 @@ export const Order = sequelize.define("Order", {
   customerName: DataTypes.STRING(140),
   customerEmail: DataTypes.STRING(190),
   customerPhone: DataTypes.STRING(30),
-  subtotal: money,
-  discount: money,
-  couponDiscount: money,
-  tax: money,
-  shipping: money,
-  grandTotal: money,
+  subtotal: money(),
+  discount: money(),
+  couponDiscount: money(),
+  tax: money(),
+  shipping: money(),
+  grandTotal: money(),
   paymentMethod: { type: DataTypes.STRING(60), defaultValue: "COD" },
   paymentStatus: { type: DataTypes.STRING(60), defaultValue: "Pending" },
   orderStatus: { type: DataTypes.STRING(60), defaultValue: "Pending" },
@@ -235,10 +235,10 @@ export const OrderItem = sequelize.define("OrderItem", {
   sku: DataTypes.STRING(100),
   variantName: DataTypes.STRING(80),
   quantity: { type: DataTypes.INTEGER, allowNull: false },
-  unitPrice: money,
-  discount: money,
-  tax: money,
-  total: money,
+  unitPrice: money(),
+  discount: money(),
+  tax: money(),
+  total: money(),
   image: DataTypes.STRING(500),
 }, { tableName: "order_items" });
 
@@ -255,7 +255,7 @@ export const Payment = sequelize.define("Payment", {
   id: { type: DataTypes.INTEGER.UNSIGNED, autoIncrement: true, primaryKey: true },
   orderId: DataTypes.INTEGER.UNSIGNED,
   customerId: DataTypes.INTEGER.UNSIGNED,
-  amount: money,
+  amount: money(),
   paymentMethod: DataTypes.STRING(80),
   gateway: DataTypes.STRING(80),
   paymentId: { type: DataTypes.STRING(160), unique: true },
@@ -292,9 +292,9 @@ export const Coupon = sequelize.define("Coupon", {
   code: { type: DataTypes.STRING(80), unique: true, allowNull: false },
   description: DataTypes.TEXT,
   discountType: { type: DataTypes.STRING(40), allowNull: false },
-  discountValue: money,
-  minimumOrder: money,
-  maximumDiscount: money,
+  discountValue: money(),
+  minimumOrder: money(),
+  maximumDiscount: money(),
   startDate: DataTypes.DATE,
   expiryDate: DataTypes.DATE,
   usageLimit: DataTypes.INTEGER,
@@ -309,7 +309,7 @@ export const CouponUsage = sequelize.define("CouponUsage", {
   couponId: { type: DataTypes.INTEGER.UNSIGNED, allowNull: false },
   customerId: DataTypes.INTEGER.UNSIGNED,
   orderId: DataTypes.INTEGER.UNSIGNED,
-  discountAmount: money,
+  discountAmount: money(),
 }, { tableName: "coupon_usage" });
 
 export const BlogCategory = sequelize.define("BlogCategory", {
@@ -380,7 +380,7 @@ export const Refund = sequelize.define("Refund", {
   orderId: DataTypes.INTEGER.UNSIGNED,
   returnId: DataTypes.INTEGER.UNSIGNED,
   customerId: DataTypes.INTEGER.UNSIGNED,
-  refundAmount: money,
+  refundAmount: money(),
   refundReference: DataTypes.STRING(160),
   notes: DataTypes.TEXT,
   status: { type: DataTypes.STRING(60), defaultValue: "Requested" },

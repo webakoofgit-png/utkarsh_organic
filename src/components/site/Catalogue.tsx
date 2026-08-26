@@ -203,12 +203,20 @@ export function CataloguePage() {
       {/* Catalogue Filters & Grid */}
       <section className="container-x py-6 lg:py-10">
         {/* Search & Categories Bar */}
-        <div className="flex min-w-0 flex-col gap-4 rounded-3xl border border-green-900/10 bg-secondary p-4 shadow-sm lg:flex-row lg:items-center lg:justify-between lg:p-5">
+        <div className="grid min-w-0 gap-4 rounded-3xl border border-green-900/10 bg-secondary p-4 shadow-sm lg:grid-cols-[minmax(320px,420px)_minmax(0,1fr)] lg:items-center lg:p-5">
           {/* Search Input Container */}
-          <div className="relative w-full min-w-0 flex-1 lg:max-w-md">
-            <div className="relative flex items-center w-full rounded-full border border-green-900/15 bg-white px-4 py-3 shadow-inner focus-within:border-green-600 focus-within:ring-2 focus-within:ring-earth/25 transition-all">
-              <Search className="h-4.5 w-4.5 shrink-0 text-green-800/70" />
+          <form
+            className="relative min-w-0"
+            role="search"
+            onSubmit={(event) => event.preventDefault()}
+          >
+            <label className="sr-only" htmlFor="catalogue-search">
+              Search products
+            </label>
+            <div className="relative flex h-13 w-full items-center rounded-full border border-green-900/15 bg-white px-4 shadow-inner transition-all focus-within:border-green-700 focus-within:bg-white focus-within:ring-2 focus-within:ring-earth/25">
+              <Search className="h-5 w-5 shrink-0 text-green-800/70" />
               <input
+                id="catalogue-search"
                 type="text"
                 value={q}
                 onChange={(event) => {
@@ -216,25 +224,26 @@ export function CataloguePage() {
                   updateSearch(event.target.value, category);
                 }}
                 placeholder="Search organic powders & spices..."
-                className="w-full bg-transparent pl-3 pr-7 text-sm font-medium text-foreground outline-none placeholder:text-muted-foreground/70"
+                className="min-w-0 flex-1 bg-transparent px-3 text-sm font-semibold text-foreground outline-none placeholder:text-muted-foreground/70 sm:text-base"
               />
               {q && (
                 <button
+                  type="button"
                   onClick={() => {
                     setQ("");
                     updateSearch("", category);
                   }}
-                  className="absolute right-3.5 grid h-5 w-5 place-items-center rounded-full bg-green-100 text-green-800 hover:bg-beige transition text-xs font-bold"
+                  className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-green-100 text-green-800 transition hover:bg-beige"
                   aria-label="Clear search"
                 >
-                  ✕
+                  <X className="h-4 w-4" />
                 </button>
               )}
             </div>
-          </div>
+          </form>
 
           {/* Category Filter Badges */}
-          <div className="flex min-w-0 flex-wrap items-center gap-2">
+          <div className="-mx-1 flex min-w-0 items-center gap-2 overflow-x-auto px-1 py-1">
             {[{ id: "all" as const, name: "All Products" }, ...categories].map((item) => (
               <button
                 key={item.id}
@@ -242,7 +251,7 @@ export function CataloguePage() {
                   setCategory(item.id);
                   updateSearch(q, item.id);
                 }}
-                className={`max-w-full rounded-full px-3.5 py-2.5 text-left text-xs font-bold shadow-sm transition-all sm:px-4 ${
+                className={`shrink-0 rounded-full px-3.5 py-2.5 text-left text-xs font-bold shadow-sm transition-all sm:px-4 ${
                   category === item.id
                     ? "bg-primary text-primary-foreground shadow-md scale-105"
                     : "bg-white border border-green-900/10 text-foreground/80 hover:bg-green-50 hover:text-green-900"

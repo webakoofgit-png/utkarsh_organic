@@ -40,7 +40,7 @@ import flipCardMoringaWellness from "@/assets/flip-card-moringa-wellness.png";
 import flipBulkPowders from "@/assets/flip-bulk-powders.png";
 import heroFarmFamily from "@/assets/hero-farm-family.png";
 import farmStoryOnionProductLineup from "@/assets/farm-story-onion-product-lineup.png";
-import heroVideo from "../../utkarsh.mp4";
+import heroVideo from "../../utkarsh260826.mp4";
 import storyVideo from "../../Prompt__Use_the_uploaded_image.mp4";
 
 const heroTrustPoints = [
