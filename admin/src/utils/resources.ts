@@ -448,40 +448,6 @@ export const resourceDefinitions: Record<string, ResourceDefinition> = {
     ],
     transform: (values) => ({ ...values, roleIds: splitLines(String(values.roleIds || "").replace(/,/g, "\n")).map(Number) }),
   },
-  roles: {
-    resource: "roles",
-    title: "Roles",
-    eyebrow: "Administration",
-    description: "Manage admin roles. Seeded roles include Super Admin, Admin, Inventory Manager, Order Manager, and Content Manager.",
-    icon: Shield,
-    statusOptions: commonStatus,
-    columns: [
-      { key: "name", label: "Role" },
-      { key: "slug", label: "Slug" },
-      { key: "status", label: "Status", type: "status" },
-    ],
-    fields: [
-      { name: "name", label: "Role Name", required: true },
-      { name: "slug", label: "Slug" },
-      { name: "description", label: "Description", type: "textarea", full: true },
-      { name: "status", label: "Status", type: "select", options: commonStatus },
-    ],
-  },
-  "activity-logs": {
-    resource: "activity-logs",
-    title: "Activity Logs",
-    eyebrow: "Audit",
-    description: "Audit trail for important admin actions.",
-    icon: ClipboardList,
-    columns: [
-      { key: "action", label: "Action" },
-      { key: "module", label: "Module" },
-      { key: "recordId", label: "Record" },
-      { key: "ipAddress", label: "IP" },
-      { key: "createdAt", label: "Date", type: "date" },
-    ],
-    fields: [],
-  },
 };
 
 export const orderStatusOptions = orderStatuses;

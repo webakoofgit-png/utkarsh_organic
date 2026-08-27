@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { BarChart3, Boxes, FilePlus2, PackagePlus, ReceiptIndianRupee, ShoppingCart, Users, Warehouse } from "lucide-react";
+import { BarChart3, Boxes, FilePlus2, PackagePlus, ReceiptIndianRupee, ShoppingCart, Truck, Users } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { toast } from "sonner";
+import { ImageThumb } from "@/components/ImageThumb";
 import { adminApi } from "@/services/api";
 import { formatDate, inr, statusClass } from "@/utils/format";
 
@@ -28,12 +29,10 @@ export function DashboardPage() {
     ["Total Orders", stats.totalOrders || 0, ShoppingCart],
     ["Pending Orders", stats.pendingOrders || 0, ShoppingCart],
     ["Processing Orders", stats.processingOrders || 0, Boxes],
-    ["Shipped Orders", stats.shippedOrders || 0, Warehouse],
+    ["Shipped Orders", stats.shippedOrders || 0, Truck],
     ["Delivered Orders", stats.deliveredOrders || 0, ShoppingCart],
     ["Total Customers", stats.totalCustomers || 0, Users],
     ["Total Products", stats.totalProducts || 0, PackagePlus],
-    ["Low Stock", stats.lowStockProducts || 0, Warehouse],
-    ["Out of Stock", stats.outOfStockProducts || 0, Warehouse],
   ];
 
   return (
@@ -42,7 +41,7 @@ export function DashboardPage() {
         <div>
           <p className="eyebrow">Dashboard</p>
           <h1>Utkarsh Organic Control Room</h1>
-          <p className="muted" style={{ marginTop: 8 }}>Sales, orders, products, inventory, and fulfilment at a glance.</p>
+          <p className="muted" style={{ marginTop: 8 }}>Sales, orders, products, and fulfilment at a glance.</p>
         </div>
         <div className="toolbar-group">
           <Link className="btn" to="/products"><PackagePlus size={17} /> Add Product</Link>
@@ -65,7 +64,6 @@ export function DashboardPage() {
           </section>
 
           <div className="quick-actions">
-            <Link className="btn ghost" to="/inventory"><Warehouse size={16} /> Add Stock</Link>
             <Link className="btn ghost" to="/coupons"><ReceiptIndianRupee size={16} /> Create Coupon</Link>
             <Link className="btn ghost" to="/blogs"><FilePlus2 size={16} /> Add Blog</Link>
           </div>
@@ -135,7 +133,7 @@ export function DashboardPage() {
               <div style={{ marginTop: 14, display: "grid", gap: 10 }}>
                 {(data?.topSellingProducts || []).map((product: any) => (
                   <div key={product.productId || product.productName} style={{ display: "flex", gap: 12, alignItems: "center" }}>
-                    <img className="image-thumb" src={product.image} alt="" />
+                    <ImageThumb src={product.image} alt={product.productName} />
                     <div style={{ minWidth: 0, flex: 1 }}>
                       <strong style={{ display: "block", fontSize: 13 }}>{product.productName}</strong>
                       <span className="muted" style={{ fontSize: 12 }}>{product.unitsSold || 0} units</span>

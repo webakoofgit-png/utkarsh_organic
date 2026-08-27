@@ -1,9 +1,9 @@
-const API_BASE = import.meta.env["VITE_API_URL"] || "http://localhost:5000/api";
+const API_BASE = import.meta.env["VITE_API_URL"] || "http://127.0.0.1:5000/api";
 
 async function request(path: string, options: RequestInit = {}) {
   const headers = new Headers(options.headers);
   if (options.body && !headers.has("Content-Type")) headers.set("Content-Type", "application/json");
-  const response = await fetch(`${API_BASE}${path}`, { ...options, headers });
+  const response = await fetch(`${API_BASE}${path}`, { cache: "no-store", ...options, headers });
   const payload = await response.json().catch(() => null);
   if (!response.ok || payload?.success === false) {
     throw new Error(payload?.message || "Request failed");

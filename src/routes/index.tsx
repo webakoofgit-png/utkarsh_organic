@@ -379,7 +379,7 @@ export default function HomePage() {
       </section>
 
       <section className="container-x py-16 lg:py-24">
-        <div className="grid gap-5 min-[560px]:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-5 min-[560px]:grid-cols-2 lg:grid-cols-3">
           {categories.slice(0, 5).map((category, index) => {
             const iconMeta =
               categoryIconMap[category.id as keyof typeof categoryIconMap] ||
@@ -387,30 +387,32 @@ export default function HomePage() {
             const CategoryIcon = iconMeta.icon;
 
             return (
-              <Reveal key={category.id} delay={index * 0.05}>
+              <Reveal key={category.id} delay={index * 0.05} className="h-full">
                 <Link
                   to={`/products?category=${category.id}`}
-                  className="group flex h-full min-h-44 flex-col justify-between rounded-[1.5rem] border border-border bg-white p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-earth hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  className="group flex h-[15rem] flex-col justify-between rounded-[1.5rem] border border-border bg-white p-5 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-earth hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:h-[15.75rem] sm:p-6"
                 >
                   <div>
                     <div
-                      className={`grid h-12 w-12 place-items-center rounded-2xl ring-1 transition duration-300 animate-gentle-float group-hover:-translate-y-1 group-hover:scale-110 group-hover:rotate-3 ${iconMeta.shell}`}
+                      className={`grid h-10 w-10 place-items-center rounded-2xl ring-1 transition duration-300 animate-gentle-float group-hover:-translate-y-1 group-hover:scale-110 group-hover:rotate-3 sm:h-12 sm:w-12 ${iconMeta.shell}`}
                       style={{ animationDelay: `${index * 0.18}s` }}
                     >
                       <CategoryIcon
-                        className="h-6 w-6 transition-transform duration-300 group-hover:scale-110"
+                        className="h-5 w-5 transition-transform duration-300 group-hover:scale-110 sm:h-6 sm:w-6"
                         strokeWidth={1.9}
                         aria-hidden="true"
                       />
                     </div>
-                    <h3 className="mt-5 font-display text-lg font-black">{category.name}</h3>
+                    <h3 className="mt-4 line-clamp-2 font-display text-lg font-black">
+                      {category.name}
+                    </h3>
                     {category.blurb ? (
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
                         {category.blurb}
                       </p>
                     ) : null}
                   </div>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary">
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary">
                     Explore{" "}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
@@ -418,6 +420,32 @@ export default function HomePage() {
               </Reveal>
             );
           })}
+          <Reveal delay={0.3} className="h-full">
+            <Link
+              to="/bulk-orders"
+              className="group flex h-[15rem] flex-col justify-between rounded-[1.5rem] border border-earth/30 bg-forest p-5 text-white shadow-soft transition duration-300 hover:-translate-y-1 hover:border-beige hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:h-[15.75rem] sm:p-6"
+            >
+              <div>
+                <div className="grid h-10 w-10 place-items-center rounded-2xl bg-beige text-primary ring-1 ring-beige/40 transition duration-300 animate-gentle-float group-hover:-translate-y-1 group-hover:scale-110 group-hover:rotate-3 sm:h-12 sm:w-12">
+                  <PackageCheck
+                    className="h-5 w-5 sm:h-6 sm:w-6"
+                    strokeWidth={1.9}
+                    aria-hidden="true"
+                  />
+                </div>
+                <h3 className="mt-4 line-clamp-2 font-display text-lg font-black">
+                  Customized Dehydrated Fruit &amp; Vegetable Powders
+                </h3>
+                <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-white/74">
+                  Made-to-spec powders for brands, food processors and bulk buyers.
+                </p>
+              </div>
+              <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-beige">
+                Request custom quote{" "}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+          </Reveal>
         </div>
       </section>
 

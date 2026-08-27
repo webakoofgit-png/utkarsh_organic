@@ -1,5 +1,4 @@
 import {
-  BarChart3,
   Bell,
   BookOpen,
   Boxes,
@@ -8,7 +7,6 @@ import {
   ClipboardList,
   Contact,
   FileText,
-  Image,
   LayoutDashboard,
   LogOut,
   Menu,
@@ -19,7 +17,6 @@ import {
   ShoppingCart,
   Tags,
   Users,
-  Warehouse,
   X,
 } from "lucide-react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
@@ -42,8 +39,6 @@ const groups = [
   {
     label: "Operations",
     items: [
-      { to: "/inventory", label: "Stock", icon: Warehouse },
-      { to: "/inventory-history", label: "Stock History", icon: Boxes },
       { to: "/orders", label: "All Orders", icon: ShoppingCart },
       { to: "/returns", label: "Returns", icon: ClipboardList },
       { to: "/refunds", label: "Refunds", icon: ReceiptIndianRupee },
@@ -63,12 +58,8 @@ const groups = [
   {
     label: "System",
     items: [
-      { to: "/reports", label: "Reports", icon: BarChart3 },
-      { to: "/media", label: "Media Library", icon: Image },
       { to: "/settings", label: "Settings", icon: Settings },
       { to: "/admin-users", label: "Admin Users", icon: Shield },
-      { to: "/roles", label: "Roles", icon: Shield },
-      { to: "/activity-logs", label: "Activity Logs", icon: ClipboardList },
     ],
   },
 ];
@@ -127,7 +118,7 @@ export function AdminLayout() {
             </button>
             <div>
               <strong>Operations Control</strong>
-              <p className="muted" style={{ fontSize: 12 }}>Products, inventory, orders, content, and reports</p>
+              <p className="muted" style={{ fontSize: 12 }}>Products, orders, content, and settings</p>
             </div>
           </div>
 

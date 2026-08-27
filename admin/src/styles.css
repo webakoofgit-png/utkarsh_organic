@@ -519,6 +519,12 @@ tr:last-child td {
   background: var(--panel-soft);
 }
 
+.image-thumb-empty {
+  display: inline-grid;
+  place-items: center;
+  color: var(--muted);
+}
+
 .quick-actions {
   display: flex;
   flex-wrap: wrap;

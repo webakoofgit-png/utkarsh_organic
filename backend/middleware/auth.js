@@ -9,22 +9,26 @@ function permissionNames(admin) {
 }
 
 export async function authenticate(req, _res, next) {
-  const header = req.headers.authorization || "";
-  const token = header.startsWith("Bearer ") ? header.slice(7) : req.cookies?.accessToken;
+  try {
+    const header = req.headers.authorization || "";
+    const token = header.startsWith("Bearer ") ? header.slice(7) : req.cookies?.accessToken;
 
-  if (!token) return next(new AppError("Authentication required", 401));
+    if (!token) return next(new AppError("Authentication required", 401));
 
-  const decoded = jwt.verify(token, env.jwtSecret);
-  const admin = await Admin.findByPk(decoded.id, {
-    include: [{ model: Role, include: [Permission] }],
-  });
+    const decoded = jwt.verify(token, env.jwtSecret);
+    const admin = await Admin.findByPk(decoded.id, {
+      include: [{ model: Role, include: [Permission] }],
+    });
 
-  if (!admin || !admin.isActive) return next(new AppError("Admin account is not active", 401));
+    if (!admin || !admin.isActive) return next(new AppError("Admin account is not active", 401));
 
-  req.admin = admin;
-  req.permissions = permissionNames(admin);
-  req.roles = (admin.Roles || []).map((role) => role.slug);
-  next();
+    req.admin = admin;
+    req.permissions = permissionNames(admin);
+    req.roles = (admin.Roles || []).map((role) => role.slug);
+    next();
+  } catch (error) {
+    next(error);
+  }
 }
 
 export function authorize(...requiredPermissions) {

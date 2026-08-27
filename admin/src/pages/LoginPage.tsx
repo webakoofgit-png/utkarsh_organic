@@ -34,7 +34,7 @@ export function LoginPage() {
         </span>
         <p className="eyebrow" style={{ marginTop: 18 }}>Utkarsh Organic</p>
         <h1>Admin Panel</h1>
-        <p className="muted" style={{ marginTop: 8 }}>Sign in to manage catalogue, inventory, orders, reports, and website content.</p>
+        <p className="muted" style={{ marginTop: 8 }}>Sign in to manage catalogue, orders, and website content.</p>
 
         <div className="field" style={{ marginTop: 24 }}>
           <label>Email</label>

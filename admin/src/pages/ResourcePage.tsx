@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { Copy, Edit3, Plus, RefreshCw, Search, Trash2, X } from "lucide-react";
 import { toast } from "sonner";
+import { ImageThumb } from "@/components/ImageThumb";
 import { adminApi } from "@/services/api";
 import type { FieldDefinition, ResourceDefinition } from "@/utils/resources";
 import { compact, formatDate, inr, statusClass } from "@/utils/format";
@@ -12,7 +13,7 @@ function getValue(row: any, key: string) {
 function displayValue(row: any, column: any) {
   const value = getValue(row, column.key);
   if (column.type === "image") {
-    return value ? <img className="image-thumb" src={value} alt="" /> : <span className="muted">No image</span>;
+    return <ImageThumb src={value} alt={row.name || row.title || ""} />;
   }
   if (column.type === "money") return inr(value);
   if (column.type === "status") return <span className={statusClass(value)}>{compact(value)}</span>;
@@ -149,6 +150,8 @@ export function ResourcePage({ definition }: { definition: ResourceDefinition })
   const [editing, setEditing] = useState<any | null>(null);
   const [formOpen, setFormOpen] = useState(false);
   const [selected, setSelected] = useState<number[]>([]);
+  const canEdit = definition.fields.length > 0;
+  const canDelete = canEdit && !["orders", "payments"].includes(definition.resource);
 
   const load = async () => {
     setLoading(true);
@@ -220,7 +223,7 @@ export function ResourcePage({ definition }: { definition: ResourceDefinition })
           <h1>{definition.title}</h1>
           <p className="muted" style={{ marginTop: 8 }}>{definition.description}</p>
         </div>
-        {definition.fields.length > 0 && (
+        {canEdit && (
           <button className="btn" onClick={() => openForm()}>
             <Plus size={17} /> Add
           </button>
@@ -246,7 +249,7 @@ export function ResourcePage({ definition }: { definition: ResourceDefinition })
           </form>
           <div className="toolbar-group">
             <button className="btn ghost" onClick={load}><RefreshCw size={16} /> Refresh</button>
-            {definition.fields.length > 0 && <button className="btn ghost danger" onClick={bulkDelete}><Trash2 size={16} /> Bulk Delete</button>}
+            {canDelete && <button className="btn ghost danger" onClick={bulkDelete}><Trash2 size={16} /> Bulk Delete</button>}
           </div>
         </div>
 
@@ -288,8 +291,8 @@ export function ResourcePage({ definition }: { definition: ResourceDefinition })
                     <td>
                       <div className="row-actions">
                         {definition.resource === "products" && <button className="btn ghost icon-only" onClick={() => duplicate(row)} title="Duplicate"><Copy size={16} /></button>}
-                        {definition.fields.length > 0 && <button className="btn ghost icon-only" onClick={() => openForm(row)} title="Edit"><Edit3 size={16} /></button>}
-                        {definition.resource !== "orders" && definition.resource !== "payments" && definition.resource !== "activity-logs" && (
+                        {canEdit && <button className="btn ghost icon-only" onClick={() => openForm(row)} title="Edit"><Edit3 size={16} /></button>}
+                        {canDelete && (
                           <button className="btn ghost icon-only" onClick={() => remove(row)} title="Delete"><Trash2 size={16} /></button>
                         )}
                       </div>
@@ -313,7 +316,7 @@ export function ResourcePage({ definition }: { definition: ResourceDefinition })
         </div>
       </section>
 
-      {formOpen && <ResourceForm definition={definition} record={editing} onClose={() => setFormOpen(false)} onSaved={load} />}
+      {formOpen && canEdit && <ResourceForm definition={definition} record={editing} onClose={() => setFormOpen(false)} onSaved={load} />}
     </main>
   );
 }

@@ -158,7 +158,7 @@ export default function BulkOrdersPage() {
       <section className="container-x py-16 lg:py-24">
         <SectionHeading eyebrow="Who We Serve" title="Tailored Packaging &amp; Volume Pricing" />
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {[
             {
               icon: Building2,
@@ -179,6 +179,11 @@ export default function BulkOrdersPage() {
               icon: PackageCheck,
               title: "Private Label Brands",
               desc: "Custom pouch filling, co-packing, and white label organic solutions.",
+            },
+            {
+              icon: Sparkles,
+              title: "Customized Dehydrated Fruit & Vegetable Powders",
+              desc: "Custom fruit and vegetable powder blends, mesh size, packing and volume plans.",
             },
           ].map(({ icon: Icon, title, desc }, index) => (
             <Reveal key={title} delay={index * 0.08}>
@@ -218,6 +223,10 @@ export default function BulkOrdersPage() {
                 {
                   title: "Flexible Commercial Packing",
                   desc: "Available in 5kg foil pouches, 20kg corrugated boxes, and 50kg HDPE drums.",
+                },
+                {
+                  title: "Customized Fruit & Vegetable Powders",
+                  desc: "Share the fruit or vegetable, target mesh, moisture needs, packing format and monthly volume.",
                 },
                 {
                   title: "Dedicated Key Account Manager",
@@ -339,6 +348,7 @@ export default function BulkOrdersPage() {
                       <option>Wholesale &amp; Spice Trader</option>
                       <option>Exporter</option>
                       <option>Private Label Brand</option>
+                      <option>Customized Fruit &amp; Vegetable Powder Requirement</option>
                     </select>
                   </div>
                   <div>
@@ -360,13 +370,13 @@ export default function BulkOrdersPage() {
 
                 <div>
                   <label className="block text-xs font-bold text-foreground">
-                    Specific Products &amp; Specs
+                    Specific Products, Fruit / Vegetable &amp; Specs
                   </label>
                   <textarea
                     rows={3}
                     value={formData.requirements}
                     onChange={(e) => setFormData({ ...formData, requirements: e.target.value })}
-                    placeholder="e.g. Require 200kg Onion Powder (80 mesh) + 50kg Moringa Powder..."
+                    placeholder="e.g. Customized dehydrated mango powder, beetroot powder or onion powder, 80 mesh, 25kg packs..."
                     className="mt-1.5 w-full rounded-xl border border-border bg-cream px-4 py-2.5 text-xs outline-none focus:border-accent"
                   />
                 </div>

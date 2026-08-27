@@ -37,6 +37,37 @@ function ScrollToTop() {
   return null;
 }
 
+function AdminPanelRedirect() {
+  const adminUrl =
+    import.meta.env["VITE_ADMIN_URL"] ||
+    (["localhost", "127.0.0.1"].includes(window.location.hostname)
+      ? `${window.location.protocol}//${window.location.hostname}:5176/`
+      : "");
+
+  useEffect(() => {
+    if (adminUrl) window.location.replace(adminUrl);
+  }, [adminUrl]);
+
+  return (
+    <div className="container-x flex min-h-[60vh] flex-col items-center justify-center px-4 text-center">
+      <h1 className="font-display text-3xl font-extrabold text-primary">Admin Panel</h1>
+      <p className="mt-3 max-w-md text-sm text-muted-foreground">
+        {adminUrl
+          ? "Opening the admin panel..."
+          : "The admin panel runs as a separate app. Set VITE_ADMIN_URL to enable this shortcut."}
+      </p>
+      {adminUrl ? (
+        <a
+          href={adminUrl}
+          className="mt-6 rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground"
+        >
+          Open Admin Panel
+        </a>
+      ) : null}
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <LanguageProvider>
@@ -68,6 +99,9 @@ export default function App() {
                   <Route path="/blog" element={<BlogPage />} />
                   <Route path="/blog/:slug" element={<BlogPostPage />} />
                   <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/admin" element={<AdminPanelRedirect />} />
+                  <Route path="/admin/panel" element={<AdminPanelRedirect />} />
+                  <Route path="/admin/*" element={<AdminPanelRedirect />} />
                   <Route
                     path="*"
                     element={

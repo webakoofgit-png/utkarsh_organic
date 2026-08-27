@@ -194,6 +194,7 @@ export default function AboutPage() {
                 "Fresh fruits, vegetables and dehydrated processing products",
                 "Premium quality dried fruits and vegetables",
                 "Different nutritious fruit and vegetable powders",
+                "Customized dehydrated fruit and vegetable powders for B2B requirements",
                 "Special selected dry fruits and whole spices",
                 "Wholesale catalog with 100 Kilogram MOQ on official product listings",
               ].map((point) => (
