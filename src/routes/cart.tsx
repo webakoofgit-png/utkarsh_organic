@@ -43,13 +43,13 @@ export default function CartPage() {
           </Link>
         </div>
 
-        <h1 className="mt-4 font-display text-4xl font-extrabold sm:text-5xl">Your Shopping Cart</h1>
+        <h1 className="mt-4 font-display text-3xl font-extrabold sm:text-5xl">Your Shopping Cart</h1>
         <p className="mt-2 text-muted-foreground">
           {lines.length > 0 ? `${lines.length} item(s) selected for your kitchen.` : "Your cart is currently empty."}
         </p>
 
         {lines.length === 0 ? (
-          <div className="mt-12 text-center py-16 rounded-3xl bg-cream border border-border">
+          <div className="mt-12 rounded-[1.35rem] border border-border bg-cream px-5 py-14 text-center sm:rounded-3xl sm:py-16">
             <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-secondary text-primary">
               <ShoppingBag className="h-10 w-10" />
             </div>
@@ -79,7 +79,7 @@ export default function CartPage() {
                 return (
                   <div
                     key={`${product.slug}-${weight}`}
-                    className="flex flex-col gap-4 rounded-2xl border border-border bg-background p-4 sm:p-5 md:grid md:grid-cols-[2fr_1fr_1fr_auto] md:items-center"
+                    className="flex min-w-0 flex-col gap-4 rounded-2xl border border-border bg-background p-4 sm:p-5 md:grid md:grid-cols-[2fr_1fr_1fr_auto] md:items-center"
                   >
                     <div className="flex min-w-0 items-start gap-3 min-[420px]:items-center sm:gap-4">
                       <div className="grid h-20 w-20 shrink-0 place-items-center overflow-hidden rounded-xl bg-cream p-2">
@@ -125,7 +125,7 @@ export default function CartPage() {
                       <p className="text-[11px] text-muted-foreground hidden sm:block">{inr(itemPrice)} each</p>
                     </div>
 
-                    <div className="text-right">
+                    <div className="text-left md:text-right">
                       <button
                         onClick={() => removeLine(product.slug, weight)}
                         aria-label={`Remove ${product.name}`}
@@ -151,7 +151,7 @@ export default function CartPage() {
               </div>
             </div>
 
-            <div className="h-fit rounded-3xl border border-border bg-cream p-7">
+            <div className="h-fit rounded-[1.35rem] border border-border bg-cream p-5 sm:rounded-3xl sm:p-7 lg:sticky lg:top-24">
               <h2 className="font-display text-xl font-bold">Order Summary</h2>
 
               <div className="mt-6 space-y-3 divide-y divide-border text-sm">
@@ -178,7 +178,7 @@ export default function CartPage() {
                 </div>
               </div>
 
-              <form onSubmit={handleCoupon} className="mt-6 flex gap-2">
+              <form onSubmit={handleCoupon} className="mt-6 flex flex-col gap-2 min-[420px]:flex-row">
                 <input
                   type="text"
                   placeholder="Promo code (ORGANIC10)"

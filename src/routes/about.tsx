@@ -135,7 +135,7 @@ export default function AboutPage() {
         <div className="mt-12 grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
           {/* Founder 1 */}
           <Reveal delay={0.05}>
-            <div className="rounded-3xl border border-border bg-cream p-8 text-center shadow-soft h-full flex flex-col items-center">
+            <div className="flex h-full flex-col items-center rounded-[1.35rem] border border-border bg-cream p-5 text-center shadow-soft sm:rounded-3xl sm:p-8">
               <div className="grid h-16 w-16 place-items-center rounded-2xl bg-forest text-accent">
                 <Wheat className="h-8 w-8" />
               </div>
@@ -154,7 +154,7 @@ export default function AboutPage() {
 
           {/* Founder 2 */}
           <Reveal delay={0.12}>
-            <div className="rounded-3xl border border-border bg-cream p-8 text-center shadow-soft h-full flex flex-col items-center">
+            <div className="flex h-full flex-col items-center rounded-[1.35rem] border border-border bg-cream p-5 text-center shadow-soft sm:rounded-3xl sm:p-8">
               <div className="grid h-16 w-16 place-items-center rounded-2xl bg-forest text-accent">
                 <Stethoscope className="h-8 w-8" />
               </div>

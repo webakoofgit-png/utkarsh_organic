@@ -62,8 +62,12 @@ export function SectionHeading({
   return (
     <Reveal className={align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
       {eyebrow ? <p className="eyebrow mb-3">{eyebrow}</p> : null}
-      <h2 className="text-3xl font-bold text-foreground sm:text-4xl">{title}</h2>
-      {sub ? <p className="mt-4 text-base leading-relaxed text-muted-foreground">{sub}</p> : null}
+      <h2 className="text-2xl font-bold leading-tight text-foreground min-[380px]:text-3xl sm:text-4xl">
+        {title}
+      </h2>
+      {sub ? (
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">{sub}</p>
+      ) : null}
     </Reveal>
   );
 }

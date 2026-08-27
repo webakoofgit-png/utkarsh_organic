@@ -35,7 +35,7 @@ export default function BlogPage() {
       <div className="container-x">
         <div className="text-center max-w-2xl mx-auto">
           <p className="eyebrow">Field Notes &amp; Kitchen Guides</p>
-          <h1 className="mt-2 font-display text-4xl font-extrabold sm:text-5xl">The Utkarsh Organic Journal</h1>
+          <h1 className="mt-2 font-display text-3xl font-extrabold sm:text-5xl">The Utkarsh Organic Journal</h1>
           <p className="mt-3 text-muted-foreground">
             Thoughtful articles on organic farming practices, culinary shortcuts, and pantry care.
           </p>
@@ -43,8 +43,8 @@ export default function BlogPage() {
 
         {/* Featured Post */}
         {featured && (
-          <div className="mt-14 grid overflow-hidden rounded-[1.75rem] bg-forest text-forest-foreground sm:rounded-[2.5rem] lg:grid-cols-2">
-            <img src={flatlay} alt={featured.title} className="h-80 w-full bg-cream object-contain p-3 lg:h-full" />
+          <div className="mt-14 grid overflow-hidden rounded-[1.35rem] bg-forest text-forest-foreground sm:rounded-[2.5rem] lg:grid-cols-2">
+            <img src={flatlay} alt={featured.title} className="h-56 w-full bg-cream object-contain p-3 sm:h-80 lg:h-full" />
             <div className="flex flex-col justify-center p-6 sm:p-12">
               <span className="text-xs font-bold uppercase tracking-widest text-accent">Featured Story &middot; {featured.read}</span>
               <h2 className="mt-4 font-display text-3xl font-extrabold leading-snug sm:text-4xl">{featured.title}</h2>
@@ -68,7 +68,7 @@ export default function BlogPage() {
             <Reveal key={post.slug} delay={index * 0.06}>
               <Link
                 to={`/blog/${post.slug}`}
-                className="group flex flex-col h-full rounded-3xl border border-border bg-background p-7 transition hover:-translate-y-1 hover:shadow-lift"
+                className="group flex h-full flex-col rounded-[1.35rem] border border-border bg-background p-5 transition hover:-translate-y-1 hover:shadow-lift sm:rounded-3xl sm:p-7"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
                   <span className="font-bold text-accent">{post.read}</span>

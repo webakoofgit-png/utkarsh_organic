@@ -25,7 +25,7 @@ export default function LoginPage() {
   return (
     <main className="pt-24 pb-20 lg:pt-32">
       <div className="container-x max-w-md">
-        <div className="rounded-3xl border border-border bg-background p-8 shadow-soft">
+        <div className="rounded-[1.35rem] border border-border bg-background p-5 shadow-soft sm:rounded-3xl sm:p-8">
           <div className="text-center">
             <div className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-accent">
               <Leaf className="h-6 w-6" />

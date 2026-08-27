@@ -182,7 +182,7 @@ export default function BulkOrdersPage() {
             },
           ].map(({ icon: Icon, title, desc }, index) => (
             <Reveal key={title} delay={index * 0.08}>
-              <div className="surface-card p-7 h-full">
+              <div className="surface-card h-full p-5 sm:p-7">
                 <div className="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-accent">
                   <Icon className="h-6 w-6" />
                 </div>
@@ -249,7 +249,7 @@ export default function BulkOrdersPage() {
           </div>
 
           {/* Right Form */}
-          <div className="rounded-3xl border border-border bg-background p-8 shadow-soft">
+          <div className="rounded-[1.35rem] border border-border bg-background p-5 shadow-soft sm:rounded-3xl sm:p-8">
             <h3 className="font-display text-2xl font-extrabold">Request Bulk Price Quote</h3>
             <p className="mt-1 text-xs text-muted-foreground">
               Fill in your specifications and receive wholesale rates within 4 hours.

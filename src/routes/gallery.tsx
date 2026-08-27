@@ -70,12 +70,12 @@ export default function GalleryPage() {
 
         <div className="container-x relative z-10">
           <Reveal className="mx-auto max-w-4xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-earth/45 bg-green-950/72 px-5 py-2 text-sm font-extrabold text-cream shadow-[0_0_24px_rgba(122,82,52,0.22)] backdrop-blur-md">
+            <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-earth/45 bg-green-950/72 px-3 py-2 text-xs font-extrabold text-cream shadow-[0_0_24px_rgba(122,82,52,0.22)] backdrop-blur-md sm:px-5 sm:text-sm">
               <Camera className="h-4 w-4 text-beige" />
               <span>Farm Gallery</span>
               <Sparkles className="h-3.5 w-3.5 text-beige" />
             </div>
-            <h1 className="mx-auto mt-5 max-w-4xl text-balance font-display text-3xl font-black leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+            <h1 className="mx-auto mt-5 max-w-4xl text-balance font-display text-2xl font-black leading-tight text-white min-[380px]:text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
               Farm, products and <span className="text-beige">pantry-ready</span> formats.
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/78 sm:text-base">
@@ -96,7 +96,7 @@ export default function GalleryPage() {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {GALLERY_ITEMS.map((item, index) => (
             <Reveal key={item.title} delay={index * 0.04}>
-              <article className="surface-card flex h-full min-h-[25rem] flex-col overflow-hidden p-3">
+              <article className="surface-card flex h-full min-h-[21rem] flex-col overflow-hidden p-3 sm:min-h-[25rem]">
                 <div
                   className={`grid aspect-[4/3] place-items-center overflow-hidden rounded-[1.25rem] bg-cream ${item.fit === "contain" ? "p-4" : "p-0"}`}
                 >
@@ -121,7 +121,7 @@ export default function GalleryPage() {
       </section>
 
       <section className="bg-gradient-cream py-16 lg:py-20">
-        <div className="container-x grid gap-8 rounded-[2rem] bg-white p-5 shadow-soft sm:p-7 md:p-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+        <div className="container-x grid gap-8 rounded-[1.35rem] bg-white p-5 shadow-soft sm:rounded-[2rem] sm:p-7 md:p-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
           <div>
             <p className="eyebrow mb-3">Visit and orders</p>
             <h2 className="font-display text-3xl font-black sm:text-4xl">

@@ -43,7 +43,7 @@ export default function AccountPage() {
           {user && (
             <button
               onClick={logout}
-              className="inline-flex items-center gap-2 rounded-full border border-forest-foreground/30 px-5 py-2.5 text-xs font-bold transition hover:bg-forest-foreground/10"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-forest-foreground/30 px-5 py-2.5 text-xs font-bold transition hover:bg-forest-foreground/10 sm:w-auto"
             >
               <LogOut className="h-4 w-4" /> Sign Out
             </button>
@@ -51,7 +51,7 @@ export default function AccountPage() {
         </div>
 
         {/* Tab Navigation */}
-        <div className="mt-8 flex flex-wrap gap-2 border-b border-border pb-4">
+        <div className="no-scrollbar -mx-1 mt-8 flex snap-x gap-2 overflow-x-auto border-b border-border px-1 pb-4 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
           {[
             { id: "orders", label: `My Orders (${orders.length})`, icon: Package },
             { id: "wishlist", label: `Wishlist (${wishlist.length})`, icon: Heart },
@@ -61,7 +61,7 @@ export default function AccountPage() {
             <button
               key={id}
               onClick={() => setActiveTab(id as any)}
-              className={`flex max-w-full items-center gap-2 rounded-full px-4 py-2.5 text-left text-sm font-bold transition sm:px-5 ${
+              className={`flex max-w-full shrink-0 snap-start items-center gap-2 rounded-full px-4 py-2.5 text-left text-sm font-bold transition sm:px-5 ${
                 activeTab === id ? "bg-primary text-primary-foreground" : "bg-cream text-foreground hover:bg-secondary"
               }`}
             >
@@ -145,7 +145,7 @@ export default function AccountPage() {
           )}
 
           {activeTab === "profile" && (
-            <div className="max-w-xl rounded-3xl border border-border bg-background p-8 space-y-6">
+            <div className="max-w-xl space-y-6 rounded-[1.35rem] border border-border bg-background p-5 sm:rounded-3xl sm:p-8">
               <h3 className="font-display text-xl font-bold">Personal Information</h3>
               <div className="space-y-4">
                 <div>

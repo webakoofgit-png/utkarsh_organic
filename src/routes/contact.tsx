@@ -171,7 +171,7 @@ export default function ContactPage() {
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-12">
           {/* Contact Details Card */}
           <Reveal className="space-y-8">
-            <div className="rounded-3xl border border-border bg-forest p-8 text-forest-foreground shadow-lift">
+            <div className="rounded-[1.35rem] border border-border bg-forest p-5 text-forest-foreground shadow-lift sm:rounded-3xl sm:p-8">
               <span className="rounded-full bg-accent/20 px-3.5 py-1 text-[11px] font-bold text-accent uppercase tracking-wider">
                 Direct Farm Unit
               </span>
@@ -184,7 +184,7 @@ export default function ContactPage() {
               <div className="mt-8 space-y-5 text-sm">
                 <div className="flex gap-4">
                   <MapPin className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                  <div>
+                  <div className="min-w-0">
                     <p className="font-bold">Farm &amp; Factory Address</p>
                     <p className="text-xs text-forest-foreground/80 mt-1 leading-relaxed">
                       {COMPANY_INFO.address.full}
@@ -194,7 +194,7 @@ export default function ContactPage() {
 
                 <div className="flex gap-4">
                   <Phone className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                  <div>
+                  <div className="min-w-0">
                     <p className="font-bold">Direct Call &amp; Support</p>
                     <p className="text-xs text-forest-foreground/80 mt-1">
                       {COMPANY_INFO.phoneSecondary
@@ -206,9 +206,9 @@ export default function ContactPage() {
 
                 <div className="flex gap-4">
                   <Mail className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                  <div>
+                  <div className="min-w-0">
                     <p className="font-bold">Email Addresses</p>
-                    <p className="text-xs text-forest-foreground/80 mt-1">
+                    <p className="mt-1 break-all text-xs text-forest-foreground/80">
                       {COMPANY_INFO.officialEmail
                         ? `${COMPANY_INFO.email} / ${COMPANY_INFO.officialEmail}`
                         : COMPANY_INFO.email}
@@ -218,7 +218,7 @@ export default function ContactPage() {
 
                 <div className="flex gap-4">
                   <MessageCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                  <div>
+                  <div className="min-w-0">
                     <p className="font-bold">WhatsApp Direct Order</p>
                     <a
                       href={`https://wa.me/${COMPANY_INFO.phonePrimary.replace(/[^0-9]/g, "")}`}
@@ -234,21 +234,21 @@ export default function ContactPage() {
 
               {/* Official Badges */}
               <div className="mt-8 pt-6 border-t border-forest-foreground/15 grid gap-2 text-xs text-forest-foreground/80">
-                <div className="flex items-center gap-2">
+                <div className="flex min-w-0 items-center gap-2">
                   <ShieldCheck className="h-4 w-4 text-accent shrink-0" />
-                  <span>
+                  <span className="min-w-0 break-words">
                     <strong>FSSAI Reg. No:</strong> {COMPANY_INFO.fssaiRegNo}
                   </span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex min-w-0 items-center gap-2">
                   <Award className="h-4 w-4 text-accent shrink-0" />
-                  <span>
+                  <span className="min-w-0 break-words">
                     <strong>GSTIN:</strong> {COMPANY_INFO.gstin}
                   </span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex min-w-0 items-center gap-2">
                   <Award className="h-4 w-4 text-accent shrink-0" />
-                  <span>
+                  <span className="min-w-0 break-words">
                     <strong>MSME Udyam:</strong> {COMPANY_INFO.udyamRegNo}
                   </span>
                 </div>
@@ -258,7 +258,7 @@ export default function ContactPage() {
 
           {/* Contact Form */}
           <Reveal delay={0.12}>
-            <div className="rounded-3xl border border-border bg-cream p-8 shadow-soft">
+            <div className="rounded-[1.35rem] border border-border bg-cream p-5 shadow-soft sm:rounded-3xl sm:p-8">
               <h3 className="font-display text-2xl font-extrabold text-foreground">
                 Send Us a Message
               </h3>

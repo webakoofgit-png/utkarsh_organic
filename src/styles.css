@@ -161,6 +161,7 @@
     width: 100%;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    text-size-adjust: 100%;
   }
 
   body {
@@ -174,6 +175,7 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
   }
 
   img,
@@ -198,6 +200,8 @@
   textarea,
   button {
     max-width: 100%;
+    font: inherit;
+    touch-action: manipulation;
   }
 
   p,
@@ -218,6 +222,27 @@
   h4 {
     font-family: var(--font-display);
     letter-spacing: 0;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .safe-bottom-pad {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 639px) {
+  .surface-card {
+    border-radius: var(--radius-xl);
   }
 }
 

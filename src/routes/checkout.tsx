@@ -148,7 +148,7 @@ export default function CheckoutPage() {
           <form onSubmit={handleSubmit} className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,400px)] lg:gap-10">
             <div className="space-y-8">
               {/* Delivery Details */}
-              <div className="rounded-3xl border border-border bg-background p-6 sm:p-8">
+              <div className="rounded-[1.35rem] border border-border bg-background p-5 sm:rounded-3xl sm:p-8">
                 <h2 className="font-display text-xl font-bold flex items-center gap-2">
                   <Truck className="h-5 w-5 text-accent" /> Delivery Address
                 </h2>
@@ -228,16 +228,16 @@ export default function CheckoutPage() {
               </div>
 
               {/* Payment Methods */}
-              <div className="rounded-3xl border border-border bg-background p-6 sm:p-8">
+              <div className="rounded-[1.35rem] border border-border bg-background p-5 sm:rounded-3xl sm:p-8">
                 <h2 className="font-display text-xl font-bold flex items-center gap-2">
                   <CreditCard className="h-5 w-5 text-accent" /> Select Payment Method
                 </h2>
 
                 <div className="mt-6 space-y-3">
                   <label className={`flex cursor-pointer flex-col gap-3 rounded-2xl border p-4 transition sm:flex-row sm:items-center sm:justify-between ${paymentMethod === "upi" ? "border-accent bg-secondary/40" : "border-border"}`}>
-                    <div className="flex items-center gap-3">
+                    <div className="flex min-w-0 items-center gap-3">
                       <input type="radio" name="payment" checked={paymentMethod === "upi"} onChange={() => setPaymentMethod("upi")} className="accent-accent" />
-                      <div>
+                      <div className="min-w-0">
                         <p className="font-display font-bold text-sm">UPI / QR Code (GPay, PhonePe, Paytm)</p>
                         <p className="text-xs text-muted-foreground">Instant payment with zero transaction fees</p>
                       </div>
@@ -246,9 +246,9 @@ export default function CheckoutPage() {
                   </label>
 
                   <label className={`flex cursor-pointer flex-col gap-3 rounded-2xl border p-4 transition sm:flex-row sm:items-center sm:justify-between ${paymentMethod === "cod" ? "border-accent bg-secondary/40" : "border-border"}`}>
-                    <div className="flex items-center gap-3">
+                    <div className="flex min-w-0 items-center gap-3">
                       <input type="radio" name="payment" checked={paymentMethod === "cod"} onChange={() => setPaymentMethod("cod")} className="accent-accent" />
-                      <div>
+                      <div className="min-w-0">
                         <p className="font-display font-bold text-sm">Cash on Delivery (COD)</p>
                         <p className="text-xs text-muted-foreground">Pay cash when your order reaches your doorstep</p>
                       </div>
@@ -257,9 +257,9 @@ export default function CheckoutPage() {
                   </label>
 
                   <label className={`flex cursor-pointer flex-col gap-3 rounded-2xl border p-4 transition sm:flex-row sm:items-center sm:justify-between ${paymentMethod === "card" ? "border-accent bg-secondary/40" : "border-border"}`}>
-                    <div className="flex items-center gap-3">
+                    <div className="flex min-w-0 items-center gap-3">
                       <input type="radio" name="payment" checked={paymentMethod === "card"} onChange={() => setPaymentMethod("card")} className="accent-accent" />
-                      <div>
+                      <div className="min-w-0">
                         <p className="font-display font-bold text-sm">Credit / Debit Card / Net Banking</p>
                         <p className="text-xs text-muted-foreground">Secure 256-bit encrypted checkout</p>
                       </div>
@@ -271,7 +271,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* Right Summary */}
-            <div className="h-fit rounded-3xl border border-border bg-cream p-7">
+            <div className="h-fit rounded-[1.35rem] border border-border bg-cream p-5 sm:rounded-3xl sm:p-7 lg:sticky lg:top-24">
               <h2 className="font-display text-xl font-bold">Summary ({lines.length} items)</h2>
 
               <div className="mt-6 max-h-60 overflow-y-auto space-y-3 pr-1">
@@ -279,7 +279,7 @@ export default function CheckoutPage() {
                   <div key={`${product.slug}-${weight}`} className="flex items-start justify-between gap-3 py-1 text-xs">
                     <div className="flex min-w-0 items-start gap-2">
                       <span className="font-bold">{qty}x</span>
-                      <span className="min-w-0">{product.name} ({weight})</span>
+                      <span className="min-w-0 break-words">{product.name} ({weight})</span>
                     </div>
                     <span className="shrink-0 text-right font-bold">{inr(amount)}</span>
                   </div>

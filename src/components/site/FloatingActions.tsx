@@ -9,7 +9,7 @@ export function WhatsAppIcon({ className = "h-5 w-5" }: { className?: string }) 
 
 export function FloatingActions() {
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-3 sm:bottom-6 sm:right-6">
+    <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-50 flex flex-col gap-3 sm:bottom-6 sm:right-6">
       <a
         href={`https://wa.me/${COMPANY_INFO.whatsappNumber}`}
         target="_blank"

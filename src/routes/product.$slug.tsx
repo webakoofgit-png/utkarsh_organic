@@ -96,7 +96,7 @@ export default function ProductDetailPage() {
       </nav>
 
       <section className="container-x grid gap-8 pb-14 pt-2 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-10 lg:pb-24">
-        <div className="grid aspect-square min-h-0 place-items-center overflow-hidden rounded-[1.5rem] bg-gradient-to-b from-cream to-background p-4 sm:rounded-[2rem] sm:p-8">
+        <div className="grid aspect-square min-h-0 place-items-center overflow-hidden rounded-[1.25rem] bg-gradient-to-b from-cream to-background p-4 sm:rounded-[2rem] sm:p-8">
           <ProductImageWithLogo
             src={product.image}
             alt={product.name}
@@ -108,8 +108,8 @@ export default function ProductDetailPage() {
         <div className="min-w-0 lg:py-4">
           <p className="eyebrow">{categoryLabel(product.category)}</p>
 
-          <div className="mt-3 flex items-start justify-between gap-4">
-            <h1 className="min-w-0 font-display text-3xl font-extrabold leading-tight sm:text-5xl">
+          <div className="mt-3 flex items-start justify-between gap-3 sm:gap-4">
+            <h1 className="min-w-0 font-display text-2xl font-extrabold leading-tight min-[380px]:text-3xl sm:text-5xl">
               {product.name}
             </h1>
             <button
@@ -209,7 +209,7 @@ export default function ProductDetailPage() {
               { icon: ShieldCheck, text: "Manufacturer & supplier" },
               { icon: LeafIcon, text: "Source specs included" },
             ].map(({ icon: Icon, text }) => (
-              <p key={text} className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
+            <p key={text} className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
                 <Icon className="h-4 w-4 shrink-0 text-accent" /> {text}
               </p>
             ))}
@@ -220,7 +220,7 @@ export default function ProductDetailPage() {
       <section className="bg-beige/45 py-16 lg:py-20">
         <div className="container-x grid gap-10 lg:grid-cols-3">
           <div className="min-w-0 lg:col-span-2">
-            <h2 className="font-display text-3xl font-extrabold">Why buyers choose it</h2>
+            <h2 className="font-display text-2xl font-extrabold sm:text-3xl">Why buyers choose it</h2>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               {product.benefits.map((benefit) => (
                 <p key={benefit} className="flex gap-3 rounded-2xl bg-background p-4 text-sm leading-relaxed">
@@ -255,7 +255,7 @@ export default function ProductDetailPage() {
 
       <section className="container-x grid gap-10 py-16 lg:grid-cols-[0.85fr_1.15fr] lg:py-24">
         <div className="min-w-0">
-          <h2 className="font-display text-3xl font-extrabold">How to use it</h2>
+          <h2 className="font-display text-2xl font-extrabold sm:text-3xl">How to use it</h2>
           <ol className="mt-6 space-y-4">
             {product.usage.map((tip, index) => (
               <li key={tip} className="flex gap-4">
@@ -299,7 +299,7 @@ export default function ProductDetailPage() {
                 All products
               </Link>
             </div>
-            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-8 grid gap-5 min-[560px]:grid-cols-2 lg:grid-cols-4">
               {related.map((item) => (
                 <ProductCard key={item.slug} product={item} compact />
               ))}

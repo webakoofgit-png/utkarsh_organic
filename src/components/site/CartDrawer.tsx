@@ -36,8 +36,8 @@ export function CartDrawer() {
           <>
             <div className="flex-1 space-y-5 overflow-y-auto px-4 py-5 sm:px-6">
               {lines.map(({ product, weight, qty, amount }) => (
-                <div key={`${product.slug}-${weight}`} className="flex gap-3">
-                  <div className="grid h-20 w-20 shrink-0 place-items-center overflow-hidden rounded-2xl bg-cream p-2">
+                <div key={`${product.slug}-${weight}`} className="flex min-w-0 gap-3">
+                  <div className="grid h-[4.5rem] w-[4.5rem] shrink-0 place-items-center overflow-hidden rounded-2xl bg-cream p-2 min-[380px]:h-20 min-[380px]:w-20">
                     <ProductImageWithLogo
                       src={product.image}
                       alt={product.name}
@@ -54,7 +54,7 @@ export function CartDrawer() {
                         <span className="w-7 text-center text-xs font-bold">{qty}</span>
                         <button aria-label="Increase quantity" onClick={() => setQty(product.slug, weight, qty + 1)} className="p-1.5"><Plus className="h-3.5 w-3.5" /></button>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex min-w-0 items-center gap-2">
                         <span className="font-display text-sm font-bold">{inr(amount)}</span>
                         <button aria-label={`Remove ${product.name}`} onClick={() => removeLine(product.slug, weight)} className="p-1 text-muted-foreground hover:text-destructive"><Trash2 className="h-4 w-4" /></button>
                       </div>
@@ -63,7 +63,7 @@ export function CartDrawer() {
                 </div>
               ))}
             </div>
-            <div className="border-t border-border bg-cream px-4 py-5 sm:px-6">
+            <div className="safe-bottom-pad border-t border-border bg-cream px-4 py-5 sm:px-6">
               <div className="flex justify-between font-display text-lg font-bold"><span>Subtotal</span><span>{inr(subtotal)}</span></div>
               <p className="mt-1 text-xs text-muted-foreground">Shipping and taxes are calculated at checkout.</p>
               <Link to="/checkout" onClick={() => setCartOpen(false)} className="mt-5 flex w-full items-center justify-center rounded-full bg-primary px-5 py-3.5 text-sm font-bold text-primary-foreground transition hover:bg-forest">Proceed to checkout</Link>

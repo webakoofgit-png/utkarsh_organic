@@ -262,7 +262,7 @@ export default function HomePage() {
           </svg>
         </div>
         <div className="container-x -mt-1">
-          <div className="grid gap-3 rounded-[1.75rem] border border-green-500/16 bg-white p-4 shadow-lift sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-3 rounded-[1.35rem] border border-green-500/16 bg-white p-4 shadow-lift sm:grid-cols-2 sm:rounded-[1.75rem] lg:grid-cols-4">
             <StatCard
               label="Official Products"
               value={<Counter to={products.length || 23} suffix="+" />}
@@ -379,7 +379,7 @@ export default function HomePage() {
       </section>
 
       <section className="container-x py-16 lg:py-24">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-5 min-[560px]:grid-cols-2 lg:grid-cols-5">
           {categories.slice(0, 5).map((category, index) => {
             const iconMeta =
               categoryIconMap[category.id as keyof typeof categoryIconMap] ||
@@ -516,7 +516,7 @@ export default function HomePage() {
             </Reveal>
           ) : null}
 
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid gap-5 min-[560px]:grid-cols-2">
             {galleryCardItems.map((item, index) => (
               <Reveal key={item.title} delay={(index + 1) * 0.05}>
                 <Link to="/gallery" className="group surface-card block h-full overflow-hidden p-3">
@@ -683,7 +683,7 @@ function StatCard({
         <Icon className="h-5 w-5" />
       </div>
       <div>
-        <p className="font-display text-xl font-black text-foreground">{value}</p>
+            <p className="font-display text-lg font-black text-foreground sm:text-xl">{value}</p>
         <p className="mt-1 text-xs font-semibold text-muted-foreground">{label}</p>
       </div>
     </div>

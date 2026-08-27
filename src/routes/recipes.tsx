@@ -17,18 +17,18 @@ export default function RecipesPage() {
       <div className="container-x">
         <div className="text-center max-w-2xl mx-auto">
           <p className="eyebrow">Pantry Inspirations</p>
-          <h1 className="mt-2 font-display text-4xl font-extrabold sm:text-5xl">Kitchen Recipes &amp; Shortcuts</h1>
+          <h1 className="mt-2 font-display text-3xl font-extrabold sm:text-5xl">Kitchen Recipes &amp; Shortcuts</h1>
           <p className="mt-3 text-muted-foreground">
             Discover how a single spoonful of our organic powders adds instant depth, vibrant colour, and rich flavour to daily dishes.
           </p>
         </div>
 
         {/* Recipe Grid */}
-        <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {RECIPES.map((recipe, index) => (
             <Reveal key={recipe.slug} delay={index * 0.06}>
               <div className="surface-card overflow-hidden flex flex-col h-full group">
-                <div className="relative grid h-56 place-items-center overflow-hidden bg-cream p-3">
+                <div className="relative grid h-48 place-items-center overflow-hidden bg-cream p-3 sm:h-56">
                   <img
                     src={images[index % images.length]}
                     alt={recipe.title}

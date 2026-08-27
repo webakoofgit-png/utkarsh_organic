@@ -126,9 +126,7 @@ export function CataloguePage() {
     <main className="pt-16 lg:pt-20 bg-background">
       {/* 100% Full Viewport Width Hero Banner Header */}
       {/* Desktop (1920): 300px | Laptop (1440): 250px | Tablet (768): 210px | Mobile (390): 160px */}
-      <section
-        className="relative flex min-h-[170px] w-full items-center overflow-hidden border-b border-green-300/20 bg-gradient-to-r from-primary via-leaf to-earth text-white shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]"
-      >
+      <section className="relative flex min-h-[160px] w-full items-center overflow-hidden border-b border-green-300/20 bg-gradient-to-r from-primary via-leaf to-earth text-white shadow-md sm:h-[210px] md:h-[230px] lg:h-[260px] xl:h-[300px]">
         {/* Subtle Ambient Leaf Glow */}
         <div className="absolute top-0 right-1/3 h-80 w-80 rounded-full bg-earth/15 blur-3xl pointer-events-none" />
 
@@ -145,7 +143,7 @@ export function CataloguePage() {
                 </div>
 
                 {/* Headline */}
-                <h1 className="mt-2 break-words font-serif text-2xl font-black leading-tight text-white min-[390px]:text-3xl md:text-4xl lg:text-5xl">
+                <h1 className="mt-2 break-words font-serif text-[1.65rem] font-black leading-tight text-white min-[390px]:text-3xl md:text-4xl lg:text-5xl">
                   {heroBanner.titleLine1}{" "}
                   <span className="relative inline-block text-beige">
                     {heroBanner.titleLine2}
@@ -203,7 +201,7 @@ export function CataloguePage() {
       {/* Catalogue Filters & Grid */}
       <section className="container-x py-6 lg:py-10">
         {/* Search & Categories Bar */}
-        <div className="grid min-w-0 gap-4 rounded-3xl border border-green-900/10 bg-secondary p-4 shadow-sm lg:grid-cols-[minmax(320px,420px)_minmax(0,1fr)] lg:items-center lg:p-5">
+        <div className="grid min-w-0 gap-4 rounded-[1.35rem] border border-green-900/10 bg-secondary p-3 shadow-sm sm:rounded-3xl sm:p-4 lg:grid-cols-[minmax(320px,420px)_minmax(0,1fr)] lg:items-center lg:p-5">
           {/* Search Input Container */}
           <form
             className="relative min-w-0"
@@ -243,7 +241,7 @@ export function CataloguePage() {
           </form>
 
           {/* Category Filter Badges */}
-          <div className="-mx-1 flex min-w-0 items-center gap-2 overflow-x-auto px-1 py-1">
+          <div className="no-scrollbar -mx-1 flex min-w-0 snap-x items-center gap-2 overflow-x-auto px-1 py-1">
             {[{ id: "all" as const, name: "All Products" }, ...categories].map((item) => (
               <button
                 key={item.id}
@@ -251,7 +249,7 @@ export function CataloguePage() {
                   setCategory(item.id);
                   updateSearch(q, item.id);
                 }}
-                className={`shrink-0 rounded-full px-3.5 py-2.5 text-left text-xs font-bold shadow-sm transition-all sm:px-4 ${
+                className={`shrink-0 snap-start rounded-full px-3.5 py-2.5 text-left text-xs font-bold shadow-sm transition-all sm:px-4 ${
                   category === item.id
                     ? "bg-primary text-primary-foreground shadow-md scale-105"
                     : "bg-white border border-green-900/10 text-foreground/80 hover:bg-green-50 hover:text-green-900"
@@ -286,7 +284,7 @@ export function CataloguePage() {
 
         {/* Products Grid */}
         {items.length ? (
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="mt-8 grid gap-5 min-[560px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {items.map((product) => (
               <ProductCard key={product.slug} product={product} />
             ))}
@@ -312,7 +310,7 @@ export function CataloguePage() {
         )}
 
         {/* Commercial / Bulk Pack Callout */}
-        <div className="mt-14 rounded-3xl bg-secondary p-7 text-center">
+        <div className="mt-14 rounded-[1.35rem] bg-secondary p-5 text-center sm:rounded-3xl sm:p-7">
           <p className="font-display text-xl font-bold">Looking for commercial packs?</p>
           <p className="mt-2 text-sm text-muted-foreground">
             Tell us the product, mesh and volume you need—we will make a sensible plan.

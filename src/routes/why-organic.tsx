@@ -159,7 +159,7 @@ export default function WhyOrganicPage() {
               <ShieldCheck className="h-8 w-8 text-accent shrink-0" />
               <div>
                 <p className="text-xs font-bold uppercase text-muted-foreground">FSSAI Certified</p>
-                <p className="font-display font-bold text-sm text-foreground">
+                <p className="break-words font-display text-sm font-bold text-foreground">
                   Reg. {COMPANY_INFO.fssaiRegNo}
                 </p>
               </div>
@@ -170,7 +170,7 @@ export default function WhyOrganicPage() {
                 <p className="text-xs font-bold uppercase text-muted-foreground">
                   GSTIN Registered
                 </p>
-                <p className="font-display font-bold text-sm text-foreground">
+                <p className="break-words font-display text-sm font-bold text-foreground">
                   {COMPANY_INFO.gstin}
                 </p>
               </div>
@@ -179,7 +179,7 @@ export default function WhyOrganicPage() {
               <Award className="h-8 w-8 text-accent shrink-0" />
               <div>
                 <p className="text-xs font-bold uppercase text-muted-foreground">MSME Udyam Reg.</p>
-                <p className="font-display font-bold text-sm text-foreground">
+                <p className="break-words font-display text-sm font-bold text-foreground">
                   {COMPANY_INFO.udyamRegNo}
                 </p>
               </div>
@@ -191,8 +191,8 @@ export default function WhyOrganicPage() {
         <section className="mt-16">
           <SectionHeading eyebrow="Head to Head" title="How Utkarsh Organic Compares" />
 
-          <div className="mt-10 overflow-x-auto">
-            <table className="min-w-[720px] w-full overflow-hidden rounded-3xl border border-border bg-background text-left shadow-soft">
+          <div className="no-scrollbar -mx-4 mt-10 overflow-x-auto px-4">
+            <table className="w-full min-w-[42rem] overflow-hidden rounded-2xl border border-border bg-background text-left shadow-soft sm:min-w-[720px] sm:rounded-3xl">
               <thead>
                 <tr className="bg-forest text-forest-foreground text-sm font-display font-bold">
                   <th className="p-5 sm:p-6">Feature</th>
@@ -233,8 +233,10 @@ export default function WhyOrganicPage() {
                 ].map(([feature, organic, conv, raw], i) => (
                   <tr key={i} className="hover:bg-cream/50 transition">
                     <td className="p-5 font-bold font-display text-foreground">{feature}</td>
-                    <td className="p-5 font-semibold text-primary bg-secondary/30 flex items-center gap-2">
-                      <Check className="h-4 w-4 text-accent shrink-0" /> {organic}
+                    <td className="bg-secondary/30 p-5 font-semibold text-primary">
+                      <span className="flex items-start gap-2">
+                        <Check className="h-4 w-4 shrink-0 text-accent" /> {organic}
+                      </span>
                     </td>
                     <td className="p-5 text-muted-foreground">{conv}</td>
                     <td className="p-5 text-muted-foreground">{raw}</td>

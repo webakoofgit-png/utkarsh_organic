@@ -47,7 +47,7 @@ export function Footer() {
       <div className="container-x relative py-14 lg:py-20">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.25fr_0.9fr_0.9fr_1.25fr]">
           <div className="space-y-5">
-            <Link to="/" className="inline-flex items-center gap-3">
+            <Link to="/" className="inline-flex min-w-0 items-center gap-3">
               <div className="grid h-16 w-16 shrink-0 place-items-center overflow-hidden rounded-xl border border-earth/45 bg-white p-0.5 shadow-[0_0_18px_rgba(122,82,52,0.22)]">
                 <img
                   src={logo}
@@ -55,11 +55,11 @@ export function Footer() {
                   className="h-full w-full object-contain"
                 />
               </div>
-              <span>
+              <span className="min-w-0">
                 <span className="block font-display text-2xl font-black uppercase leading-none">
                   Utkarsh
                 </span>
-                <span className="mt-1 block text-xs font-extrabold uppercase tracking-[0.22em] text-beige">
+                <span className="mt-1 block break-words text-xs font-extrabold uppercase tracking-[0.18em] text-beige sm:tracking-[0.22em]">
                   Organic Farm
                 </span>
               </span>
@@ -73,10 +73,10 @@ export function Footer() {
             </div>
 
             <div className="flex flex-wrap gap-2 text-[11px] font-bold text-cream">
-              <span className="rounded-full border border-earth/25 bg-earth/10 px-3 py-1.5">
+              <span className="max-w-full break-words rounded-full border border-earth/25 bg-earth/10 px-3 py-1.5">
                 FSSAI {COMPANY_INFO.fssaiRegNo}
               </span>
-              <span className="rounded-full border border-earth/25 bg-earth/10 px-3 py-1.5">
+              <span className="max-w-full break-words rounded-full border border-earth/25 bg-earth/10 px-3 py-1.5">
                 GST {COMPANY_INFO.gstin}
               </span>
             </div>
@@ -174,7 +174,7 @@ export function Footer() {
 
       <div className="border-t border-green-500/20 bg-black/35 py-5">
         <div className="container-x flex flex-col items-center justify-between gap-4 text-center text-xs text-white/70 md:flex-row md:text-left">
-          <p>
+          <p className="break-words">
             © {currentYear} UTKARSH ORGANIC FARM. All Rights Reserved. Developed by{" "}
             <a
               href="https://webakoof.com"
@@ -185,7 +185,7 @@ export function Footer() {
               Webakoof
             </a>
           </p>
-          <p className="font-semibold text-white/72">
+          <p className="break-words font-semibold text-white/72">
             GSTIN {COMPANY_INFO.gstin} · FSSAI {COMPANY_INFO.fssaiRegNo} · Udyam{" "}
             {COMPANY_INFO.udyamRegNo}
           </p>

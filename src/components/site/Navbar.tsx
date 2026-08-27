@@ -83,10 +83,10 @@ export function Navbar() {
       <MoringaLeafSprig className="pointer-events-none absolute right-[26rem] top-1/2 hidden h-12 w-40 -translate-y-1/2 rotate-180 text-primary/10 xl:block" />
       <MoringaLeafSprig className="pointer-events-none absolute right-8 top-1/2 hidden h-14 w-44 -translate-y-1/2 text-primary/10 lg:block" />
 
-      <div className="container-x relative z-10 flex h-16 items-center justify-between gap-3 lg:h-20">
+      <div className="container-x relative z-10 flex h-16 items-center justify-between gap-2 lg:h-20 lg:gap-3">
         <Link
           to="/"
-          className="flex min-w-0 shrink-0 items-center gap-2 transition-transform duration-300 hover:-translate-y-0.5 sm:gap-3"
+          className="flex min-w-0 shrink items-center gap-2 transition-transform duration-300 hover:-translate-y-0.5 sm:gap-3 lg:shrink-0"
         >
           <div className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-xl border border-green-500/30 bg-white p-0.5 shadow-sm min-[380px]:h-12 min-[380px]:w-12 sm:h-14 sm:w-14">
             <img
@@ -96,11 +96,11 @@ export function Navbar() {
             />
           </div>
           <span className="flex min-w-0 flex-col leading-none">
-            <span className="font-display text-base font-black min-[380px]:text-lg sm:text-xl">
+            <span className="truncate font-display text-base font-black min-[380px]:text-lg sm:text-xl">
               Utkarsh
             </span>
             <span
-              className={`text-[0.56rem] font-bold uppercase tracking-[0.16em] min-[380px]:text-[0.65rem] min-[380px]:tracking-[0.28em] ${solid ? "text-primary" : "text-green-200"}`}
+              className={`truncate text-[0.56rem] font-bold uppercase tracking-[0.16em] max-[359px]:hidden min-[380px]:text-[0.65rem] min-[380px]:tracking-[0.28em] ${solid ? "text-primary" : "text-green-200"}`}
             >
               Organic Farm
             </span>
@@ -137,8 +137,10 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="flex shrink-0 items-center gap-1.5">
-          <LanguageToggle solid={solid} />
+        <div className="flex shrink-0 items-center gap-1">
+          <div className="hidden min-[420px]:block">
+            <LanguageToggle solid={solid} />
+          </div>
           <Link
             to="/products"
             className={`hidden items-center gap-2 rounded-full px-4 py-2.5 text-sm font-extrabold shadow-sm transition hover:-translate-y-0.5 lg:inline-flex ${
@@ -153,7 +155,7 @@ export function Navbar() {
           <button
             aria-label="Search products"
             onClick={() => setSearchOpen((v) => !v)}
-            className={`rounded-full p-2.5 transition-all hover:-translate-y-0.5 ${
+            className={`grid h-10 w-10 place-items-center rounded-full transition-all hover:-translate-y-0.5 ${
               solid ? "text-foreground hover:bg-secondary" : "text-white hover:bg-white/12"
             }`}
           >
@@ -162,7 +164,7 @@ export function Navbar() {
           <Link
             to={user ? "/account" : "/login"}
             aria-label="Account"
-            className={`hidden rounded-full p-2.5 transition-all hover:-translate-y-0.5 sm:block ${
+            className={`hidden h-10 w-10 place-items-center rounded-full transition-all hover:-translate-y-0.5 sm:grid ${
               solid ? "text-foreground hover:bg-secondary" : "text-white hover:bg-white/12"
             }`}
           >
@@ -171,7 +173,7 @@ export function Navbar() {
           <Link
             to="/account?tab=wishlist"
             aria-label="Wishlist"
-            className={`relative hidden rounded-full p-2.5 transition-all hover:-translate-y-0.5 sm:block ${
+            className={`relative hidden h-10 w-10 place-items-center rounded-full transition-all hover:-translate-y-0.5 sm:grid ${
               solid ? "text-foreground hover:bg-secondary" : "text-white hover:bg-white/12"
             }`}
           >
@@ -185,7 +187,7 @@ export function Navbar() {
           <button
             aria-label="Open cart"
             onClick={() => setCartOpen(true)}
-            className={`relative rounded-full p-2.5 transition-all hover:-translate-y-0.5 ${
+            className={`relative grid h-10 w-10 place-items-center rounded-full transition-all hover:-translate-y-0.5 ${
               solid ? "text-foreground hover:bg-secondary" : "text-white hover:bg-white/12"
             }`}
           >
@@ -207,7 +209,7 @@ export function Navbar() {
           <button
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
-            className={`rounded-full p-2.5 transition-colors xl:hidden ${
+            className={`grid h-10 w-10 place-items-center rounded-full transition-colors xl:hidden ${
               solid ? "text-foreground hover:bg-secondary" : "text-white hover:bg-white/12"
             }`}
           >
@@ -227,7 +229,7 @@ export function Navbar() {
             className="overflow-hidden border-t border-border bg-white text-foreground"
           >
             <form
-              className="container-x flex items-center gap-3 py-4"
+              className="container-x flex items-center gap-2 py-3 sm:gap-3 sm:py-4"
               onSubmit={(e) => {
                 e.preventDefault();
                 const q = new FormData(e.currentTarget).get("q") as string;
@@ -240,9 +242,9 @@ export function Navbar() {
                 name="q"
                 autoFocus
                 placeholder="Search onion powder, turmeric, moringa tea, bulk packs..."
-                className="w-full bg-transparent py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground"
+                className="min-w-0 flex-1 bg-transparent py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground"
               />
-              <button className="rounded-full bg-primary px-5 py-2 text-xs font-bold text-primary-foreground hover:bg-forest">
+              <button className="shrink-0 rounded-full bg-primary px-4 py-2 text-xs font-bold text-primary-foreground hover:bg-forest sm:px-5">
                 Search
               </button>
             </form>
@@ -256,9 +258,9 @@ export function Navbar() {
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="border-t border-border bg-white text-foreground shadow-lg xl:hidden"
+            className="max-h-[calc(100svh-4rem)] overflow-y-auto border-t border-border bg-white text-foreground shadow-lg xl:hidden"
           >
-            <ul className="container-x grid gap-1 py-4">
+            <ul className="container-x safe-bottom-pad grid gap-1 py-4">
               {NAV.map((item, i) => (
                 <motion.li
                   key={item.to}
@@ -276,6 +278,20 @@ export function Navbar() {
               ))}
               <li className="px-4 py-2">
                 <LanguageToggle solid />
+              </li>
+              <li className="grid gap-1 sm:hidden">
+                <Link
+                  to={user ? "/account" : "/login"}
+                  className="block rounded-xl px-4 py-3 text-base font-semibold text-foreground hover:bg-secondary hover:text-primary"
+                >
+                  Account
+                </Link>
+                <Link
+                  to="/account?tab=wishlist"
+                  className="block rounded-xl px-4 py-3 text-base font-semibold text-foreground hover:bg-secondary hover:text-primary"
+                >
+                  Wishlist {wishlist.length ? `(${wishlist.length})` : ""}
+                </Link>
               </li>
               <li className="pt-2">
                 <Link
