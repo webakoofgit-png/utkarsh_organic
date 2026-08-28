@@ -24,8 +24,11 @@ import BulkOrdersPage from "@/routes/bulk-orders";
 import RecipesPage from "@/routes/recipes";
 import BlogPage from "@/routes/blog";
 import BlogPostPage from "@/routes/blog.$slug";
+import CancellationPolicyPage from "@/routes/cancellation-policy";
 import ContactPage from "@/routes/contact";
 import GalleryPage from "@/routes/gallery";
+import PrivacyPolicyPage from "@/routes/privacy-policy";
+import TermsConditionsPage from "@/routes/terms-conditions";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -99,6 +102,9 @@ export default function App() {
                   <Route path="/blog" element={<BlogPage />} />
                   <Route path="/blog/:slug" element={<BlogPostPage />} />
                   <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/cancellation-policy" element={<CancellationPolicyPage />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+                  <Route path="/terms-conditions" element={<TermsConditionsPage />} />
                   <Route path="/admin" element={<AdminPanelRedirect />} />
                   <Route path="/admin/panel" element={<AdminPanelRedirect />} />
                   <Route path="/admin/*" element={<AdminPanelRedirect />} />

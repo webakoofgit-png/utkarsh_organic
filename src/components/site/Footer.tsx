@@ -2,15 +2,18 @@ import { Link } from "react-router-dom";
 import {
   BadgeCheck,
   ExternalLink,
+  FileText,
   GalleryHorizontal,
   HelpCircle,
   Home,
   Leaf,
+  LockKeyhole,
   Mail,
   MapPin,
   MessageCircle,
   Package,
   Phone,
+  RotateCcw,
   ShieldCheck,
   ShoppingBag,
   User,
@@ -34,6 +37,9 @@ const helpLinks = [
   { icon: Package, label: "Track Order", to: "/track-order" },
   { icon: HelpCircle, label: "Contact Support", to: "/contact" },
   { icon: ShieldCheck, label: "Quality & Trust", to: "/why-organic" },
+  { icon: RotateCcw, label: "Cancellation Policy", to: "/cancellation-policy" },
+  { icon: LockKeyhole, label: "Privacy Policy", to: "/privacy-policy" },
+  { icon: FileText, label: "Terms & Conditions", to: "/terms-conditions" },
 ];
 
 export function Footer() {
@@ -185,6 +191,19 @@ export function Footer() {
               Webakoof
             </a>
           </p>
+          <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-semibold text-white/72 md:justify-end">
+            <Link to="/cancellation-policy" className="hover:text-beige hover:underline">
+              Cancellation Policy
+            </Link>
+            <span aria-hidden="true">|</span>
+            <Link to="/privacy-policy" className="hover:text-beige hover:underline">
+              Privacy Policy
+            </Link>
+            <span aria-hidden="true">|</span>
+            <Link to="/terms-conditions" className="hover:text-beige hover:underline">
+              Terms &amp; Conditions
+            </Link>
+          </nav>
           <p className="break-words font-semibold text-white/72">
             GSTIN {COMPANY_INFO.gstin} · FSSAI {COMPANY_INFO.fssaiRegNo} · Udyam{" "}
             {COMPANY_INFO.udyamRegNo}
