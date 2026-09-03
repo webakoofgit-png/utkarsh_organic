@@ -26,7 +26,6 @@ import {
   Users,
   Vegan,
 } from "lucide-react";
-import farm from "@/assets/farm.jpg";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Counter, Reveal, SectionHeading } from "@/components/site/motion-primitives";
 import { useCatalog } from "@/lib/catalog";
@@ -603,7 +602,6 @@ export default function HomePage() {
               <video
                 className="aspect-video w-full rounded-[1.5rem] bg-black object-contain"
                 src={storyVideo}
-                poster={farm}
                 controls
                 preload="metadata"
                 playsInline
