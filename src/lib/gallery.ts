@@ -30,7 +30,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     featured: true,
   },
   {
-    title: "Dehydrated Onion Ingredients",
+    title: "Onion Ingredients",
     label: "Ingredients",
     image: flipOnionPowder,
     description: "Onion based dehydrated ingredients prepared for consistent kitchen use.",

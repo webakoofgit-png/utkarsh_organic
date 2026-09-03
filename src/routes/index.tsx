@@ -453,7 +453,7 @@ export default function HomePage() {
         <div className="container-x grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
           <Reveal>
             <p className="eyebrow mb-3">Our Farm</p>
-            <h2 className="font-display text-3xl font-black leading-tight sm:text-5xl">
+            <h2 className="font-display text-2xl font-black leading-tight sm:text-4xl lg:text-[2.65rem]">
               {COMPANY_INFO.marathiHeader}
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
@@ -467,7 +467,10 @@ export default function HomePage() {
                   </div>
                   <div className="min-w-0">
                     <h3 className="font-display text-lg font-bold">{step.title}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                    <p
+                      className="mt-1 truncate text-[11px] leading-snug text-muted-foreground sm:text-xs lg:text-[13px]"
+                      title={step.text}
+                    >
                       {step.text}
                     </p>
                   </div>
@@ -544,12 +547,15 @@ export default function HomePage() {
             </Reveal>
           ) : null}
 
-          <div className="grid min-w-0 items-start gap-4 self-start sm:gap-5 min-[560px]:grid-cols-2">
+          <div className="grid min-w-0 items-stretch gap-4 self-start sm:gap-5 min-[560px]:grid-cols-2">
             {galleryCardItems.map((item, index) => (
-              <Reveal key={item.title} delay={(index + 1) * 0.05} className="min-w-0">
-                <Link to="/gallery" className="group surface-card block min-w-0 overflow-hidden p-3">
+              <Reveal key={item.title} delay={(index + 1) * 0.05} className="h-full min-w-0">
+                <Link
+                  to="/gallery"
+                  className="group surface-card flex h-full min-h-[18.5rem] min-w-0 flex-col overflow-hidden p-3"
+                >
                   <div
-                    className={`grid place-items-center overflow-hidden rounded-[1.25rem] bg-cream ${item.fit === "contain" ? "p-3" : "p-0"} ${item.frameClass || "aspect-[4/3]"}`}
+                    className={`grid aspect-[4/3] place-items-center overflow-hidden rounded-[1.25rem] bg-cream ${item.fit === "contain" ? "p-3" : "p-0"}`}
                   >
                     <img
                       src={item.image}
@@ -557,7 +563,7 @@ export default function HomePage() {
                       className={`h-full w-full object-center transition duration-500 group-hover:scale-[1.03] ${item.fit === "contain" ? "object-contain" : "object-cover"}`}
                     />
                   </div>
-                  <div className="min-h-[5.5rem] p-3">
+                  <div className="flex min-h-[5.5rem] flex-1 flex-col p-3">
                     <p className="text-xs font-extrabold uppercase text-accent">{item.label}</p>
                     <h3 className="mt-1 font-display text-base font-bold leading-snug">
                       {item.title}
