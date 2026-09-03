@@ -198,7 +198,7 @@ export default function HomePage() {
             <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
               <Link
                 to="/products"
-                className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-saffron px-5 py-3.5 text-sm font-extrabold text-white shadow-[0_16px_42px_rgba(122,82,52,0.28)] transition hover:-translate-y-0.5 hover:bg-white hover:text-primary min-[420px]:w-auto sm:px-7"
+                className="group inline-flex w-auto max-w-full items-center justify-center gap-2.5 rounded-full bg-saffron px-5 py-3.5 text-sm font-extrabold text-white shadow-[0_16px_42px_rgba(122,82,52,0.28)] transition hover:-translate-y-0.5 hover:bg-white hover:text-primary sm:px-7"
               >
                 <ShoppingBag className="h-4 w-4" />
                 उत्पादने पाहा
@@ -206,7 +206,7 @@ export default function HomePage() {
               </Link>
               <a
                 href="#farm-story"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/28 bg-white/10 px-5 py-3.5 text-sm font-bold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/16 min-[420px]:w-auto sm:px-7"
+                className="inline-flex w-auto max-w-full items-center justify-center gap-2 rounded-full border border-white/28 bg-white/10 px-5 py-3.5 text-sm font-bold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/16 sm:px-7"
               >
                 <Play className="h-3.5 w-3.5 fill-current text-beige" />
                 आमची प्रक्रिया
@@ -223,7 +223,7 @@ export default function HomePage() {
             </ul>
           </Reveal>
 
-          <Reveal delay={0.12} className="mx-auto w-full max-w-md lg:justify-self-end">
+          <Reveal delay={0.12} className="mx-auto w-full max-w-sm sm:max-w-md lg:justify-self-end">
             <div className="rounded-[1.5rem] border border-white/16 bg-white/12 p-3 shadow-[0_24px_80px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:rounded-[1.75rem] sm:p-5">
               <div className="rounded-[1.25rem] bg-white p-3 text-foreground sm:rounded-[1.35rem] sm:p-4">
                 <div className="grid aspect-[4/3] place-items-center overflow-hidden rounded-2xl bg-cream p-3">
@@ -237,7 +237,7 @@ export default function HomePage() {
                   <p className="text-xs font-extrabold uppercase text-accent">
                     Satara, Maharashtra
                   </p>
-                  <h2 className="mt-2 font-display text-2xl font-black">
+                  <h2 className="mt-2 font-display text-xl font-black sm:text-2xl">
                     {MARATHI_PROMO.campaignTitle}
                   </h2>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -299,10 +299,10 @@ export default function HomePage() {
               <article
                 tabIndex={0}
                 aria-label={title}
-                className="group h-full min-h-[18rem] rounded-[1.5rem] outline-none [perspective:1200px] sm:min-h-[20rem]"
+                className="group h-full rounded-[1.5rem] outline-none lg:min-h-[20rem] lg:[perspective:1200px]"
               >
-                <div className="relative h-full min-h-[18rem] transition duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-focus:[transform:rotateY(180deg)] sm:min-h-[20rem]">
-                  <div className="surface-card absolute inset-0 overflow-hidden [backface-visibility:hidden]">
+                <div className="relative grid h-full gap-3 transition duration-700 lg:block lg:min-h-[20rem] lg:[transform-style:preserve-3d] lg:group-hover:[transform:rotateY(180deg)] lg:group-focus:[transform:rotateY(180deg)]">
+                  <div className="surface-card relative aspect-[4/3] overflow-hidden lg:absolute lg:inset-0 lg:aspect-auto lg:[backface-visibility:hidden]">
                     <img
                       src={image}
                       alt={imageAlt}
@@ -315,7 +315,7 @@ export default function HomePage() {
                       <Icon className="h-6 w-6" />
                     </div>
                   </div>
-                  <div className="surface-card absolute inset-0 flex flex-col p-6 transition duration-300 [backface-visibility:hidden] [transform:rotateY(180deg)] group-hover:shadow-lift group-focus:shadow-lift">
+                  <div className="surface-card relative flex flex-col p-5 transition duration-300 group-hover:shadow-lift group-focus:shadow-lift sm:p-6 lg:absolute lg:inset-0 lg:[backface-visibility:hidden] lg:[transform:rotateY(180deg)]">
                     <div
                       className="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-accent transition duration-300 animate-gentle-float group-hover:bg-primary group-hover:text-primary-foreground group-hover:[animation-play-state:paused]"
                       style={{ animationDelay: `${index * 0.16}s` }}
@@ -348,10 +348,10 @@ export default function HomePage() {
               View all products <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="relative mt-11 overflow-hidden">
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-beige/80 to-transparent sm:w-20" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-beige/80 to-transparent sm:w-20" />
-            <div className="flex w-max animate-marquee [animation-duration:34s] hover:[animation-play-state:paused] focus-within:[animation-play-state:paused]">
+          <div className="no-scrollbar relative mt-11 overflow-x-auto overflow-y-hidden sm:overflow-hidden">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-12 bg-gradient-to-r from-beige/80 to-transparent sm:block sm:w-20" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-12 bg-gradient-to-l from-beige/80 to-transparent sm:block sm:w-20" />
+            <div className="flex w-max sm:animate-marquee sm:[animation-duration:34s] sm:hover:[animation-play-state:paused] sm:focus-within:[animation-play-state:paused]">
               <div className="flex gap-5 pr-5">
                 {featuredProducts.map((product, index) => (
                   <Reveal
@@ -363,7 +363,7 @@ export default function HomePage() {
                   </Reveal>
                 ))}
               </div>
-              <div aria-hidden="true" inert className="flex gap-5 pr-5">
+              <div aria-hidden="true" inert className="hidden gap-5 pr-5 sm:flex">
                 {featuredProducts.map((product) => (
                   <div
                     key={`carousel-copy-${product.slug}`}
@@ -390,7 +390,7 @@ export default function HomePage() {
               <Reveal key={category.id} delay={index * 0.05} className="h-full">
                 <Link
                   to={`/products?category=${category.id}`}
-                  className="group flex h-[15rem] flex-col justify-between rounded-[1.5rem] border border-border bg-white p-5 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-earth hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:h-[15.75rem] sm:p-6"
+                  className="group flex min-h-[14rem] flex-col justify-between rounded-[1.5rem] border border-border bg-white p-5 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-earth hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:min-h-[15.75rem] sm:p-6"
                 >
                   <div>
                     <div
@@ -423,7 +423,7 @@ export default function HomePage() {
           <Reveal delay={0.3} className="h-full">
             <Link
               to="/bulk-orders"
-              className="group flex h-[15rem] flex-col justify-between rounded-[1.5rem] border border-earth/30 bg-forest p-5 text-white shadow-soft transition duration-300 hover:-translate-y-1 hover:border-beige hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:h-[15.75rem] sm:p-6"
+              className="group flex min-h-[14rem] flex-col justify-between rounded-[1.5rem] border border-earth/30 bg-forest p-5 text-white shadow-soft transition duration-300 hover:-translate-y-1 hover:border-beige hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:min-h-[15.75rem] sm:p-6"
             >
               <div>
                 <div className="grid h-10 w-10 place-items-center rounded-2xl bg-beige text-primary ring-1 ring-beige/40 transition duration-300 animate-gentle-float group-hover:-translate-y-1 group-hover:scale-110 group-hover:rotate-3 sm:h-12 sm:w-12">
@@ -465,7 +465,7 @@ export default function HomePage() {
                   <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary text-sm font-extrabold text-primary-foreground">
                     {index + 1}
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <h3 className="font-display text-lg font-bold">{step.title}</h3>
                     <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                       {step.text}
@@ -490,7 +490,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="container-x py-16 lg:py-24">
+      <section className="container-x py-12 sm:py-16 lg:py-24">
         <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
           <SectionHeading
             align="left"
@@ -506,10 +506,10 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="mt-11 grid gap-5 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,1fr)]">
+        <div className="mt-8 grid min-w-0 gap-4 sm:mt-11 sm:gap-5 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,1fr)]">
           {featuredGalleryItem ? (
-            <Reveal delay={0.05}>
-              <Link to="/gallery" className="group surface-card block h-full overflow-hidden p-3">
+            <Reveal delay={0.05} className="min-w-0">
+              <Link to="/gallery" className="group surface-card block min-w-0 overflow-hidden p-3">
                 <div
                   className={`grid place-items-center overflow-hidden rounded-[1.25rem] bg-cream ${featuredGalleryItem.fit === "contain" ? "p-4" : "p-0"} ${featuredGalleryItem.frameClass || "aspect-[4/3]"}`}
                 >
@@ -544,10 +544,10 @@ export default function HomePage() {
             </Reveal>
           ) : null}
 
-          <div className="grid gap-5 min-[560px]:grid-cols-2">
+          <div className="grid min-w-0 items-start gap-4 self-start sm:gap-5 min-[560px]:grid-cols-2">
             {galleryCardItems.map((item, index) => (
-              <Reveal key={item.title} delay={(index + 1) * 0.05}>
-                <Link to="/gallery" className="group surface-card block h-full overflow-hidden p-3">
+              <Reveal key={item.title} delay={(index + 1) * 0.05} className="min-w-0">
+                <Link to="/gallery" className="group surface-card block min-w-0 overflow-hidden p-3">
                   <div
                     className={`grid place-items-center overflow-hidden rounded-[1.25rem] bg-cream ${item.fit === "contain" ? "p-3" : "p-0"} ${item.frameClass || "aspect-[4/3]"}`}
                   >
@@ -557,7 +557,7 @@ export default function HomePage() {
                       className={`h-full w-full object-center transition duration-500 group-hover:scale-[1.03] ${item.fit === "contain" ? "object-contain" : "object-cover"}`}
                     />
                   </div>
-                  <div className="p-3">
+                  <div className="min-h-[5.5rem] p-3">
                     <p className="text-xs font-extrabold uppercase text-accent">{item.label}</p>
                     <h3 className="mt-1 font-display text-base font-bold leading-snug">
                       {item.title}
@@ -617,10 +617,10 @@ export default function HomePage() {
           />
         </div>
 
-        <div className="relative mt-11 w-full overflow-hidden">
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-background to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-background to-transparent" />
-          <div className="flex w-max gap-5 animate-marquee hover:[animation-play-state:paused]">
+        <div className="no-scrollbar relative mt-11 w-full overflow-x-auto overflow-y-hidden sm:overflow-hidden">
+          <div className="pointer-events-none absolute left-0 top-0 z-10 hidden h-full w-20 bg-gradient-to-r from-background to-transparent sm:block" />
+          <div className="pointer-events-none absolute right-0 top-0 z-10 hidden h-full w-20 bg-gradient-to-l from-background to-transparent sm:block" />
+          <div className="flex w-max gap-5 sm:animate-marquee sm:hover:[animation-play-state:paused]">
             {[...CUSTOMER_TESTIMONIALS, ...CUSTOMER_TESTIMONIALS, ...CUSTOMER_TESTIMONIALS].map(
               (testimonial, index) => (
                 <article

@@ -35,6 +35,11 @@ export const storeOrderSchema = Joi.object({
   notes: Joi.string().allow("", null),
 });
 
+export const couponValidationSchema = Joi.object({
+  couponCode: Joi.string().trim().max(80).required(),
+  subtotal: Joi.number().min(0).required(),
+});
+
 export const trackingSchema = Joi.object({
   orderNumber: Joi.string().required(),
   contact: Joi.string().required(),

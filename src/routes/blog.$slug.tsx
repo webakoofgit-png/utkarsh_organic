@@ -49,7 +49,7 @@ export default function BlogPostPage() {
   if (!post) {
     return (
       <main className="pt-32 pb-20 text-center container-x">
-        <h1 className="font-display text-4xl font-extrabold">Article Not Found</h1>
+        <h1 className="font-display text-3xl font-extrabold sm:text-4xl">Article Not Found</h1>
         <p className="mt-2 text-muted-foreground">The blog post you are looking for does not exist.</p>
         <Link to="/blog" className="mt-6 inline-block rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground">
           Back to Journal

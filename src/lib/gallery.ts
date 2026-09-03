@@ -42,7 +42,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     label: "Pantry",
     image: flatlay,
     description: "A clean pantry view of powders, flakes and everyday cooking formats.",
-    frameClass: "aspect-[14/9]",
+    frameClass: "aspect-[4/3]",
     fit: "cover",
   },
   {

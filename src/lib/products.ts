@@ -49,6 +49,10 @@ export const COMPANY_INFO = {
   phonePrimary: "+91 7507379018",
   phoneSecondary: "",
   whatsappNumber: "917507379018",
+  social: {
+    instagram: "https://www.instagram.com/utkarshorgfarm/",
+    facebook: "https://www.facebook.com/utkarshorgfarm/",
+  },
   email: "PrafullChorage143@gmail.com",
   officialEmail: "",
   website: "https://www.utkarshorgfarm.in/",

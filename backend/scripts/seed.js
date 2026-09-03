@@ -244,18 +244,17 @@ for (const post of frontendBlogs) {
   await blog.update(payload);
 }
 
-await Coupon.findOrCreate({
-  where: { code: "ORGANIC10" },
-  defaults: {
-    code: "ORGANIC10",
-    description: "Launch offer for Utkarsh Organic customers",
-    discountType: "Percentage",
-    discountValue: 10,
-    minimumOrder: 500,
-    maximumDiscount: 500,
-    status: "Active",
-  },
-});
+const launchCoupon = {
+  code: "ORGANIC10",
+  description: "Launch offer for Utkarsh Organic customers",
+  discountType: "Percentage",
+  discountValue: 10,
+  minimumOrder: 500,
+  maximumDiscount: 500,
+  status: "Active",
+};
+const [coupon] = await Coupon.findOrCreate({ where: { code: launchCoupon.code }, defaults: launchCoupon });
+await coupon.update(launchCoupon);
 
 const settings = {
   business: {

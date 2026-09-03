@@ -5,6 +5,7 @@ import {
   BulkOrder,
   Category,
   ContactEnquiry,
+  Coupon,
   Product,
   ProductImage,
   ProductVariant,
@@ -14,7 +15,7 @@ import { created, success } from "../utils/apiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { getPagination, paginationMeta } from "../utils/pagination.js";
 import { inr } from "../utils/slug.js";
-import { createStoreOrder, trackOrder } from "../services/orderService.js";
+import { createStoreOrder, previewStoreCoupon, trackOrder } from "../services/orderService.js";
 import { notifyAdmin } from "../services/auditService.js";
 import { notFound } from "../utils/errors.js";
 
@@ -110,6 +111,27 @@ export const blogDetail = asyncHandler(async (req, res) => {
 export const createOrder = asyncHandler(async (req, res) => {
   const order = await createStoreOrder(req.body);
   return created(res, "Order created successfully", order);
+});
+
+export const listCoupons = asyncHandler(async (_req, res) => {
+  const now = new Date();
+  const coupons = await Coupon.findAll({
+    where: {
+      status: "Active",
+      [Op.and]: [
+        { [Op.or]: [{ startDate: null }, { startDate: { [Op.lte]: now } }] },
+        { [Op.or]: [{ expiryDate: null }, { expiryDate: { [Op.gte]: now } }] },
+      ],
+    },
+    attributes: ["code", "description", "discountType", "discountValue", "minimumOrder", "maximumDiscount", "expiryDate"],
+    order: [["createdAt", "DESC"]],
+  });
+  return success(res, "Active coupons loaded", coupons);
+});
+
+export const validateCoupon = asyncHandler(async (req, res) => {
+  const coupon = await previewStoreCoupon(req.body.couponCode, Number(req.body.subtotal));
+  return success(res, "Coupon applied", coupon);
 });
 
 export const orderTracking = asyncHandler(async (req, res) => {

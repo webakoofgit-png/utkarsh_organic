@@ -43,21 +43,9 @@ type State = {
 
 const initial: State = {
   cart: [],
-  wishlist: ["dehydrated-white-onion-powder"],
+  wishlist: [],
   user: null,
-  orders: [
-    {
-      id: "UO-842910",
-      date: "14 Aug 2026",
-      items: [
-        { name: "Dehydrated White Onion Powder", weight: "25kg", qty: 2, price: 14750 },
-        { name: "Turmeric Powder", weight: "5kg", qty: 1, price: 6105 },
-      ],
-      total: 20855,
-      status: "Delivered",
-      address: "Flat 4B, Sunflower Apartments, MG Road, Nashik, Maharashtra 422003",
-    },
-  ],
+  orders: [],
   addresses: [],
 };
 
@@ -89,7 +77,15 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const raw = localStorage.getItem(KEY);
-      if (raw) setState({ ...initial, ...(JSON.parse(raw) as State) });
+      if (raw) {
+        const saved = { ...initial, ...(JSON.parse(raw) as State) };
+        if (!saved.user) {
+          saved.wishlist = [];
+          saved.orders = [];
+          saved.addresses = [];
+        }
+        setState(saved);
+      }
     } catch {
       /* ignore corrupt state */
     }
@@ -149,7 +145,14 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           const userObj = typeof nameOrUser === "string" ? { name: nameOrUser, email } : nameOrUser;
           return { ...s, user: userObj };
         }),
-      logout: () => setState((s) => ({ ...s, user: null })),
+      logout: () =>
+        setState((s) => ({
+          ...s,
+          user: null,
+          wishlist: [],
+          orders: [],
+          addresses: [],
+        })),
       addOrder: (order: Order) =>
         setState((s) => ({
           ...s,

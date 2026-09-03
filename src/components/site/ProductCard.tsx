@@ -27,12 +27,12 @@ export function ProductCard({ product, compact = false }: { product: Product; co
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="relative grid aspect-[4/3.45] min-h-[178px] place-items-center overflow-hidden bg-white min-[420px]:min-h-[215px] sm:min-h-[255px] lg:min-h-[275px]">
+      <div className="relative grid aspect-[4/3.45] min-h-[165px] place-items-center overflow-hidden bg-white min-[420px]:min-h-[205px] sm:min-h-[245px] lg:min-h-[275px]">
         <span className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-1/3 bg-gradient-to-r from-transparent via-green-50/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:animate-shine-sweep group-hover:opacity-100" />
         <Link
           to={`/product/${product.slug}`}
           aria-label={`View ${product.name}`}
-          className="absolute inset-0 grid place-items-center px-5 pb-6 pt-12 min-[420px]:px-7 min-[420px]:pb-7 min-[420px]:pt-14 sm:px-8 sm:pb-8 sm:pt-16"
+          className="absolute inset-0 grid place-items-center px-4 pb-5 pt-12 min-[420px]:px-7 min-[420px]:pb-7 min-[420px]:pt-14 sm:px-8 sm:pb-8 sm:pt-16"
         >
           <ProductImageWithLogo
             src={product.image}
@@ -80,7 +80,7 @@ export function ProductCard({ product, compact = false }: { product: Product; co
         ) : null}
         <div className="mt-auto flex flex-col gap-3 pt-4 min-[380px]:flex-row min-[380px]:items-end min-[380px]:justify-between">
           <div className="min-w-0">
-            <p className="font-display text-base font-extrabold text-foreground sm:text-lg">
+            <p className="break-words font-display text-base font-extrabold text-foreground sm:text-lg">
               {product.priceLabel}
             </p>
             <p className="text-xs text-muted-foreground">MOQ {product.moq}</p>

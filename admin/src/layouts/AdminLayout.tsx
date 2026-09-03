@@ -106,14 +106,22 @@ export function AdminLayout() {
           ))}
         </nav>
       </aside>
+      {mobileOpen && (
+        <button
+          type="button"
+          className="sidebar-scrim"
+          aria-label="Close menu"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
 
       <div className="main-area">
         <header className="topbar">
-          <div className="toolbar-group">
+          <div className="toolbar-group topbar-title">
             <button className="btn ghost icon-only mobile-menu" onClick={() => setMobileOpen(true)} aria-label="Open menu">
               <Menu size={18} />
             </button>
-            <button className="btn ghost icon-only" onClick={() => setCollapsed((value) => !value)} aria-label="Collapse sidebar">
+            <button className="btn ghost icon-only desktop-collapse" onClick={() => setCollapsed((value) => !value)} aria-label="Collapse sidebar">
               {collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
             </button>
             <div>
@@ -126,7 +134,7 @@ export function AdminLayout() {
             <NavLink to="/notifications" className="btn ghost icon-only" aria-label="Notifications">
               <Bell size={18} />
             </NavLink>
-            <div style={{ textAlign: "right" }}>
+            <div className="admin-user">
               <strong style={{ fontSize: 13 }}>{admin?.name}</strong>
               <p className="muted" style={{ fontSize: 12 }}>{admin?.email}</p>
             </div>

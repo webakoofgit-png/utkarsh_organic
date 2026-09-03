@@ -58,6 +58,19 @@ async function applyCoupon(couponCode, subtotal, customerId, transaction) {
   return { discount, coupon };
 }
 
+export async function previewStoreCoupon(couponCode, subtotal) {
+  return sequelize.transaction(async (transaction) => {
+    const { discount, coupon } = await applyCoupon(couponCode, subtotal, null, transaction);
+    return {
+      code: coupon.code,
+      description: coupon.description,
+      discountType: coupon.discountType,
+      discountValue: Number(coupon.discountValue || 0),
+      discount,
+    };
+  });
+}
+
 export async function createStoreOrder(payload) {
   return sequelize.transaction(async (transaction) => {
     const [customer] = await Customer.findOrCreate({

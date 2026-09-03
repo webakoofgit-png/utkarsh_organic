@@ -41,8 +41,8 @@ export default function AboutPage() {
             </Link>
             <ChevronRight className="h-4 w-4 shrink-0 text-green-500/60" />
             <span className="font-bold text-beige">About Us</span>
-            <ChevronRight className="h-4 w-4 shrink-0 text-green-500/60" />
-            <span className="text-green-200/90 font-medium">About Utkarsh Organic Farm</span>
+            <ChevronRight className="hidden h-4 w-4 shrink-0 text-green-500/60 min-[420px]:block" />
+            <span className="hidden text-green-200/90 font-medium min-[420px]:inline">About Utkarsh Organic Farm</span>
           </div>
 
           <div className="hidden shrink-0 items-center gap-1.5 text-beige sm:flex">

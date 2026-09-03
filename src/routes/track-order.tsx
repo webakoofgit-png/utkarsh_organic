@@ -90,7 +90,7 @@ export default function TrackOrderPage() {
       <div className="container-x max-w-3xl">
         <div className="text-center">
           <p className="eyebrow">Real-Time Logistics</p>
-          <h1 className="mt-2 font-display text-4xl font-extrabold sm:text-5xl">Track Your Order</h1>
+          <h1 className="mt-2 font-display text-3xl font-extrabold sm:text-5xl">Track Your Order</h1>
           <p className="mt-3 text-muted-foreground">Enter your Order ID or phone number to see live status updates</p>
         </div>
 

@@ -8,7 +8,7 @@ import { useStore } from "@/lib/store";
 
 export default function AccountPage() {
   const [searchParams] = useSearchParams();
-  const { user, logout, wishlist, orders } = useStore();
+  const { ready, user, logout, wishlist, orders } = useStore();
   const { products } = useCatalog();
   const tabParam = searchParams.get("tab") as "orders" | "wishlist" | "profile" | "addresses" | null;
   const [activeTab, setActiveTab] = useState<"orders" | "wishlist" | "profile" | "addresses">(tabParam || "orders");
@@ -18,6 +18,46 @@ export default function AccountPage() {
       setActiveTab(tabParam);
     }
   }, [tabParam]);
+
+  if (!ready) {
+    return (
+      <main className="flex min-h-[60vh] items-center justify-center px-4 pt-24 pb-20 lg:pt-28">
+        <p className="text-sm font-semibold text-muted-foreground">Loading your account...</p>
+      </main>
+    );
+  }
+
+  if (!user) {
+    return (
+      <main className="pt-24 pb-20 lg:pt-28">
+        <div className="container-x">
+          <div className="mx-auto max-w-2xl rounded-3xl bg-forest p-8 text-center text-forest-foreground sm:p-12">
+            <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-accent text-accent-foreground">
+              <User className="h-8 w-8" />
+            </div>
+            <h1 className="mt-5 font-display text-2xl font-extrabold sm:text-3xl">Sign in to view your account</h1>
+            <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-forest-foreground/75">
+              Your orders, wishlist and saved addresses will appear here after you sign in.
+            </p>
+            <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link
+                to="/login"
+                className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-bold text-accent-foreground transition hover:brightness-110"
+              >
+                Sign In
+              </Link>
+              <Link
+                to="/register"
+                className="inline-flex items-center justify-center rounded-full border border-forest-foreground/30 px-6 py-3 text-sm font-bold transition hover:bg-forest-foreground/10"
+              >
+                Create Account
+              </Link>
+            </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   const wishlistProducts = products.filter((item) => wishlist.includes(item.slug));
 

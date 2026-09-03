@@ -28,11 +28,17 @@ export const storeApi = {
   async blogs() {
     return request("/store/blogs");
   },
+  async coupons() {
+    return request("/store/coupons");
+  },
   async blog(slug: string) {
     return request(`/store/blogs/${encodeURIComponent(slug)}`);
   },
   async createOrder(data: unknown) {
     return request("/store/orders", { method: "POST", body: JSON.stringify(data) });
+  },
+  async validateCoupon(data: { couponCode: string; subtotal: number }) {
+    return request("/store/coupons/validate", { method: "POST", body: JSON.stringify(data) });
   },
   async trackOrder(data: unknown) {
     return request("/store/order-tracking", { method: "POST", body: JSON.stringify(data) });

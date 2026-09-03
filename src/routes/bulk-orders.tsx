@@ -71,8 +71,8 @@ export default function BulkOrdersPage() {
             </Link>
             <ChevronRight className="h-4 w-4 shrink-0 text-green-500/60" />
             <span className="font-bold text-beige">Bulk Order</span>
-            <ChevronRight className="h-4 w-4 shrink-0 text-green-500/60" />
-            <span className="text-green-200/90 font-medium">B2B &amp; Commercial Supply</span>
+            <ChevronRight className="hidden h-4 w-4 shrink-0 text-green-500/60 min-[420px]:block" />
+            <span className="hidden text-green-200/90 font-medium min-[420px]:inline">B2B &amp; Commercial Supply</span>
           </div>
 
           <div className="hidden shrink-0 items-center gap-1.5 text-beige sm:flex">

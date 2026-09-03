@@ -221,7 +221,7 @@ export function CataloguePage() {
                   setQ(event.target.value);
                   updateSearch(event.target.value, category);
                 }}
-                placeholder="Search organic powders & spices..."
+                placeholder="Search products..."
                 className="min-w-0 flex-1 bg-transparent px-3 text-sm font-semibold text-foreground outline-none placeholder:text-muted-foreground/70 sm:text-base"
               />
               {q && (
@@ -241,7 +241,7 @@ export function CataloguePage() {
           </form>
 
           {/* Category Filter Badges */}
-          <div className="no-scrollbar -mx-1 flex min-w-0 snap-x items-center gap-2 overflow-x-auto px-1 py-1">
+          <div className="grid min-w-0 grid-cols-2 gap-2 sm:no-scrollbar sm:-mx-1 sm:flex sm:snap-x sm:items-center sm:overflow-x-auto sm:px-1 sm:py-1">
             {[{ id: "all" as const, name: "All Products" }, ...categories].map((item) => (
               <button
                 key={item.id}
@@ -249,30 +249,30 @@ export function CataloguePage() {
                   setCategory(item.id);
                   updateSearch(q, item.id);
                 }}
-                className={`shrink-0 snap-start rounded-full px-3.5 py-2.5 text-left text-xs font-bold shadow-sm transition-all sm:px-4 ${
+                className={`min-h-11 rounded-2xl px-3 py-2 text-left text-xs font-bold leading-tight shadow-sm transition-all sm:min-h-0 sm:shrink-0 sm:snap-start sm:rounded-full sm:px-4 sm:py-2.5 ${
                   category === item.id
                     ? "bg-primary text-primary-foreground shadow-md scale-105"
                     : "bg-white border border-green-900/10 text-foreground/80 hover:bg-green-50 hover:text-green-900"
                 }`}
               >
-                {item.name}
+                <span className="line-clamp-2">{item.name}</span>
               </button>
             ))}
           </div>
         </div>
 
         {/* Count & Sort Selector */}
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+        <div className="mt-8 flex flex-col items-stretch justify-between gap-4 min-[480px]:flex-row min-[480px]:items-center">
           <p className="text-sm text-muted-foreground">
             <strong className="text-foreground">{items.length}</strong> naturally good choices
             {q ? <> for “{q}”</> : null}
           </p>
-          <label className="flex w-full items-center gap-2 text-sm font-semibold sm:w-auto">
+          <label className="flex w-full items-center gap-2 text-sm font-semibold min-[480px]:w-auto">
             <SlidersHorizontal className="h-4 w-4 text-accent" /> Sort{" "}
             <select
               value={sort}
               onChange={(event) => setSort(event.target.value)}
-              className="min-w-0 flex-1 rounded-full border border-border bg-background px-3 py-2 text-sm font-medium outline-none sm:flex-none"
+              className="min-w-0 flex-1 rounded-full border border-border bg-background px-3 py-2 text-sm font-medium outline-none min-[480px]:flex-none"
             >
               <option value="featured">Featured</option>
               <option value="rating">Top rated</option>

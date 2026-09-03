@@ -1,11 +1,19 @@
 import { Link, useNavigate } from "react-router-dom";
-import { CheckCircle2, ShieldCheck, Truck, CreditCard, Banknote, Building, ArrowLeft } from "lucide-react";
-import { useState } from "react";
+import { CheckCircle2, ShieldCheck, Truck, CreditCard, Banknote, Tag, X, ArrowLeft } from "lucide-react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { inr, priceFor } from "@/lib/products";
 import { storeApi } from "@/lib/api";
 import { useCatalog } from "@/lib/catalog";
 import { useStore } from "@/lib/store";
+
+type AvailableCoupon = {
+  code: string;
+  description?: string;
+  discountType: string;
+  discountValue: number | string;
+  minimumOrder: number | string;
+};
 
 export default function CheckoutPage() {
   const { products } = useCatalog();
@@ -14,8 +22,13 @@ export default function CheckoutPage() {
 
   const [paymentMethod, setPaymentMethod] = useState<"upi" | "cod" | "card">("upi");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
   const [orderId, setOrderId] = useState("");
+  const [couponCode, setCouponCode] = useState("");
+  const [couponError, setCouponError] = useState("");
+  const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; discount: number } | null>(null);
+  const [availableCoupons, setAvailableCoupons] = useState<AvailableCoupon[]>([]);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -27,14 +40,56 @@ export default function CheckoutPage() {
     pincode: "",
   });
 
+  useEffect(() => {
+    let mounted = true;
+    void storeApi.coupons()
+      .then((response) => {
+        if (mounted) setAvailableCoupons(response.data || []);
+      })
+      .catch(() => undefined);
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   const lines = cart.flatMap((line) => {
     const product = products.find((item) => item.slug === line.slug);
     return product ? [{ ...line, product, amount: priceFor(product, line.weight).price * line.qty }] : [];
   });
 
   const subtotal = lines.reduce((sum, line) => sum + line.amount, 0);
-  const shipping = subtotal > 499 ? 0 : 50;
-  const grandTotal = subtotal + shipping;
+  const discount = Math.min(appliedCoupon?.discount || 0, subtotal);
+  const discountedSubtotal = Math.max(0, subtotal - discount);
+  const shipping = discountedSubtotal > 499 ? 0 : 50;
+  const grandTotal = discountedSubtotal + shipping;
+
+  const handleCouponApply = async (requestedCode = couponCode) => {
+    const code = requestedCode.trim().toUpperCase();
+    if (!code) {
+      setCouponError("Enter a coupon code.");
+      return;
+    }
+
+    setIsApplyingCoupon(true);
+    setCouponError("");
+    try {
+      const response = await storeApi.validateCoupon({ couponCode: code, subtotal });
+      setAppliedCoupon({ code: response.data.code, discount: Number(response.data.discount || 0) });
+      setCouponCode(response.data.code);
+      toast.success(`${response.data.code} applied successfully.`);
+    } catch (error: any) {
+      setAppliedCoupon(null);
+      setCouponError(error.message || "This coupon cannot be applied.");
+    } finally {
+      setIsApplyingCoupon(false);
+    }
+  };
+
+  const handleCouponRemove = () => {
+    setAppliedCoupon(null);
+    setCouponCode("");
+    setCouponError("");
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,6 +121,7 @@ export default function CheckoutPage() {
           weight: line.weight,
           quantity: line.qty,
         })),
+        couponCode: appliedCoupon?.code || "",
         paymentMethod: apiPaymentMethod,
       });
 
@@ -137,7 +193,7 @@ export default function CheckoutPage() {
         <Link to="/cart" className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4" /> Back to Cart
         </Link>
-        <h1 className="mt-4 font-display text-4xl font-extrabold sm:text-5xl">Checkout</h1>
+        <h1 className="mt-4 font-display text-3xl font-extrabold sm:text-5xl">Checkout</h1>
 
         {lines.length === 0 ? (
           <div className="mt-10 text-center py-12 bg-cream rounded-3xl border border-border">
@@ -286,6 +342,87 @@ export default function CheckoutPage() {
                 ))}
               </div>
 
+              <div className="mt-5 rounded-2xl border border-border bg-background/70 p-4">
+                <div className="flex items-center gap-2 text-sm font-bold">
+                  <Tag className="h-4 w-4 text-accent" /> Apply Coupon
+                </div>
+                <div className="mt-3 flex gap-2">
+                  <input
+                    type="text"
+                    value={couponCode}
+                    onChange={(e) => {
+                      setCouponCode(e.target.value.toUpperCase());
+                      setCouponError("");
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        void handleCouponApply();
+                      }
+                    }}
+                    placeholder="Enter coupon code"
+                    aria-label="Coupon code"
+                    className="min-w-0 flex-1 rounded-xl border border-border bg-background px-3 py-2.5 text-sm uppercase outline-none focus:border-accent"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => void handleCouponApply()}
+                    disabled={isApplyingCoupon}
+                    className="shrink-0 rounded-xl bg-primary px-4 py-2.5 text-xs font-bold text-primary-foreground transition hover:bg-forest disabled:opacity-50"
+                  >
+                    {isApplyingCoupon ? "Checking..." : "Apply"}
+                  </button>
+                </div>
+                {appliedCoupon && (
+                  <div className="mt-3 flex items-center justify-between gap-2 text-xs font-semibold text-accent">
+                    <span>{appliedCoupon.code} applied</span>
+                    <button
+                      type="button"
+                      onClick={handleCouponRemove}
+                      aria-label="Remove coupon"
+                      className="inline-flex items-center gap-1 text-muted-foreground hover:text-foreground"
+                    >
+                      <X className="h-3.5 w-3.5" /> Remove
+                    </button>
+                  </div>
+                )}
+                {couponError && <p className="mt-2 text-xs font-semibold text-destructive">{couponError}</p>}
+                {!appliedCoupon && availableCoupons.length > 0 && (
+                  <div className="mt-4 border-t border-border pt-3">
+                    <p className="text-xs font-bold text-muted-foreground">Available coupons</p>
+                    <div className="mt-2 space-y-2">
+                      {availableCoupons.map((coupon) => {
+                        const value = Number(coupon.discountValue || 0);
+                        const benefit = coupon.discountType === "Percentage"
+                          ? `${value}% off`
+                          : coupon.discountType === "Fixed Amount"
+                            ? `${inr(value)} off`
+                            : "Free shipping";
+                        const minimum = Number(coupon.minimumOrder || 0);
+                        return (
+                          <div key={coupon.code} className="flex items-center justify-between gap-3 rounded-xl border border-border bg-background px-3 py-2.5">
+                            <div className="min-w-0">
+                              <p className="break-all text-xs font-bold text-primary">{coupon.code}</p>
+                              <p className="text-[11px] text-muted-foreground">
+                                {benefit}{minimum > 0 ? ` on orders above ${inr(minimum)}` : ""}
+                              </p>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => void handleCouponApply(coupon.code)}
+                              disabled={isApplyingCoupon}
+                              className="shrink-0 rounded-lg border border-primary px-3 py-1.5 text-[11px] font-bold text-primary transition hover:bg-secondary disabled:opacity-50"
+                            >
+                              Apply
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+
               <div className="mt-6 pt-4 border-t border-border space-y-2 text-sm">
                 <div className="flex justify-between text-muted-foreground">
                   <span>Subtotal</span>
@@ -295,6 +432,12 @@ export default function CheckoutPage() {
                   <span>Shipping</span>
                   <span>{shipping === 0 ? <span className="text-accent font-bold">FREE</span> : inr(shipping)}</span>
                 </div>
+                {discount > 0 && (
+                  <div className="flex justify-between font-semibold text-accent">
+                    <span>Discount ({appliedCoupon?.code})</span>
+                    <span>-{inr(discount)}</span>
+                  </div>
+                )}
                 <div className="flex justify-between pt-3 font-display text-lg font-bold text-foreground">
                   <span>Total Payable</span>
                   <span className="text-primary">{inr(grandTotal)}</span>

@@ -200,8 +200,22 @@
   textarea,
   button {
     max-width: 100%;
+    min-width: 0;
     font: inherit;
     touch-action: manipulation;
+  }
+
+  a,
+  button {
+    min-width: 0;
+  }
+
+  :where(.grid, .flex) > * {
+    min-width: 0;
+  }
+
+  table {
+    max-width: 100%;
   }
 
   p,
@@ -223,6 +237,14 @@
     font-family: var(--font-display);
     letter-spacing: 0;
   }
+
+  @supports (text-wrap: balance) {
+    h1,
+    h2,
+    h3 {
+      text-wrap: balance;
+    }
+  }
 }
 
 @layer utilities {
@@ -237,6 +259,84 @@
 
   .safe-bottom-pad {
     padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  main :is(section, .container-x).py-10 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  main :is(section, .container-x).py-12 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  main :is(section, .container-x).py-14 {
+    padding-top: 2.75rem;
+    padding-bottom: 2.75rem;
+  }
+
+  main :is(section, .container-x).py-16 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  main :is(section, .container-x).py-20 {
+    padding-top: 3.75rem;
+    padding-bottom: 3.75rem;
+  }
+
+  main :is(section, .container-x).pb-10 {
+    padding-bottom: 2rem;
+  }
+
+  main :is(section, .container-x).pb-14 {
+    padding-bottom: 2.75rem;
+  }
+
+  main :is(section, .container-x).mt-16 {
+    margin-top: 3rem;
+  }
+
+  main :is(section, .container-x).mt-20 {
+    margin-top: 3.75rem;
+  }
+
+  main.pb-20 {
+    padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 40rem) {
+  main :is(section, .container-x).sm\:py-16 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  main :is(section, .container-x).lg\:py-16 {
+    padding-top: 3.25rem;
+    padding-bottom: 3.25rem;
+  }
+
+  main :is(section, .container-x).lg\:py-20 {
+    padding-top: 3.75rem;
+    padding-bottom: 3.75rem;
+  }
+
+  main :is(section, .container-x).lg\:py-24 {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  main :is(section, .container-x).lg\:py-28 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  main :is(section, .container-x).lg\:pb-24 {
+    padding-bottom: 4.5rem;
   }
 }
 
@@ -420,6 +520,40 @@
 
 @utility animate-marquee {
   animation: marquee-x 28s linear infinite;
+}
+
+@media (max-width: 767px) {
+  .container-x {
+    padding-inline: clamp(0.875rem, 4vw, 1.125rem);
+  }
+
+  .eyebrow {
+    line-height: 1.35;
+    letter-spacing: 0.14em;
+  }
+
+  .home-vine-lines {
+    background-size: 680px 120px;
+  }
+
+  .home-drifting-leaf {
+    opacity: 0.22;
+  }
+}
+
+@media (max-width: 479px) {
+  .container-x {
+    padding-inline: 0.875rem;
+  }
+
+  .eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.11em;
+  }
+
+  .animate-marquee {
+    animation-duration: 42s;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

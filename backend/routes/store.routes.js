@@ -7,12 +7,14 @@ import {
   createReview,
   listBlogs,
   listCategories,
+  listCoupons,
   listProducts,
   orderTracking,
   productDetail,
+  validateCoupon,
 } from "../controllers/storeController.js";
 import { validate } from "../middleware/validate.js";
-import { bulkOrderSchema, contactSchema, storeOrderSchema, trackingSchema } from "../validations/storeSchemas.js";
+import { bulkOrderSchema, contactSchema, couponValidationSchema, storeOrderSchema, trackingSchema } from "../validations/storeSchemas.js";
 
 const router = Router();
 
@@ -21,6 +23,8 @@ router.get("/products/:slug", productDetail);
 router.get("/categories", listCategories);
 router.get("/blogs", listBlogs);
 router.get("/blogs/:slug", blogDetail);
+router.get("/coupons", listCoupons);
+router.post("/coupons/validate", validate(couponValidationSchema), validateCoupon);
 router.post("/orders", validate(storeOrderSchema), createOrder);
 router.post("/order-tracking", validate(trackingSchema), orderTracking);
 router.post("/contact-enquiries", validate(contactSchema), contact);

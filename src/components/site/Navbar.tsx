@@ -88,7 +88,7 @@ export function Navbar() {
           to="/"
           className="flex min-w-0 shrink items-center gap-2 transition-transform duration-300 hover:-translate-y-0.5 sm:gap-3 lg:shrink-0"
         >
-          <div className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-xl border border-green-500/30 bg-white p-0.5 shadow-sm min-[380px]:h-12 min-[380px]:w-12 sm:h-14 sm:w-14">
+          <div className="grid h-10 w-10 shrink-0 place-items-center min-[380px]:h-12 min-[380px]:w-12 sm:h-14 sm:w-14">
             <img
               src={logo}
               alt="Utkarsh Organic Farm logo"
