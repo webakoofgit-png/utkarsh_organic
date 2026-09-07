@@ -7,9 +7,9 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && npm --prefix admin run build && node scripts/copy-admin-dist.mjs",
-    "hostinger:build": "npm --prefix backend install --omit=dev && npm run build && npm --prefix backend run migrate",
-    "hostinger:setup": "npm --prefix backend install --omit=dev && npm run build && npm --prefix backend run migrate && npm --prefix backend run seed",
+    "build": "cd backend && npm install --omit=dev && cd .. && tsc && vite build && npm --prefix admin run build && node scripts/copy-admin-dist.mjs",
+    "hostinger:build": "npm run build && npm --prefix backend run migrate",
+    "hostinger:setup": "npm run build && npm --prefix backend run migrate && npm --prefix backend run seed",
     "start": "node backend/server.js",
     "preview": "vite preview",
     "lint": "eslint .",
