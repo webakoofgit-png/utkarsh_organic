@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "cd backend && npm install --omit=dev && cd .. && tsc && vite build && npm --prefix admin run build && node scripts/copy-admin-dist.mjs && node scripts/hostinger-db-setup.mjs",
+    "build": "npm install --include=dev && cd backend && npm install --omit=dev && cd .. && tsc && vite build && npm --prefix admin run build && node scripts/copy-admin-dist.mjs && node scripts/hostinger-db-setup.mjs",
     "hostinger:build": "npm run build",
     "hostinger:setup": "npm run build",
     "start": "node backend/server.js",
