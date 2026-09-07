@@ -132,6 +132,7 @@ export type Product = {
   category: Category;
   basePrice: number;
   baseMrp: number;
+  gstPercent?: number | undefined;
   priceLabel: string;
   moq: string;
   rating: number;
@@ -1178,6 +1179,19 @@ export function priceFor(product: Product, weight: Weight) {
     price: Math.round(product.basePrice * m),
     mrp: Math.round(product.baseMrp * m),
   };
+}
+
+export function gstPercentFor(product: Product) {
+  const value = Number(product.gstPercent);
+  return Number.isFinite(value) ? value : 18;
+}
+
+export function gstAmountFor(product: Product, amount: number) {
+  return Math.round((amount * gstPercentFor(product)) / 100);
+}
+
+export function gstPercentLabel(percent: number) {
+  return Number(percent.toFixed(2)).toLocaleString("en-IN");
 }
 
 export function inr(value: number) {

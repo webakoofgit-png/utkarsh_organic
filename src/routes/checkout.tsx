@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { CheckCircle2, ShieldCheck, Truck, CreditCard, Banknote, Tag, X, ArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { inr, priceFor } from "@/lib/products";
+import { gstAmountFor, gstPercentFor, gstPercentLabel, inr, priceFor } from "@/lib/products";
 import { storeApi } from "@/lib/api";
 import { useCatalog } from "@/lib/catalog";
 import { useStore } from "@/lib/store";
@@ -71,7 +71,6 @@ declare global {
 }
 
 const RAZORPAY_SCRIPT_URL = "https://checkout.razorpay.com/v1/checkout.js";
-const CHECKOUT_GST_PERCENT = 18;
 const PENDING_RAZORPAY_KEY = "utkarsh-organic-pending-razorpay";
 
 function loadRazorpayCheckout() {
@@ -152,11 +151,14 @@ export default function CheckoutPage() {
     const product = products.find((item) => item.slug === line.slug);
     if (!product) return [];
     const amount = priceFor(product, line.weight).price * line.qty;
-    return [{ ...line, product, amount, gst: Math.round((amount * CHECKOUT_GST_PERCENT) / 100) }];
+    const gstPercent = gstPercentFor(product);
+    return [{ ...line, product, amount, gstPercent, gst: gstAmountFor(product, amount) }];
   });
 
   const subtotal = lines.reduce((sum, line) => sum + line.amount, 0);
   const gst = lines.reduce((sum, line) => sum + line.gst, 0);
+  const gstLabels = Array.from(new Set(lines.map((line) => gstPercentLabel(line.gstPercent))));
+  const gstSummaryLabel = gstLabels.length === 1 ? `GST (${gstLabels[0]}%)` : "GST";
   const discount = Math.min(appliedCoupon?.discount || 0, subtotal);
   const discountedSubtotal = Math.max(0, subtotal - discount);
   const shipping = discountedSubtotal > 499 ? 0 : 50;
@@ -606,14 +608,14 @@ export default function CheckoutPage() {
               <h2 className="font-display text-xl font-bold">Summary ({lines.length} items)</h2>
 
               <div className="mt-6 max-h-60 overflow-y-auto space-y-3 pr-1">
-                {lines.map(({ product, weight, qty, amount, gst: lineGst }) => (
+                {lines.map(({ product, weight, qty, amount, gst: lineGst, gstPercent }) => (
                   <div key={`${product.slug}-${weight}`} className="flex items-start justify-between gap-3 py-1 text-xs">
                     <div className="flex min-w-0 items-start gap-2">
                       <span className="font-bold">{qty}x</span>
                       <span className="min-w-0 break-words">
                         {product.name} ({weight})
                         <span className="mt-0.5 block text-[11px] font-medium text-muted-foreground">
-                          GST @ {CHECKOUT_GST_PERCENT}%: {inr(lineGst)}
+                          GST @ {gstPercentLabel(gstPercent)}%: {inr(lineGst)}
                         </span>
                       </span>
                     </div>
@@ -715,7 +717,7 @@ export default function CheckoutPage() {
                   </div>
                 )}
                 <div className="flex justify-between text-muted-foreground">
-                  <span>GST ({CHECKOUT_GST_PERCENT}%)</span>
+                  <span>{gstSummaryLabel}</span>
                   <span>{inr(gst)}</span>
                 </div>
                 <div className="flex justify-between text-muted-foreground">

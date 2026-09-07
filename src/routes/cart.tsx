@@ -3,11 +3,9 @@ import { ArrowLeft, ArrowRight, Minus, Plus, ShoppingBag, Trash2 } from "lucide-
 import { useState } from "react";
 import { toast } from "sonner";
 import { ProductImageWithLogo } from "@/components/site/ProductImageWithLogo";
-import { inr, priceFor } from "@/lib/products";
+import { gstAmountFor, gstPercentFor, gstPercentLabel, inr, priceFor } from "@/lib/products";
 import { useCatalog } from "@/lib/catalog";
 import { useStore } from "@/lib/store";
-
-const CHECKOUT_GST_PERCENT = 18;
 
 export default function CartPage() {
   const { products } = useCatalog();
@@ -18,10 +16,15 @@ export default function CartPage() {
 
   const lines = cart.flatMap((line) => {
     const product = products.find((item) => item.slug === line.slug);
-    return product ? [{ ...line, product, amount: priceFor(product, line.weight).price * line.qty }] : [];
+    if (!product) return [];
+    const amount = priceFor(product, line.weight).price * line.qty;
+    const gstPercent = gstPercentFor(product);
+    return [{ ...line, product, amount, gstPercent, gst: gstAmountFor(product, amount) }];
   });
   const subtotal = lines.reduce((sum, line) => sum + line.amount, 0);
-  const gst = lines.reduce((sum, line) => sum + Math.round((line.amount * CHECKOUT_GST_PERCENT) / 100), 0);
+  const gst = lines.reduce((sum, line) => sum + line.gst, 0);
+  const gstLabels = Array.from(new Set(lines.map((line) => gstPercentLabel(line.gstPercent))));
+  const gstSummaryLabel = gstLabels.length === 1 ? `GST (${gstLabels[0]}%)` : "GST";
 
   const handleCoupon = (e: React.FormEvent) => {
     e.preventDefault();
@@ -171,7 +174,7 @@ export default function CartPage() {
                 )}
 
                 <div className="flex justify-between pt-3">
-                  <span className="text-muted-foreground">GST ({CHECKOUT_GST_PERCENT}%)</span>
+                  <span className="text-muted-foreground">{gstSummaryLabel}</span>
                   <span className="font-semibold">{inr(gst)}</span>
                 </div>
 

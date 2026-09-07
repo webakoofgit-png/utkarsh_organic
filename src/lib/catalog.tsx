@@ -53,6 +53,7 @@ function normalizeProduct(raw: any): Product {
     category: (raw.category || raw.categorySlug || "dehydrated-powders") as Category,
     basePrice: Number(raw.basePrice || raw.salePrice || raw.regularPrice || 0),
     baseMrp: Number(raw.baseMrp || raw.regularPrice || raw.salePrice || 0),
+    gstPercent: raw.gstPercent === null || raw.gstPercent === undefined ? undefined : Number(raw.gstPercent),
     priceLabel: raw.priceLabel || `Rs. ${Number(raw.salePrice || raw.regularPrice || 0).toLocaleString("en-IN")} / kg`,
     moq: raw.moq || raw.minimumOrderQuantity || "100 Kilogram (MOQ)",
     rating: Number(raw.rating || 4.8),

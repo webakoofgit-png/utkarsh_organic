@@ -48,6 +48,7 @@ function productDto(product) {
     categoryName: product.category?.name || categorySlug,
     basePrice: sale,
     baseMrp: mrp,
+    gstPercent: Number(product.gstPercent || 0),
     priceLabel: product.priceLabel || (mrp > sale ? `${inr(sale)} - ${inr(mrp)} / kg` : `${inr(sale)} / kg`),
     moq: product.minimumOrderQuantity,
     rating: Number(product.rating || 4.8),
