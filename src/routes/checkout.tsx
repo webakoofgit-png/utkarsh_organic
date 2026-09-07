@@ -161,6 +161,9 @@ export default function CheckoutPage() {
   const discountedSubtotal = Math.max(0, subtotal - discount);
   const shipping = discountedSubtotal > 499 ? 0 : 50;
   const grandTotal = discountedSubtotal + gst + shipping;
+  const eligibleAvailableCoupons = availableCoupons.filter(
+    (coupon) => subtotal >= Number(coupon.minimumOrder || 0)
+  );
 
   const handleCouponApply = async (requestedCode = couponCode) => {
     const code = requestedCode.trim().toUpperCase();
@@ -664,11 +667,11 @@ export default function CheckoutPage() {
                   </div>
                 )}
                 {couponError && <p className="mt-2 text-xs font-semibold text-destructive">{couponError}</p>}
-                {!appliedCoupon && availableCoupons.length > 0 && (
+                {!appliedCoupon && eligibleAvailableCoupons.length > 0 && (
                   <div className="mt-4 border-t border-border pt-3">
                     <p className="text-xs font-bold text-muted-foreground">Available coupons</p>
                     <div className="mt-2 space-y-2">
-                      {availableCoupons.map((coupon) => {
+                      {eligibleAvailableCoupons.map((coupon) => {
                         const value = Number(coupon.discountValue || 0);
                         const benefit = coupon.discountType === "Percentage"
                           ? `${value}% off`
