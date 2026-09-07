@@ -21,6 +21,7 @@ const frontendDist = path.join(projectRoot, "dist");
 const adminDist = path.join(frontendDist, "admin");
 const frontendIndex = path.join(frontendDist, "index.html");
 const adminIndex = path.join(adminDist, "index.html");
+const sourceAssetsDir = path.join(projectRoot, "src", "assets");
 const origins = [
   env.clientOrigin,
   env.adminOrigin,
@@ -47,6 +48,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan(env.nodeEnv === "development" ? "dev" : "combined"));
 app.use("/uploads", express.static(uploadRoot));
+if (fs.existsSync(sourceAssetsDir)) {
+  app.use("/src/assets", express.static(sourceAssetsDir));
+}
 
 app.use(
   "/api/auth",

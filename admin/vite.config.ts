@@ -9,6 +9,7 @@ export default defineConfig({
     proxy: {
       "/api": "http://127.0.0.1:5000",
       "/uploads": "http://127.0.0.1:5000",
+      "/src/assets": "http://127.0.0.1:5000",
     },
   },
   resolve: {
