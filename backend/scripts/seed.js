@@ -107,8 +107,12 @@ for (const [slug, name, permissionNames] of roleMap) {
   await role.setPermissions(allPermissions.filter((permission) => permissionNames.includes(permission.name)));
 }
 
+if (!env.seedAdmin.email || !env.seedAdmin.password) {
+  throw new Error("SEED_ADMIN_EMAIL and SEED_ADMIN_PASSWORD are required to seed the admin user.");
+}
+
 const superRole = await Role.findOne({ where: { slug: "super-admin" } });
-const [admin] = await Admin.scope("withPassword").findOrCreate({
+const [admin, adminCreated] = await Admin.scope("withPassword").findOrCreate({
   where: { email: env.seedAdmin.email },
   defaults: {
     name: env.seedAdmin.name,
@@ -118,6 +122,16 @@ const [admin] = await Admin.scope("withPassword").findOrCreate({
     isActive: true,
   },
 });
+
+if (!adminCreated) {
+  await admin.update({
+    name: env.seedAdmin.name || admin.name,
+    passwordHash: await bcrypt.hash(env.seedAdmin.password, 12),
+    forcePasswordChange: true,
+    isActive: true,
+  });
+}
+
 await admin.setRoles([superRole]);
 
 const categoryRows = {};
