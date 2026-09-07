@@ -49,7 +49,7 @@ function normalizeProduct(raw: any): Product {
     slug: raw.slug,
     name: raw.name,
     short: raw.short || raw.shortDescription || "",
-    image: imageOverride || raw.image || raw.mainImage || "",
+    image: raw.image || raw.mainImage || imageOverride || "",
     category: (raw.category || raw.categorySlug || "dehydrated-powders") as Category,
     basePrice: Number(raw.basePrice || raw.salePrice || raw.regularPrice || 0),
     baseMrp: Number(raw.baseMrp || raw.regularPrice || raw.salePrice || 0),

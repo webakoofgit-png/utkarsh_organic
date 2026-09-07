@@ -160,8 +160,8 @@ function specValue(product, label) {
 for (const item of frontendProducts) {
   const category = categoryRows[item.category] || categoryRows[frontendCategories[0]?.id];
   const existing = await Product.findOne({ where: { sku: item.sku } });
-  const stockQuantity = Number(existing?.stockQuantity || 250);
-  const minimumStockAlert = Number(existing?.minimumStockAlert || 25);
+  const stockQuantity = Number(existing?.stockQuantity ?? 250);
+  const minimumStockAlert = Number(existing?.minimumStockAlert ?? 25);
   const payload = {
       name: item.name,
       slug: item.slug,
@@ -170,28 +170,28 @@ for (const item of frontendProducts) {
       categoryId: category.id,
       shortDescription: item.short,
       fullDescription: item.description,
-      regularPrice: item.baseMrp,
-      salePrice: item.basePrice,
-      costPrice: existing?.costPrice || Math.round(Number(item.basePrice || 0) * 0.65),
-      gstPercent: 18,
+      regularPrice: existing?.regularPrice ?? item.baseMrp,
+      salePrice: existing?.salePrice ?? item.basePrice,
+      costPrice: existing?.costPrice ?? Math.round(Number(item.basePrice || 0) * 0.65),
+      gstPercent: existing?.gstPercent ?? 18,
       stockQuantity,
       minimumStockAlert,
-      unit: "kg",
-      weight: "1kg",
+      unit: existing?.unit || "kg",
+      weight: existing?.weight || "1kg",
       productSize: item.moq,
-      minimumOrderQuantity: item.moq,
-      mainImage: item.image,
-      priceLabel: item.priceLabel,
+      minimumOrderQuantity: existing?.minimumOrderQuantity || item.moq,
+      mainImage: existing?.mainImage || item.image,
+      priceLabel: existing?.priceLabel || item.priceLabel,
       highlights: item.highlights || [],
       ingredients: item.ingredients,
       benefits: item.benefits || [],
       usageInstructions: item.usage || [],
       specs: item.specs || [],
-      shelfLife: specValue(item, "Shelf Life") || "Up to 18-24 months",
-      storageInstructions: item.storage,
-      countryOfOrigin: specValue(item, "Country of Origin") || "India",
-      manufacturerDetails: "Utkarsh Organic Farm, Satara, Maharashtra",
-      fssaiDetails: "FSSAI Reg. No: 21526039003217",
+      shelfLife: existing?.shelfLife || specValue(item, "Shelf Life") || "Up to 18-24 months",
+      storageInstructions: existing?.storageInstructions || item.storage,
+      countryOfOrigin: existing?.countryOfOrigin || specValue(item, "Country of Origin") || "India",
+      manufacturerDetails: existing?.manufacturerDetails || "Utkarsh Organic Farm, Satara, Maharashtra",
+      fssaiDetails: existing?.fssaiDetails || "FSSAI Reg. No: 21526039003217",
       seoTitle: item.name,
       seoDescription: item.short,
       seoKeywords: [item.name, item.category, ...(item.highlights || [])].join(", "),
@@ -207,16 +207,18 @@ for (const item of frontendProducts) {
   const [product] = await Product.findOrCreate({ where: { sku: item.sku }, defaults: payload });
   await product.update(payload);
 
-  await ProductImage.destroy({ where: { productId: product.id } });
-  const images = [...new Set([item.image, ...(item.gallery || [])].filter(Boolean))];
-  await ProductImage.bulkCreate(
-    images.map((url, index) => ({
-      productId: product.id,
-      url,
-      alt: item.name,
-      displayOrder: index,
-    }))
-  );
+  const existingImages = await ProductImage.findAll({ where: { productId: product.id } });
+  if (!existingImages.length) {
+    const images = [...new Set([payload.mainImage, ...(item.gallery || [])].filter(Boolean))];
+    await ProductImage.bulkCreate(
+      images.map((url, index) => ({
+        productId: product.id,
+        url,
+        alt: item.name,
+        displayOrder: index,
+      }))
+    );
+  }
   await createOrUpdateInventory({ productId: product.id, stock: product.stockQuantity, minimumStock: product.minimumStockAlert });
 }
 

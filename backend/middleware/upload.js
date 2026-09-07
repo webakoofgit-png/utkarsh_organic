@@ -37,5 +37,5 @@ export const upload = multer({
 });
 
 export function publicUploadUrl(req, filename) {
-  return `${req.protocol}://${req.get("host")}/uploads/${filename}`;
+  return `/uploads/${filename}`;
 }

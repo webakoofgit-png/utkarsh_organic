@@ -23,12 +23,14 @@ export function clearTokens() {
 }
 
 export async function apiRequest(path: string, options: RequestOptions = {}) {
+  const { form: isFormRequest, ...fetchOptions } = options;
   const headers = new Headers(options.headers);
   const token = getAccessToken();
   if (token) headers.set("Authorization", `Bearer ${token}`);
-  if (!options.form && options.body && !headers.has("Content-Type")) headers.set("Content-Type", "application/json");
+  const isFormBody = typeof FormData !== "undefined" && options.body instanceof FormData;
+  if (!isFormRequest && !isFormBody && options.body && !headers.has("Content-Type")) headers.set("Content-Type", "application/json");
 
-  const response = await fetch(`${API_BASE}${path}`, { cache: "no-store", ...options, headers });
+  const response = await fetch(`${API_BASE}${path}`, { cache: "no-store", ...fetchOptions, headers });
   const isJson = response.headers.get("content-type")?.includes("application/json");
   const payload = isJson ? await response.json() : await response.text();
   if (!response.ok || (isJson && payload.success === false)) {
@@ -86,6 +88,11 @@ export const adminApi = {
   },
   async duplicate(resource: string, id: string | number) {
     return (await apiRequest(`/admin/${resource}/${id}/duplicate`, { method: "POST" })).data;
+  },
+  async uploadMedia(files: File[]) {
+    const body = new FormData();
+    files.forEach((file) => body.append("files", file));
+    return (await apiRequest("/admin/media/upload", { method: "POST", body, form: true })).data;
   },
   async orderStatus(id: string | number, status: string, note?: string) {
     return (await apiRequest(`/admin/orders/${id}/status`, { method: "PATCH", body: JSON.stringify({ status, note }) })).data;

@@ -569,6 +569,103 @@ tr:last-child td {
   color: var(--muted);
 }
 
+.image-uploader {
+  display: grid;
+  gap: 12px;
+}
+
+.image-uploader-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.field .upload-trigger {
+  position: relative;
+  display: inline-flex;
+  margin: 0;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.upload-trigger input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-trigger.is-disabled {
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.image-upload-empty {
+  min-height: 116px;
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  background: var(--panel-soft);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.image-upload-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(126px, 1fr));
+  gap: 12px;
+}
+
+.image-upload-grid.single {
+  grid-template-columns: minmax(160px, 220px);
+}
+
+.image-upload-preview {
+  position: relative;
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.image-upload-thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  object-fit: cover;
+  background: var(--panel-soft);
+}
+
+.image-upload-remove {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 30px;
+  min-height: 30px;
+  height: 30px;
+  border-color: rgba(223, 231, 220, 0.82);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.spin {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .quick-actions {
   display: flex;
   flex-wrap: wrap;

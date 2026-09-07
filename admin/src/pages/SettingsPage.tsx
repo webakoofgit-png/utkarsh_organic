@@ -1,12 +1,13 @@
 import { FormEvent, useEffect, useState } from "react";
 import { Save } from "lucide-react";
 import { toast } from "sonner";
+import { ImageUploadField } from "@/components/ImageUploadField";
 import { adminApi } from "@/services/api";
 
 const groups = {
   business: [
     ["businessName", "Business Name"],
-    ["logo", "Logo URL"],
+    ["logo", "Logo"],
     ["address", "Address"],
     ["phone", "Phone"],
     ["email", "Email"],
@@ -74,6 +75,13 @@ export function SettingsPage() {
                   <label>{label}</label>
                   {key === "address" ? (
                     <textarea className="textarea" value={settings[group]?.[key] || ""} onChange={(event) => setValue(group, key, event.target.value)} />
+                  ) : key === "logo" ? (
+                    <ImageUploadField
+                      value={settings[group]?.[key] || ""}
+                      disabled={saving}
+                      emptyText="No logo uploaded yet."
+                      onChange={(value) => setValue(group, key, value)}
+                    />
                   ) : key === "codAvailability" ? (
                     <label style={{ display: "inline-flex", alignItems: "center", gap: 8, marginTop: 8 }}>
                       <input type="checkbox" checked={Boolean(settings[group]?.[key])} onChange={(event) => setValue(group, key, event.target.checked)} />

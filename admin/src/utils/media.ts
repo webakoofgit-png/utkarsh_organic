@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env["VITE_API_URL"] || "http://localhost:5000/api";
+const API_BASE = import.meta.env["VITE_API_URL"] || "/api";
 const STOREFRONT_ORIGIN = import.meta.env["VITE_STOREFRONT_URL"] || "http://127.0.0.1:5173";
 
 function originFrom(url: string) {
@@ -18,7 +18,7 @@ export function resolveImageUrl(value?: string | null) {
   const storefrontOrigin = STOREFRONT_ORIGIN.replace(/\/$/, "");
   const normalized = raw.replace(/^\//, "");
 
-  if (normalized.startsWith("uploads/")) return `${apiOrigin}/${normalized}`;
+  if (normalized.startsWith("uploads/")) return apiOrigin ? `${apiOrigin}/${normalized}` : `/${normalized}`;
   if (normalized.startsWith("src/") || normalized.startsWith("assets/")) {
     return `${storefrontOrigin}/${normalized}`;
   }

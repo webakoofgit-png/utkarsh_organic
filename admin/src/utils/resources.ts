@@ -14,7 +14,7 @@ import {
   Users,
 } from "lucide-react";
 
-export type FieldType = "text" | "number" | "textarea" | "select" | "checkbox" | "date" | "password";
+export type FieldType = "text" | "number" | "textarea" | "select" | "checkbox" | "date" | "password" | "image" | "image-list";
 
 export type FieldDefinition = {
   name: string;
@@ -108,8 +108,8 @@ export const resourceDefinitions: Record<string, ResourceDefinition> = {
       { name: "unit", label: "Unit", tab: "Inventory" },
       { name: "weight", label: "Weight", tab: "Inventory" },
       { name: "minimumOrderQuantity", label: "MOQ", tab: "Inventory" },
-      { name: "mainImage", label: "Main Product Image URL", full: true, tab: "Images" },
-      { name: "galleryImages", label: "Gallery Image URLs", type: "textarea", full: true, tab: "Images", hint: "One URL per line" },
+      { name: "mainImage", label: "Main Product Image", type: "image", full: true, tab: "Images" },
+      { name: "galleryImages", label: "Gallery Images", type: "image-list", full: true, tab: "Images", hint: "Upload multiple product images" },
       { name: "ingredients", label: "Ingredients", type: "textarea", full: true, tab: "Product Details" },
       { name: "benefits", label: "Benefits", type: "textarea", full: true, tab: "Product Details", hint: "One benefit per line" },
       { name: "usageInstructions", label: "Usage Instructions", type: "textarea", full: true, tab: "Product Details", hint: "One instruction per line" },
@@ -146,7 +146,7 @@ export const resourceDefinitions: Record<string, ResourceDefinition> = {
       { name: "name", label: "Category Name", required: true },
       { name: "slug", label: "Slug" },
       { name: "parentId", label: "Parent Category ID", type: "number" },
-      { name: "image", label: "Category Image URL", full: true },
+      { name: "image", label: "Category Image", type: "image", full: true },
       { name: "description", label: "Description", type: "textarea", full: true },
       { name: "seoTitle", label: "SEO Title" },
       { name: "seoDescription", label: "SEO Description", type: "textarea", full: true },
@@ -171,7 +171,7 @@ export const resourceDefinitions: Record<string, ResourceDefinition> = {
     fields: [
       { name: "title", label: "Blog Title", required: true, full: true },
       { name: "slug", label: "Slug" },
-      { name: "featuredImage", label: "Featured Image URL", full: true },
+      { name: "featuredImage", label: "Featured Image", type: "image", full: true },
       { name: "blogCategoryId", label: "Category ID", type: "number" },
       { name: "author", label: "Author" },
       { name: "shortDescription", label: "Short Description", type: "textarea", full: true },

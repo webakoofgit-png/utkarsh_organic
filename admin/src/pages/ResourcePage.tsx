@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import { Copy, Edit3, Plus, RefreshCw, Search, Trash2, X } from "lucide-react";
 import { toast } from "sonner";
 import { ImageThumb } from "@/components/ImageThumb";
+import { ImageUploadField } from "@/components/ImageUploadField";
 import { adminApi } from "@/services/api";
 import type { FieldDefinition, ResourceDefinition } from "@/utils/resources";
 import { compact, formatDate, inr, statusClass } from "@/utils/format";
@@ -22,11 +23,30 @@ function displayValue(row: any, column: any) {
   return compact(value);
 }
 
+function imageListValue(value: any) {
+  if (Array.isArray(value)) return value.map((item) => String(item).trim()).filter(Boolean);
+  if (!value) return [];
+  return String(value)
+    .split("\n")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
 function initialValue(field: FieldDefinition, record: any) {
-  if (!record) return field.type === "checkbox" ? false : field.type === "select" ? field.options?.[0] || "" : "";
-  if (field.name === "galleryImages") return (record.images || []).map((image: any) => image.url).join("\n");
+  if (!record) {
+    if (field.type === "checkbox") return false;
+    if (field.type === "select") return field.options?.[0] || "";
+    if (field.type === "image-list") return [];
+    return "";
+  }
+  if (field.name === "galleryImages") {
+    return (record.images || [])
+      .map((image: any) => String(image?.url || image || "").trim())
+      .filter((url: any) => url && url !== record.mainImage);
+  }
   if (field.name === "category") return record.category?.slug || "";
   const value = record[field.name];
+  if (field.type === "image-list") return imageListValue(value);
   if (Array.isArray(value)) return value.join("\n");
   if (field.type === "date" && value) return String(value).slice(0, 10);
   if (field.type === "checkbox") return Boolean(value);
@@ -100,7 +120,15 @@ function ResourceForm({
               .map((field) => (
                 <div key={field.name} className={`field ${field.full || field.type === "textarea" ? "full" : ""}`}>
                   <label>{field.label}{field.required ? " *" : ""}</label>
-                  {field.type === "textarea" ? (
+                  {field.type === "image" || field.type === "image-list" ? (
+                    <ImageUploadField
+                      value={values[field.name]}
+                      multiple={field.type === "image-list"}
+                      disabled={busy}
+                      emptyText={field.type === "image-list" ? "No gallery images uploaded yet." : "No image uploaded yet."}
+                      onChange={(value) => setField(field, value)}
+                    />
+                  ) : field.type === "textarea" ? (
                     <textarea
                       className="textarea"
                       value={values[field.name] || ""}
