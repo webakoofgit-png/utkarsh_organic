@@ -159,7 +159,7 @@ for (const item of frontendProducts) {
       regularPrice: item.baseMrp,
       salePrice: item.basePrice,
       costPrice: existing?.costPrice || Math.round(Number(item.basePrice || 0) * 0.65),
-      gstPercent: 5,
+      gstPercent: 18,
       stockQuantity,
       minimumStockAlert,
       unit: "kg",
@@ -266,7 +266,7 @@ const settings = {
     fssaiNumber: "21526039003217",
   },
   ecommerce: {
-    gst: 5,
+    gst: 18,
     shippingCharges: 50,
     freeShippingMinimum: 500,
     codAvailability: true,

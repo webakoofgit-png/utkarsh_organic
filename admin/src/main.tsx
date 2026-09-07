@@ -8,7 +8,7 @@ import "./styles.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter basename="/admin/panel">
+    <BrowserRouter basename="/admin">
       <AuthProvider>
         <App />
         <Toaster position="top-right" richColors />

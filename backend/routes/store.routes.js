@@ -4,6 +4,7 @@ import {
   bulkOrder,
   contact,
   createOrder,
+  createRazorpayOrder,
   createReview,
   listBlogs,
   listCategories,
@@ -11,10 +12,20 @@ import {
   listProducts,
   orderTracking,
   productDetail,
+  reconcileRazorpayPayment,
+  verifyRazorpayPayment,
   validateCoupon,
 } from "../controllers/storeController.js";
 import { validate } from "../middleware/validate.js";
-import { bulkOrderSchema, contactSchema, couponValidationSchema, storeOrderSchema, trackingSchema } from "../validations/storeSchemas.js";
+import {
+  bulkOrderSchema,
+  contactSchema,
+  couponValidationSchema,
+  razorpayPaymentReconcileSchema,
+  razorpayPaymentVerificationSchema,
+  storeOrderSchema,
+  trackingSchema,
+} from "../validations/storeSchemas.js";
 
 const router = Router();
 
@@ -26,6 +37,9 @@ router.get("/blogs/:slug", blogDetail);
 router.get("/coupons", listCoupons);
 router.post("/coupons/validate", validate(couponValidationSchema), validateCoupon);
 router.post("/orders", validate(storeOrderSchema), createOrder);
+router.post("/payments/razorpay/order", validate(storeOrderSchema), createRazorpayOrder);
+router.post("/payments/razorpay/verify", validate(razorpayPaymentVerificationSchema), verifyRazorpayPayment);
+router.post("/payments/razorpay/reconcile", validate(razorpayPaymentReconcileSchema), reconcileRazorpayPayment);
 router.post("/order-tracking", validate(trackingSchema), orderTracking);
 router.post("/contact-enquiries", validate(contactSchema), contact);
 router.post("/bulk-orders", validate(bulkOrderSchema), bulkOrder);

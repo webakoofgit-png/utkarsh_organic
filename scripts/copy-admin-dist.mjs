@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const source = path.join(root, "admin", "dist");
-const target = path.join(root, "dist", "admin", "panel");
+const target = path.join(root, "dist", "admin");
 
 if (!fs.existsSync(source)) {
   throw new Error("Admin build output not found. Run npm run admin:build first.");

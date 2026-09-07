@@ -7,9 +7,11 @@ import { inr, priceFor } from "@/lib/products";
 import { useCatalog } from "@/lib/catalog";
 import { useStore } from "@/lib/store";
 
+const CHECKOUT_GST_PERCENT = 18;
+
 export default function CartPage() {
   const { products } = useCatalog();
-  const { cart, removeLine, setQty, clearCart } = useStore();
+  const { cart, removeLine, setQty, clearCart, user } = useStore();
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(0);
   const [couponApplied, setCouponApplied] = useState(false);
@@ -19,6 +21,7 @@ export default function CartPage() {
     return product ? [{ ...line, product, amount: priceFor(product, line.weight).price * line.qty }] : [];
   });
   const subtotal = lines.reduce((sum, line) => sum + line.amount, 0);
+  const gst = lines.reduce((sum, line) => sum + Math.round((line.amount * CHECKOUT_GST_PERCENT) / 100), 0);
 
   const handleCoupon = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,7 +35,7 @@ export default function CartPage() {
   };
 
   const shipping = subtotal > 499 ? 0 : 50;
-  const grandTotal = Math.max(0, subtotal - discount + shipping);
+  const grandTotal = Math.max(0, subtotal - discount + gst + shipping);
 
   return (
     <main className="pt-24 pb-20 lg:pt-28">
@@ -168,6 +171,11 @@ export default function CartPage() {
                 )}
 
                 <div className="flex justify-between pt-3">
+                  <span className="text-muted-foreground">GST ({CHECKOUT_GST_PERCENT}%)</span>
+                  <span className="font-semibold">{inr(gst)}</span>
+                </div>
+
+                <div className="flex justify-between pt-3">
                   <span className="text-muted-foreground">Delivery Charge</span>
                   <span className="font-semibold">{shipping === 0 ? <span className="text-accent font-bold">FREE</span> : inr(shipping)}</span>
                 </div>
@@ -191,12 +199,34 @@ export default function CartPage() {
                 </button>
               </form>
 
-              <Link
-                to="/checkout"
-                className="mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-sm font-bold text-primary-foreground transition hover:bg-forest"
-              >
-                Proceed to Checkout <ArrowRight className="h-4 w-4" />
-              </Link>
+              {user ? (
+                <Link
+                  to="/checkout"
+                  className="mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-sm font-bold text-primary-foreground transition hover:bg-forest"
+                >
+                  Proceed to Checkout <ArrowRight className="h-4 w-4" />
+                </Link>
+              ) : (
+                <div className="mt-7">
+                  <p className="rounded-2xl border border-border bg-background/80 px-4 py-3 text-center text-xs font-semibold text-muted-foreground">
+                    Login or create an account to place this order.
+                  </p>
+                  <div className="mt-3 grid gap-2 min-[420px]:grid-cols-2">
+                    <Link
+                      to="/login?redirect=/checkout"
+                      className="flex items-center justify-center rounded-full bg-primary px-5 py-3.5 text-sm font-bold text-primary-foreground transition hover:bg-forest"
+                    >
+                      Login First
+                    </Link>
+                    <Link
+                      to="/register?redirect=/checkout"
+                      className="flex items-center justify-center rounded-full border border-primary px-5 py-3.5 text-sm font-bold text-primary transition hover:bg-secondary"
+                    >
+                      Register First
+                    </Link>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}

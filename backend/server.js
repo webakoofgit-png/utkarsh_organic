@@ -1,4 +1,5 @@
 import path from "path";
+import fs from "fs";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
@@ -11,10 +12,15 @@ import authRoutes from "./routes/auth.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
 import storeRoutes from "./routes/store.routes.js";
 import { errorHandler, notFoundHandler } from "./middleware/errorHandler.js";
+import { projectRoot, uploadRoot } from "./utils/paths.js";
 
 assertEnv();
 
 const app = express();
+const frontendDist = path.join(projectRoot, "dist");
+const adminDist = path.join(frontendDist, "admin");
+const frontendIndex = path.join(frontendDist, "index.html");
+const adminIndex = path.join(adminDist, "index.html");
 const origins = [
   env.clientOrigin,
   env.adminOrigin,
@@ -40,7 +46,7 @@ app.use(express.json({ limit: "2mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan(env.nodeEnv === "development" ? "dev" : "combined"));
-app.use("/uploads", express.static(path.resolve(process.cwd(), env.uploadDir)));
+app.use("/uploads", express.static(uploadRoot));
 
 app.use(
   "/api/auth",
@@ -54,6 +60,20 @@ app.get("/api/health", async (_req, res) => {
   await sequelize.authenticate();
   res.json({ success: true, message: "Utkarsh Organic backend is healthy" });
 });
+
+if (fs.existsSync(adminIndex)) {
+  app.get(/^\/admin\/panel(?:\/(.*))?$/, (req, res) => {
+    const tail = req.params[0] ? `/${req.params[0]}` : "/";
+    res.redirect(301, `/admin${tail}`);
+  });
+  app.use("/admin", express.static(adminDist));
+  app.get(/^\/admin(?:\/.*)?$/, (_req, res) => res.sendFile(adminIndex));
+}
+
+if (fs.existsSync(frontendIndex)) {
+  app.use(express.static(frontendDist));
+  app.get(/^\/(?!api|uploads|admin)(?:.*)?$/, (_req, res) => res.sendFile(frontendIndex));
+}
 
 app.use(notFoundHandler);
 app.use(errorHandler);

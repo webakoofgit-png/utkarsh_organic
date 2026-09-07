@@ -3,8 +3,8 @@ import path from "path";
 import multer from "multer";
 import { env } from "../config/env.js";
 import { AppError } from "../utils/errors.js";
+import { uploadRoot } from "../utils/paths.js";
 
-const uploadRoot = path.resolve(process.cwd(), env.uploadDir);
 fs.mkdirSync(uploadRoot, { recursive: true });
 
 const storage = multer.diskStorage({

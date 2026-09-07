@@ -5,6 +5,7 @@ import { created, success } from "../utils/apiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { publicUploadUrl } from "../middleware/upload.js";
 import { notFound } from "../utils/errors.js";
+import { uploadRoot } from "../utils/paths.js";
 
 export const uploadMedia = asyncHandler(async (req, res) => {
   const files = req.files?.length ? req.files : req.file ? [req.file] : [];
@@ -26,7 +27,7 @@ export const uploadMedia = asyncHandler(async (req, res) => {
 export const deleteMedia = asyncHandler(async (req, res) => {
   const media = await Media.findByPk(req.params.id);
   if (!media) throw notFound("Media not found");
-  const filePath = path.resolve(process.cwd(), "uploads", media.filename);
+  const filePath = path.resolve(uploadRoot, media.filename);
   if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
   await media.destroy();
   return success(res, "Media deleted");

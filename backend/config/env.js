@@ -1,6 +1,9 @@
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
-dotenv.config();
+const envPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../.env");
+dotenv.config({ path: envPath });
 
 const required = [
   "DB_HOST",
@@ -28,6 +31,11 @@ export const env = {
   refreshTokenTtl: process.env.REFRESH_TOKEN_TTL || "7d",
   jwtSecret: process.env.JWT_SECRET,
   jwtRefreshSecret: process.env.JWT_REFRESH_SECRET,
+  razorpay: {
+    keyId: process.env.RAZORPAY_KEY_ID,
+    keySecret: process.env.RAZORPAY_KEY_SECRET,
+    currency: process.env.RAZORPAY_CURRENCY || "INR",
+  },
   uploadDir: process.env.UPLOAD_DIR || "uploads",
   maxUploadMb: Number(process.env.MAX_UPLOAD_MB || 5),
   db: {

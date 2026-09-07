@@ -16,6 +16,11 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { getPagination, paginationMeta } from "../utils/pagination.js";
 import { inr } from "../utils/slug.js";
 import { createStoreOrder, previewStoreCoupon, trackOrder } from "../services/orderService.js";
+import {
+  createRazorpayStoreOrder,
+  reconcileRazorpayStorePayment,
+  verifyRazorpayStorePayment,
+} from "../services/razorpayService.js";
 import { notifyAdmin } from "../services/auditService.js";
 import { notFound } from "../utils/errors.js";
 
@@ -111,6 +116,21 @@ export const blogDetail = asyncHandler(async (req, res) => {
 export const createOrder = asyncHandler(async (req, res) => {
   const order = await createStoreOrder(req.body);
   return created(res, "Order created successfully", order);
+});
+
+export const createRazorpayOrder = asyncHandler(async (req, res) => {
+  const paymentOrder = await createRazorpayStoreOrder(req.body);
+  return created(res, "Razorpay order created successfully", paymentOrder);
+});
+
+export const verifyRazorpayPayment = asyncHandler(async (req, res) => {
+  const order = await verifyRazorpayStorePayment(req.body);
+  return success(res, "Razorpay payment verified successfully", order);
+});
+
+export const reconcileRazorpayPayment = asyncHandler(async (req, res) => {
+  const order = await reconcileRazorpayStorePayment(req.body);
+  return success(res, "Razorpay payment reconciled successfully", order);
 });
 
 export const listCoupons = asyncHandler(async (_req, res) => {

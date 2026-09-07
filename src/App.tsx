@@ -41,11 +41,10 @@ function ScrollToTop() {
 }
 
 function AdminPanelRedirect() {
+  const isLocalHost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
   const adminUrl =
     import.meta.env["VITE_ADMIN_URL"] ||
-    (["localhost", "127.0.0.1"].includes(window.location.hostname)
-      ? `${window.location.protocol}//${window.location.hostname}:5176/`
-      : "");
+    (isLocalHost ? `${window.location.protocol}//${window.location.hostname}:5176/admin/` : "/admin/");
 
   useEffect(() => {
     if (adminUrl) window.location.replace(adminUrl);

@@ -40,6 +40,18 @@ export const couponValidationSchema = Joi.object({
   subtotal: Joi.number().min(0).required(),
 });
 
+export const razorpayPaymentVerificationSchema = Joi.object({
+  orderNumber: Joi.string().required(),
+  razorpayOrderId: Joi.string().required(),
+  razorpayPaymentId: Joi.string().required(),
+  razorpaySignature: Joi.string().required(),
+});
+
+export const razorpayPaymentReconcileSchema = Joi.object({
+  orderNumber: Joi.string().required(),
+  razorpayOrderId: Joi.string().required(),
+});
+
 export const trackingSchema = Joi.object({
   orderNumber: Joi.string().required(),
   contact: Joi.string().required(),

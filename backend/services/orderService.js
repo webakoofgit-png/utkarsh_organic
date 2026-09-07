@@ -21,6 +21,8 @@ import { logActivity, notifyAdmin } from "./auditService.js";
 import { inventoryStatus, recordInventoryChange } from "./inventoryService.js";
 import { AppError, notFound } from "../utils/errors.js";
 
+const STORE_GST_PERCENT = 18;
+
 async function generateOrderNumber(transaction) {
   const year = new Date().getFullYear();
   let sequence = await OrderSequence.findByPk(year, { transaction, lock: true });
@@ -113,7 +115,7 @@ export async function createStoreOrder(payload) {
 
       const unitPrice = Number(variant?.salePrice || variant?.price || product.salePrice || product.regularPrice || 0);
       const lineSubtotal = unitPrice * Number(item.quantity);
-      const lineTax = Math.round((lineSubtotal * Number(product.gstPercent || 0)) / 100);
+      const lineTax = Math.round((lineSubtotal * STORE_GST_PERCENT) / 100);
       subtotal += lineSubtotal;
       tax += lineTax;
 

@@ -15,12 +15,91 @@ type AvailableCoupon = {
   minimumOrder: number | string;
 };
 
+type CheckoutPaymentMethod = "upi" | "cod" | "card";
+type ApiPaymentMethod = "COD" | "UPI" | "Card";
+
+type RazorpayCheckoutResponse = {
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+};
+
+type RazorpayFailureResponse = {
+  error?: {
+    description?: string;
+    reason?: string;
+  };
+};
+
+type RazorpayOptions = {
+  key: string;
+  amount: number;
+  currency: string;
+  name: string;
+  description?: string;
+  image?: string;
+  order_id: string;
+  prefill?: {
+    name?: string;
+    email?: string;
+    contact?: string;
+  };
+  notes?: Record<string, string>;
+  theme?: { color: string };
+  handler: (response: RazorpayCheckoutResponse) => void;
+  modal?: {
+    escape?: boolean;
+    ondismiss?: () => void;
+  };
+};
+
+type RazorpayInstance = {
+  open: () => void;
+  on: (event: "payment.failed", handler: (response: RazorpayFailureResponse) => void) => void;
+};
+
+type PendingRazorpayOrder = {
+  orderNumber: string;
+  razorpayOrderId: string;
+  apiPaymentMethod: ApiPaymentMethod;
+};
+
+declare global {
+  interface Window {
+    Razorpay?: new (options: RazorpayOptions) => RazorpayInstance;
+  }
+}
+
+const RAZORPAY_SCRIPT_URL = "https://checkout.razorpay.com/v1/checkout.js";
+const CHECKOUT_GST_PERCENT = 18;
+const PENDING_RAZORPAY_KEY = "utkarsh-organic-pending-razorpay";
+
+function loadRazorpayCheckout() {
+  if (window.Razorpay) return Promise.resolve(true);
+
+  return new Promise<boolean>((resolve) => {
+    const existingScript = document.querySelector<HTMLScriptElement>(`script[src="${RAZORPAY_SCRIPT_URL}"]`);
+    if (existingScript) {
+      existingScript.addEventListener("load", () => resolve(Boolean(window.Razorpay)), { once: true });
+      existingScript.addEventListener("error", () => resolve(false), { once: true });
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = RAZORPAY_SCRIPT_URL;
+    script.async = true;
+    script.onload = () => resolve(Boolean(window.Razorpay));
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+}
+
 export default function CheckoutPage() {
   const { products } = useCatalog();
-  const { cart, clearCart, addOrder } = useStore();
+  const { cart, clearCart, addOrder, ready, user } = useStore();
   const navigate = useNavigate();
 
-  const [paymentMethod, setPaymentMethod] = useState<"upi" | "cod" | "card">("upi");
+  const [paymentMethod, setPaymentMethod] = useState<CheckoutPaymentMethod>("upi");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
@@ -29,6 +108,8 @@ export default function CheckoutPage() {
   const [couponError, setCouponError] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; discount: number } | null>(null);
   const [availableCoupons, setAvailableCoupons] = useState<AvailableCoupon[]>([]);
+  const [pendingRazorpayOrder, setPendingRazorpayOrder] = useState<PendingRazorpayOrder | null>(null);
+  const [isCheckingPayment, setIsCheckingPayment] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -52,16 +133,34 @@ export default function CheckoutPage() {
     };
   }, []);
 
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(PENDING_RAZORPAY_KEY);
+      if (raw) setPendingRazorpayOrder(JSON.parse(raw) as PendingRazorpayOrder);
+    } catch {
+      localStorage.removeItem(PENDING_RAZORPAY_KEY);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!ready || user) return;
+    toast.info("Please login or create an account before checkout.");
+    navigate("/login?redirect=/checkout", { replace: true });
+  }, [ready, user, navigate]);
+
   const lines = cart.flatMap((line) => {
     const product = products.find((item) => item.slug === line.slug);
-    return product ? [{ ...line, product, amount: priceFor(product, line.weight).price * line.qty }] : [];
+    if (!product) return [];
+    const amount = priceFor(product, line.weight).price * line.qty;
+    return [{ ...line, product, amount, gst: Math.round((amount * CHECKOUT_GST_PERCENT) / 100) }];
   });
 
   const subtotal = lines.reduce((sum, line) => sum + line.amount, 0);
+  const gst = lines.reduce((sum, line) => sum + line.gst, 0);
   const discount = Math.min(appliedCoupon?.discount || 0, subtotal);
   const discountedSubtotal = Math.max(0, subtotal - discount);
   const shipping = discountedSubtotal > 499 ? 0 : 50;
-  const grandTotal = discountedSubtotal + shipping;
+  const grandTotal = discountedSubtotal + gst + shipping;
 
   const handleCouponApply = async (requestedCode = couponCode) => {
     const code = requestedCode.trim().toUpperCase();
@@ -91,8 +190,76 @@ export default function CheckoutPage() {
     setCouponError("");
   };
 
+  const buildOrderPayload = (apiPaymentMethod: ApiPaymentMethod) => ({
+    customer: {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+    },
+    shippingAddress: {
+      name: formData.name,
+      phone: formData.phone,
+      line1: formData.address,
+      city: formData.city,
+      state: formData.state,
+      pincode: formData.pincode,
+      country: "India",
+    },
+    items: lines.map((line) => ({
+      slug: line.product.slug,
+      weight: line.weight,
+      quantity: line.qty,
+    })),
+    couponCode: appliedCoupon?.code || "",
+    paymentMethod: apiPaymentMethod,
+  });
+
+  const finishOrder = (created: any, apiPaymentMethod: ApiPaymentMethod) => {
+    const generatedId = created.orderNumber || `UO-${Math.floor(100000 + Math.random() * 900000)}`;
+    setOrderId(generatedId);
+    addOrder({
+      id: generatedId,
+      date: new Date().toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }),
+      items: lines.map((l) => ({ name: l.product.name, weight: l.weight, qty: l.qty, price: l.amount })),
+      total: Number(created.grandTotal || grandTotal),
+      status: created.orderStatus || "Confirmed",
+      address: `${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}`,
+      payment: apiPaymentMethod === "COD" ? "COD" : "Razorpay",
+    });
+    clearCart();
+    setPendingRazorpayOrder(null);
+    localStorage.removeItem(PENDING_RAZORPAY_KEY);
+    setOrderComplete(true);
+  };
+
+  const checkRazorpayPaymentStatus = async (pending = pendingRazorpayOrder, options: { quiet?: boolean; throwOnError?: boolean } = {}) => {
+    if (!pending) return false;
+    if (!options.quiet) setIsCheckingPayment(true);
+    try {
+      const response = await storeApi.reconcileRazorpayPayment({
+        orderNumber: pending.orderNumber,
+        razorpayOrderId: pending.razorpayOrderId,
+      });
+      finishOrder(response.data, pending.apiPaymentMethod);
+      toast.success("Payment confirmed. Order placed!");
+      return true;
+    } catch (error: any) {
+      if (!options.quiet) toast.info(error.message || "Payment is still pending with Razorpay.");
+      if (options.throwOnError) throw error;
+      return false;
+    } finally {
+      if (!options.quiet) setIsCheckingPayment(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) {
+      toast.error("Please login or create an account before placing your order.");
+      navigate("/login?redirect=/checkout");
+      return;
+    }
+
     if (!formData.name || !formData.phone || !formData.address || !formData.pincode) {
       toast.error("Please fill in all required delivery fields.");
       return;
@@ -100,52 +267,157 @@ export default function CheckoutPage() {
 
     setIsSubmitting(true);
     try {
-      const apiPaymentMethod = paymentMethod === "cod" ? "COD" : paymentMethod === "upi" ? "UPI" : "Card";
-      const response = await storeApi.createOrder({
-        customer: {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-        },
-        shippingAddress: {
-          name: formData.name,
-          phone: formData.phone,
-          line1: formData.address,
-          city: formData.city,
-          state: formData.state,
-          pincode: formData.pincode,
-          country: "India",
-        },
-        items: lines.map((line) => ({
-          slug: line.product.slug,
-          weight: line.weight,
-          quantity: line.qty,
-        })),
-        couponCode: appliedCoupon?.code || "",
-        paymentMethod: apiPaymentMethod,
-      });
+      const apiPaymentMethod: ApiPaymentMethod = paymentMethod === "cod" ? "COD" : paymentMethod === "upi" ? "UPI" : "Card";
+      const orderPayload = buildOrderPayload(apiPaymentMethod);
 
-      const created = response.data;
-      const generatedId = created.orderNumber || `UO-${Math.floor(100000 + Math.random() * 900000)}`;
-      setOrderId(generatedId);
-      addOrder({
-        id: generatedId,
-        date: new Date().toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }),
-        items: lines.map((l) => ({ name: l.product.name, weight: l.weight, qty: l.qty, price: l.amount })),
-        total: Number(created.grandTotal || grandTotal),
-        status: created.orderStatus || "Confirmed",
-        address: `${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}`,
-        payment: apiPaymentMethod,
+      if (apiPaymentMethod === "COD") {
+        const response = await storeApi.createOrder(orderPayload);
+        finishOrder(response.data, apiPaymentMethod);
+        toast.success("Order placed successfully!");
+        return;
+      }
+
+      const scriptReady = await loadRazorpayCheckout();
+      const RazorpayCheckout = window.Razorpay;
+      if (!scriptReady || !RazorpayCheckout) {
+        throw new Error("Razorpay Checkout could not be loaded. Please check your connection and try again.");
+      }
+
+      const response = await storeApi.createRazorpayOrder(orderPayload);
+      const created = response.data.order;
+      const razorpay = response.data.razorpay;
+      const pending: PendingRazorpayOrder = {
+        orderNumber: created.orderNumber,
+        razorpayOrderId: razorpay.orderId,
+        apiPaymentMethod,
+      };
+      setPendingRazorpayOrder(pending);
+      localStorage.setItem(PENDING_RAZORPAY_KEY, JSON.stringify(pending));
+
+      await new Promise<void>((resolve, reject) => {
+        let settled = false;
+        let pollId: number | undefined;
+        const cleanup = () => {
+          if (pollId) window.clearInterval(pollId);
+        };
+        const resolveOnce = () => {
+          if (settled) return;
+          settled = true;
+          cleanup();
+          resolve();
+        };
+        const rejectOnce = (error: Error) => {
+          if (settled) return;
+          settled = true;
+          cleanup();
+          reject(error);
+        };
+
+        const checkout = new RazorpayCheckout({
+          key: razorpay.keyId,
+          amount: razorpay.amount,
+          currency: razorpay.currency,
+          name: razorpay.name || "Utkarsh Organic",
+          description: razorpay.description || `Payment for ${created.orderNumber}`,
+          image: "/logo.png",
+          order_id: razorpay.orderId,
+          prefill: {
+            name: formData.name,
+            email: formData.email,
+            contact: formData.phone,
+            ...(razorpay.prefill || {}),
+          },
+          notes: {
+            order_number: created.orderNumber,
+          },
+          theme: { color: "#31572c" },
+          modal: {
+            escape: true,
+            ondismiss: () => {
+              void checkRazorpayPaymentStatus(pending, { quiet: true, throwOnError: true })
+                .then((confirmed) => {
+                  if (confirmed) resolveOnce();
+                  else rejectOnce(new Error("Payment is pending. If money was deducted, click Check Payment Status."));
+                })
+                .catch((error) => rejectOnce(new Error(error.message || "Unable to confirm Razorpay payment.")));
+            },
+          },
+          handler: async (paymentResponse) => {
+            try {
+              const verified = await storeApi.verifyRazorpayPayment({
+                orderNumber: created.orderNumber,
+                razorpayOrderId: paymentResponse.razorpay_order_id,
+                razorpayPaymentId: paymentResponse.razorpay_payment_id,
+                razorpaySignature: paymentResponse.razorpay_signature,
+              });
+              finishOrder(verified.data, apiPaymentMethod);
+              toast.success("Payment successful. Order placed!");
+              resolveOnce();
+            } catch (error: any) {
+              rejectOnce(new Error(error.message || "Payment verification failed. Please contact support."));
+            }
+          },
+        });
+
+        checkout.on("payment.failed", (paymentFailure) => {
+          rejectOnce(new Error(paymentFailure.error?.description || paymentFailure.error?.reason || "Razorpay payment failed. Please try again."));
+        });
+
+        checkout.open();
+        pollId = window.setInterval(() => {
+          void checkRazorpayPaymentStatus(pending, { quiet: true }).then((confirmed) => {
+            if (confirmed) resolveOnce();
+          });
+        }, 5000);
       });
-      clearCart();
-      setOrderComplete(true);
-      toast.success("Order placed successfully!");
     } catch (error: any) {
       toast.error(error.message || "Unable to place order right now.");
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  if (!ready) {
+    return (
+      <main className="pt-24 pb-20 lg:pt-28">
+        <div className="container-x">
+          <div className="rounded-[1.35rem] border border-border bg-cream px-5 py-14 text-center sm:rounded-3xl">
+            <p className="text-sm font-semibold text-muted-foreground">Preparing checkout...</p>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  if (!user) {
+    return (
+      <main className="pt-24 pb-20 lg:pt-28">
+        <div className="container-x max-w-xl">
+          <div className="rounded-[1.35rem] border border-border bg-cream px-5 py-12 text-center shadow-soft sm:rounded-3xl sm:px-8">
+            <ShieldCheck className="mx-auto h-12 w-12 text-accent" />
+            <h1 className="mt-4 font-display text-2xl font-extrabold">Login Required</h1>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Please sign in or create an account before placing your order.
+            </p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-center">
+              <Link
+                to="/login?redirect=/checkout"
+                className="rounded-full bg-primary px-7 py-3.5 text-sm font-bold text-primary-foreground transition hover:bg-forest"
+              >
+                Login First
+              </Link>
+              <Link
+                to="/register?redirect=/checkout"
+                className="rounded-full border border-border bg-background px-7 py-3.5 text-sm font-bold text-foreground transition hover:bg-secondary"
+              >
+                Register First
+              </Link>
+            </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   if (orderComplete) {
     return (
@@ -294,8 +566,8 @@ export default function CheckoutPage() {
                     <div className="flex min-w-0 items-center gap-3">
                       <input type="radio" name="payment" checked={paymentMethod === "upi"} onChange={() => setPaymentMethod("upi")} className="accent-accent" />
                       <div className="min-w-0">
-                        <p className="font-display font-bold text-sm">UPI / QR Code (GPay, PhonePe, Paytm)</p>
-                        <p className="text-xs text-muted-foreground">Instant payment with zero transaction fees</p>
+                        <p className="font-display font-bold text-sm">UPI / QR Code via Razorpay</p>
+                        <p className="text-xs text-muted-foreground">Pay with GPay, PhonePe, Paytm or any UPI app</p>
                       </div>
                     </div>
                     <span className="text-xs font-bold text-accent">Fastest</span>
@@ -317,7 +589,7 @@ export default function CheckoutPage() {
                       <input type="radio" name="payment" checked={paymentMethod === "card"} onChange={() => setPaymentMethod("card")} className="accent-accent" />
                       <div className="min-w-0">
                         <p className="font-display font-bold text-sm">Credit / Debit Card / Net Banking</p>
-                        <p className="text-xs text-muted-foreground">Secure 256-bit encrypted checkout</p>
+                        <p className="text-xs text-muted-foreground">Secure Razorpay checkout for cards and banks</p>
                       </div>
                     </div>
                     <ShieldCheck className="h-5 w-5 text-muted-foreground" />
@@ -331,11 +603,16 @@ export default function CheckoutPage() {
               <h2 className="font-display text-xl font-bold">Summary ({lines.length} items)</h2>
 
               <div className="mt-6 max-h-60 overflow-y-auto space-y-3 pr-1">
-                {lines.map(({ product, weight, qty, amount }) => (
+                {lines.map(({ product, weight, qty, amount, gst: lineGst }) => (
                   <div key={`${product.slug}-${weight}`} className="flex items-start justify-between gap-3 py-1 text-xs">
                     <div className="flex min-w-0 items-start gap-2">
                       <span className="font-bold">{qty}x</span>
-                      <span className="min-w-0 break-words">{product.name} ({weight})</span>
+                      <span className="min-w-0 break-words">
+                        {product.name} ({weight})
+                        <span className="mt-0.5 block text-[11px] font-medium text-muted-foreground">
+                          GST @ {CHECKOUT_GST_PERCENT}%: {inr(lineGst)}
+                        </span>
+                      </span>
                     </div>
                     <span className="shrink-0 text-right font-bold">{inr(amount)}</span>
                   </div>
@@ -428,16 +705,20 @@ export default function CheckoutPage() {
                   <span>Subtotal</span>
                   <span>{inr(subtotal)}</span>
                 </div>
-                <div className="flex justify-between text-muted-foreground">
-                  <span>Shipping</span>
-                  <span>{shipping === 0 ? <span className="text-accent font-bold">FREE</span> : inr(shipping)}</span>
-                </div>
                 {discount > 0 && (
                   <div className="flex justify-between font-semibold text-accent">
                     <span>Discount ({appliedCoupon?.code})</span>
                     <span>-{inr(discount)}</span>
                   </div>
                 )}
+                <div className="flex justify-between text-muted-foreground">
+                  <span>GST ({CHECKOUT_GST_PERCENT}%)</span>
+                  <span>{inr(gst)}</span>
+                </div>
+                <div className="flex justify-between text-muted-foreground">
+                  <span>Shipping</span>
+                  <span>{shipping === 0 ? <span className="text-accent font-bold">FREE</span> : inr(shipping)}</span>
+                </div>
                 <div className="flex justify-between pt-3 font-display text-lg font-bold text-foreground">
                   <span>Total Payable</span>
                   <span className="text-primary">{inr(grandTotal)}</span>
@@ -449,11 +730,27 @@ export default function CheckoutPage() {
                 disabled={isSubmitting}
                 className="mt-7 w-full rounded-full bg-primary py-4 text-sm font-bold text-primary-foreground transition hover:bg-forest disabled:opacity-50"
               >
-                {isSubmitting ? "Placing Order..." : `Place Order (${inr(grandTotal)})`}
+                {isSubmitting ? (paymentMethod === "cod" ? "Placing Order..." : "Opening Razorpay...") : `Place Order (${inr(grandTotal)})`}
               </button>
 
+              {pendingRazorpayOrder && !orderComplete && (
+                <div className="mt-4 rounded-2xl border border-accent/30 bg-background/80 p-4 text-center">
+                  <p className="text-xs font-semibold text-muted-foreground">
+                    Already paid but still seeing checkout? Confirm the payment status with Razorpay.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => void checkRazorpayPaymentStatus()}
+                    disabled={isCheckingPayment || isSubmitting}
+                    className="mt-3 w-full rounded-full border border-primary px-4 py-2.5 text-xs font-bold text-primary transition hover:bg-secondary disabled:opacity-50"
+                  >
+                    {isCheckingPayment ? "Checking Payment..." : "Check Payment Status"}
+                  </button>
+                </div>
+              )}
+
               <p className="mt-4 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
-                <ShieldCheck className="h-4 w-4 text-accent" /> 100% Safe &amp; Encrypted Payment
+                <ShieldCheck className="h-4 w-4 text-accent" /> 100% Safe &amp; Encrypted Payment via Razorpay
               </p>
             </div>
           </form>

@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000/api";
+const API_BASE = import.meta.env.VITE_API_URL || "/api";
 const ACCESS_KEY = "utkarsh-admin-access";
 const REFRESH_KEY = "utkarsh-admin-refresh";
 

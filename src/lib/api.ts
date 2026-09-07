@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env["VITE_API_URL"] || "http://127.0.0.1:5000/api";
+const API_BASE = import.meta.env["VITE_API_URL"] || "/api";
 
 async function request(path: string, options: RequestInit = {}) {
   const headers = new Headers(options.headers);
@@ -36,6 +36,15 @@ export const storeApi = {
   },
   async createOrder(data: unknown) {
     return request("/store/orders", { method: "POST", body: JSON.stringify(data) });
+  },
+  async createRazorpayOrder(data: unknown) {
+    return request("/store/payments/razorpay/order", { method: "POST", body: JSON.stringify(data) });
+  },
+  async verifyRazorpayPayment(data: unknown) {
+    return request("/store/payments/razorpay/verify", { method: "POST", body: JSON.stringify(data) });
+  },
+  async reconcileRazorpayPayment(data: unknown) {
+    return request("/store/payments/razorpay/reconcile", { method: "POST", body: JSON.stringify(data) });
   },
   async validateCoupon(data: { couponCode: string; subtotal: number }) {
     return request("/store/coupons/validate", { method: "POST", body: JSON.stringify(data) });

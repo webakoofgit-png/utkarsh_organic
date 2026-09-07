@@ -67,6 +67,9 @@ All admin routes require `Authorization: Bearer <accessToken>`.
 - `GET /store/blogs`
 - `GET /store/blogs/:slug`
 - `POST /store/orders`
+- `POST /store/payments/razorpay/order`
+- `POST /store/payments/razorpay/verify`
+- `POST /store/payments/razorpay/reconcile`
 - `POST /store/order-tracking`
 - `POST /store/contact-enquiries`
 - `POST /store/bulk-orders`

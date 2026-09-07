@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, Leaf, Lock, Mail, User } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -7,9 +7,13 @@ import { useStore } from "@/lib/store";
 export default function RegisterPage() {
   const { login } = useStore();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const requestedRedirect = searchParams.get("redirect") || "/account";
+  const redirectTo = requestedRedirect.startsWith("/") && !requestedRedirect.startsWith("//") ? requestedRedirect : "/account";
+  const loginLink = redirectTo === "/account" ? "/login" : `/login?redirect=${encodeURIComponent(redirectTo)}`;
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,7 +24,7 @@ export default function RegisterPage() {
 
     login(name, email);
     toast.success("Account created! Welcome to Utkarsh Organic.");
-    navigate("/account");
+    navigate(redirectTo, { replace: true });
   };
 
   return (
@@ -91,7 +95,7 @@ export default function RegisterPage() {
 
           <div className="mt-8 border-t border-border pt-6 text-center text-xs text-muted-foreground">
             Already have an account?{" "}
-            <Link to="/login" className="font-bold text-accent hover:underline">
+            <Link to={loginLink} className="font-bold text-accent hover:underline">
               Sign in
             </Link>
           </div>

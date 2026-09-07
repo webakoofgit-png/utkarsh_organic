@@ -8,7 +8,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "
 
 export function CartDrawer() {
   const { products } = useCatalog();
-  const { cart, cartOpen, setCartOpen, removeLine, setQty } = useStore();
+  const { cart, cartOpen, setCartOpen, removeLine, setQty, user } = useStore();
   const lines = cart.flatMap((line) => {
     const product = products.find((item) => item.slug === line.slug);
     return product ? [{ ...line, product, amount: priceFor(product, line.weight).price * line.qty }] : [];
@@ -66,7 +66,19 @@ export function CartDrawer() {
             <div className="safe-bottom-pad border-t border-border bg-cream px-4 py-5 sm:px-6">
               <div className="flex justify-between font-display text-lg font-bold"><span>Subtotal</span><span>{inr(subtotal)}</span></div>
               <p className="mt-1 text-xs text-muted-foreground">Shipping and taxes are calculated at checkout.</p>
-              <Link to="/checkout" onClick={() => setCartOpen(false)} className="mt-5 flex w-full items-center justify-center rounded-full bg-primary px-5 py-3.5 text-sm font-bold text-primary-foreground transition hover:bg-forest">Proceed to checkout</Link>
+              {user ? (
+                <Link to="/checkout" onClick={() => setCartOpen(false)} className="mt-5 flex w-full items-center justify-center rounded-full bg-primary px-5 py-3.5 text-sm font-bold text-primary-foreground transition hover:bg-forest">Proceed to checkout</Link>
+              ) : (
+                <div className="mt-5">
+                  <p className="rounded-2xl border border-border bg-background/80 px-4 py-3 text-center text-xs font-semibold text-muted-foreground">
+                    Login or create an account to place this order.
+                  </p>
+                  <div className="mt-3 grid grid-cols-2 gap-2">
+                    <Link to="/login?redirect=/checkout" onClick={() => setCartOpen(false)} className="flex items-center justify-center rounded-full bg-primary px-4 py-3 text-xs font-bold text-primary-foreground transition hover:bg-forest">Login First</Link>
+                    <Link to="/register?redirect=/checkout" onClick={() => setCartOpen(false)} className="flex items-center justify-center rounded-full border border-primary px-4 py-3 text-xs font-bold text-primary transition hover:bg-secondary">Register First</Link>
+                  </div>
+                </div>
+              )}
               <Link to="/cart" onClick={() => setCartOpen(false)} className="mt-3 block text-center text-sm font-semibold text-primary underline underline-offset-4">View cart</Link>
             </div>
           </>
