@@ -1,12 +1,10 @@
 import {
   Bell,
-  BookOpen,
   Boxes,
   ChevronLeft,
   ChevronRight,
   ClipboardList,
   Contact,
-  FileText,
   LayoutDashboard,
   LogOut,
   Menu,
@@ -50,8 +48,6 @@ const groups = [
     items: [
       { to: "/coupons", label: "Coupons", icon: Tags },
       { to: "/bulk-orders", label: "Bulk Orders", icon: Boxes },
-      { to: "/blogs", label: "Blog Posts", icon: BookOpen },
-      { to: "/blog-categories", label: "Blog Categories", icon: FileText },
       { to: "/contact-enquiries", label: "Enquiries", icon: Contact },
     ],
   },

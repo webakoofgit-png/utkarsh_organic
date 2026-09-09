@@ -12,6 +12,8 @@ type TranslationPair = {
 };
 
 const TRANSLATIONS: TranslationPair[] = [
+  { en: "See Full Video", mr: "संपूर्ण व्हिडिओ पहा", hi: "पूरा वीडियो देखें" },
+  { en: "Utkarsh Farm video", mr: "उत्कर्ष फार्म व्हिडिओ", hi: "उत्कर्ष फार्म वीडियो" },
   { en: "English", mr: "इंग्रजी" },
   { en: "Marathi", mr: "मराठी" },
   { en: "Language", mr: "भाषा" },

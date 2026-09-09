@@ -27,6 +27,7 @@ import {
   Vegan,
 } from "lucide-react";
 import { ProductCard } from "@/components/site/ProductCard";
+import { HeroVideoButton } from "@/components/site/HeroVideoButton";
 import { Counter, Reveal, SectionHeading } from "@/components/site/motion-primitives";
 import { useCatalog } from "@/lib/catalog";
 import { COMPANY_INFO, MARATHI_PROMO } from "@/lib/products";
@@ -210,6 +211,7 @@ export default function HomePage() {
                 <Play className="h-3.5 w-3.5 fill-current text-beige" />
                 आमची प्रक्रिया
               </a>
+              <HeroVideoButton src={heroVideo} />
             </div>
 
             <ul className="mt-8 grid gap-3 text-sm font-semibold text-green-50/86 sm:grid-cols-3">
