@@ -21,6 +21,8 @@ export function ProductImageWithLogo({
       <img
         src={src}
         alt={alt}
+        loading="lazy"
+        decoding="async"
         className={cn("h-full w-full object-contain object-center", imageClassName)}
         {...imgProps}
       />

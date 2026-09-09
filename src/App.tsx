@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Toaster } from "sonner";
 import { LanguageProvider, TranslationLayer } from "@/lib/i18n";
 import { ProductCatalogProvider } from "@/lib/catalog";
@@ -8,6 +8,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { CartDrawer } from "@/components/site/CartDrawer";
 import { FloatingActions } from "@/components/site/FloatingActions";
+import { RouteSeo } from "@/components/site/PageSeo";
 
 import HomePage from "@/routes/index";
 import ProductsPage from "@/routes/products";
@@ -77,6 +78,7 @@ export default function App() {
         <TranslationLayer />
         <ScrollToTop />
         <ProductCatalogProvider>
+          <RouteSeo />
           <StoreProvider>
             <div className="relative flex min-h-screen flex-col">
               <Navbar />
@@ -84,7 +86,7 @@ export default function App() {
               <div className="flex-1">
                 <Routes>
                   <Route path="/" element={<HomePage />} />
-                  <Route path="/shop" element={<ProductsPage />} />
+                  <Route path="/shop" element={<Navigate to="/products" replace />} />
                   <Route path="/products" element={<ProductsPage />} />
                   <Route path="/product/:slug" element={<ProductDetailPage />} />
                   <Route path="/cart" element={<CartPage />} />

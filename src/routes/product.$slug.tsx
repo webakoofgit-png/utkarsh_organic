@@ -58,31 +58,6 @@ export default function ProductDetailPage() {
 
   return (
     <main className="pt-16 lg:pt-20">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Product",
-            name: product.name,
-            description: product.short,
-            sku: product.sku,
-            brand: { "@type": "Brand", name: "Utkarsh Organic" },
-            offers: {
-              "@type": "Offer",
-              priceCurrency: "INR",
-              price: prices.price,
-              availability: "https://schema.org/InStock",
-            },
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: product.rating,
-              reviewCount: product.reviews,
-            },
-          }),
-        }}
-      />
-
       <nav className="container-x flex flex-wrap items-center gap-1 py-4 text-xs text-muted-foreground">
         <Link to="/" className="hover:text-primary">
           Home
@@ -102,6 +77,7 @@ export default function ProductDetailPage() {
             alt={product.name}
             className="h-full w-full"
             imageClassName="max-h-full max-w-full"
+            imgProps={{ loading: "eager", fetchPriority: "high" }}
           />
         </div>
 

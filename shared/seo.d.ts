@@ -1,0 +1,11 @@
+export const SITE_ORIGIN: string;
+export const SITE_NAME: string;
+export const PUBLIC_PAGES: Record<string, [string, string]>;
+export type PageSeo = { title: string; description: string; url: string; image: string; type: string; noindex: boolean; status: number; structuredData: unknown[] };
+export function absoluteUrl(value?: string): string;
+export function normalizePath(value: string): string;
+export function getPageSeo(pathname: string, data?: { product?: object | undefined; blog?: object | undefined }): PageSeo;
+export function escapeXml(value: unknown): string;
+export function renderSeoHead(seo: PageSeo): string;
+export function renderSitemap(items?: { path: string; updatedAt?: string | Date }[]): string;
+export function renderRobots(): string;

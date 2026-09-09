@@ -35,6 +35,7 @@ const privacySections = [
     title: "Cookies And Website Tools",
     body: [
       "The website may use cookies or similar tools to remember preferences, support cart functionality, measure traffic, and improve page performance.",
+      "We use Google Analytics 4 to understand how visitors use our website, including page visits, device information and referral sources. Google Analytics may use cookies to measure these interactions.",
       "You can control cookies through your browser settings, but some site features may not work properly if cookies are disabled.",
     ],
   },

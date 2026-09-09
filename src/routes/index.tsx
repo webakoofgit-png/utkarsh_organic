@@ -141,29 +141,6 @@ export default function HomePage() {
 
   return (
     <main className="overflow-hidden">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: COMPANY_INFO.name,
-            url: COMPANY_INFO.website,
-            email: COMPANY_INFO.email,
-            telephone: COMPANY_INFO.phonePrimary,
-            address: {
-              "@type": "PostalAddress",
-              streetAddress: `${COMPANY_INFO.address.doorNo} ${COMPANY_INFO.address.locality}`,
-              addressLocality: COMPANY_INFO.address.city,
-              addressRegion: COMPANY_INFO.address.state,
-              postalCode: COMPANY_INFO.address.pincode,
-              addressCountry: "IN",
-            },
-            description: COMPANY_INFO.marathiDescription,
-          }),
-        }}
-      />
-
       <section className="relative min-h-[100svh] overflow-hidden bg-forest pb-12 pt-24 text-white sm:pt-32 lg:pb-24 lg:pt-36">
         <video
           className="absolute inset-0 h-full w-full object-cover opacity-85"
@@ -230,6 +207,8 @@ export default function HomePage() {
                 <div className="grid aspect-[4/3] place-items-center overflow-hidden rounded-2xl bg-cream p-3">
                   <img
                     src={heroFarmFamily}
+                    fetchPriority="high"
+                    decoding="async"
                     alt="Indian farming family harvesting onions at Utkarsh Organic Farm"
                     className="h-full w-full object-contain"
                   />
@@ -519,6 +498,8 @@ export default function HomePage() {
                 >
                   <img
                     src={featuredGalleryItem.image}
+                    loading="lazy"
+                    decoding="async"
                     alt={featuredGalleryItem.title}
                     className={`h-full w-full object-center transition duration-500 group-hover:scale-[1.03] ${featuredGalleryItem.fit === "contain" ? "object-contain" : "object-cover"}`}
                   />
@@ -560,6 +541,8 @@ export default function HomePage() {
                   >
                     <img
                       src={item.image}
+                      loading="lazy"
+                      decoding="async"
                       alt={item.title}
                       className={`h-full w-full object-center transition duration-500 group-hover:scale-[1.03] ${item.fit === "contain" ? "object-contain" : "object-cover"}`}
                     />

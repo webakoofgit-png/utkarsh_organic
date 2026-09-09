@@ -6,6 +6,10 @@
     "node": "22.x"
   },
   "scripts": {
+    "seo:generate": "node scripts/generate-seo.mjs",
+    "predev": "npm run seo:generate",
+    "prebuild": "npm run seo:generate",
+    "test:seo": "node --test tests/seo.test.mjs",
     "dev": "vite",
     "build": "npm install --include=dev && cd backend && npm install --omit=dev && cd .. && tsc && vite build && npm --prefix admin run build && node scripts/copy-admin-dist.mjs && node scripts/hostinger-db-setup.mjs",
     "hostinger:build": "npm run build",

@@ -6,11 +6,14 @@ import flatlay from "@/assets/flatlay.jpg";
 import { storeApi } from "@/lib/api";
 import { normalizeBlog, type BlogPost } from "@/lib/blogs";
 import { BLOG_POSTS } from "@/lib/products";
+import { usePageSeo } from "@/components/site/PageSeo";
+import { getPageSeo } from "../../shared/seo.js";
 
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const [posts, setPosts] = useState<BlogPost[]>(BLOG_POSTS);
   const [post, setPost] = useState<BlogPost | undefined>(() => BLOG_POSTS.find((p) => p.slug === slug));
+  usePageSeo(getPageSeo(`/blog/${encodeURIComponent(slug || "")}`, { blog: post?.slug === slug ? post : undefined }));
 
   useEffect(() => {
     let active = true;
