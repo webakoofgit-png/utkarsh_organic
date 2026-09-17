@@ -9,6 +9,10 @@ import { Footer } from "@/components/site/Footer";
 import { CartDrawer } from "@/components/site/CartDrawer";
 import { FloatingActions } from "@/components/site/FloatingActions";
 import { RouteSeo } from "@/components/site/PageSeo";
+import ComingSoonPage from "@/components/site/ComingSoonPage";
+
+// Set to false to restore the full website, then rebuild and deploy.
+const COMING_SOON_ENABLED = true;
 
 import HomePage from "@/routes/index";
 import ProductsPage from "@/routes/products";
@@ -72,6 +76,8 @@ function AdminPanelRedirect() {
 }
 
 export default function App() {
+  if (COMING_SOON_ENABLED) return <ComingSoonPage />;
+
   return (
     <LanguageProvider>
       <BrowserRouter>
