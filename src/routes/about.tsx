@@ -4,7 +4,10 @@ import {
   Award,
   CheckCircle2,
   ChevronRight,
+  Download,
+  ExternalLink,
   Factory,
+  FileText,
   Heart,
   Home,
   Leaf,
@@ -248,6 +251,70 @@ export default function AboutPage() {
             <p className="mt-2 text-xs text-muted-foreground">
               Registered agri-processing farm enterprise.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Founder Certificate */}
+      <section className="border-t border-border bg-beige/35 py-20 lg:py-24">
+        <div className="container-x">
+          <SectionHeading
+            eyebrow="Founder Credential"
+            title="Organic Farming Skills Certificate"
+            sub="A certificate awarded to Mr. Prafull Chorage for completing organic farming skills training."
+          />
+
+          <div className="mx-auto mt-12 grid max-w-5xl gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-center">
+            <div className="overflow-hidden rounded-3xl border border-border bg-background p-2 shadow-lift">
+              <object
+                data="/certificates/prafull-chorage-organic-farming-skills.pdf"
+                type="application/pdf"
+                aria-label="Organic Farming Skills certificate for Mr. Prafull Chorage"
+                className="h-[24rem] w-full rounded-2xl bg-cream sm:h-[32rem]"
+              >
+                <div className="grid h-full place-items-center p-8 text-center">
+                  <p className="text-sm text-muted-foreground">
+                    Your browser cannot preview this PDF. Use the button to open the certificate.
+                  </p>
+                </div>
+              </object>
+            </div>
+
+            <div className="rounded-3xl border border-border bg-cream p-7 shadow-soft">
+              <div className="grid h-14 w-14 place-items-center rounded-2xl bg-forest text-accent">
+                <FileText className="h-7 w-7" />
+              </div>
+              <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-accent">
+                Verified document
+              </p>
+              <h3 className="mt-2 font-display text-2xl font-extrabold text-foreground">
+                Prafull Chorage
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Organic Farming Skills training certificate supporting the farm’s practical,
+                agriculture-led approach.
+              </p>
+
+              <div className="mt-6 grid gap-3">
+                <a
+                  href="/certificates/prafull-chorage-organic-farming-skills.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-bold text-primary-foreground transition hover:bg-forest"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  Open certificate
+                </a>
+                <a
+                  href="/certificates/prafull-chorage-organic-farming-skills.pdf"
+                  download="Prafull-Chorage-Organic-Farming-Skills-Certificate.pdf"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-background px-4 py-3 text-sm font-bold text-foreground transition hover:border-accent hover:text-primary"
+                >
+                  <Download className="h-4 w-4" />
+                  Download PDF
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
