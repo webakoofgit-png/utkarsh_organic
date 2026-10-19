@@ -142,6 +142,15 @@ export function Footer() {
                 <Phone className="h-4 w-4 shrink-0 text-green-300" />
                 <span>{COMPANY_INFO.phonePrimary}</span>
               </a>
+              {COMPANY_INFO.phoneSecondary ? (
+                <a
+                  href={`tel:${COMPANY_INFO.phoneSecondary.replace(/\s/g, "")}`}
+                  className="flex items-center gap-2.5 hover:text-beige"
+                >
+                  <Phone className="h-4 w-4 shrink-0 text-green-300" />
+                  <span>{COMPANY_INFO.phoneSecondary}</span>
+                </a>
+              ) : null}
               <a
                 href={`mailto:${COMPANY_INFO.email}`}
                 className="flex items-center gap-2.5 break-all hover:text-beige"

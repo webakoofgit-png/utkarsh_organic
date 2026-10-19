@@ -162,7 +162,7 @@ export default function AboutPage() {
                 <Stethoscope className="h-8 w-8" />
               </div>
               <h3 className="mt-5 font-display text-2xl font-extrabold text-foreground">
-                Manufacturer & Supplier
+                Mr. Padmashri Chorage
               </h3>
               <p className="text-xs font-bold uppercase tracking-wider text-accent mt-1">
                 Dr. Padmashri Prafull Chorage (Nutrition Expert)

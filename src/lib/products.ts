@@ -47,7 +47,7 @@ export const COMPANY_INFO = {
     full: "D-31 Near By Atharva Foundry, MIDC, Satara, Maharashtra, India - 412803",
   },
   phonePrimary: "+91 7507379018",
-  phoneSecondary: "",
+  phoneSecondary: "+91 9623313669",
   whatsappNumber: "917507379018",
   social: {
     instagram: "https://www.instagram.com/utkarshorgfarm/",

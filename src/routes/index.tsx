@@ -33,11 +33,7 @@ import { useCatalog } from "@/lib/catalog";
 import { COMPANY_INFO, MARATHI_PROMO } from "@/lib/products";
 import { GALLERY_ITEMS } from "@/lib/gallery";
 import { CUSTOMER_TESTIMONIALS } from "@/lib/testimonials";
-import flatlay from "@/assets/flatlay.jpg";
 import heroOnion from "@/assets/hero-onion.jpg";
-import flipCardFarmFresh from "@/assets/flip-card-farm-fresh.png";
-import flipCardMoringaWellness from "@/assets/flip-card-moringa-wellness.png";
-import flipBulkPowders from "@/assets/flip-bulk-powders.png";
 import heroFarmFamily from "@/assets/hero-farm-family.png";
 import farmStoryOnionProductLineup from "@/assets/farm-story-onion-product-lineup.png";
 import heroVideo from "../../utkarsh260826.mp4";
@@ -49,35 +45,26 @@ const heroTrustPoints = [
   MARATHI_PROMO.naturalText,
 ];
 
-const uspCards = [
+const qualityPillars = [
   {
     icon: Sprout,
-    title: MARATHI_PROMO.farmTitle,
-    text: MARATHI_PROMO.farmText,
-    image: flipCardFarmFresh,
-    imageAlt: "Utkarsh Farm fresh and vibrant naturally grown vegetable field",
-    imagePosition: "20% center",
+    title: "FARM-FRESH SOURCING",
+    text: "Carefully selected vegetables, fruits, herbs and spices from trusted growers.",
   },
   {
     icon: Factory,
-    title: MARATHI_PROMO.processingTitle,
-    text: MARATHI_PROMO.processingText,
-    image: flatlay,
-    imageAlt: "Dehydrated ingredients and powders arranged for processing",
+    title: "GENTLE DEHYDRATION",
+    text: "Controlled drying helps protect natural colour, aroma and everyday nutrition.",
   },
   {
-    icon: ShieldCheck,
-    title: MARATHI_PROMO.productsTitle,
-    text: `${MARATHI_PROMO.productsText} ${MARATHI_PROMO.examples}`,
-    image: flipCardMoringaWellness,
-    imageAlt: "Utkarsh Farm moringa leaf powder natural wellness product display",
+    icon: BadgeCheck,
+    title: "QUALITY ASSURANCE",
+    text: "Clear product specifications, careful checks and consistent batch handling.",
   },
   {
-    icon: Truck,
-    title: "थेट संपर्क आणि ऑर्डर",
-    text: MARATHI_PROMO.contactLine,
-    image: flipBulkPowders,
-    imageAlt: "Bulk organic ingredient order and supply support",
+    icon: PackageCheck,
+    title: "HYGIENIC PACKING",
+    text: "Food-grade packing keeps ingredients clean, dry and ready for kitchens.",
   },
 ];
 
@@ -269,43 +256,29 @@ export default function HomePage() {
 
       <section className="container-x py-16 lg:py-24">
         <SectionHeading
-          eyebrow="उत्कर्ष फार्म"
-          title={MARATHI_PROMO.campaignTitle}
-          sub={`${MARATHI_PROMO.campaignText} ${MARATHI_PROMO.naturalText}`}
+          eyebrow="Our quality promise"
+          title="From farm to pantry, handled with care."
+          sub="Thoughtful sourcing, controlled processing and reliable packing come together in every Utkarsh Organic product."
         />
-        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {uspCards.map(({ icon: Icon, title, text, image, imageAlt, imagePosition }, index) => (
+        <div className="mt-12 grid border-y border-earth/35 sm:grid-cols-2 lg:grid-cols-4">
+          {qualityPillars.map(({ icon: Icon, title, text }, index) => (
             <Reveal key={title} delay={index * 0.07}>
               <article
-                tabIndex={0}
                 aria-label={title}
-                className="group h-full rounded-[1.5rem] outline-none lg:min-h-[20rem] lg:[perspective:1200px]"
+                className={`group min-h-[15rem] px-6 py-8 sm:px-7 lg:min-h-[18rem] lg:px-8 ${
+                  index > 0 ? "border-t border-earth/35 sm:border-l lg:border-t-0" : ""
+                } ${index === 2 ? "lg:border-l" : ""}`}
               >
-                <div className="relative grid h-full gap-3 transition duration-700 lg:block lg:min-h-[20rem] lg:[transform-style:preserve-3d] lg:group-hover:[transform:rotateY(180deg)] lg:group-focus:[transform:rotateY(180deg)]">
-                  <div className="surface-card relative aspect-[4/3] overflow-hidden lg:absolute lg:inset-0 lg:aspect-auto lg:[backface-visibility:hidden]">
-                    <img
-                      src={image}
-                      alt={imageAlt}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition duration-700 group-hover:scale-105 group-focus:scale-105"
-                      style={imagePosition ? { objectPosition: imagePosition } : undefined}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-forest/18 via-transparent to-transparent" />
-                    <div className="absolute left-5 top-5 grid h-12 w-12 place-items-center rounded-2xl bg-white/92 text-primary shadow-soft backdrop-blur">
-                      <Icon className="h-6 w-6" />
-                    </div>
-                  </div>
-                  <div className="surface-card relative flex flex-col p-5 transition duration-300 group-hover:shadow-lift group-focus:shadow-lift sm:p-6 lg:absolute lg:inset-0 lg:[backface-visibility:hidden] lg:[transform:rotateY(180deg)]">
-                    <div
-                      className="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-accent transition duration-300 animate-gentle-float group-hover:bg-primary group-hover:text-primary-foreground group-hover:[animation-play-state:paused]"
-                      style={{ animationDelay: `${index * 0.16}s` }}
-                    >
-                      <Icon className="h-6 w-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" />
-                    </div>
-                    <h3 className="mt-6 font-display text-xl font-bold">{title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p>
-                  </div>
+                <div className="flex items-start justify-between gap-4">
+                  <span className="font-serif text-sm text-earth">0{index + 1}</span>
+                  <Icon className="h-7 w-7 text-earth transition-transform duration-300 group-hover:-translate-y-1" />
                 </div>
+                <h3 className="mt-8 font-display text-base font-extrabold tracking-tight text-foreground sm:text-lg">
+                  {title}
+                </h3>
+                <p className="mt-6 max-w-xs text-sm leading-relaxed text-muted-foreground">
+                  {text}
+                </p>
               </article>
             </Reveal>
           ))}
