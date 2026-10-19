@@ -28,6 +28,17 @@ function productImage(raw: any, imageOverride?: string) {
   return image;
 }
 
+function normalizeCategory(raw: any): StoreCategory {
+  const id = raw.slug || raw.id;
+  const canonical = CATEGORIES.find((item) => item.id === id);
+
+  return {
+    id,
+    name: canonical?.name || raw.name,
+    blurb: canonical?.blurb || raw.description || raw.blurb,
+  };
+}
+
 function normalizeProduct(raw: any): Product {
   const imageOverride = PRODUCT_IMAGE_OVERRIDES.get(raw.slug);
 
@@ -75,7 +86,7 @@ export function ProductCatalogProvider({ children }: { children: ReactNode }) {
         setSource("api");
       }
       if (Array.isArray(categoryRes.data) && categoryRes.data.length) {
-        setCategories(categoryRes.data.map((item: any) => ({ id: item.slug || item.id, name: item.name, blurb: item.description || item.blurb })));
+        setCategories(categoryRes.data.map(normalizeCategory));
       }
     } catch {
       setProducts(PRODUCTS);
