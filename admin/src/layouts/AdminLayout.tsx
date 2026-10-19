@@ -10,8 +10,6 @@ import {
   Menu,
   Package,
   ReceiptIndianRupee,
-  Settings,
-  Shield,
   ShoppingCart,
   Tags,
   Users,
@@ -49,13 +47,6 @@ const groups = [
       { to: "/coupons", label: "Coupons", icon: Tags },
       { to: "/bulk-orders", label: "Bulk Orders", icon: Boxes },
       { to: "/contact-enquiries", label: "Enquiries", icon: Contact },
-    ],
-  },
-  {
-    label: "System",
-    items: [
-      { to: "/settings", label: "Settings", icon: Settings },
-      { to: "/admin-users", label: "Admin Users", icon: Shield },
     ],
   },
 ];
@@ -122,7 +113,7 @@ export function AdminLayout() {
             </button>
             <div>
               <strong>Operations Control</strong>
-              <p className="muted" style={{ fontSize: 12 }}>Products, orders, content, and settings</p>
+              <p className="muted" style={{ fontSize: 12 }}>Products, orders, and content</p>
             </div>
           </div>
 

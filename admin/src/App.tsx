@@ -6,7 +6,6 @@ import { DashboardPage } from "@/pages/DashboardPage";
 import { ResourcePage } from "@/pages/ResourcePage";
 import { resourceDefinitions } from "@/utils/resources";
 import { OrdersPage } from "@/pages/OrdersPage";
-import { SettingsPage } from "@/pages/SettingsPage";
 
 function Protected() {
   const { admin, loading } = useAuth();
@@ -23,7 +22,6 @@ export default function App() {
       <Route element={<Protected />}>
         <Route index element={<DashboardPage />} />
         <Route path="/orders" element={<OrdersPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
         {Object.entries(resourceDefinitions)
           .map(([path, definition]) => (
             <Route key={path} path={`/${path}`} element={<ResourcePage definition={definition} />} />

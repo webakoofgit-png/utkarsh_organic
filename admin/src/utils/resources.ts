@@ -8,7 +8,6 @@ import {
   FileText,
   Package,
   ReceiptIndianRupee,
-  Shield,
   ShoppingCart,
   Tags,
   Users,
@@ -424,29 +423,6 @@ export const resourceDefinitions: Record<string, ResourceDefinition> = {
       { name: "link", label: "Link" },
       { name: "isRead", label: "Read", type: "checkbox" },
     ],
-  },
-  "admin-users": {
-    resource: "admin-users",
-    title: "Admin Users",
-    eyebrow: "Administration",
-    description: "Create internal admin accounts and assign role IDs.",
-    icon: Shield,
-    statusOptions: ["Active", "Inactive"],
-    columns: [
-      { key: "name", label: "Name" },
-      { key: "email", label: "Email" },
-      { key: "phone", label: "Phone" },
-      { key: "isActive", label: "Active", type: "bool" },
-    ],
-    fields: [
-      { name: "name", label: "Name", required: true },
-      { name: "email", label: "Email", required: true },
-      { name: "phone", label: "Phone" },
-      { name: "password", label: "Temporary Password", type: "password" },
-      { name: "roleIds", label: "Role IDs", hint: "Comma separated IDs" },
-      { name: "isActive", label: "Active", type: "checkbox" },
-    ],
-    transform: (values) => ({ ...values, roleIds: splitLines(String(values.roleIds || "").replace(/,/g, "\n")).map(Number) }),
   },
 };
 

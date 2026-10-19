@@ -100,8 +100,4 @@ export const adminApi = {
   async shipment(id: string | number, data: any) {
     return (await apiRequest(`/admin/orders/${id}/shipment`, { method: "PUT", body: JSON.stringify(data) })).data;
   },
-  async settings(data?: any) {
-    if (data) return (await apiRequest("/admin/settings", { method: "PUT", body: JSON.stringify(data) })).data;
-    return (await apiRequest("/admin/settings")).data;
-  },
 };
